@@ -14,7 +14,7 @@
 | GET | `/riwayat` | `history` | `Livewire\CalculationHistory` | ✅ | Riwayat anonim per sesi (detail expandable + hapus); **network-only di SW** |
 | GET | `/tentang` | `about` | `PageController` | ✅ | Profil + lini masa + disclaimer |
 | GET | `/referensi` | `sources` | `SourceController` | ✅ | Daftar sumber referensi |
-| GET | `/referensi/{source}` | `sources.show` | `SourceController@show` | ✅ | Detail satu sumber |
+| GET | `/referensi/{source}` | `sources.show` | `SourceController@show` | ⏳ Tahap 5+ | Belum dibangun & tidak ditautkan; halaman referensi hanya daftar |
 | GET | `/kebijakan-privasi` | `privacy` | `PageController` | ✅ | Batas penyimpanan riwayat, cache SW, security |
 | GET | `/instalasi` | `install` | view `pages.install` | ✅ | Panduan pasang PWA (Android Chrome/iOS desktop); **bukan APK** |
 | GET | `/offline` | `offline` | view `pages.offline` | ✅ | Fallback offline service worker |

@@ -14,20 +14,20 @@ final class RationalNumber implements \Stringable
     private function __construct(
         public readonly int $numerator,
         public readonly int $denominator
-    ) {
-        if ($this->denominator === 0) {
+    ) {}
+
+    public static function of(int $numerator, int $denominator = 1): self
+    {
+        if ($denominator === 0) {
             throw new \DomainException('Penyebut pecahan tidak boleh nol.');
         }
 
         // Normalisasi tanda: penyebut selalu positif.
-        if ($this->denominator < 0) {
-            $this->numerator = -$this->numerator;
-            $this->denominator = -$this->denominator;
+        if ($denominator < 0) {
+            $numerator = -$numerator;
+            $denominator = -$denominator;
         }
-    }
 
-    public static function of(int $numerator, int $denominator = 1): self
-    {
         return new self($numerator, $denominator);
     }
 

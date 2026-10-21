@@ -50,8 +50,16 @@ Lihat `docs/requirements.md` §6 — terpenuhi.
 1. UAT scratch dgn ahli faraid/kiai (dalam uji 10–20 kasus nyata setelah Kel trabalhar).
 2. Performance pass: asset, page speed demo.
 3. Security pass: CSRF, rate limit, data-limit, info-leak check.
-4. Rilis: tag `v1.0`, README final, checklist deployment, UI versioning/roadmap kesatu manusiana.
+## Tahap 5 — Audit Final, Deployment & Rilis (dikerjakan pada komit Tahap 5)
+1. [x] Audit fungsi route: 14 rute publik + PWA 200 OK (verifikasi HTTP nyata via dev server).
+2. [x] Test interaktif browser: kalkulator E2E (kasus Rp 9,8 jt → Suami 2.250.000 / anak 6.750.000, v0.3.0, label DEMO), tombol alur & ringkasan pra-hitung bekerja.
+3. [x] Static analysis: Larastan/PHPStan level 5 → 0 error (perbaikan RationalNumber, FaraidEngine, EstateDistribution, services).
+4. [x] Regression: Pest 73 test / 250 assertion hijau; Pint bersih; `migrate:fresh --seed` sukses.
+5. [x] Sekuritas: APP_DEBUG=false di doc produksi, rate limit 60/menit livewire, CSRF, tidak ada secret di repo, `.env.example` tanpa isi sensitif, `welcome.blade.php` scaffold dihapus (tautan login/register fiktif).
+6. [x] Dokumen baru: `docs/deployment.md` (deploy, `.env` prod, backup/restore DB, verifikasi pasca-deploy, batasan shared hosting), README direvisi Al-Waris.
+7. [ ] UAT bersama ahli faraid (10–20 kasus nyata) — menunggu pemangku kepentingan.
+8. [ ] Rilis publik: domain + HTTPS produksi + tag `v1.0`.
 
 ## Mitigasi Drift
 - Setiap selesai tahap: perbarui checklist di atas + architecture.md Change Log + assumptions-and-risks.md.
-- Semua dokumen disimpan hanya di `docs/` (sumber kebenaran unt好久 docs).
+- Semua dokumen disimpan hanya di `docs/` (sumber kebenaran tunggal).

@@ -132,7 +132,10 @@ final class FaraidEngine
             return FaraidResult::notSupported('Nenek dari ibu bersama keturunan belum didukung Tahap 2.', $trace);
         }
 
-        if ($mother && $maternalGrandmother && ($hasChildren || $siblingCount > 0)) {
+        if ($mother && $maternalGrandmother && $siblingCount > 0) {
+            // Catatan: kasus ibu + nenek-ibu bersama KETURUNAN sudah ditangkap
+            // oleh pemeriksaan di atas ($maternalGrandmother && $hasChildren),
+            // sehingga di sini cukup memeriksa saudara.
             $trace[] = 'Gharawain hanya didukung pada komposisi sederhana.';
 
             return FaraidResult::notSupported(

@@ -100,7 +100,7 @@ final class EstateCalculationService
      * - total nominal WAJIB sama dengan netCents — bila tidak, distribusi
      *   ditandai error (dipanggil sebagai notValid dari caller).
      *
-     * @return array{list: array<string, mixed>, notes: list<string>, rounding: array{method: string, floor_per_share: bool, remainder_assigned_to: string|null, remainder_cents: int}, total: int}
+     * @return array{list: list<array<string, mixed>>, notes: list<string>, rounding: array{method: string, floor_per_share: bool, remainder_assigned_to: string|null, remainder_cents: int}, total: int}
      */
     private function toMoney(FaraidResult $result, float $netEstate): array
     {
@@ -207,7 +207,9 @@ final class EstateCalculationService
     private function notValid(string $status, string $message): EstateDistribution
     {
         return new EstateDistribution(
-            inputs: [],
+            // Input nol: untuk status non-valid, nominal belum dipakai dan
+            // tidak ditampilkan di UI (hanya pesan status).
+            inputs: ['estate' => 0.0, 'debts' => 0.0, 'bequest' => 0.0, 'funeral' => 0.0],
             netEstate: 0.0,
             status: $status,
             method: null,
