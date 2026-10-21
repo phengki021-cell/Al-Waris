@@ -6,11 +6,27 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="theme-color" content="#123D32">
 
-    <title>@if (Route::currentRouteName() !== 'home') {{ $title ?? 'Warisku' }} — @endif Warisku</title>
-    <meta name="description" content="Warisku: website edukasi & kalkulator pembagian harta warisan Islam (faraid) berbahasa Indonesia.">
+    <title>@if (Route::currentRouteName() !== 'home') {{ $title ?? 'Al-Waris' }} — @endif Al-Waris</title>
+    <meta name="description" content="{{ $description ?? 'Al-Waris: website edukasi & kalkulator pembagian harta warisan Islam (faraid) berbahasa Indonesia.' }}">
 
-    {{-- PWA (aktivasi penuh di Tahap 4) --}}
-    <link rel="manifest" href="/manifest.json">
+    {{-- Open Graph dasar --}}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Al-Waris">
+    <meta property="og:title" content="{{ $title ?? 'Al-Waris — Edukasi & Kalkulator Faraid' }}">
+    <meta property="og:description" content="{{ $description ?? 'Website edukasi dan simulasi pembagian harta warisan Islam (faraid) berbahasa Indonesia.' }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ asset('/icons/icon-512.png') }}">
+    <meta property="og:locale" content="id_ID">
+
+    {{-- Ikon --}}
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/icons/favicon-48.png" type="image/png" sizes="48x48">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon-180.png">
+
+    <meta name="theme-color" content="#123D32">
+
+    {{-- PWA (Tahap 4) --}}
+    <link rel="manifest" href="{{ route('manifest') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <livewire:styles />
@@ -35,7 +51,7 @@
         <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
             <a href="{{ route('home') }}" class="flex items-center gap-2 py-1">
                 <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-lg font-bold text-primary">W</span>
-                <span class="text-lg font-bold tracking-wide">Warisku</span>
+                <span class="text-lg font-bold tracking-wide">Al-Waris</span>
             </a>
 
             {{-- Desktop nav --}}
@@ -77,24 +93,25 @@
     <footer class="mt-10 bg-primary text-white/80">
         <div class="mx-auto max-w-6xl px-4 py-8 md:grid md:grid-cols-3 md:gap-8">
             <div>
-                <p class="text-lg font-bold text-white">Warisku</p>
+                <p class="text-lg font-bold text-white">Al-Waris</p>
                 <p class="mt-2 text-sm">Edukasi & simulasi pembagian harta warisan Islam (faraid) berbahasa Indonesia.</p>
             </div>
             <div class="mt-6 text-sm md:mt-0">
                 <p class="font-semibold text-accent">Halaman</p>
                 <ul class="mt-2 space-y-1">
                     <li><a href="{{ route('about') }}" class="hover:text-white">Tentang</a></li>
+                    <li><a href="{{ route('install') }}" class="hover:text-white">Pasang di Perangkat</a></li>
                     <li><a href="{{ route('sources') }}" class="hover:text-white">Sumber/Referensi</a></li>
                     <li><a href="{{ route('privacy') }}" class="hover:text-white">Kebijakan Privasi</a></li>
                 </ul>
             </div>
             <div class="mt-6 text-sm md:mt-0">
                 <p class="font-semibold text-accent">Disclaimer</p>
-                <p class="mt-2">Warisku adalah alat bantu edukasi dan simulasi — bukan pengganti penilaian ahli faraid atau nasihat hukum untuk sengketa nyata.</p>
+                <p class="mt-2">Al-Waris adalah alat bantu edukasi dan simulasi — bukan pengganti penilaian ahli faraid atau nasihat hukum untuk sengketa nyata.</p>
             </div>
         </div>
         <div class="border-t border-white/10 py-4 text-center text-xs text-white/60">
-            © {{ date('Y') }} Warisku — belajar tahap demi tahap.
+            © {{ date('Y') }} Al-Waris — belajar tahap demi tahap.
         </div>
     </footer>
 

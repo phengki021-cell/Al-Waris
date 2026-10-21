@@ -106,13 +106,39 @@
             </div>
         </fieldset>
 
+        {{-- Ringkasan sebelum hitung (membantu memeriksa input tanpa menjalankan mesin) --}}
+        <div class="mt-4 rounded-lg bg-accent-soft p-3 text-xs text-ink/80">
+            <p class="font-semibold text-primary">Ringkasan input</p>
+            <p class="mt-1">
+                Harta awal: <strong>Rp {{ number_format((float) ($this->estate ?: 0), 2, ',', '.') }}</strong>
+                · Kewajiban (jenazah + hutang + wasiat):
+                <strong>Rp {{ number_format((float) ($this->funeral ?: 0) + (float) ($this->debts ?: 0) + (float) ($this->bequest ?: 0), 2, ',', '.') }}</strong>
+            </p>
+            <p class="mt-1">
+                Ahli waris:
+                {{ trim(($this->spouse === 'husband' ? 'Suami, ' : ($this->spouse === 'wife' ? 'Istri' . ($this->wifeCount > 1 ? ' (×' . $this->wifeCount . ')' : '') . ', ' : '')) . collect([
+                    $this->sons > 0 ? 'anak laki-laki ' . $this->sons : '',
+                    $this->daughters > 0 ? 'anak perempuan ' . $this->daughters : '',
+                    $this->father ? 'ayah' : '',
+                    $this->mother ? 'ibu' : '',
+                    $this->maternalGrandmother ? 'nenek dari ibu' : '',
+                    $this->brothers > 0 ? 'saudara laki-laki ' . $this->brothers : '',
+                    $this->sisters > 0 ? 'saudara perempuan ' . $this->sisters : '',
+                ])->filter()->implode(', ')) ?: '— belum ada yang diisi —' }}
+            </p>
+            <p class="mt-2 text-primary underline underline-offset-2">
+                <a href="{{ route('how-to') }}">Pelajari cara menghitungnya</a> ·
+                <a href="{{ route('shares') }}">Lihat bagian ahli waris</a>
+            </p>
+        </div>
+
         <div class="mt-6 flex flex-wrap gap-3">
             <button type="submit" class="rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-primary-700">
                 Hitung Sekarang
             </button>
-            <button type="button" wire:click="resetAll" wire:loading.attr="disabled"
+            <button type="button" wire:click="startNew" wire:loading.attr="disabled"
                 class="rounded-lg border border-ink/20 px-6 py-3 text-sm font-medium transition hover:bg-surface">
-                Reset
+                Mulai Perhitungan Baru
             </button>
         </div>
 
@@ -129,7 +155,17 @@
             </p>
         @endif
 
-        @if ($result)
+        @if ($showResult && $result)
+            <div class="mb-4 flex flex-wrap gap-3">
+                <button type="button" wire:click="backToInput"
+                    class="rounded-lg border border-ink/20 bg-white px-5 py-2.5 text-sm font-medium transition hover:bg-paper">
+                    ← Kembali mengubah input
+                </button>
+                <button type="button" wire:click="startNew"
+                    class="rounded-lg border border-ink/20 bg-white px-5 py-2.5 text-sm font-medium transition hover:bg-paper">
+                    + Mulai perhitungan baru
+                </button>
+            </div>
             @php $netCents = (int) round($result['net_estate'] * 100); @endphp
 
             @if ($result['status'] === 'valid')
@@ -295,6 +331,5 @@
             <div class="rounded-xl bg-paper p-8 text-center text-sm text-ink/50 shadow-sm ring-1 ring-black/5">
                 Isi form di atas lalu klik <strong>Hitung Sekarang</strong>. Hasil akan muncul di sini.
             </div>
-        @endif
-    </section>
+        @endif    </section>
 </div>

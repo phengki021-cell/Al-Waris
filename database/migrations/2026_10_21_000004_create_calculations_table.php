@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->string('session_token', 64)->nullable()->index();
-            $table->string('reference_code', 20)->unique();     // contoh: WRS-2026-000123
+            $table->string('reference_code', 20)->unique();     // contoh: ALW-2026-000123
             $table->decimal('estate_total', 20, 2)->default(0); // total harta
             $table->decimal('debts_total', 20, 2)->default(0);
             $table->decimal('bequests_total', 20, 2)->default(0); // wasiat (<= 1/3)

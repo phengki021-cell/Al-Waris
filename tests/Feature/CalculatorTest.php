@@ -1,5 +1,6 @@
 <?php
 
+use App\Domain\Faraid\FaraidEngine;
 use App\Livewire\Calculator;
 use App\Models\Calculation;
 
@@ -41,10 +42,11 @@ it('hasil valid dapat disimpan ke riwayat (anonim per sesi)', function () {
 
     $row = Calculation::where('session_token', session()->getId())->sole();
 
-    expect($row->reference_code)->toStartWith('WRS-')
+    expect($row->reference_code)->toStartWith('ALW-')
         ->and((float) $row->net_estate)->toBe(9_000_000.0)
         ->and($row->status)->toBe('valid')
         ->and($row->method)->toBe('amal_ummi')
+        ->and($row->engine_version)->toBe(FaraidEngine::VERSION)
         ->and($row->participants()->count())->toBe(2)
         ->and($row->participants->first()->results->count())->toBe(1);
 });

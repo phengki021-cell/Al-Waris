@@ -10,7 +10,7 @@
 {{-- Hero --}}
 <section class="rounded-2xl bg-primary p-6 text-white md:p-12">
     <p class="text-sm font-semibold tracking-widest text-accent uppercase">Saham warisan setiap orang</p>
-    <h1 class="mt-3 text-3xl font-bold md:text-5xl">Warisku</h1>
+    <h1 class="mt-3 text-3xl font-bold md:text-5xl">Al-Waris</h1>
     <p class="mt-4 max-w-2xl text-base text-white/85 md:text-lg">
         Belajar <em>faraid</em> — ilmu pembagian warisan Islam — dengan bahasa Indonesia yang mudah dipahami,
         bersumber dari Al-Qur'an, KHI, dan kitab klasik. Coba juga simulasi hitung warisan.

@@ -3,11 +3,22 @@
 use App\Http\Controllers\HeirCatalogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PwaController;
 use App\Http\Controllers\ShareCatalogController;
 use App\Http\Controllers\SourceController;
 use App\Livewire\CalculationHistory;
 use App\Livewire\Calculator;
 use Illuminate\Support\Facades\Route;
+
+// PWA: manifest & service worker via rute agar uji otomatis mampu (Tahap 4).
+Route::get('/manifest.json', [PwaController::class, 'manifest'])->name('manifest');
+Route::get('/sw.js', [PwaController::class, 'serviceWorker'])->name('sw');
+
+// Fallback offline (target service worker saat jaringan tiada).
+Route::view('/offline', 'pages.offline')->name('offline');
+
+// Panduan instalasi PWA.
+Route::view('/instalasi', 'pages.install')->name('install');
 
 // Halaman utama
 Route::get('/', HomeController::class)->name('home');

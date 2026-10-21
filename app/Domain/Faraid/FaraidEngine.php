@@ -3,7 +3,7 @@
 namespace App\Domain\Faraid;
 
 /**
- * Mesin faraid Tahap 2 — Warisku.
+ * Mesin faraid Tahap 2 — Al-Waris.
  *
  * SCOPE TERVERIFIKASI (aktif):
  *  - Suami / istri (termasuk beberapa istri), anak laki-laki & perempuan,

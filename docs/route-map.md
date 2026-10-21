@@ -1,35 +1,49 @@
-# Route Map — Warisku
+# Route Map — Al-Waris
 
-> Status: Tahap 1. Status halaman: ⏳ belum dibangun → ✅ siap pada Tahap 1 (skeleton / halaman placeholder konten) → 🔄 interaktif penuh (Tahap lanjut)
+> Status: Tahap 4. Halaman inti sudah interaktif penuh; PWA aktif.
 
-## 1. Rute halaman (web.php)
+## 1. Rute halaman (routes/web.php)
 
-| Method | URI | Route name | Controller/Livewire | Status Tahap 1 | Catatan |
+| Method | URI | Route name | Controller/Livewire | Status | Catatan |
 |---|---|---|---|---|---|
-| GET | `/` | `home` | `HomeController` | ✅ | Beranda: ringkasan + CTA |
-| GET | `/ahli-waris` | `heirs` | `HeirCatalogController` | ✅ | Tabel dyn golongan ahli waris dari seeder |
-| GET | `/bagian-warisan` | `shares` | `ShareCatalogController` | ✅ | Tabel bagian pasti (from gift/ruks: 1/2, 1/3, 1/6, dst.) |
-| GET | `/cara-menghitung` | `how-to` | PageController | ✅ | Kumpulan langkah kerja; konten static |
-| GET | `/hitung-warisan` | `calculate` | `Livewire\Calculator` | ✅ | Kalkulator Livewire; Persussion store history pada Tahap 2; versi tahap 1: happy path bagian dasar |
-| GET | `/riwayat` | `history` | `Livewire\CalculationHistory` | ✅ | Tahap 1: empty state; data datasesi user tersambung pada Tahap 2 |
-| GET | `/tentang` | `about` | PageController | ✅ | Profil + disclaimer |
-| GET | `/referensi` | `sources` | `SourceController` | ✅ | index source_references |
-| GET | `/kebijakan-privasi` | `privacy` | PageController | ✅ | |
-| GET | `/referensi/{source}` | `sources.show` | `SourceController@show` | ⏳ Tahap 2 | Detail satu sumber |
+| GET | `/` | `home` | `HomeController` | ✅ | Beranda: ringkasan materi + CTA ke kalkulator |
+| GET | `/ahli-waris` | `heirs` | `HeirCatalogController` | ✅ | Katalog golongan ahli waris dari seeder |
+| GET | `/bagian-warisan` | `shares` | `ShareCatalogController` | ✅ | Katalog bagian pasti (1/2, 1/4, 1/8, 1/3, 1/6) |
+| GET | `/cara-menghitung` | `how-to` | `PageController` | ✅ | Langkah menghitung manual |
+| GET | `/hitung-warisan` | `calculate` | `Livewire\Calculator` | ✅ | Kalkulator penuh (Tahap 4: ringkasan pra-hitung, ubah input, mulai baru); **network-only di SW** |
+| GET | `/riwayat` | `history` | `Livewire\CalculationHistory` | ✅ | Riwayat anonim per sesi (detail expandable + hapus); **network-only di SW** |
+| GET | `/tentang` | `about` | `PageController` | ✅ | Profil + lini masa + disclaimer |
+| GET | `/referensi` | `sources` | `SourceController` | ✅ | Daftar sumber referensi |
+| GET | `/referensi/{source}` | `sources.show` | `SourceController@show` | ✅ | Detail satu sumber |
+| GET | `/kebijakan-privasi` | `privacy` | `PageController` | ✅ | Batas penyimpanan riwayat, cache SW, security |
+| GET | `/instalasi` | `install` | view `pages.install` | ✅ | Panduan pasang PWA (Android Chrome/iOS desktop); **bukan APK** |
+| GET | `/offline` | `offline` | view `pages.offline` | ✅ | Fallback offline service worker |
+| GET | `/manifest.json` | `manifest` | `PwaController@manifest` | ✅ | Web app manifest (JSON, durasi cache 1 jam) |
+| GET | `/sw.js` | `sw` | `PwaController@serviceWorker` | ✅ | Service worker (no-cache, `Service-Worker-Allowed: /`) |
 
-## 2. Rute perhitungan (Livewire methods, bukan HTTP)
-- `Calculator::(ref id ayat, penanganan heirs schematic tasa input)`
-- Perhitungan dibwha dan Dilontarkan langsung dalam komponen, hasil disimpan server-side via service (Tahap 2) → tabel `calculations`.
+## 2. Rute mutasi (Livewire, bukan HTTP GET)
 
-## 3. Rute not-public (Tahap 3+) — disiapkan
-- `GET /masuk` (`login`), `GET /daftar` (`register`), `POST /keluar` (`logout`)
+- `POST /livewire/update` — endpoint pembaruan Livewire (semua `wire:submit` / `wire:click`):
+  `Calculator::calculate`, `Calculator::saveToHistory`, `CalculationHistory::delete`, dsb.
+  Dilindungi middleware `web` (CSRF) + `throttle:livewire` (maks 60 request/menit per pengguna/IP)—
+  dipasang lewat `Livewire::setUpdateRoute()` pada `AppServiceProvider`.
 
-## 4. Aturan Naming
-- Semua route pakai kebab-case dalam URI; route name `lowercase.kebab` yang diberi kelompok tidak perlu beberapa form mangler成熟的 DB.
-- Livewire component `Namespace`: `App\Livewire\` (convention Livewire 3, undercut dengan ke формирования config).
+## 3. Tidak ada rute login/admin
+
+Proyek tidak memiliki akun pengguna, jadi tidak ada halaman login/register/admin yang dibuat —
+sesuai prinsip "jangan buat login bila tidak dibutuhkan".
+
+## 4. Konvensi
+
+- URI pakai kebab-case; route name pendek lowercase.
+- Livewire component namespace `App\Livewire\`; layout via attribute `#[Layout('layouts.app')]`.
+- Kode referensi perhitungan berformat `ALW-YYYY-NNNNNN`.
 
 ## 5. HTTP Status & Error
-- **404** (bila URL tidak ada) — pesan ramah bahasa Indonesia, tautan kembali `home`.
-- **419** (CSRF expired) — pesan "Halaman kedaluwarsa, silakan muat ulang."
-- **429** (rate limit) — saat "Terlalu banyak percobaan, tunggu beberapa saat".
-- Kalkulator Livewire (Tahap 1) memakai validasi server-side (`#[Validate]`) hasil zimmer tags; error properti inline.
+
+- **404** — halaman informatif (`resources/views/errors/404.blade.php`) dengan tautan
+  Beranda / Hitung Warisan / Ahli Waris / Referensi.
+- **419** (CSRF kedaluwarsa) — pesan "Halaman kedaluwarsa, silakan muat ulang."
+- **429** (rate limit) — pesan "Terlalu banyak percobaan, tunggu beberapa saat."
+- Validasi kalkulator memakai pesan khusus Indonesia (`Calculator::MESSAGES`); input pengguna
+  tidak hilang pada kesalahan yang bisa dipulihkan.

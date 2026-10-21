@@ -6,7 +6,7 @@
 <section>
     <h1 class="text-2xl font-bold md:text-3xl">Sumber / Referensi</h1>
     <p class="mt-2 text-sm text-ink/70 max-w-3xl">
-        Daftar sumber yang menjadi basis aturan faraid di Warisku. Setiap bagian warisan dapat ditautkan ke
+        Daftar sumber yang menjadi basis aturan faraid di Al-Waris. Setiap bagian warisan dapat ditautkan ke
         sumbernya di halaman Bagian. Detail penentuan pendapat klasik akan dikategorisasi di Tahap 2.
     </p>
 </section>

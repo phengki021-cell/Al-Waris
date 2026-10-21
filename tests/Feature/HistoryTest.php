@@ -11,13 +11,13 @@ uses(RefreshDatabase::class);
 it('riwayat menampilkan entri milik sesi ini saja', function () {
     $tokenSaya = session()->getId();
 
-    CalculationFactory::new()->create(['session_token' => $tokenSaya, 'reference_code' => 'WRS-MILIK-SAYA-1']);
-    CalculationFactory::new()->create(['session_token' => 'token-orang-lain', 'reference_code' => 'WRS-ORANG-LAIN-9']);
+    CalculationFactory::new()->create(['session_token' => $tokenSaya, 'reference_code' => 'ALW-MILIK-SAYA-1']);
+    CalculationFactory::new()->create(['session_token' => 'token-orang-lain', 'reference_code' => 'ALW-ORANG-LAIN-9']);
 
     $component = Livewire::test(CalculationHistory::class);
 
-    $component->assertSee('WRS-MILIK-SAYA-1')
-        ->assertDontSee('WRS-ORANG-LAIN-9');
+    $component->assertSee('ALW-MILIK-SAYA-1')
+        ->assertDontSee('ALW-ORANG-LAIN-9');
 });
 
 it('menolak menghapus entri sesi lain dan dapat menghapus milik sendiri', function () {
@@ -45,4 +45,24 @@ it('menolak menghapus entri sesi lain dan dapat menghapus milik sendiri', functi
 
     expect(Calculation::whereKey($milikSaya->id)->count())->toBe(0)
         ->and(Calculation::whereSessionToken('token-orang-lain')->count())->toBe(1);
+});
+
+it('riwayat menyimpan dan menampilkan versi mesin hitung serta detail dapat dibuka', function () {
+    $token = session()->getId();
+
+    CalculationFactory::new()->create([
+        'session_token' => $token,
+        'reference_code' => 'ALW-2026-000100',
+        'engine_version' => '0.3.0',
+    ]);
+
+    $component = Livewire::test(CalculationHistory::class)
+        ->assertSee('ALW-2026-000100')
+        ->call('toggleDetail', 1)
+        ->assertSee('v0.3.0')
+        ->assertSee('Harta bersih');
+
+    $component->call('toggleDetail', 1);
+
+    expect($component->instance()->expandedDetails[1])->toBeFalse();
 });

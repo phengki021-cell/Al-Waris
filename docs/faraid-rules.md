@@ -1,4 +1,4 @@
-# Pendekatan Fikih & Perlakuan KHI — Warisku (Tahap 3)
+# Pendekatan Fikih & Perlakuan KHI — Al-Waris (Tahap 3)
 
 > Status: v1.0 — 21 Oktober 2026. Dokumen ini WAJIB dibaca sebelum mengubah `FaraidEngine`.
 > Prinsip: tidak mencampur pendapat berbeda tanpa penanda; tidak mengklaim akurasi hanya karena kode berjalan.

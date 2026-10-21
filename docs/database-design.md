@@ -1,4 +1,4 @@
-# Desain Database — Warisku
+# Desain Database — Al-Waris
 
 > Status: Tahap 1. Target dev: **SQLite**; produksi dapat(MySQL/MariaDB) tanpa perubahan kode (Eloquent/Schema Builder).
 > Prinsip: hindari floating point sebagai dasar pecahan; pecahan = pasangan integer.

@@ -14,7 +14,7 @@ class CalculationFactory extends Factory
 
         return [
             'session_token' => null,
-            'reference_code' => 'WRS-'.fake()->unique()->numerify('######'),
+            'reference_code' => 'ALW-'.fake()->unique()->numerify('######'),
             'estate_total' => $estate,
             'debts_total' => 0,
             'bequests_total' => 0,

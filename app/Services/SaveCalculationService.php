@@ -32,6 +32,7 @@ final class SaveCalculationService
                 'funeral_expense' => $distribution->inputs['funeral'] ?? 0,
                 'net_estate' => $distribution->netEstate,
                 'method' => $distribution->method,
+                'engine_version' => $distribution->engineVersion,
                 'status' => $distribution->disputed ? 'needs_attention' : 'valid',
                 'notes' => $notes,
             ]);

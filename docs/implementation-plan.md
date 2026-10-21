@@ -1,11 +1,11 @@
-# Rencana Implementasi — Warisku
+# Rencana Implementasi — Al-Waris
 
 > Terakhir diperbarui: 21 Oktober 2026. Tahap 1 sedang berjalan.
 
 ## Tahap 1 — Audit & Fondasi (SAAT INI)
 
 ### 1.2 Checklist lingkungan — HASIL TAHEAP 1
-- [x] Audit: konfirmasi tidak ada proyek existing; proyek baru di `C:\Users\LENOVO\Downloads\warisku`.
+- [x] Audit: konfirmasi tidak ada proyek existing; proyek baru di `C:\Users\LENOVO\Downloads\Al-Waris`.
 - [x] Keputusan stack, database dev (SQLite), lokasi proyek — dikonfirmasi ke pemilik.
 - [x] Instalasi PHP 8.4.25, Composer 2.10.3 (phar), Node 24.20.0, Git 2.55.0 via winget/unduhan.
 - [x] `composer create-project laravel/laravel` sukses → Laravel 13.38.0.

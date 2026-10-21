@@ -1,4 +1,4 @@
-# Asumsi, Risiko, dan Dependensi — Warisku
+# Asumsi, Risiko, dan Dependensi — Al-Waris
 
 > Status: Tahap 1. Terakhir diperbarui: 21 Oktober 2026.
 
@@ -6,7 +6,7 @@
 
 | Item | Hasil |
 |---|---|
-| Direktori kerja awal | `C:\Users\LENOVO\Downloads` — BUKAN repo; tidak ada proyek Laravel; diputuskan proyek baru di `C:\Users\LENOVO\Downloads\warisku` |
+| Direktori kerja awal | `C:\Users\LENOVO\Downloads` — BUKAN repo; tidak ada proyek Laravel; diputuskan proyek baru di `C:\Users\LENOVO\Downloads\Al-Waris` |
 | PHP | ❌ tidak terinstal → ✅ diinstal via winget (PHP.PHP.8.4) |
 | Composer | ❌ tidak tersedia di winget → dipasang manual via `composer.phar` resmi (getcomposer.org) |
 | Node.js / npm | ❌ → ✅ diinstal via winget (OpenJS.NodeJS.LTS 24.x) |
@@ -19,7 +19,7 @@
 1. **Privasi riwayat anonim**: Tahap 1 kalkulator tidak menyimpan perhitungan secara permanen; hanya tabel tersedia untuk riwayat bagi user yang login (Tahap 2/3). Riwayat anonim via token sesi disimpan sementara dan dijadwalkan dihapus otomatis (retensi bawaan 30 hari, dapat diubah via `.env`).
 2. **Sumber hukum yang dipakai**: aturan dasar bagian dari QS An-Nisāʾ/An-Nahl dan Kompilasi Hukum Islam (KHI) Indonesia; kitab d e rujukan klasik (Fathul-Qarīb, al-Ikhtishar, dsb.) sebagai pelengkap — sumber mana yang *diutamakan* saat ada beda pendapat dapat dikonfirmasi pada Tahap 2.
 3. **Kalkulator Tahap 1** menghitung kasus dasar (amal ummi) divalidasikan di bawah pengawasca as suk mana. Kasus 'aul, radd, gawalan, sbah, himarih duplex → Tahap 2 dst; UI akan menolak (atau menampilkan "Belum didukung") secara jujur.
-4. **Nama proyek** sementara: *Warisku*; rebranding di kemudian hari dianggap terpisah.
+4. **Nama proyek** sementara: *Al-Waris*; rebranding di kemudian hari dianggap terpisah.
 5. **PWA**: hasil dapat diinstal di HP via Chrome/Edge/Safari-16.4+; **bukan APK native** — hal ini diutamakan didokumentasikan di Tentang dan README agar tidak salah pengertia.
 
 ## 3. Risiko & Mitigasi

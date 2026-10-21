@@ -1,11 +1,11 @@
-# Dokumen Kebutuhan — Warisku
+# Dokumen Kebutuhan — Al-Waris
 
 > **Status:** Tahap 1 (Fondasi) — terakhir diperbarui: 21 Oktober 2026
-> Nama produk sementara: **Warisku** (dapat diubah kemudian).
+> Nama produk sementara: **Al-Waris** (dapat diubah kemudian).
 
 ## 1. Tujuan Proyek
 
-Warisku adalah **website edukasi dan kalkulator pembagian harta warisan Islam (ilmu faraid)** berbahasa Indonesia yang:
+Al-Waris adalah **website edukasi dan kalkulator pembagian harta warisan Islam (ilmu faraid)** berbahasa Indonesia yang:
 
 1. Membantu masyarakat mempelajari ilmu faraid (hukum pembagian warisan dalam Islam).
 2. Menyediakan simulasi perhitungan pembagian harta warisan secara otomatis.

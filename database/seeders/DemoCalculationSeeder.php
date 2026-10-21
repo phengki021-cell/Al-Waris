@@ -22,7 +22,7 @@ class DemoCalculationSeeder extends Seeder
 
         $demo = [
             [
-                'reference_code' => 'WRS-2026-000001',
+                'reference_code' => 'ALW-2026-000001',
                 'estate_total' => 240_000_000,
                 'debts_total' => 20_000_000,
                 'bequests_total' => 5_000_000,
@@ -38,7 +38,7 @@ class DemoCalculationSeeder extends Seeder
                 ],
             ],
             [
-                'reference_code' => 'WRS-2026-000002',
+                'reference_code' => 'ALW-2026-000002',
                 'estate_total' => 100_000_000,
                 'debts_total' => 0,
                 'bequests_total' => 0,

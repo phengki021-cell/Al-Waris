@@ -13,6 +13,14 @@ class CalculationHistory extends Component
     /** @var array<int, bool> keterbukaan dialog konfirmasi per id */
     public array $confirmingDelete = [];
 
+    /** @var array<int, bool> keterbukaan panel detail per id */
+    public array $expandedDetails = [];
+
+    public function toggleDetail(int $id): void
+    {
+        $this->expandedDetails[$id] = ! ($this->expandedDetails[$id] ?? false);
+    }
+
     public function confirmDelete(int $id): void
     {
         $this->confirmingDelete[$id] = true;

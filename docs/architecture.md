@@ -1,4 +1,4 @@
-# Arsitektur — Warisku
+# Arsitektur — Al-Waris
 
 > Status: Tahap 1. Terakhir diperbarui: 21 Oktober 2026.
 
@@ -59,7 +59,7 @@
 - Uang utuh selalu **dibulatkan ke atas/nihil** berdasarkan aturan "wilayah terkecil kaliat id", dibebankan pada engine config.
 
 ## 4. Stack PWA (Rencana)
-- `manifest.json` — name: Warisku, short_name: Warisku, theme_color `#123D32`, background_color `#F5F7F4`, display `standalone`, ikon 192×192 & 512×512 (PNG kecil).
+- `manifest.json` — name: Al-Waris, short_name: Al-Waris, theme_color `#123D32`, background_color `#F5F7F4`, display `standalone`, ikon 192×192 & 512×512 (PNG kecil).
 - `service-worker.js`: strategi
   - **app shell** (CSS/JS/lulu) → cache-first, version-til path
   - **halaman konten edukasi** → stale-while-revalidate
@@ -68,7 +68,7 @@
 ## 5. Direktori Utama (Skeleton)
 
 ```
-warisku/
+Al-Waris/
 ├── app/
 │   ├── Domain/Faraid/           # pure domain
 │   ├── Livewire/                # kompoennt interaktif

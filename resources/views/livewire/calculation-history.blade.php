@@ -34,33 +34,57 @@
                                 · Status: {{ strtoupper($calculation->status) }}
                             </p>
                             <p class="mt-2">
-                                Harta awal: <strong>Rp {{ number_format((float) $calculation->estate_total, 2, ',', '.') }}</strong>
-                                · Hutang: Rp {{ number_format((float) $calculation->debts_total, 2, ',', '.') }}
-                                · Wasiat: Rp {{ number_format((float) $calculation->bequests_total, 2, ',', '.') }}
-                            </p>
-                            <p class="mt-1">
                                 Harta bersih dibagi: <strong>Rp {{ number_format((float) $calculation->net_estate, 2, ',', '.') }}</strong>
+                                · Jumlah penerima: {{ $calculation->participants->sum('count') }}
                             </p>
-                            @if ($calculation->participants->isNotEmpty())
-                                <ul class="mt-2 space-y-0.5 text-xs text-ink/70">
-                                    @foreach ($calculation->participants as $participant)
-                                        <li>
-                                            {{ $participant->name_id }}
-                                            @if ((int) $participant->count > 1)
-                                                ×{{ $participant->count }}
-                                            @endif
-                                            —
-                                            @foreach ($participant->results as $result)
-                                                {{ $result->share_text }}
-                                                @if ($result->amount != 0)
-                                                    (Rp {{ number_format((float) $result->amount, 2, ',', '.') }})
-                                                @endif
-                                    @endforeach
-                                        </li>
-                                    @endforeach
-                                </ul>
+
+                            {{-- Detail yang dapat dibuka/tutup --}}
+                            @if ($this->expandedDetails[$calculation->id] ?? false)
+                                <div class="mt-3 rounded-lg bg-surface p-3 ring-1 ring-black/5 text-xs">
+                                    <dl class="grid grid-cols-2 gap-x-4 gap-y-1 text-ink/80">
+                                        <dt>Harta awal</dt>
+                                        <dd class="text-right">Rp {{ number_format((float) $calculation->estate_total, 2, ',', '.') }}</dd>
+                                        <dt>Hutang</dt>
+                                        <dd class="text-right">Rp {{ number_format((float) $calculation->debts_total, 2, ',', '.') }}</dd>
+                                        <dt>Wasiat</dt>
+                                        <dd class="text-right">Rp {{ number_format((float) $calculation->bequests_total, 2, ',', '.') }}</dd>
+                                        <dt>Biaya jenazah</dt>
+                                        <dd class="text-right">Rp {{ number_format((float) $calculation->funeral_expense, 2, ',', '.') }}</dd>
+                                        <dt>Harta bersih</dt>
+                                        <dd class="text-right font-semibold">Rp {{ number_format((float) $calculation->net_estate, 2, ',', '.') }}</dd>
+                                        <dt>Mesin hitung</dt>
+                                        <dd class="text-right">v{{ $calculation->engine_version ?? '?' }}</dd>
+                                    </dl>
+
+                                    @if ($calculation->participants->isNotEmpty())
+                                        <p class="mt-3 font-semibold text-primary">Penerima</p>
+                                        <ul class="mt-1 space-y-0.5">
+                                            @foreach ($calculation->participants as $participant)
+                                                <li>
+                                                    {{ $participant->name_id }}
+                                                    @if ((int) $participant->count > 1)
+                                                        ×{{ $participant->count }}
+                                                    @endif
+                                                    —
+                                                    @foreach ($participant->results as $result)
+                                                        {{ $result->share_text }}
+                                                        @if ($result->amount != 0)
+                                                            (Rp {{ number_format((float) $result->amount, 2, ',', '.') }})
+                                                        @endif
+                                                    @endforeach
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                </div>
                             @endif
                         </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            <button wire:click="toggleDetail({{ $calculation->id }})"
+                                class="rounded-lg border border-ink/20 px-3 py-1.5 text-xs font-medium">
+                                {{ ($this->expandedDetails[$calculation->id] ?? false) ? 'Tutup detail' : 'Detail' }}
+                            </button>
 
                         @if (array_key_exists($calculation->id, $this->confirmingDelete))
                             <div class="text-right">
@@ -82,6 +106,7 @@
                                 Hapus
                             </button>
                         @endif
+                        </div>
                     </div>
                 </li>
             @endforeach

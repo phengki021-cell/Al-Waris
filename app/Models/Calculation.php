@@ -20,7 +20,7 @@ class Calculation extends Model
 
     protected $fillable = [
         'user_id', 'session_token', 'reference_code', 'estate_total', 'debts_total',
-        'bequests_total', 'funeral_expense', 'net_estate', 'method', 'status', 'notes',
+        'bequests_total', 'funeral_expense', 'net_estate', 'method', 'engine_version', 'status', 'notes',
     ];
 
     protected $casts = [
@@ -60,6 +60,6 @@ class Calculation extends Model
         $year = now()->year;
         $count = static::whereYear('created_at', $year)->count() + 1;
 
-        return sprintf('WRS-%d-%06d', $year, $count);
+        return sprintf('ALW-%d-%06d', $year, $count);
     }
 }
