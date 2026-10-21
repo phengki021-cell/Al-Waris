@@ -16,7 +16,6 @@
     <livewire:styles />
 </head>
 <body class="min-h-screen bg-surface font-sans text-ink antialiased">
-<body class="min-h-screen bg-surface font-sans text-ink antialiased">
     @php $navLinks = [
         'home' => 'Beranda',
         'heirs' => 'Ahli Waris',

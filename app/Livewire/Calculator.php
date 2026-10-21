@@ -2,39 +2,57 @@
 
 namespace App\Livewire;
 
-use App\Domain\Faraid\FaraidPreviewEngine;
+use App\Domain\Faraid\EstateDistribution;
+use App\Services\EstateCalculationService;
+use App\Services\SaveCalculationService;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 #[Layout('layouts.app')]
 class Calculator extends Component
 {
-    use WithPagination;
+    /** @var array<string, list<string>> */
+    private const RULES = [
+        'estate' => ['required', 'numeric', 'min:0'],
+        'debts' => ['nullable', 'numeric', 'min:0'],
+        'bequest' => ['nullable', 'numeric', 'min:0'],
+        'funeral' => ['nullable', 'numeric', 'min:0'],
+        'spouse' => ['nullable', 'in:husband,wife'],
+        'wifeCount' => ['integer', 'min:1', 'max:4'],
+        'sons' => ['integer', 'min:0', 'max:30'],
+        'daughters' => ['integer', 'min:0', 'max:30'],
+        'maternalGrandmother' => ['boolean'],
+        'brothers' => ['integer', 'min:0', 'max:30'],
+        'sisters' => ['integer', 'min:0', 'max:30'],
+    ];
 
-    #[Validate('required|numeric|min:0|max:999999999999999.99')]
-    public string $estateTotal = '';
+    // --- Nominal ---
+    public string $estate = '';
 
-    #[Validate('nullable|numeric|min:0')]
-    public string $debtsTotal = '';
+    public string $debts = '';
 
-    #[Validate('nullable|numeric|min:0')]
-    public string $bequestsTotal = '';
+    public string $bequest = '';
 
-    public bool $hasHusband = false;
+    public string $funeral = '';
 
-    public bool $hasWife = false;
+    // --- Ahli waris ---
+    public string $spouse = '';            // '' | 'husband' | 'wife'
 
-    public bool $hasFather = false;
+    public int $wifeCount = 1;
 
-    public bool $hasMother = false;
+    public int $sons = 0;
 
-    #[Validate('integer|min:0|max:30|required')]
-    public int $sonsCount = 0;
+    public int $daughters = 0;
 
-    #[Validate('integer|min:0|max:30|required')]
-    public int $daughtersCount = 0;
+    public bool $father = false;
+
+    public bool $mother = false;
+
+    public bool $maternalGrandmother = false;
+
+    public int $brothers = 0;
+
+    public int $sisters = 0;
 
     public ?array $result = null;
 
@@ -45,22 +63,52 @@ class Calculator extends Component
 
     public function calculate(): void
     {
-        $this->validate();
+        $this->validate([...self::RULES]);
 
-        $engine = new FaraidPreviewEngine;
-        $this->result = $engine->calculate(
-            husband: $this->hasHusband ? 1 : 0,
-            wife: $this->hasWife ? 1 : 0,
-            sons: $this->sonsCount,
-            daughters: $this->daughtersCount,
-            father: $this->hasFather ? 1 : 0,
-            mother: $this->hasMother ? 1 : 0,
-            netEstate: max(
-                0.0,
-                (float) $this->estateTotal
-                    - (float) $this->debtsTotal
-                    - (float) $this->bequestsTotal
-            ),
+        $distribution = $this->buildDistribution();
+
+        $this->result = $distribution->toDisplayArray();
+    }
+
+    public function saveToHistory(): void
+    {
+        if (! $this->result || ($this->result['status'] ?? '') !== 'valid') {
+            return;
+        }
+
+        app(SaveCalculationService::class)->save(
+            $this->buildDistribution(),
+            session()->getId(),
+        );
+
+        session()->flash('message', 'Hasil disimpan ke Riwayat Perhitungan.');
+    }
+
+    /**
+     * Input Livewire → service → EstateDistribution.
+     * Pola tunggal dipakai baik untuk tampilan hasil maupun penyimpanan,
+     * sehingga yang disimpan selalu sama dengan yang ditampilkan.
+     */
+    private function buildDistribution(): EstateDistribution
+    {
+        return app(EstateCalculationService::class)->calculate(
+            heirs: [
+                'husband' => $this->spouse === 'husband',
+                'wife_count' => $this->spouse === 'wife' ? $this->wifeCount : 0,
+                'sons' => $this->sons,
+                'daughters' => $this->daughters,
+                'father' => $this->father,
+                'mother' => $this->mother,
+                'maternal_grandmother' => $this->maternalGrandmother,
+                'brothers' => $this->brothers,
+                'sisters' => $this->sisters,
+            ],
+            money: [
+                'estate' => (float) ($this->estate ?: 0),
+                'debts' => (float) ($this->debts ?: 0),
+                'bequest' => (float) ($this->bequest ?: 0),
+                'funeral' => (float) ($this->funeral ?: 0),
+            ],
         );
     }
 
