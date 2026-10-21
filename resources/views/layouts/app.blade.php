@@ -50,7 +50,7 @@
     <header class="bg-primary text-white shadow">
         <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
             <a href="{{ route('home') }}" class="flex items-center gap-2 py-1">
-                <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-lg font-bold text-primary">W</span>
+                <img src="/icons/icon-192.png" alt="Logo Al-Waris" class="h-9 w-9 rounded-lg object-cover shadow-sm">
                 <span class="text-lg font-bold tracking-wide">Al-Waris</span>
             </a>
 

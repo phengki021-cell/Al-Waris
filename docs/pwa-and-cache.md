@@ -13,12 +13,12 @@
 | `resources/js/app.js` | Registrasi service worker (aman: hanya HTTPS atau localhost) + pembaruan cache (`SKIP_WAITING`, reload sekali pada `controllerchange`) |
 | `resources/views/pages/offline.blade.php` | Halaman fallback offline (`/offline`) |
 | `resources/views/pages/install.blade.php` | Panduan instalasi Android Chrome/Edge/iOS (`/instalasi`) |
-| `public/icons/` | `icon-192.png`, `icon-512.png`, `maskable-192.png`, `maskable-512.png`, `apple-touch-icon-180.png`, `favicon-48.png` (dibangun oleh `scripts/generate-icons.php`, hasil di-commit) |
+| `public/icons/` | `icon-192.png`, `icon-512.png`, `maskable-192.png`, `maskable-512.png`, `apple-touch-icon-180.png`, `favicon-48.png` — seluruhnya diturunkan dari **logo resmi** `resources/brand/logo-al-waris.jpg` oleh `scripts/generate-icons.php` (hasil di-commit); `public/favicon.ico` juga ikut digenerate (PNG-in-ICO 48px) |
 | manifest | name "Al-Waris — Edukasi & Kalkulator Faraid", short_name "Al-Waris", start_url `/`, scope `/`, display `standalone`, theme `#123D32`, background `#F5F7F4`, ikon `any` + `maskable` 192/512 |
 
 ## 2. Strategi cache (service worker)
 
-Kunci cache: `al-waris-v1` (`CACHE_VERSION`). Aturan fetch:
+Kunci cache: `al-waris-v2` (`CACHE_VERSION`). Aturan fetch:
 
 1. **Non-GET → diteruskan tanpa cache.**
 2. **Lintas origin (CDN font) → passthrough, tidak di-cache** di service worker.

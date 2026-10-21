@@ -13,7 +13,7 @@
  *    aktivasi; halaman dapat memaksa perbarui lewat pesan SKIP_WAITING.
  */
 
-const CACHE_VERSION = 'al-waris-v1';
+const CACHE_VERSION = 'al-waris-v2';
 const OFFLINE_URL = '/offline';
 
 const PRECACHE_ASSETS = [
