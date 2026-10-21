@@ -81,6 +81,7 @@ Copy-Item database\database.sqlite backup\database-$(Get-Date -Format yyyyMMdd-H
 php artisan migrate
 ```
 Untuk MySQL/PostgreSQL produksi: `mysqldump`/`pg_dump` per jadwal hosting — lihat [docs/deployment.md](docs/deployment.md).
+Panduan domain gratis (Student Pack) & subdomain kampus `ui.ac.id`: [docs/deployment_domain_ui.md](docs/deployment_domain_ui.md).
 
 ## Struktur Direktori Utama
 
@@ -119,7 +120,7 @@ warisku/
 | `/manifest.json` | `manifest` | Web app manifest |
 | `/sw.js` | `sw` | Service worker |
 
-Detail lengkap di [docs/route-map.md](docs/route-map.md) • PWA & cache di [docs/pwa-and-cache.md](docs/pwa-and-cache.md) • deployment di [docs/deployment.md](docs/deployment.md).
+Detail lengkap di [docs/route-map.md](docs/route-map.md) • PWA & cache di [docs/pwa-and-cache.md](docs/pwa-and-cache.md) • deployment di [docs/deployment.md](docs/deployment.md) • domain kampus .ui.ac.id di [docs/deployment_domain_ui.md](docs/deployment_domain_ui.md).
 
 ## Peta Jalan
 

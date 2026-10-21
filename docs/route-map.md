@@ -8,7 +8,7 @@
 |---|---|---|---|---|---|
 | GET | `/` | `home` | `HomeController` | ✅ | Beranda: ringkasan materi + CTA ke kalkulator |
 | GET | `/ahli-waris` | `heirs` | `HeirCatalogController` | ✅ | Katalog golongan ahli waris dari seeder |
-| GET | `/bagian-warisan` | `shares` | `ShareCatalogController` | ✅ | Katalog bagian pasti (1/2, 1/4, 1/8, 1/3, 1/6) |
+| GET | `/bagian-warisan` | `shares` | `ShareExplorer` (Livewire) | ✅ | Katalog bagian pasti + modal "Lihat Detail Dalil" (QS An-Nisaa Arab/Latin/Terjemahan Kemenag + KHI + syarat + contoh) |
 | GET | `/cara-menghitung` | `how-to` | `PageController` | ✅ | Langkah menghitung manual |
 | GET | `/hitung-warisan` | `calculate` | `Livewire\Calculator` | ✅ | Kalkulator penuh (Tahap 4: ringkasan pra-hitung, ubah input, mulai baru); **network-only di SW** |
 | GET | `/riwayat` | `history` | `Livewire\CalculationHistory` | ✅ | Riwayat anonim per sesi (detail expandable + hapus); **network-only di SW** |

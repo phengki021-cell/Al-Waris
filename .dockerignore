@@ -1,0 +1,15 @@
+# Berkas yang tidak dikirim ke konteks build Docker
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+.phpunit.result.cache
+.pint.json.cache?
+.php-cs-fixer.cache
+
+# Alat & artefak lokal
+*.exe
+*.zip
+tools/
+node_modules

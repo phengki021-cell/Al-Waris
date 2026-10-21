@@ -82,4 +82,22 @@ Dilakukan di `tests/Feature/PwaTest.php`:
   `/hitung-warisan`, `/riwayat`, `/livewire/update` (network-only),
 - `/offline` dan `/instalasi` merespons 200,
 - 404 halaman informatif (PagesTest dataset),
-- ikon ada di disk dengan dimensi yang benar.
+- ikon ada di disk dengan dimensi yang benar,
+- banner instalasi di beranda & logika `app.js` (section 8).
+
+## 8. Banner ajakan instal (modal popup beranda)
+
+Saat pertama kali membuka halaman utama `/`, `resources/js/app.js` menampilkan
+banner **"Instal Aplikasi Waris Syariah untuk Akses Cepat"** dengan tombol
+**"Instal Sekarang"** dan **"Nanti Saja"** (markup di `pages/home.blade.php`,
+`#pwa-install-banner`, awalnya `hidden`).
+
+- **Instal Sekarang**: memakai event `beforeinstallprompt` (Chrome/Edge/Android).
+  Bila tidak tersedia (mis. iOS Safari), preferensi disimpan `later` dan
+  pengguna diarahkan ke `/instalasi` untuk panduan manual.
+- **Nanti Saja / tutup**: preferensi `later` disimpan di
+  `localStorage['al-waris-install-prompt']` — banner diulang 30 hari kemudian.
+  Pilihan `installed` (prompt diterima) menghentikan pengingat permanen.
+- Banner **tidak** tampil bila aplikasi sudah terbuka sebagai standalone
+  (`display-mode: standalone` / iOS `navigator.standalone`), dan hanya
+  pada halaman utama.

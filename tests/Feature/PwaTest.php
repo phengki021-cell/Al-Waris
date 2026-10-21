@@ -60,3 +60,25 @@ it('halaman offline dan instalasi dapat diakses', function () {
     $this->get(route('offline'))->assertOk()->assertSee('sedang offline');
     $this->get(route('install'))->assertOk()->assertSee('PWA');
 });
+
+it('halaman utama menyiapkan banner ajakan instalasi PWA', function () {
+    /** @var string $html */
+    $html = $this->get('/')->getContent();
+
+    expect($html)->toContain('id="pwa-install-banner"')
+        ->and($html)->toContain('Instal Aplikasi Waris Syariah untuk Akses Cepat')
+        ->and($html)->toContain('Instal Sekarang')
+        ->and($html)->toContain('Nanti Saja')
+        ->and($html)->toContain('hidden');
+});
+
+it('app.js menangani beforeinstallprompt dan menyimpan preferensi instalasi', function () {
+    /** @var string $js */
+    $js = file_get_contents(resource_path('js/app.js'));
+
+    expect($js)->toContain("'beforeinstallprompt'")
+        ->and($js)->toContain('al-waris-install-prompt')
+        ->and($js)->toContain("'installed'")
+        ->and($js)->toContain('display-mode: standalone')
+        ->and($js)->toContain('/instalasi');
+});

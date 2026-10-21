@@ -54,4 +54,42 @@
     </ul>
     <p class="mt-3 text-xs text-ink/60">Data dari database pengembangan (seeder DEMO).</p>
 </section>
+
+{{-- Banner ajakan instalasi PWA — perilaku dikendalikan resources/js/app.js --}}
+<div
+    id="pwa-install-banner"
+    hidden
+    class="fixed inset-x-3 bottom-3 z-50 max-w-md sm:left-auto sm:right-4 sm:w-96 rounded-2xl bg-primary p-4 text-white shadow-xl ring-1 ring-black/10 md:inset-x-auto"
+    role="dialog"
+    aria-labelledby="pwa-install-title"
+    aria-describedby="pwa-install-desc"
+>
+    <div class="flex items-start gap-3">
+        <img src="/icons/icon-192.png" alt="" class="h-10 w-10 rounded-lg shadow-sm" aria-hidden="true">
+        <div class="min-w-0">
+            <p id="pwa-install-title" class="text-sm font-bold">Instal Aplikasi Waris Syariah untuk Akses Cepat</p>
+            <p id="pwa-install-desc" class="mt-1 text-xs text-white/75">
+                Tambahkan Al-Waris ke layar utama HP/laptop agar lebih cepat diakses.
+            </p>
+        </div>
+        <button
+            type="button"
+            id="pwa-install-close"
+            class="shrink-0 rounded-lg p-1 text-white/70 transition hover:text-white"
+            aria-label="Tutup"
+        >&times;</button>
+    </div>
+    <div class="mt-3 flex gap-2">
+        <button
+            type="button"
+            id="pwa-install-accept"
+            class="flex-1 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-primary transition hover:bg-accent-soft"
+        >Instal Sekarang</button>
+        <button
+            type="button"
+            id="pwa-install-later"
+            class="rounded-lg border border-white/30 px-4 py-2 text-sm text-white/90 transition hover:bg-white/10"
+        >Nanti Saja</button>
+    </div>
+</div>
 @endsection

@@ -12,7 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Tunnel demo (cloudflared/ngrok/reverse proxy) meneruskan plain HTTP
+        // ke server lokal — percayai header X-Forwarded-* agar protokol aset,
+        // manifest & Livewire memakai skema https publik (tanpa mixed content).
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

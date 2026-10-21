@@ -27,7 +27,7 @@ Lihat `docs/requirements.md` §6 — terpenuhi.
    - Kalkulator kasus: amal ummi + aul + radd (kasus dasar, family nucleus: suami/isteri, anak laki/perempuan, ayah, ibu).
 2. Livewire `Calculator` v1: input total harta + banks + heirs (chest auto-selection); validasi server-side; result reloaded.
 3. Form pencatatan riwayat: default DRAFT; tombol simpan -> calculation records.
-4. Konten `bagian-warisan` mapping menuju kaidah & sumber (via shares master+sources).
+4. Konten `bagian-warisan` mapping menuju kaidah & sumber (via shares master+sources) — ✅ [modal "Lihat Detail Dalil" live: kartu klikable → dalil QS An-Nisaa (Arab/Latin/Terjemahan Kemenag) + pasal KHI + syarat + contoh DEMO; config `furudh-dalil.php`].
 5. Test unit deteksi metode pada 20+ kasus bangun standar (fathul qarib-style mini cases).
 6. Validasi tiga kelas hasil dengan guru/ahli faraid (manual QA) sebelum dilanjutkan.
 

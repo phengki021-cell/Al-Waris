@@ -164,3 +164,43 @@ dari domain tersebut.
 2. Arahkan domain → DNS A/CNAME → pakai `cloudflared tunnel` ber-token dari **domain
    milik Anda** (subdomain stabil, bukan acak) **atau** Nginx + Let's Encrypt seperti §3.
 3. Deploy ikuti §3 (migrate, cache config/route/view), verifikasi ikut §5.
+
+## 10. Deploy permanen GRATIS ke Render.com (Blueprint, 24/7, URL tetap)
+
+Repository sudah siap-deploy: `Dockerfile` (build aset + runtime PHP),
+`docker-entrypoint.sh` (APP_KEY otomatis, migrate + seed bijak boot, `php artisan
+serve --port=$PORT`), `.dockerignore`, dan `render.yaml` (Blueprint). Semua cukup
+hosting cakupan gratis satu service; **URL tidak berubah** meski laptop mati.
+Panduan domain gratis Student Pack & subdomain kampus `.ui.ac.id`:
+[deployment_domain_ui.md](deployment_domain_ui.md).
+
+### 10.1 Langkah (±10 menit)
+
+1. Push seluruh proyek ke repo **publik/private** GitHub Anda.
+2. `php artisan key:generate --show` di mesin dev → salin nilai (pilihannya: biarkan
+   `render.yaml` membuat APP_KEY otomatis lewat `generateValue: true` — cukup sekali
+   deploy, APP_KEY stabil selama env tersimpan).
+3. Buka `dashboard.render.com` → **New** → **Blueprint** → pilih repo; Render membaca
+   `render.yaml` → tulis nama service mis. `alwaris` → **Apply**.
+4. Saat dialog env: isi `APP_URL` dengan URL service (`https://alwaris.onrender.com`).
+5. Build pertama jalan: Dockerfile compile aset, composer install --no-dev, lalu
+   entrypoint menjalankan migrate + seeder + `php artisan optimize` + serve.
+6. Verifikasi: buka URL → halaman utama 200, `/up` 200 (health check), coba hitung
+   warisan, dan tombol Instal PWA di Android Chrome.
+
+### 10.2 Yang perlu diketahui paket gratis
+
+| Aspek | Perilaku |
+|---|---|
+| Sleep otomatis | Idle ±15 mnt → service tidur; kunjungan berikutnya bangun ulang ±30–60 dtk (URL tetap). |
+| Disk | Ephemeral; setiap redeploy/restart DB SQLite dibuat ulang lalu seeder mengisi data demo. Riwayat perhitungan pengguna ikut kosong (bukan data sensitif). |
+| 750 jam/bulan | Cukup untuk **satu** service 24/7. |
+| Domain sendiri | Gratis — Settings → Custom Domains (DNS diarahkan ke Render). PWA tetap berfungsi penuh. |
+| Railway/Fly.io alternatif | Sama-sama container-based; Railway punya pengalihat kredit awal terbatas, Fly.io kini mungkin butuh kartu. Alur: build image sama, jalankan entrypoint sama. |
+
+### 10.3 Pemeliharaan
+
+- Deploy ulang (push git) → otomatis (autoDeploy: true) atau manual dari dashboard.
+- Reset data demo: `SKIP_SEED=0` (bawaan) agar seed master dijalankan tiap boot; set `SKIP_SEED=1` untuk mempercepat boot tanpa seed.
+- Log & health: dashboard Render → service → Logs/Events; health `/up`.
+

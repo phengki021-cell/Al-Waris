@@ -21,7 +21,7 @@ class ShareSeeder extends Seeder
         $rows = [
             // [heir_code, n, d, condition, source_id]
             ['husband', 1, 2, 'Tanpa keturunan almarhum', $q412],
-            ['husband', 1, 4, 'Ada keturunan almarhum (anak/anak anak)', $q412],
+            ['husband', 1, 4, 'Ada keturunan almarhum (anak/cucu)', $q412],
             ['wife', 1, 4, 'Tanpa keturunan almarhum', $q412],
             ['wife', 1, 8, 'Ada keturunan almarhum', $q412],
             ['daughter', 1, 2, 'Hanya satu anak perempuan tanpa anak laki-laki', $q411],

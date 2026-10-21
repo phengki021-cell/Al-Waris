@@ -4,10 +4,10 @@ use App\Http\Controllers\HeirCatalogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PwaController;
-use App\Http\Controllers\ShareCatalogController;
 use App\Http\Controllers\SourceController;
 use App\Livewire\CalculationHistory;
 use App\Livewire\Calculator;
+use App\Livewire\ShareExplorer;
 use Illuminate\Support\Facades\Route;
 
 // PWA: manifest & service worker via rute agar uji otomatis mampu (Tahap 4).
@@ -25,7 +25,7 @@ Route::get('/', HomeController::class)->name('home');
 
 // Edukasi
 Route::get('/ahli-waris', HeirCatalogController::class)->name('heirs');
-Route::get('/bagian-warisan', ShareCatalogController::class)->name('shares');
+Route::get('/bagian-warisan', ShareExplorer::class)->name('shares');
 Route::get('/cara-menghitung', [PageController::class, 'howTo'])->name('how-to');
 
 // Kalkulator (Livewire)

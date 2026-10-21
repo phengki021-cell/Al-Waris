@@ -6,13 +6,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="theme-color" content="#123D32">
 
-    <title>@if (Route::currentRouteName() !== 'home') {{ $title ?? 'Al-Waris' }} — @endif Al-Waris</title>
+    <title>@if (Route::currentRouteName() !== 'home') {{ $title ?? config('app.name', 'Al-Waris') }} — @endif{{ config('app.name', 'Al-Waris') }}</title>
     <meta name="description" content="{{ $description ?? 'Al-Waris: website edukasi & kalkulator pembagian harta warisan Islam (faraid) berbahasa Indonesia.' }}">
 
     {{-- Open Graph dasar --}}
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Al-Waris">
-    <meta property="og:title" content="{{ $title ?? 'Al-Waris — Edukasi & Kalkulator Faraid' }}">
+    <meta property="og:site_name" content="{{ config('app.name', 'Al-Waris') }}">
+    <meta property="og:title" content="{{ $title ?? config('app.name', 'Al-Waris') . ' — Edukasi & Kalkulator Faraid' }}">
     <meta property="og:description" content="{{ $description ?? 'Website edukasi dan simulasi pembagian harta warisan Islam (faraid) berbahasa Indonesia.' }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="{{ asset('/icons/icon-512.png') }}">

@@ -1,0 +1,32 @@
+# Blueprint Render untuk Al-Waris: satu Web Service Docker gratis.
+# Deploy: repo GitHub → Render Dashboard → "New Blueprints" → pilih repo ini.
+#
+# Nama service "alwaris" → URL gratis otomatis: https://alwaris.onrender.com
+# Bila nama subdomain itu sudah dipakai orang lain, Render menambah akhiran;
+# ganti subdomain di Dashboard → Service → Settings, lalu samakan APP_URL.
+#
+# Catatan paket gratis: service otomatis tidur (sleep) setelah ±15 menit tanpa
+# lalu lintas; permintaan berikutnya bangun ulang ±30–60 detik. URL tetap
+# permanen selama service tidak dihapus.
+
+services:
+  - type: web
+    name: alwaris
+    runtime: docker
+    plan: free
+    autoDeploy: true
+    # Dockerfile + entrypoint sudah menangani migrate/seed/serve $PORT.
+    healthCheckPath: /up
+    envVars:
+      - key: APP_KEY
+        generateValue: true        # acak oleh Render, stabil selama env tersimpan
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_URL
+        value: https://alwaris.onrender.com   # ganti bila pakai domain kustom (mis. https://warisku.ui.ac.id) lalu redeploy
+      - key: APP_NAME
+        value: Al-Waris
+      - key: SKIP_SEED
+        value: "0"                 # 1 = lewati seeder DEMO saat boot
