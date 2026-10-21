@@ -133,3 +133,34 @@ Bila hanya tersedia shared hosting tanpa SSH:
    sehingga kalkulator gagal — bila terjadi, minta host mengizinkan endpoint tersebut
    atau cek error log host.
 4. HTTPS dapat diaktifkan dari cPanel — **wajib** aktif sebelum menguji instalasi PWA.
+
+## 8. Demo publik sementara (tunnel dari mesin pengembangan)
+
+Untuk demo cepat ke orang lain **tanpa hosting**, gunakan Cloudflare Quick Tunnel
+(`tools/cloudflared.exe`, sudah tersedia):
+
+```powershell
+# Terminal 1 — server Laravel
+php artisan serve --port=8018
+
+# Terminal 2 — tunnel publik HTTPS + domain acak gratis, tanpa akun
+tools\cloudflared.exe tunnel --url http://127.0.0.1:8018 --no-autoupdate
+```
+
+Output mencetak sebuah URL `https://<kata-acak>.trycloudflare.com` yang bisa dibagikan —
+HTTPS otomatis, jadi PWA (manifest, service worker, instalasi Android) langsung berfungsi
+dari domain tersebut.
+
+**Batasan mode demo ini — wajib diketahui:**
+1. Situs hanya hidup selama **mesin pengembangan dan kedua perintah berjalan**.
+2. Subdomain **acak berubah setiap kali** tunnel dijalankan ulang; pintasan instal
+   lama tidak berlaku (ikon terpasang lama tak tertaut ke domain baru).
+3. Ini **bukan** hosting produksi: tanpa SLA/pengawas, dan APP_KEY milik mesin dev.
+   (APP_DEBUG sudah `false` di `.env` untuk mode publik ini.)
+
+## 9. Ke permanen (dapat diakses semua orang 24/7)
+
+1. Sewa VPS/cloud murah (Ubuntu + PHP 8.3-fpm + MySQL) atau PaaS PHP.
+2. Arahkan domain → DNS A/CNAME → pakai `cloudflared tunnel` ber-token dari **domain
+   milik Anda** (subdomain stabil, bukan acak) **atau** Nginx + Let's Encrypt seperti §3.
+3. Deploy ikuti §3 (migrate, cache config/route/view), verifikasi ikut §5.
