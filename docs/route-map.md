@@ -7,9 +7,9 @@
 | Method | URI | Route name | Controller/Livewire | Status | Catatan |
 |---|---|---|---|---|---|
 | GET | `/` | `home` | `HomeController` | ✅ | Beranda: ringkasan materi + CTA ke kalkulator |
-| GET | `/ahli-waris` | `heirs` | `HeirCatalogController` | ✅ | Katalog golongan ahli waris dari seeder |
+| GET | `/ahli-waris` | `heirs` | `HeirExplorer` (Livewire) | ✅ | Katalog ahli waris klikable + modal "Lihat Detail": definisi, syarat, mahrum/hijab, dalil QS & KHI (`config/furudh-heirs.php`) |
 | GET | `/bagian-warisan` | `shares` | `ShareExplorer` (Livewire) | ✅ | Katalog bagian pasti + modal "Lihat Detail Dalil" (QS An-Nisaa Arab/Latin/Terjemahan Kemenag + KHI + syarat + contoh) |
-| GET | `/cara-menghitung` | `how-to` | `PageController` | ✅ | Langkah menghitung manual |
+| GET | `/cara-menghitung` | `how-to` | `PageController` | ✅ | Panduan tahapan klikable (accordion): rumus, landasan fikih/kaidah, contoh studi kasus rupiah (`config/furudh-steps.php`) |
 | GET | `/hitung-warisan` | `calculate` | `Livewire\Calculator` | ✅ | Kalkulator penuh (Tahap 4: ringkasan pra-hitung, ubah input, mulai baru); **network-only di SW** |
 | GET | `/riwayat` | `history` | `Livewire\CalculationHistory` | ✅ | Riwayat anonim per sesi (detail expandable + hapus); **network-only di SW** |
 | GET | `/tentang` | `about` | `PageController` | ✅ | Profil + lini masa + disclaimer |

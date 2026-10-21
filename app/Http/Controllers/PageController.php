@@ -8,7 +8,9 @@ class PageController extends Controller
 {
     public function howTo(): View
     {
-        return view('pages.how-to');
+        return view('pages.how-to', [
+            'steps' => config('furudh-steps.steps', []),
+        ]);
     }
 
     public function about(): View

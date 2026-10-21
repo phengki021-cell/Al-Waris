@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="theme-color" content="#123D32">
 
-    <title>@if (Route::currentRouteName() !== 'home') {{ $title ?? config('app.name', 'Al-Waris') }} — @endif{{ config('app.name', 'Al-Waris') }}</title>
+    <title>@if (Route::currentRouteName() !== 'home' && ($pageTitle = $title ?? trim($__env->yieldContent('title')))){{ trim($pageTitle) . ' — ' }}@endif{{ config('app.name', 'Al-Waris') }}</title>
     <meta name="description" content="{{ $description ?? 'Al-Waris: website edukasi & kalkulator pembagian harta warisan Islam (faraid) berbahasa Indonesia.' }}">
 
     {{-- Open Graph dasar --}}

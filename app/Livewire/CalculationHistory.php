@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
-#[Layout('layouts.app')]
+#[Layout('layouts.app', ['title' => 'Riwayat Perhitungan'])]
 class CalculationHistory extends Component
 {
     /** @var array<int, bool> keterbukaan dialog konfirmasi per id */

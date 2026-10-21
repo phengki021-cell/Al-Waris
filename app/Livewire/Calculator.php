@@ -8,7 +8,7 @@ use App\Services\SaveCalculationService;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
-#[Layout('layouts.app')]
+#[Layout('layouts.app', ['title' => 'Hitung Warisan'])]
 class Calculator extends Component
 {
     /** @var array<string, list<string>> */

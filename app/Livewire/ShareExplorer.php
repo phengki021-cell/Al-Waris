@@ -15,7 +15,7 @@ use Livewire\Component;
  * @property-read Share|null $selectedShare
  * @property-read array<string, mixed>|null $selectedDalil
  */
-#[Layout('layouts.app')]
+#[Layout('layouts.app', ['title' => 'Bagian-Bagian Warisan'])]
 class ShareExplorer extends Component
 {
     /** Id share yang modal-nya sedang terbuka. */
