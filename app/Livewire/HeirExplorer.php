@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Heir;
+use App\Services\ReferenceService;
 use Illuminate\Support\Arr;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
@@ -10,7 +11,8 @@ use Livewire\Component;
 
 /**
  * Halaman "Ahli Waris": kartu dapat diklik untuk membuka modal berisi
- * definisi, syarat, kondisi mahrum/hijab, serta dalil Al-Qur'an + KHI.
+ * definisi, syarat, kondisi mahrum/hijab, serta dalil Al-Qur'an + KHI + hadis
+ * shahih + yurisprudensi MA + jurnal ilmiah.
  * Data edukasi statis di config/furudh-heirs.php (berpasal & ditandai jujur).
  *
  * @property-read Heir|null $selectedHeir
@@ -102,6 +104,8 @@ class HeirExplorer extends Component
             $pasals[] = ['nomor' => $nomor] + (array) $khi[(int) $nomor];
         }
 
+        $references = app(ReferenceService::class);
+
         return [
             'definisi' => Arr::get($entry, 'definisi'),
             'syarat' => (array) Arr::get($entry, 'syarat', []),
@@ -111,6 +115,12 @@ class HeirExplorer extends Component
             'verse_code' => $verseCode,
             'pasals' => $pasals,
             'catatan_dalil' => Arr::get($dalil, 'catatan'),
+            'yurisprudensi' => $references->yurisprudensi(
+                array_values(array_filter((array) Arr::get($dalil, 'yurisprudensi', []), 'is_string')),
+            ),
+            'hadits' => $references->hadits(),
+            'kuhperdata' => $references->kuhperdata(),
+            'jurnal' => $references->jurnal(),
             'terkait_shares' => $heir->shares,
         ];
     }

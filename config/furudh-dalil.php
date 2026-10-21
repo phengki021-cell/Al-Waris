@@ -328,4 +328,198 @@ return [
             ],
         ],
     ],
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Hadis shahih terkait kewarisan (teks Arab + terjemah; petunjuk rujukan)
+    // ─────────────────────────────────────────────────────────────────────────────
+    'hadits' => [
+        'primary' => [
+            'label' => 'HR. at-Tirmidzi No. 2120 — hasan shahih',
+            'sumber' => 'Jami\' at-Tirmidzi; senada diriwayatkan Ibnu Majah No. 2739.',
+            'arab' => 'إِنَّ اللهَ قَدْ أَعْطَى كُلَّ ذِي حَقٍّ حَقَّهُ، فَلَا وَصِيَّةَ لِوَارِثٍ.',
+            'latin' => 'Innallāha qad a\'ṭā kulla żī ḥaqqin ḥaqqahū, falā waṣiyyata liwāriṡ(in).',
+            'terjemah' => 'Sesungguhnya Allah telah memberikan kepada setiap orang yang berhak haknya; maka tidak ada (lagi) wasiat bagi ahli waris.',
+            'kriteria' => 'Imam at-Tirmidzi menilai hadis ini "hasan shahih". Hadis menjadi asas bahwa jatah pasti ahli waris tidak boleh dihilangkan lewat wasiat; wasiat dibatasi maksimal sepertiga harta (QS. An-Nisaa: 12, "...dengan tidak menyusahkan ahli waris").',
+        ],
+        'rumusan' => [
+            'Kaidah "tidak ada wasiat bagi ahli waris": bagian pasti ahli waris tidak boleh dihilangkan dengan wasiat (riwayat senada: at-Tirmidzi No. 2120; Ibnu Majah No. 2739).',
+            'Kaidah "al-qātilu lā yariṡu" — pembunuh tidak mewarisi: diadopsi langsung pada KHI Pasal 173 (halangan hukum bagi ahli waris).',
+            'Kaidah pemisahan hak pasangan/harta bersama sebelum pembagian waris (blok Tahap 5 di halaman Cara Menghitung; prinsip harta gono-gini bagi pernikahan yang tunduk hukum peradilan agama).',
+        ],
+    ],
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Yurisprudensi Mahkamah Agung RI & SEMA terkait hukum kewarisan.
+    // Tautan mengarah ke portal resmi MA (JDIH MA, Direktori Putusan) dan jurnal akademik.
+    // ─────────────────────────────────────────────────────────────────────────────
+    'yurisprudensi' => [
+        'MA-16-K-AG-2010' => [
+            'label' => 'Putusan MA RI No. 16 K/AG/2010 — Wasiat Wajibah Beda Agama',
+            'ringkas' => 'Yurisprudensi MA: ahli waris yang berbeda agama dengan pewaris tidak mewarisi sebagai ahli waris (KHI Pasal 171), namun berhak memperoleh wasiat wajibah (wajib al-wasiyyah) maksimal sepertiga harta warisan. Putusan ini memperluas penerapan wasiat wajibah yang sebelumnya oleh KHI Pasal 209 hanya diberikan kepada anak angkat dan orang tua angkat.',
+            'sumber' => 'Direktori Putusan & Yurisprudensi Mahkamah Agung RI',
+            'link' => 'https://putusan3.mahkamahagung.go.id/yurisprudensi/detail/11eadf086b586f509ef9323230333034.html',
+            'link_label' => 'Buka ringkasan yurisprudensi di Direktori Putusan MA RI',
+            'pasal_tautan' => 'KHI Pasal 209 (wasiat wajibah) & Pasal 171 (syarat ahli waris)',
+        ],
+        'MA-51-K-AG-1999' => [
+            'label' => 'Putusan MA RI No. 51 K/AG/1999 — Kewarisan Beda Agama',
+            'ringkas' => 'Putusan MA yang banyak dirujuk dalam perkara kewarisan beda agama: tahapan pemberian bagian bagi ahli waris beda agama melalui jalur wasiat wajibah, sebelum kasus serupa dikukuhkan kembali pada Putusan MA No. 16 K/AG/2010.',
+            'sumber' => 'Direktori Putusan Mahkamah Agung RI',
+            'link' => 'https://putusan3.mahkamahagung.go.id/',
+            'link_label' => 'Telusuri putusan pada Direktori Putusan MA RI',
+            'pasal_tautan' => 'KHI Pasal 171 (syarat sama agama) — disandingkan yurisprudensi wasiat wajibah',
+        ],
+        'SEMA-2-TAHUN-1994' => [
+            'label' => 'SEMA No. 2 Tahun 1994 — Penafsiran KHI Pasal 177 (Bagian Ayah)',
+            'ringkas' => 'Surat Edaran Mahkamah Agung yang menegaskan maksud KHI Pasal 177: ayah mendapat sepertiga bila pewaris tidak meninggalkan anak tetapi meninggalkan suami/istri dan ibu; bila pewaris meninggalkan anak, ayah mendapat seperenam. SEMA ini rujukan wajib saat komposisi ayah muncul.',
+            'sumber' => 'JDIH Mahkamah Agung RI',
+            'link' => 'https://jdih.mahkamahagung.go.id/',
+            'link_label' => 'Kumpulan SEMA pada JDIH Mahkamah Agung RI',
+            'pasal_tautan' => 'KHI Pasal 177 (bagian ayah)',
+        ],
+    ],
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // KUHPerdata (Buku II — Hak Waris, Staatsblad 1847 No. 23) — mode perdata
+    // (non-Muslim). Teks ditandai parafrase guna menjaga akurasi rujukan resmi.
+    // ─────────────────────────────────────────────────────────────────────────────
+    'kuhperdata' => [
+        'keterangan' => 'Hukum waris perdata (KUHPerdata, Buku II "Hak Waris", Staatsblad 1847 No. 23) berlaku bagi warga non-Muslim. Berikut pokok pengaturan dalam bentuk parafrase/pokok pikiran — bukan kutipan verbatim; baca teks lengkap pada dokumen resmi atau buku terkait di bagian jurnal.',
+        'pasal' => [
+            '832' => [
+                'label' => 'KUHPerdata Pasal 832 ayat (1)',
+                'teks' => 'Pokok pengaturan: hukum waris terbuka karena kematian orang; sejak saat itu terjadi peralihan harta milik kepada para ahli waris sesuai golongannya.',
+                'catatan' => 'Pasal 832 = dasar terbukanya hak waris menurut hukum perdata.',
+            ],
+            '852' => [
+                'label' => 'KUHPerdata Pasal 852 (Golongan I)',
+                'teks' => 'Pokok pengaturan Golongan I: suami/istri yang hidup terlama, anak-anak yang sah, dan keturunannya. Pasangan yang hidup terlama diperlakukan seolah anak sah dan menerima bagian setara dengan bagian setiap anak sah.',
+                'catatan' => 'Bagian setara: jumlah bagian sama besar bagi pasangan dan setiap anak — tanpa perbedaan anak laki-laki dan anak perempuan.',
+            ],
+            '852-b' => [
+                'label' => 'KUHPerdata Pasal 852 huruf b (catatan perkawinan kedua)',
+                'teks' => 'Pokok pengaturan: bagian pasangan dari perkawinan kedua tidak boleh lebih besar daripada bagian anak sah yang terkecil dari perkawinan pertama.',
+                'catatan' => 'Membatasi hak pasangan agar tidak merugikan anak dari perkawinan sebelumnya.',
+            ],
+            '853' => [
+                'label' => 'KUHPerdata Pasal 853 (Penggantian Tempat)',
+                'teks' => 'Pokok pengaturan: hak waris anak dari anak (cucu) dihitung dengan penggantian tempat (representasi) ketika orang tuanya (anak pewaris) lebih dulu wafat; dalam setiap cabang (stam), cucu-cucu membagi bagian orang tuanya sama rata.',
+                'catatan' => 'Bagian setara (Pasal 852) diperhitungkan per cabang (stam) ketika bagian orang tua diwakili cucu-cucunya.',
+            ],
+        ],
+        'golongan' => [
+            'Golongan I — suami/istri yang hidup terlama, anak-anak yang sah, dan keturunannya (Pasal 852).',
+            'Golongan II — orang tua (bapak & ibu) dan saudara-saudara pewaris.',
+            'Golongan III — kakek/nenek pewaris.',
+            'Golongan IV — kerabat sedarah yang lebih jauh.',
+            'Ahli waris golongan yang lebih atas menutup golongan di bawahnya (prinsip "keutamaan kedekatan").',
+        ],
+        'perbandingan' => [
+            'Landasan: Faraid bertumpu pada QS. An-Nisaa: 11, 12, 176 dan KHI Pasal 174–182; KUHPerdata bertumpu Pasal 832–852 Buku II.',
+            'Bagian anak laki-laki vs perempuan: Faraid memakai rasio 2 berbanding 1 (asabah); KUHPerdata menyamakan besar bagian keduanya (bagian setara).',
+            'Metode pembagian: Faraid memakai "asal masalah" dengan kasus \'aul dan radd; KUHPerdata membagi berdasarkan golongan dengan pembagian sama besar dalam setiap golongan.',
+            'Harta bersama: hak separuh pasangan atas harta bersama dipisahkan dahulu sebelum waris dibagi (KHI Pasal 311; di hukum adat/perdata dikenal pula konsep harta gono-gini).',
+            'Terhalang/penghalang: Faraid mempunyai tabel penghalang (mis. ayah menutup saudara); KUHPerdata menentukan penerima berdasarkan kedekatan garis dan penggantian tempat dalam golongan (Pasal 853).',
+        ],
+    ],
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Tautan jurnal ilmiah & rujukan akademik eksternal.
+    // Hanya URL yang sempat diperiksa; klik akan membuka tab baru.
+    // ─────────────────────────────────────────────────────────────────────────────
+    'jurnal' => [
+        'WASIAT-WAJIBAH-2010' => [
+            'label' => 'Studi Analisis Putusan MA Nomor 16 K/AG/2010',
+            'desc' => 'Artikel jurnal nasional (indeks SINTA): wasiat wajibah bagi ahli waris beda agama pada kasus MA No. 16 K/AG/2010.',
+            'sumber' => 'Jurnal Iqtishaduna — UIN Alauddin Makassar',
+            'href' => 'https://journal.uin-alauddin.ac.id/index.php/iqtishaduna/article/view/66070',
+            'tag' => 'SINTA',
+        ],
+        'WASIAT-WAJIBAH-PENEMUAN' => [
+            'label' => 'Wasiat Wajibah sebagai Penemuan Hukum oleh Hakim',
+            'desc' => 'Studi kasus Putusan MA No. 16 K/AG/2010 dalam perkara waris beda agama.',
+            'sumber' => 'Jurnal Hukum Online',
+            'href' => 'https://jurnal.hukumonline.com/a/5cb4915201fb73001038c10c/wasiat-wajibah-sebagai-penemuan-hukum-oleh-hakim-dalam-perkara-waris-beda-agama-studi-kasus-putusan-mahkamah-agung-nomor-16-k-ag-2010-the-wajibah-wasiyah-as-a-legal-invention-of-judges-in-interfaith-inheritance-case-study-decree-of-supreme-court-number-16-k-ag-2010',
+            'tag' => 'SINTA',
+        ],
+        'FARAID-KHI-SCHOLAR' => [
+            'label' => 'Ilmu Faraid & Kompilasi Hukum Islam',
+            'desc' => 'Pencarian literatur akademik (kata kunci: faraid, KHI, kewarisan) di Google Scholar.',
+            'sumber' => 'Google Scholar',
+            'href' => 'https://scholar.google.com/scholar?q=ilmu+faraid+kompilasi+hukum+islam+kewarisan',
+            'tag' => 'Google Scholar',
+        ],
+        'FARAID-KHI-SINTA' => [
+            'label' => 'Portal SINTA — Jurnal Nasional Hukum Islam',
+            'desc' => 'Indeks jurnal nasional: telusuri artikel hukum kewarisan pada jurnal terindeks (Kemendikbudristek).',
+            'sumber' => 'SINTA (Kemendikbudristek)',
+            'href' => 'https://sinta.kemdikbud.go.id/',
+            'tag' => 'SINTA',
+        ],
+        'MA-DIREKTORI' => [
+            'label' => 'Direktori Putusan Mahkamah Agung RI',
+            'desc' => 'Pangkalan putusan & yurisprudensi MA: telusuri perkara waris seperti No. 16 K/AG/2010.',
+            'sumber' => 'Mahkamah Agung RI',
+            'href' => 'https://putusan3.mahkamahagung.go.id/',
+            'tag' => 'MA RI',
+        ],
+        'MA-JDIH' => [
+            'label' => 'JDIH Mahkamah Agung RI',
+            'desc' => 'Jaringan Dokumentasi & Informasi Hukum MA: SEMA, yurisprudensi, produk hukum.',
+            'sumber' => 'Mahkamah Agung RI',
+            'href' => 'https://jdih.mahkamahagung.go.id/',
+            'tag' => 'MA RI',
+        ],
+        'KUHPERDATA-UMSU' => [
+            'label' => 'Hukum Waris Perdata di Indonesia (Buku Pengajaran)',
+            'desc' => 'Buku terbitan UMSU Press: penggolongan ahli waris KUHPerdata (Golongan I–IV, Pasal 852–853) lengkap dengan ilustrasi pembagian.',
+            'sumber' => 'UMSU Press (PDF)',
+            'href' => 'https://umsupress.umsu.ac.id/wp-content/uploads/2024/11/File-Isi-Hukum-Waris-Perdata-368hlm.pdf',
+            'tag' => 'Perdata',
+        ],
+    ],
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Edukasi topik kontemporer (kartu pada tab "Kontemporer" kalkulator).
+    // Murni edukasi referensial — tidak memengaruhi mesin hitung faraid.
+    // ─────────────────────────────────────────────────────────────────────────────
+    'kontemporer' => [
+        [
+            'judul' => 'Wasiat Wajibah Beda Agama (MA No. 16 K/AG/2010)',
+            'ringkas' => 'Ahli waris beda agama tidak mendapat bagian waris sebagai ahli waris, namun Mahkamah Agung membentuk jalur wasiat wajibah maksimal sepertiga harta warisan. Ini adalah pemeliharaan hukum supaya dampak beda agama tidak melumpuhkan perlindungan keluarga.',
+            'rujukan' => [
+                'KHI Pasal 171 — syarat ahli waris: sama agama dengan pewaris.',
+                'KHI Pasal 209 — wasiat wajibah bagi anak angkat (dan orang tua angkat); diperluas oleh yurisprudensi pada kasus beda agama.',
+                'Putusan MA RI No. 16 K/AG/2010 — wasiat wajibah bagi ahli waris beda agama.',
+            ],
+            'jurnal' => ['WASIAT-WAJIBAH-2010', 'WASIAT-WAJIBAH-PENEMUAN', 'MA-DIREKTORI'],
+        ],
+        [
+            'judul' => 'Ahli Waris Beda Agama: Dari MA No. 51 K/AG/1999 ke MA No. 16 K/AG/2010',
+            'ringkas' => 'Putusan MA tentang perkara kewarisan beda agama berkembang bertahap dalam yurisprudensi: perlindungan ahli waris beda agama melalui wasiat wajibah (maksimal 1/3), dipraktiskan bersama penolakan pembagian waris langsung lintas agama.',
+            'rujukan' => [
+                'Putusan MA RI No. 51 K/AG/1999 — kasus kewarisan beda agama (periode dasar).',
+                'Putusan MA RI No. 16 K/AG/2010 — pemantapan wasiat wajibah bagi ahli waris beda agama.',
+            ],
+            'jurnal' => ['MA-DIREKTORI', 'FARAID-KHI-SCHOLAR'],
+        ],
+        [
+            'judul' => 'Kewakilan Cucu: KHI Pasal 185 vs KUHPerdata Pasal 853',
+            'ringkas' => 'Dua peraturan hukum memberi jawaban yang berbeda pada kasus cucu ketika orang tuanya (anak pewaris) lebih dulu wafat:',
+            'rujukan' => [
+                'KHI Pasal 185 — cucu dari anak laki-laki yang lebih dulu wafat mewakili (kewakilan) orang tuanya, kecuali ada penghalangnya.',
+                'KUHPerdata Pasal 853 — cucu menggantikan tempat orang tuanya; cucu-cucu suatu cabang membagi bagian orang tuanya sama rata.',
+            ],
+            'jurnal' => ['FARAID-KHI-SCHOLAR', 'KUHPERDATA-UMSU'],
+        ],
+        [
+            'judul' => 'Harta Bersama / Gono-Gini Sebelum Faraid',
+            'ringkas' => 'Sebelum pembagian waris, hak pasangan atas harta bersama dipisahkan terlebih dahulu. Konsep ini diadopsi dari KHI (Pasal 311) sebagaimana diikuti halaman Cara Menghitung Tahap 5, dan memiliki padanannya dalam hukum adat/perdata dengan nama harta gono-gini.',
+            'rujukan' => [
+                'KHI Pasal 311 — dasar pemisahan harta bersama (gono-gini).',
+                'Yurisprudensi MA tentang perkara harta bersama: telusuri Direktori Putusan MA RI.',
+            ],
+            'jurnal' => ['MA-JDIH', 'KUHPERDATA-UMSU'],
+        ],
+    ],
 ];

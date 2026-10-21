@@ -116,6 +116,7 @@ return [
             'dalil' => [
                 'verse' => 'QURAN-4-11',
                 'pasals' => [177],
+                'yurisprudensi' => ['SEMA-2-TAHUN-1994'],
                 'catatan' => 'KHI Pasal 177 disertai catatan SEMA No. 2 Tahun 1994 (Mahkamah Agung): sepertiga ayah berlaku bila pewaris meninggalkan suami/istri dan ibu; bila ada anak, ayah mendapat seperenam.',
             ],
         ],

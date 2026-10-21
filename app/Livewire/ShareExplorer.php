@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Share;
+use App\Services\ReferenceService;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -90,6 +91,10 @@ class ShareExplorer extends Component
             'syarat' => $entry['syarat'] ?? [],
             'syarat_umum' => config('furudh-dalil.syarat_umum', []),
             'contoh' => $entry['contoh'] ?? null,
+            'yurisprudensi' => app(ReferenceService::class)->yurisprudensi(),
+            'hadits' => app(ReferenceService::class)->hadits(),
+            'kuhperdata' => app(ReferenceService::class)->kuhperdata(),
+            'jurnal' => app(ReferenceService::class)->jurnal(),
         ];
     }
 }

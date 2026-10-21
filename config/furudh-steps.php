@@ -16,6 +16,10 @@ return [
         'penentuan-ahli-waris' => [
             'judul' => 'Tahap 1 — Penentuan Ahli Waris',
             'ringkasan' => 'Identifikasi pewaris, harta peninggalan bersih, dan daftar ahli waris yang sah pada saat kematian.',
+            'rujukan' => [
+                'yurisprudensi' => ['MA-16-K-AG-2010'],
+                'jurnal' => ['WASIAT-WAJIBAH-2010'],
+            ],
             'rumus' => [
                 'Tirkah bersih = harta peninggalan − biaya pengurusan jenazah − utang − wasiat.',
                 'Batas wasiat: paling banyak 1/3 dari harta bersih, dan tidak boleh untuk penerima waris yang sudah berhak.',
@@ -46,6 +50,9 @@ return [
         'dzawil-furudh' => [
             'judul' => 'Tahap 2 — Pembagian Dzawil Furudh',
             'ringkasan' => 'Hitung bagian pasti (rasio QS & KHI): anak perempuan, ibu, ayah, saudara perempuan kalalah, dan pasangan.',
+            'rujukan' => [
+                'jurnal' => ['FARAID-KHI-SCHOLAR'],
+            ],
             'rumus' => [
                 'Tentukan asl (angka dasar) = KPK penyebut seluruh bagian pasti.',
                 'Ubah setiap jatah menjadi saham dengan penyebut asl (mis. 1/4 = 3/12).',
@@ -76,6 +83,9 @@ return [
         'asabah' => [
             'judul' => 'Tahap 3 — Ashabah (Menerima Sisa)',
             'ringkasan' => 'Ketika adanya asabah (anak laki-laki, saudara laki-laki) → sisa harta dibagi sesuai rasio 2:1 (laki-laki : perempuan).',
+            'rujukan' => [
+                'jurnal' => ['FARAID-KHI-SCHOLAR'],
+            ],
             'rumus' => [
                 'Sisa harta untuk asabah = tirkah bersih − total jatah dzawil furudh.',
                 'Rasio ta\'sib: setiap laki-laki 2 saham, setiap perempuan 1 saham (QS. An-Nisaa: 11; KHI Pasal 176).',
@@ -106,6 +116,9 @@ return [
         'awal-radd' => [
             'judul' => 'Tahap 4 — Awal (A\'ul) & Radd',
             'ringkasan' => 'Sisa harta melampaui atau tidak mencukupi 1 — diatur agar tetap adil: melampaui dinormalisasi (a\'ul), tidak habis dikembalikan (radd).',
+            'rujukan' => [
+                'jurnal' => ['FARAID-KHI-SINTA'],
+            ],
             'rumus' => [
                 'A\'ul (total jatah > 1): asl baru = jumlah seluruh pembilang; proporsi tiap ahli waris tetap.',
                 'Radd (total jatah < 1, tanpa asabah/penerima): sisa dikembalikan kepada kelompok fard mengikuti rasio jatah masing-masing.',
@@ -149,6 +162,9 @@ return [
         'harta-bersama' => [
             'judul' => 'Tahap 5 — Pemisahan Harta Bersama',
             'ringkasan' => 'Kerangka batas: sebelum faraid, hak pasangan (hal-hal yang menyebut) atas harta bersama dipisah terlebih dahulu.',
+            'rujukan' => [
+                'jurnal' => ['FARAID-KHI-SINTA'],
+            ],
             'rumus' => [
                 'Harta bersama dibagi dua: separuh menjadi hak pasangan yang masih hidup; separuh menjadi harta pewaris.',
                 'Tirkah faraid = (harta bersama ÷ 2) + harta tetap pribadi pewaris − utang − wasiat.',

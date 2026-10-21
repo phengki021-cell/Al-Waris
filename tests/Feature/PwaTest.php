@@ -15,8 +15,8 @@ it('manifest memuat identitas Al-Waris dan ikon yang lengkap', function () {
         ->and($manifest['short_name'])->toBe('Al-Waris')
         ->and($manifest['start_url'])->toBe('/')
         ->and($manifest['display'])->toBe('standalone')
-        ->and($manifest['theme_color'])->toBe('#123D32')
-        ->and($manifest['background_color'])->toBe('#F5F7F4');
+        ->and($manifest['theme_color'])->toBe('#064E3B')
+        ->and($manifest['background_color'])->toBe('#F8FAFC');
 
     $icons = collect($manifest['icons']);
 

@@ -3,8 +3,11 @@
 namespace App\Livewire;
 
 use App\Domain\Faraid\EstateDistribution;
+use App\Services\CivilInheritanceService;
 use App\Services\EstateCalculationService;
+use App\Services\ReferenceService;
 use App\Services\SaveCalculationService;
+use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -26,6 +29,21 @@ class Calculator extends Component
         'sisters' => ['integer', 'min:0', 'max:30'],
     ];
 
+    /** @var array<string, list<string>> */
+    private const CIVIL_RULES = [
+        'estate' => ['required', 'numeric', 'min:0'],
+        'debts' => ['nullable', 'numeric', 'min:0'],
+        'bequest' => ['nullable', 'numeric', 'min:0'],
+        'funeral' => ['nullable', 'numeric', 'min:0'],
+        'civilSpouse' => ['boolean'],
+        'civilChildren' => ['integer', 'min:0', 'max:30'],
+        'civilBranches' => ['integer', 'min:0', 'max:30'],
+        'civilGrandchildren' => ['integer', 'min:0', 'max:99'],
+    ];
+
+    /** Tab aktif: faraid (utama, tak tersentuh) | civil (KUHPerdata edukasi) | kontemporer. */
+    public string $tab = 'faraid';
+
     // --- Nominal ---
     public string $estate = '';
 
@@ -35,7 +53,7 @@ class Calculator extends Component
 
     public string $funeral = '';
 
-    // --- Ahli waris ---
+    // --- Ahli waris (mode Faraidh — alur asli) ---
     public string $spouse = '';            // '' | 'husband' | 'wife'
 
     public int $wifeCount = 1;
@@ -59,15 +77,47 @@ class Calculator extends Component
     /** Tentukan apakah panel hasil ditampilkan (alur: input → ringkasan → hasil). */
     public bool $showResult = false;
 
+    // --- Ahli waris mode perdata KUHPerdata (opsional, terpisah dari faraid) ---
+    public bool $civilSpouse = false;
+
+    public int $civilChildren = 0;
+
+    public int $civilBranches = 0;
+
+    public int $civilGrandchildren = 0;
+
+    public ?array $civilResult = null;
+
+    public bool $showCivilResult = false;
+
     public function resetAll(): void
     {
         $this->reset();
+    }
+
+    /** Pindah tab kalkulator; setiap tab memelihara input masing-masing. */
+    public function setTab(string $tab): void
+    {
+        if (in_array($tab, ['faraid', 'civil', 'kontemporer'], true)) {
+            $this->tab = $tab;
+        }
     }
 
     /** Tombol "Kembali mengubah input": sembunyikan hasil, input tidak dihapus. */
     public function backToInput(): void
     {
         $this->showResult = false;
+    }
+
+    /** Tombol "Mulai perhitungan baru" panel perdata: bersihkan data mode perdata saja (faraid tidak tersentuh). */
+    public function startNewCivil(): void
+    {
+        $this->civilSpouse = false;
+        $this->civilChildren = 0;
+        $this->civilBranches = 0;
+        $this->civilGrandchildren = 0;
+        $this->civilResult = null;
+        $this->showCivilResult = false;
     }
 
     /** Tombol "Mulai perhitungan baru": bersihkan semua input & hasil. */
@@ -118,6 +168,28 @@ class Calculator extends Component
         'sisters.max' => 'Jumlah saudara sedarah perempuan maksimal 30.',
     ];
 
+    /** Pesan validasi tab mode perdata (KUHPerdata). */
+    private const CIVIL_MESSAGES = [
+        'estate.required' => 'Total harta peninggalan wajib diisi — masukkan nominal harta dalam rupiah.',
+        'estate.numeric' => 'Total harta harus berupa angka tanpa tanda titik/koma pemisah, mis. 500000000.',
+        'estate.min' => 'Total harta tidak boleh bernilai negatif.',
+        'debts.numeric' => 'Hutang almarhum harus berupa angka dalam rupiah.',
+        'debts.min' => 'Hutang almarhum tidak boleh bernilai negatif.',
+        'bequest.numeric' => 'Wasiat/hibah harus berupa angka dalam rupiah.',
+        'bequest.min' => 'Wasiat/hibah tidak boleh bernilai negatif.',
+        'funeral.numeric' => 'Biaya pengurusan jenazah harus berupa angka dalam rupiah.',
+        'funeral.min' => 'Biaya pengurusan jenazah tidak boleh bernilai negatif.',
+        'civilChildren.integer' => 'Jumlah anak harus berupa bilangan bulat.',
+        'civilChildren.min' => 'Jumlah anak tidak boleh negatif.',
+        'civilChildren.max' => 'Jumlah anak maksimal 30.',
+        'civilBranches.integer' => 'Jumlah cabang anak wafat harus berupa bilangan bulat.',
+        'civilBranches.min' => 'Jumlah cabang anak wafat tidak boleh negatif.',
+        'civilBranches.max' => 'Jumlah cabang anak wafat maksimal 30.',
+        'civilGrandchildren.integer' => 'Total cucu harus berupa bilangan bulat.',
+        'civilGrandchildren.min' => 'Total cucu tidak boleh negatif.',
+        'civilGrandchildren.max' => 'Total cucu maksimal 99.',
+    ];
+
     public function saveToHistory(): void
     {
         if (! $this->result || ($this->result['status'] ?? '') !== 'valid') {
@@ -130,6 +202,32 @@ class Calculator extends Component
         );
 
         session()->flash('message', 'Hasil disimpan ke Riwayat Perhitungan.');
+    }
+
+    /**
+     * Hitung model edukasi Golongan I (KUHPerdata) — tab opsional, memakai
+     * service yang berdiri sendiri; mesin faraid tidak tersentuh sama sekali.
+     */
+    public function calculateCivil(): void
+    {
+        $this->showCivilResult = false;
+
+        $this->validate([...self::CIVIL_RULES], self::CIVIL_MESSAGES);
+
+        $this->civilResult = app(CivilInheritanceService::class)->calculate([
+            'estate' => $this->estate,
+            'debts' => $this->debts,
+            'funeral' => $this->funeral,
+            'bequest' => $this->bequest,
+            'spouse' => $this->civilSpouse,
+            'children' => $this->civilChildren,
+            'branches' => $this->civilBranches,
+            'grandchildren' => $this->civilGrandchildren,
+        ]);
+
+        if (($this->civilResult['status'] ?? '') === 'valid') {
+            $this->showCivilResult = true;
+        }
     }
 
     /**
@@ -160,8 +258,27 @@ class Calculator extends Component
         );
     }
 
-    public function render()
+    public function render(): View
     {
-        return view('livewire.calculator');
+        $reference = app(ReferenceService::class);
+
+        /** @var list<array<string, mixed>> $kontemporerCards */
+        $kontemporerCards = [];
+
+        foreach ($reference->kontemporer() as $card) {
+            $jurnalKeys = array_values(array_filter(
+                is_array($card['jurnal'] ?? null) ? $card['jurnal'] : [],
+                is_string(...),
+            ));
+
+            $kontemporerCards[] = [
+                'jurnal_entries' => $reference->jurnal($jurnalKeys, false),
+            ] + $card;
+        }
+
+        return view('livewire.calculator', [
+            'kuhperdata' => $reference->kuhperdata(),
+            'kontemporer' => $kontemporerCards,
+        ]);
     }
 }

@@ -28,8 +28,8 @@ class PwaController extends Controller
             'scope' => '/',
             'display' => 'standalone',
             'orientation' => 'portrait-primary',
-            'theme_color' => '#123D32',
-            'background_color' => '#F5F7F4',
+            'theme_color' => '#064E3B',
+            'background_color' => '#F8FAFC',
             'categories' => ['education'],
             'icons' => [
                 [

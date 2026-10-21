@@ -1,19 +1,737 @@
 @import 'tailwindcss';
+@import '@fontsource/amiri/arabic-400.css';
+@import '@fontsource/amiri/arabic-700.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
 @theme {
-    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-display: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 
-    /* Palet Warisku */
-    --color-primary: #123D32;      /* hijau tua */
-    --color-accent: #D8B66A;       /* emas */
-    --color-surface: #F5F7F4;      /* latar */
-    --color-ink: #263238;          /* teks */
+    /* Font kaligrafi Arab (Al-Qur'an & hadis) — self-hosted via @fontsource */
+    --font-quran: 'Amiri', 'Noto Naskh Arabic', 'Scheherazade New', 'Segoe UI Arabic', serif;
 
-    --color-primary-700: #0d2d25;
-    --color-accent-soft: #f3e8d2;
-    --color-paper: #ffffff;
+    /* === Palet inti Al-Waris — Modern Islamic LegalTech (Emerald x Gold) === */
+    --color-deep: #064E3B;      /* Emerald Green 900 — kanvas gelap utama */
+    --color-forest: #065F46;    /* Emerald Green 800 — panel gelap kedua */
+    --color-gold: #F59E0B;      /* Gold 500 — aksen highlight legalitas */
+    --color-ivory: #F8FAFC;     /* Slate 50 — kanvas terang bersih */
+    --color-charcoal: #0F172A;  /* Slate 900 — teks gelap kontras tinggi */
+
+    /* === Turunan === */
+    --color-emerald-soft: #D1FAE5;  /* tint emerald terang */
+    --color-gold-soft: #FEF3C7;     /* tint gold pada area terang */
+    --color-gold-deep: #D97706;     /* Gold 600 — border/link kuat */
+    --color-haze: rgba(6, 78, 59, 0.06);
+
+    /* === Pemetaan token legasi (kompatibilitas seluruh halaman) === */
+    --color-primary: #064E3B;       /* panel gelap inti */
+    --color-primary-700: #047857;   /* hover / gradasi emerald terang */
+    --color-accent: #D97706;        /* gold aksi (link, aksen legal) */
+    --color-accent-soft: #FEF3C7;   /* tint gold di area terang */
+    --color-surface: #F1F5F9;       /* panel dalam kartu putih (slate-100) */
+    --color-ink: #0F172A;           /* teks utama */
+    --color-paper: #FFFFFF;         /* kartu putih bersih */
+
+    --shadow-lift: 0 12px 32px -14px rgba(6, 78, 59, 0.35);
+    --shadow-smooth: 0 4px 18px -8px rgba(6, 78, 59, 0.18), 0 1px 2px rgba(6, 78, 59, 0.06);
+    --shadow-glow: 0 0 0 1px rgba(245, 158, 11, 0.4), 0 14px 44px -16px rgba(16, 185, 129, 0.5);
+}
+
+/* =========================================================
+   Dasar
+   ========================================================= */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        overflow-x: clip;
+        text-rendering: optimizeLegibility;
+        font-synthesis-weight: none;
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+
+    ::selection {
+        background: rgba(16, 185, 129, 0.25);
+        color: #064E3B;
+    }
+
+    :focus-visible {
+        outline: 2px solid #10B981;
+        outline-offset: 2px;
+    }
+
+    /* Hierarki judul premium: kontras tajam & spaced */
+    h1, h2 {
+        letter-spacing: -0.02em;
+    }
+
+    /* Angka & persen jadwal rapat — nuansa editorial */
+    .tnum {
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* Teks Al-Qur'an & hadis — kaligrafi jelas dan luas */
+    .verse-arab {
+        font-family: var(--font-quran);
+        font-size: 1.5rem;
+        line-height: 2.35;
+        letter-spacing: 0.01em;
+        word-spacing: 0.08em;
+    }
+
+    @media (min-width: 768px) {
+        .verse-arab {
+            font-size: 1.75rem;
+        }
+    }
+}
+
+/* =========================================================
+   Komponen desain sistem
+   ========================================================= */
+@layer components {
+    /* Kicker — label bab kecil di atas judul */
+    .u-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+    }
+
+    .u-kicker::before {
+        content: '';
+        display: inline-block;
+        width: 1.75rem;
+        height: 1px;
+        background: currentColor;
+        opacity: 0.65;
+    }
+
+    /* Judul editorial */
+    .u-display {
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+        font-weight: 700;
+        text-wrap: balance;
+    }
+
+    /* Garis tipis emas */
+    .u-hairline {
+        background: linear-gradient(90deg, rgba(245, 158, 11, 0) 0%, rgba(245, 158, 11, 0.8) 18%, rgba(245, 158, 11, 0.8) 82%, rgba(245, 158, 11, 0) 100%);
+        height: 1px;
+    }
+
+    /* Tekstur geometri Islami 8 titik — sangat halus */
+    .u-lattice {
+        position: relative;
+        isolation: isolate;
+    }
+
+    .u-lattice::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        opacity: 0.05;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23F8FAFC' stroke-width='1'%3E%3Crect x='18' y='18' width='36' height='36'/%3E%3Crect x='18' y='18' width='36' height='36' transform='rotate(45 36 36)'/%3E%3Ccircle cx='36' cy='36' r='18'/%3E%3Ccircle cx='0' cy='0' r='18'/%3E%3Ccircle cx='72' cy='0' r='18'/%3E%3Ccircle cx='0' cy='72' r='18'/%3E%3Ccircle cx='72' cy='72' r='18'/%3E%3C/g%3E%3C/svg%3E");
+        background-size: 72px 72px;
+    }
+
+    .u-lattice-dark::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23064E3B' stroke-width='1'%3E%3Crect x='18' y='18' width='36' height='36'/%3E%3Crect x='18' y='18' width='36' height='36' transform='rotate(45 36 36)'/%3E%3Ccircle cx='36' cy='36' r='18'/%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.04;
+    }
+
+    /* Tombol emas — pergeseran cahaya halus */
+    .u-btn-gold {
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: 9999px;
+        background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 55%, #D97706 100%);
+        color: #064E3B;
+        font-weight: 700;
+        box-shadow: 0 10px 26px -12px rgba(217, 119, 6, 0.55);
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s, filter 0.35s;
+    }
+
+    .u-btn-gold::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.55) 50%, transparent 70%);
+        transform: translateX(-120%);
+        transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .u-btn-gold:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.04);
+        box-shadow: 0 16px 38px -14px rgba(245, 158, 11, 0.7);
+    }
+
+    .u-btn-gold:hover::after {
+        transform: translateX(120%);
+    }
+
+    .u-btn-gold > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Tombol utama emerald (form) */
+    .u-btn-emerald {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        border-radius: 9999px;
+        background: linear-gradient(135deg, #064E3B 0%, #047857 60%, #059669 120%);
+        color: #FFFFFF;
+        font-weight: 700;
+        box-shadow: 0 12px 30px -12px rgba(6, 78, 59, 0.55);
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s, filter 0.35s;
+    }
+
+    .u-btn-emerald:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.06);
+        box-shadow: 0 18px 40px -14px rgba(4, 120, 87, 0.6), 0 0 0 1px rgba(245, 158, 11, 0.35);
+    }
+
+    /* Tombol sekunder gelap */
+    .u-btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: 9999px;
+        border: 1px solid rgba(245, 158, 11, 0.45);
+        color: #F8FAFC;
+        font-weight: 500;
+        transition: border-color 0.3s, background 0.3s, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .u-btn-ghost:hover {
+        border-color: rgba(245, 158, 11, 0.9);
+        background: rgba(245, 158, 11, 0.08);
+        transform: translateY(-2px);
+    }
+
+    /* Tombol rujukan resmi — jurnal / putusan MA */
+    .u-ref-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        border-radius: 0.75rem;
+        background: linear-gradient(135deg, #064E3B 0%, #047857 100%);
+        color: #FFFFFF;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        padding: 0.5rem 0.85rem;
+        box-shadow: 0 6px 18px -8px rgba(6, 78, 59, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s, filter 0.3s;
+    }
+
+    .u-ref-btn:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.08);
+        box-shadow: 0 10px 24px -10px rgba(4, 120, 87, 0.6), 0 0 0 1px rgba(245, 158, 11, 0.5);
+    }
+
+    /* Kartu terangkhat saat hover */
+    .u-lift {
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s;
+    }
+
+    .u-lift:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lift);
+    }
+
+    /* === Glassmorphism bar untuk tab switcher mode === */
+    .u-glassbar {
+        border-radius: 1.25rem;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(241, 245, 249, 0.78) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.85);
+        box-shadow: 0 10px 30px -14px rgba(6, 78, 59, 0.28), 0 1px 2px rgba(6, 78, 59, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(16px) saturate(1.4);
+        -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    }
+
+    .u-tab {
+        position: relative;
+        border-radius: 1rem;
+        border: 1px solid transparent;
+        transition: background 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s, box-shadow 0.35s, border-color 0.35s, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .u-tab:hover:not(.u-tab-active) {
+        background: rgba(209, 250, 229, 0.55);
+        border-color: rgba(16, 185, 129, 0.25);
+        transform: translateY(-1px);
+    }
+
+    /* Active-border bercahaya: emerald inti + halo gold */
+    .u-tab-active {
+        background: linear-gradient(135deg, #064E3B 0%, #047857 70%, #059669 130%);
+        color: #FFFFFF;
+        border-color: rgba(245, 158, 11, 0.55);
+        box-shadow:
+            0 0 0 1px rgba(245, 158, 11, 0.35),
+            0 0 22px rgba(16, 185, 129, 0.38),
+            0 14px 30px -14px rgba(6, 78, 59, 0.65);
+        transform: translateY(-1px);
+    }
+
+    .u-tab-active .u-tab-icon {
+        background: rgba(255, 255, 255, 0.14);
+        color: #FCD34D;
+        border-color: rgba(252, 211, 77, 0.45);
+    }
+
+    /* === Smart cards — form harta & kewajiban === */
+    .u-smart-card {
+        border-radius: 1rem;
+        background: #FFFFFF;
+        border: 1px solid rgba(15, 23, 42, 0.07);
+        box-shadow: var(--shadow-smooth);
+        transition: box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .u-smart-card:hover {
+        border-color: rgba(16, 185, 129, 0.35);
+        box-shadow: 0 10px 28px -12px rgba(6, 78, 59, 0.22);
+        transform: translateY(-2px);
+    }
+
+    /* Badge urutan eksekusi harta */
+    .u-step-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 1.35rem;
+        height: 1.35rem;
+        padding: 0 0.3rem;
+        border-radius: 9999px;
+        background: linear-gradient(135deg, #FBBF24, #D97706);
+        color: #064E3B;
+        font-size: 0.6875rem;
+        font-weight: 800;
+        box-shadow: 0 4px 10px -3px rgba(217, 119, 6, 0.5);
+    }
+
+    /* Ikon kotak berbufet dalam kartu kecil */
+    .u-icon-box {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.75rem;
+        background: #ECFDF5;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        color: #065F46;
+        transition: background 0.35s, color 0.35s, border-color 0.35s;
+    }
+
+    /* === Input premium — fokus bercahaya emerald === */
+    .u-input {
+        width: 100%;
+        border-radius: 0.75rem;
+        border: 1px solid rgba(15, 23, 42, 0.14);
+        background: #FFFFFF;
+        color: #0F172A;
+        transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+
+    .u-input::placeholder {
+        color: rgba(15, 23, 42, 0.32);
+    }
+
+    .u-input:hover {
+        border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    .u-input:focus {
+        outline: none;
+        border-color: #10B981;
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.16);
+        background: #FFFFFF;
+    }
+
+    /* === Visual choice cards (ahli waris) — smooth hover & active === */
+    .u-choice {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        border-radius: 1rem;
+        border: 1px solid rgba(15, 23, 42, 0.09);
+        background: #FFFFFF;
+        color: #0F172A;
+        font-weight: 600;
+        box-shadow: var(--shadow-smooth);
+        cursor: pointer;
+        user-select: none;
+        transition: border-color 0.3s, background 0.3s, box-shadow 0.3s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s;
+    }
+
+    .u-choice:hover {
+        border-color: rgba(16, 185, 129, 0.45);
+        background: rgba(236, 253, 245, 0.6);
+        transform: translateY(-2px);
+    }
+
+    .u-choice:active {
+        transform: translateY(0) scale(0.98);
+    }
+
+    .u-choice .u-icon-box {
+        background: #F1F5F9;
+        border-color: rgba(15, 23, 42, 0.08);
+        color: #065F46;
+    }
+
+    .u-choice-active {
+        background: linear-gradient(135deg, rgba(6, 78, 59, 0.06), rgba(4, 120, 87, 0.1));
+        border-color: rgba(16, 185, 129, 0.5);
+        color: #064E3B;
+        box-shadow:
+            0 0 0 1px rgba(16, 185, 129, 0.28),
+            0 0 16px rgba(16, 185, 129, 0.25),
+            0 10px 24px -12px rgba(6, 78, 59, 0.3),
+            inset 0 0 0 1px rgba(245, 158, 11, 0.28);
+    }
+
+    .u-choice-active .u-icon-box {
+        background: linear-gradient(135deg, #064E3B, #047857);
+        border-color: rgba(245, 158, 11, 0.4);
+        color: #FCD34D;
+    }
+
+    /* Stepper badge counter (+/-) */
+    .u-step-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 0.65rem;
+        border: 1px solid rgba(15, 23, 42, 0.1);
+        background: #FFFFFF;
+        color: #064E3B;
+        font-weight: 700;
+        transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.2s;
+    }
+
+    .u-step-btn:hover {
+        background: #ECFDF5;
+        border-color: rgba(16, 185, 129, 0.45);
+        color: #047857;
+    }
+
+    .u-step-btn:active {
+        transform: scale(0.92);
+    }
+
+    /* Panel kaca gelap */
+    .u-glass {
+        background: rgba(6, 78, 59, 0.55);
+        border: 1px solid rgba(245, 158, 11, 0.2);
+        backdrop-filter: blur(10px);
+    }
+
+    /* Header modal mewah emerald → gold */
+    .u-modal-head {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(120deg, #064E3B 0%, #047857 62%, #059669 100%);
+        color: #F8FAFC;
+    }
+
+    .u-modal-head::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background:
+            radial-gradient(42rem 16rem at -10% -60%, rgba(252, 211, 77, 0.16), transparent),
+            radial-gradient(38rem 14rem at 110% -40%, rgba(255, 255, 255, 0.12), transparent);
+        pointer-events: none;
+    }
+
+    /* Garis emas bawah header modal */
+    .u-modal-headline {
+        height: 2px;
+        background: linear-gradient(90deg, rgba(245, 158, 11, 0) 0%, rgba(245, 158, 11, 0.95) 20%, rgba(252, 211, 77, 0.95) 80%, rgba(245, 158, 11, 0) 100%);
+    }
+
+    /* Chip rujukan */
+    .u-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        border-radius: 9999px;
+        background: rgba(245, 158, 11, 0.14);
+        border: 1px solid rgba(245, 158, 11, 0.4);
+        color: #D97706;
+        font-size: 0.65rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 0.2rem 0.6rem;
+    }
+
+    /* Judul seksi pada modal */
+    .u-sec-title {
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(6, 78, 59, 0.72);
+    }
+
+    /* Kartu pasal */
+    .u-pasal-card {
+        position: relative;
+        border-radius: 1rem;
+        background: #FFFFFF;
+        border: 1px solid rgba(15, 23, 42, 0.07);
+        border-left: 3px solid #10B981;
+        box-shadow: var(--shadow-smooth);
+        overflow: hidden;
+        transition: border-color 0.3s, box-shadow 0.35s;
+    }
+
+    .u-pasal-card:hover {
+        border-color: rgba(16, 185, 129, 0.4);
+        border-left-color: #F59E0B;
+        box-shadow: 0 10px 26px -12px rgba(6, 78, 59, 0.22);
+    }
+
+    /* === Kotak ayat Al-Qur'an/hadis — krem halus + bingkai hias Islami === */
+    .u-verse-box {
+        position: relative;
+        border-radius: 1rem;
+        background: #FFFBEB;
+        border: 1px solid rgba(217, 119, 6, 0.35);
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.65),
+            0 8px 22px -12px rgba(217, 119, 6, 0.3);
+    }
+
+    /* Bingkai hias dalam: garis emas tipis putus-putus */
+    .u-verse-box::before {
+        content: '';
+        position: absolute;
+        inset: 6px;
+        border-radius: 0.7rem;
+        border: 1px dashed rgba(217, 119, 6, 0.45);
+        pointer-events: none;
+    }
+
+    /* Ornamen sudut: empat titik emas kecil */
+    .u-verse-box::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+            radial-gradient(circle at 13px 13px, #D97706 0 2.5px, transparent 3px),
+            radial-gradient(circle at calc(100% - 13px) 13px, #D97706 0 2.5px, transparent 3px),
+            radial-gradient(circle at 13px calc(100% - 13px), #D97706 0 2.5px, transparent 3px),
+            radial-gradient(circle at calc(100% - 13px) calc(100% - 13px), #D97706 0 2.5px, transparent 3px);
+    }
+
+    /* Terjemahan — bergaris kiri aksen hijau emerald */
+    .u-verse-terjemah {
+        border-left: 3px solid #10B981;
+    }
+
+    /* Tombol CTA rujukan emerald-gold — "BACA JURNAL & PUTUSAN MA TERKAIT" */
+    .u-btn-ref-cta {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        border-radius: 9999px;
+        background: linear-gradient(120deg, #064E3B 0%, #047857 52%, #D97706 135%);
+        color: #FFFFFF;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        box-shadow:
+            0 10px 26px -12px rgba(6, 78, 59, 0.6),
+            0 0 0 1px rgba(245, 158, 11, 0.45),
+            0 0 18px rgba(245, 158, 11, 0.25);
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s, filter 0.35s;
+    }
+
+    .u-btn-ref-cta:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.07);
+        box-shadow:
+            0 16px 34px -14px rgba(4, 120, 87, 0.65),
+            0 0 0 1px rgba(245, 158, 11, 0.7),
+            0 0 26px rgba(245, 158, 11, 0.4);
+    }
+
+    /* Segmen donut chart — transisi halus saat hover */
+    .u-donut-seg {
+        transition: stroke-width 0.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s;
+        cursor: pointer;
+    }
+
+    /* Nav underline indikator emas */
+    .u-navlink {
+        position: relative;
+        padding: 0.45rem 0.2rem;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: rgba(248, 250, 252, 0.78);
+        transition: color 0.3s;
+    }
+
+    .u-navlink::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 100%;
+        bottom: 0;
+        height: 1.5px;
+        border-radius: 2px;
+        background: #F59E0B;
+        transition: right 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .u-navlink:hover {
+        color: #F8FAFC;
+    }
+
+    .u-navlink:hover::after,
+    .u-navlink[aria-current='page']::after {
+        right: 0;
+    }
+
+    .u-navlink[aria-current='page'] {
+        color: #FCD34D;
+    }
+
+    /* Reveal-on-scroll */
+    [data-reveal] {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--reveal-delay, 0ms);
+        will-change: opacity, transform;
+    }
+
+    [data-reveal].is-revealed {
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Loading state elegan — shimmer hairline */
+    .u-loading::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(100deg, transparent 40%, rgba(245, 158, 11, 0.25) 50%, transparent 60%);
+        background-size: 200% 100%;
+        animation: u-shimmer 1.4s linear infinite;
+    }
+
+    .u-spinner {
+        border-radius: 9999px;
+        border: 2px solid rgba(16, 185, 129, 0.25);
+        border-top-color: #10B981;
+        animation: u-spin 0.9s linear infinite;
+    }
+}
+
+/* =========================================================
+   Keyframes
+   ========================================================= */
+@keyframes u-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+@keyframes u-spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes u-fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes u-float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+}
+
+@keyframes u-rotate-slow {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes u-drift {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.9; }
+    50% { transform: translate3d(24px, -18px, 0) scale(1.06); opacity: 1; }
+}
+
+/* Animasi pembuka hero bertahap */
+.u-enter {
+    opacity: 0;
+    animation: u-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: var(--d, 0ms);
+}
+
+.u-float { animation: u-float-slow 7s ease-in-out infinite; }
+.u-loop-rotate { animation: u-rotate-slow 90s linear infinite; transform-origin: center; }
+.u-drift { animation: u-drift 9s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .u-enter,
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+        animation: none;
+        transition: none;
+    }
+
+    .u-float,
+    .u-loop-rotate,
+    .u-drift,
+    .u-loading::after,
+    .u-spinner {
+        animation: none;
+    }
+
+    .u-btn-gold::after,
+    .u-lift,
+    .u-navlink::after,
+    .u-smart-card,
+    .u-choice {
+        transition: none;
+    }
 }

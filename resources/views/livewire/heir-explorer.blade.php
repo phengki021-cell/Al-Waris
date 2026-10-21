@@ -1,6 +1,7 @@
 <div x-data @keydown.escape.window="$wire.closeDetail()">
     <section>
-        <h1 class="text-2xl font-bold md:text-3xl">Ahli Waris</h1>
+        <p class="u-kicker text-gold-deep">Faraidh</p>
+        <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">Ahli Waris</h1>
         <p class="mt-2 text-sm text-ink/70">
             Golongan ahli waris menurut ilmu faraid: dzawil furudh, ashabah, dan dzawil arham.
             Klik kartu atau tombol &laquo;Lihat Detail&raquo; untuk definisi, syarat, kondisi
@@ -19,7 +20,7 @@
                     <button
                         type="button"
                         wire:click="openDetail({{ $heir->id }})"
-                        class="group flex w-full cursor-pointer items-start justify-between gap-3 rounded-xl bg-paper p-4 text-left shadow-sm ring-1 ring-black/5 transition hover:ring-2 hover:ring-accent hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                        class="u-choice group w-full flex items-start justify-between gap-3 p-4 text-left"
                         aria-haspopup="dialog"
                     >
                         <span class="min-w-0 flex-1">
@@ -39,7 +40,7 @@
                                 </span>
                             @endif
                         </span>
-                        <span class="mt-1 shrink-0 self-start rounded-lg border border-accent px-2 py-1 text-xs font-medium text-accent transition group-hover:bg-accent group-hover:text-primary">
+                        <span class="mt-1 shrink-0 self-start rounded-lg border border-gold/60 bg-gold-soft/60 px-2.5 py-1 text-xs font-bold text-gold-deep transition group-hover:bg-gold group-hover:text-white">
                             Lihat Detail <span aria-hidden="true">&rarr;</span>
                         </span>
                     </button>
@@ -59,45 +60,49 @@
         >
             <button
                 type="button"
-                class="fixed inset-0 h-full w-full cursor-default bg-black/50"
+                class="fixed inset-0 h-full w-full cursor-default bg-emerald-950/60 backdrop-blur-sm"
                 wire:click="closeDetail()"
                 aria-label="Tutup modal"
                 tabindex="-1"
             ></button>
 
-            <div class="relative mx-auto my-4 w-[94%] max-w-2xl rounded-2xl bg-paper shadow-xl ring-1 ring-black/10 md:my-10">
-                {{-- Header --}}
-                <div class="flex items-start justify-between gap-3 rounded-t-2xl border-b border-black/5 bg-paper p-4 md:p-5">
-                    <div class="min-w-0">
-                        <p id="heir-detail-title" class="text-base font-bold text-primary md:text-lg">
-                            Detail Ahli Waris — {{ $this->selectedHeir->name_id }}
-                        </p>
-                        <p class="mt-1 text-xs text-ink/60">
-                            {{ $this->selectedHeir->name_ar }}
-                            {{ $this->selectedHeir->gender === 'm' ? '· Laki-laki' : '· Perempuan' }}
-                        </p>
+            <div class="relative mx-auto my-4 w-[94%] max-w-2xl overflow-hidden rounded-3xl bg-paper shadow-2xl ring-1 ring-emerald-900/10 md:my-10">
+                {{-- Header mewah emerald-gold --}}
+                <div class="u-modal-head px-5 py-5 md:px-6 md:py-6">
+                    <div class="relative z-[1] flex items-start justify-between gap-3">
+                        <div class="min-w-0">
+                            <p class="u-kicker text-gold-soft">Profil Ahli Waris</p>
+                            <p id="heir-detail-title" class="u-display mt-1.5 text-lg text-ivory md:text-xl">
+                                Detail Ahli Waris — {{ $this->selectedHeir->name_id }}
+                            </p>
+                            <p class="mt-1.5 text-sm text-gold-soft/90">
+                                {{ $this->selectedHeir->name_ar }}
+                                {{ $this->selectedHeir->gender === 'm' ? '· Laki-laki' : '· Perempuan' }}
+                            </p>
+                        </div>
+                        <button
+                            type="button"
+                            wire:click="closeDetail()"
+                            class="shrink-0 rounded-xl bg-white/10 p-2 text-ivory ring-1 ring-white/25 transition hover:bg-gold/25 hover:text-white hover:ring-gold/60"
+                            aria-label="Tutup modal"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+                        </button>
                     </div>
-                    <button
-                        type="button"
-                        wire:click="closeDetail()"
-                        class="shrink-0 rounded-lg bg-surface p-2 text-ink/70 transition hover:bg-accent-soft hover:text-primary"
-                        aria-label="Tutup modal"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
-                    </button>
+                    <div class="u-modal-headline relative z-[1] mt-4"></div>
                 </div>
 
                 <div class="space-y-6 p-4 md:p-5">
                     {{-- (a) Definisi & Pengertian --}}
                     <section>
-                        <h2 class="text-xs font-bold tracking-widest text-ink/50 uppercase">Definisi &amp; Pengertian</h2>
+                        <h2 class="u-sec-title">Definisi &amp; Pengertian</h2>
                         <p class="mt-2 rounded-xl bg-surface p-4 text-sm text-ink/80">{{ $this->selectedProfile['definisi'] }}</p>
                         <p class="mt-1 text-[10px] text-ink/40">Kategori: {{ $categories[$this->selectedHeir->category] ?? $this->selectedHeir->category }}</p>
                     </section>
 
                     {{-- (b) Syarat mendapatkan warisan --}}
                     <section>
-                        <h2 class="text-xs font-bold tracking-widest text-ink/50 uppercase">Syarat Mendapatkan Warisan</h2>
+                        <h2 class="u-sec-title">Syarat Mendapatkan Warisan</h2>
                         <ul class="mt-2 list-inside list-disc space-y-1 text-sm text-ink/80">
                             @foreach ($this->selectedProfile['syarat'] as $syarat)
                                 <li>{{ $syarat }}</li>
@@ -113,7 +118,7 @@
 
                     {{-- (c) Kondisi mahrum/hijab --}}
                     <section>
-                        <h2 class="text-xs font-bold tracking-widest text-ink/50 uppercase">Kondisi Mahrum / Hijab (Penghalang)</h2>
+                        <h2 class="u-sec-title">Kondisi Mahrum / Hijab (Penghalang)</h2>
                         <h3 class="mt-2 text-sm font-semibold">Yang menghalangi atau menurunkan bagian ahli waris ini</h3>
                         <ul class="mt-1 list-inside list-disc space-y-1 text-sm text-ink/80">
                             @foreach ($this->selectedProfile['dihalangi'] as $item)
@@ -130,13 +135,13 @@
 
                     {{-- (d) Dalil Al-Qur'an & Pasal KHI --}}
                     <section>
-                        <h2 class="text-xs font-bold tracking-widest text-ink/50 uppercase">Dalil Al-Qur'an &amp; KHI</h2>
+                        <h2 class="u-sec-title">Dalil Al-Qur'an &amp; KHI</h2>
 
                         @if (! empty($this->selectedProfile['verse']))
                             <p class="mt-2 inline-flex rounded bg-accent-soft px-2 py-0.5 text-xs font-semibold text-primary">
                                 {{ $this->selectedProfile['verse']['label'] }}
                             </p>
-                            <p dir="rtl" lang="ar" class="mt-3 rounded-xl bg-surface p-4 text-right font-serif leading-loose text-xl text-primary md:text-2xl">
+                            <p dir="rtl" lang="ar" class="verse-arab u-verse-box mt-3 p-5 text-right text-emerald-950">
                                 {{ $this->selectedProfile['verse']['arab'] }}
                             </p>
                             <p class="mt-3 rounded-xl bg-surface p-4 text-sm italic text-ink/80">
@@ -145,7 +150,7 @@
                                     Nota transliterasi Kemenag: tanda (a)/(un)/(in) adalah harakat akhir bacaan.
                                 </span>
                             </p>
-                            <div class="mt-3 rounded-xl bg-surface p-4">
+                            <div class="u-verse-terjemah mt-3 rounded-r-xl bg-surface p-4">
                                 <p class="text-sm text-ink/80">{{ $this->selectedProfile['verse']['terjemah'] }}</p>
                                 <p class="mt-2 text-xs text-ink/50">{{ $this->selectedProfile['verse']['footnote'] }}</p>
                                 <p class="mt-2 text-[10px] text-ink/40">
@@ -164,8 +169,8 @@
                             <h3 class="mt-4 text-sm font-semibold">Rujukan KHI (Inpres No. 1 Tahun 1991)</h3>
                             <ul class="mt-2 space-y-2">
                                 @foreach ($this->selectedProfile['pasals'] as $pasal)
-                                    <li class="rounded-xl bg-surface p-4">
-                                        <p class="text-sm font-semibold text-primary">{{ $pasal['judul'] }}</p>
+                                    <li class="u-pasal-card p-4">
+                                        <p class="text-sm font-extrabold uppercase tracking-wide text-emerald-900">{{ $pasal['judul'] }}</p>
                                         <p class="mt-1 text-sm text-ink/80">{{ $pasal['teks'] }}</p>
                                         @if (! empty($pasal['catatan']))
                                             <p class="mt-2 text-xs italic text-ink/60">{{ $pasal['catatan'] }}</p>
@@ -181,6 +186,14 @@
                             </p>
                         @endif
                     </section>
+
+                    {{-- Rapat: hadis shahih, KUHPerdata, yurisprudensi MA & jurnal ilmiah --}}
+                    @include('partials.reference-blocks', [
+                        'hadits' => $this->selectedProfile['hadits'],
+                        'kuhperdata' => $this->selectedProfile['kuhperdata'],
+                        'yurisprudensi' => $this->selectedProfile['yurisprudensi'],
+                        'jurnal' => $this->selectedProfile['jurnal'],
+                    ])
                 </div>
 
                 {{-- Footer disclaimer --}}
