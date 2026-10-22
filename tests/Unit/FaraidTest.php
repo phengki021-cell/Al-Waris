@@ -299,6 +299,160 @@ describe("FaraidEngine — tahap 3: ta'sib, hijab, & kasus acuan lain", function
 
 // ---------------------------------------------------------------------------
 
+describe('FaraidEngine — ahli waris pengganti (v0.4: kakek & cucu dari anak laki)', function () {
+    test('kakek + ibu: kakek 2/3, ibu 1/3 (analog ayah yang menangkap sisa)', function () {
+        $r = engine([['grandfather', true], ['mother', true]]);
+
+        $s = sharesByCode($r);
+
+        expect($r->status)->toBe('valid')
+            ->and($s['mother'])->toBe('1/3')
+            ->and($s['grandfather'])->toBe('2/3')
+            ->and(totalOf($r))->toBe('1');
+    });
+
+    test('kakek + 1 anak perempuan: kakek 1/2, anak pr 1/2', function () {
+        $r = engine([['grandfather', true], ['daughters', 1]]);
+
+        $s = sharesByCode($r);
+
+        expect($r->status)->toBe('valid')
+            ->and($s['daughter'])->toBe('1/2')
+            ->and($s['grandfather'])->toBe('1/2')
+            ->and(totalOf($r))->toBe('1');
+    });
+
+    test('suami + cucu laki (dari anak laki yang wafat): suami 1/4 — cucu adalah keturunan', function () {
+        $r = engine([['husband', true], ['grandsons', 1]]);
+
+        $s = sharesByCode($r);
+
+        expect($r->status)->toBe('valid')
+            ->and($s['husband'])->toBe('1/4')
+            ->and($s['grandson'])->toBe('3/4')
+            ->and(totalOf($r))->toBe('1');
+    });
+
+    test('2 anak pr + 1 cucu laki: 2/3 (1/3 per orang) + sisa 1/3 untuk cucu', function () {
+        $r = engine([['daughters', 2], ['grandsons', 1]]);
+
+        $s = sharesByCode($r);
+
+        expect($r->status)->toBe('valid')
+            ->and($s['daughter'])->toBe('1/3') // per orang
+            ->and($s['grandson'])->toBe('1/3')
+            ->and(totalOf($r))->toBe('1');
+    });
+
+    test('cucu laki + cucu pr: asabah pengganti 2:1 (2/3, 1/3)', function () {
+        $r = engine([['grandsons', 1], ['granddaughters', 1]]);
+
+        $s = sharesByCode($r);
+
+        expect($r->status)->toBe('valid')
+            ->and($s['grandson'])->toBe('2/3')
+            ->and($s['granddaughter'])->toBe('1/3')
+            ->and(totalOf($r))->toBe('1');
+    });
+
+    test('cucu pr sendirian: fard 1/2 → radd → seluruh harta', function () {
+        $r = engine([['granddaughters', 1]]);
+
+        expect($r->method)->toBe('radd')
+            ->and(sharesByCode($r)['granddaughter'])->toBe('1')
+            ->and(totalOf($r))->toBe('1');
+    });
+
+    test('2 cucu pr: fard 2/3 → radd → seluruh harta (per orang 1/2)', function () {
+        $r = engine([['granddaughters', 2]]);
+
+        expect($r->method)->toBe('radd')
+            ->and(sharesByCode($r)['granddaughter'])->toBe('1/2')
+            ->and(totalOf($r))->toBe('1');
+    });
+
+    test('anak pr + cucu pr: cucu pr terhalang anak pr, sisa diradd ke anak pr', function () {
+        $r = engine([['daughters', 1], ['granddaughters', 1]]);
+
+        $blockedCodes = collect($r->blocked)->pluck('code')->all();
+
+        expect($r->status)->toBe('valid')
+            ->and(collect($r->shares)->pluck('code')->all())->toBe(['daughter'])
+            ->and(sharesByCode($r)['daughter'])->toBe('1')
+            ->and($blockedCodes)->toContain('granddaughter')
+            ->and(totalOf($r))->toBe('1');
+    });
+
+    test('anak laki + cucu laki: cucu terhalang oleh anak langsung', function () {
+        $r = engine([['sons', 1], ['grandsons', 1]]);
+
+        $blockedCodes = collect($r->blocked)->pluck('code')->all();
+
+        expect($r->status)->toBe('valid')
+            ->and(sharesByCode($r)['son'])->toBe('1')
+            ->and($blockedCodes)->toContain('grandson')
+            ->and(totalOf($r))->toBe('1');
+    });
+
+    test('kakek + ayah: kakek terhalang, ayah menangkap seluruh sisa', function () {
+        $r = engine([['father', true], ['grandfather', true]]);
+
+        $blockedCodes = collect($r->blocked)->pluck('code')->all();
+
+        expect($r->status)->toBe('valid')
+            ->and(sharesByCode($r)['father'])->toBe('1')
+            ->and($blockedCodes)->toContain('grandfather')
+            ->and(totalOf($r))->toBe('1');
+    });
+
+    test('kakek + anak laki: kakek terhalang oleh anak langsung', function () {
+        $r = engine([['grandfather', true], ['sons', 1]]);
+
+        $blockedCodes = collect($r->blocked)->pluck('code')->all();
+
+        expect($r->status)->toBe('valid')
+            ->and(sharesByCode($r)['son'])->toBe('1')
+            ->and($blockedCodes)->toContain('grandfather')
+            ->and(totalOf($r))->toBe('1');
+    });
+
+    test('cucu laki + saudara pr (tanpa saudara laki): cucu 1, saudara pr terhalang', function () {
+        $r = engine([['grandsons', 1], ['sisters', 1]]);
+
+        $blockedCodes = collect($r->blocked)->pluck('code')->all();
+
+        expect($r->status)->toBe('valid')
+            ->and(collect($r->shares)->pluck('code')->all())->toBe(['grandson'])
+            ->and(sharesByCode($r)['grandson'])->toBe('1')
+            ->and($blockedCodes)->toContain('sister')
+            ->and(totalOf($r))->toBe('1');
+    });
+
+    test('kakek + saudara sedarah → not_supported (umariyyatân)', function () {
+        $r = engine([['grandfather', true], ['brothers', 1]]);
+
+        expect($r->status)->toBe('not_supported');
+    });
+
+    test('kakek + cucu → not_supported (umariyyatân)', function () {
+        $r = engine([['grandfather', true], ['grandsons', 1]]);
+
+        expect($r->status)->toBe('not_supported');
+    });
+
+    test('kakek + nenek-ibu (tanpa ibu): nenek 1/6, kakek menyerap sisa 5/6', function () {
+        // fard: nenek-ibu 1/6; sisa 5/6 → kakek (asabah menyerap sisa).
+        $r = engine([['grandfather', true], ['maternal_grandmother', true]]);
+
+        $s = sharesByCode($r);
+
+        expect($r->status)->toBe('valid')
+            ->and($s['maternal_grandmother'])->toBe('1/6')
+            ->and($s['grandfather'])->toBe('5/6')
+            ->and(totalOf($r))->toBe('1');
+    });
+});
+
 function engine(array $pairs): FaraidResult
 {
     $input = [];

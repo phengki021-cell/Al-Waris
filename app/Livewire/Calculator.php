@@ -25,8 +25,11 @@ class Calculator extends Component
         'sons' => ['integer', 'min:0', 'max:30'],
         'daughters' => ['integer', 'min:0', 'max:30'],
         'maternalGrandmother' => ['boolean'],
+        'grandfather' => ['boolean'],
         'brothers' => ['integer', 'min:0', 'max:30'],
         'sisters' => ['integer', 'min:0', 'max:30'],
+        'grandsons' => ['integer', 'min:0', 'max:30'],
+        'granddaughters' => ['integer', 'min:0', 'max:30'],
     ];
 
     /** @var array<string, list<string>> */
@@ -68,9 +71,17 @@ class Calculator extends Component
 
     public bool $maternalGrandmother = false;
 
+    /** Ahli waris pengganti: kakek dari ayah (menggantikan ayah yang tiada). */
+    public bool $grandfather = false;
+
     public int $brothers = 0;
 
     public int $sisters = 0;
+
+    // --- Ahli waris pengganti (perwakilan): cucu dari anak laki-laki wafat ---
+    public int $grandsons = 0;
+
+    public int $granddaughters = 0;
 
     public ?array $result = null;
 
@@ -166,6 +177,12 @@ class Calculator extends Component
         'sisters.integer' => 'Jumlah saudara sedarah perempuan harus berupa bilangan bulat.',
         'sisters.min' => 'Jumlah saudara sedarah perempuan tidak boleh negatif.',
         'sisters.max' => 'Jumlah saudara sedarah perempuan maksimal 30.',
+        'grandsons.integer' => 'Jumlah cucu laki-laki harus berupa bilangan bulat.',
+        'grandsons.min' => 'Jumlah cucu laki-laki tidak boleh negatif.',
+        'grandsons.max' => 'Jumlah cucu laki-laki maksimal 30.',
+        'granddaughters.integer' => 'Jumlah cucu perempuan harus berupa bilangan bulat.',
+        'granddaughters.min' => 'Jumlah cucu perempuan tidak boleh negatif.',
+        'granddaughters.max' => 'Jumlah cucu perempuan maksimal 30.',
     ];
 
     /** Pesan validasi tab mode perdata (KUHPerdata). */
@@ -246,6 +263,9 @@ class Calculator extends Component
                 'father' => $this->father,
                 'mother' => $this->mother,
                 'maternal_grandmother' => $this->maternalGrandmother,
+                'grandfather' => $this->grandfather,
+                'grandsons' => $this->grandsons,
+                'granddaughters' => $this->granddaughters,
                 'brothers' => $this->brothers,
                 'sisters' => $this->sisters,
             ],

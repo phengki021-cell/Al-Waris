@@ -336,8 +336,8 @@
                     </div>
                 </div>
 
-                {{-- Orang tua & nenek — visual toggle cards --}}
-                <div class="mt-3 grid gap-2 sm:grid-cols-3">
+                {{-- Orang tua, nenek & kakek (pengganti ayah) — visual toggle cards --}}
+                <div class="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
                     <button type="button"
                         x-on:click="$wire.toggle('father')"
                         :class="$wire.get('father') ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
@@ -367,7 +367,55 @@
                         </span>
                         <span>NENEK DARI IBU <span class="block text-[10px] font-medium text-ink/45">klik untuk masukkan</span></span>
                     </button>
+
+                    <button type="button"
+                        x-on:click="$wire.toggle('grandfather')"
+                        :class="$wire.get('grandfather') ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
+                        :aria-pressed="$wire.get('grandfather') ? 'true' : 'false'">
+                        <span class="u-icon-box h-9 w-9 shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="8" cy="7" r="3.4"/><path d="M1.5 21a6.5 6.5 0 0 1 13 0"/><path d="M17 1.5h4l-2 3.5"/><path d="M19 1.5v3"/></svg>
+                        </span>
+                        <span>KAKEK DARI AYAH <span class="block text-[10px] font-medium text-ink/45">pengganti ayah · klik untuk masukkan</span></span>
+                    </button>
                 </div>
+
+                {{-- Ahli waris pengganti: cucu menggantikan ayahnya yang telah wafat --}}
+                <p class="mt-3 text-[0.68rem] font-extrabold uppercase tracking-widest text-ink/45">Ahli waris pengganti — perwakilan anak yang telah wafat</p>
+                <div class="mt-2 grid gap-2 sm:grid-cols-2">
+                    <div class="u-smart-card flex flex-wrap items-center justify-between gap-2 p-3.5">
+                        <div class="flex items-center gap-2.5">
+                            <span class="u-icon-box h-9 w-9 shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="9" cy="6.5" r="2.8"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><circle cx="16.5" cy="8" r="2.4"/><path d="M12.5 20a4.4 4.4 0 0 1 8.5-1.6"/></svg>
+                            </span>
+                            <label for="grandsons" class="text-xs font-bold leading-tight text-ink">Cucu laki-laki<br class="hidden sm:block"> <span class="font-medium text-ink/50">(dari anak laki yang wafat)</span></label>
+                        </div>
+                        <div class="ml-auto flex items-center gap-1.5">
+                            <button type="button" class="u-step-btn" aria-label="Kurangi cucu laki-laki" x-on:click="$wire.set('grandsons', Math.max(0, $wire.get('grandsons') - 1))">−</button>
+                            <span class="tnum min-w-8 text-center text-lg font-extrabold text-emerald-900" aria-live="polite" x-text="$wire.get('grandsons')"></span>
+                            <button type="button" class="u-step-btn" aria-label="Tambah cucu laki-laki" x-on:click="$wire.set('grandsons', Math.min(30, $wire.get('grandsons') + 1))">+</button>
+                        </div>
+                        @error('grandsons')<p class="w-full text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                    </div>
+
+                    <div class="u-smart-card flex flex-wrap items-center justify-between gap-2 p-3.5">
+                        <div class="flex items-center gap-2.5">
+                            <span class="u-icon-box h-9 w-9 shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="9" cy="6.5" r="2.8"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><circle cx="16.5" cy="8" r="2.4"/><path d="M12.5 20a4.4 4.4 0 0 1 8.5-1.6"/><path d="M16.5 12h.01M18.8 11h.01" fill="currentColor"/></svg>
+                            </span>
+                            <label for="granddaughters" class="text-xs font-bold leading-tight text-ink">Cucu perempuan<br class="hidden sm:block"> <span class="font-medium text-ink/50">(dari anak laki yang wafat)</span></label>
+                        </div>
+                        <div class="ml-auto flex items-center gap-1.5">
+                            <button type="button" class="u-step-btn" aria-label="Kurangi cucu perempuan" x-on:click="$wire.set('granddaughters', Math.max(0, $wire.get('granddaughters') - 1))">−</button>
+                            <span class="tnum min-w-8 text-center text-lg font-extrabold text-emerald-900" aria-live="polite" x-text="$wire.get('granddaughters')"></span>
+                            <button type="button" class="u-step-btn" aria-label="Tambah cucu perempuan" x-on:click="$wire.set('granddaughters', Math.min(30, $wire.get('granddaughters') + 1))">+</button>
+                        </div>
+                        @error('granddaughters')<p class="w-full text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                    </div>
+                </div>
+                <p class="mt-2 text-xs leading-relaxed text-ink/60">
+                    Perwakilan (siwah): cucu menggantikan <strong class="text-ink">ayahnya</strong> — aktif bila tidak ada
+                    anak laki-laki langsung; kakek bersama cucu/saudara sengaja ditolak mesin agar tidak salah hitung (umariyyatân).
+                </p>
 
                 {{-- Ringkasan input (mengikuti jejak asli) --}}
                 <div class="u-smart-card mt-4 overflow-hidden">
@@ -389,8 +437,11 @@
                                 $this->father ? 'ayah' : '',
                                 $this->mother ? 'ibu' : '',
                                 $this->maternalGrandmother ? 'nenek dari ibu' : '',
+                                $this->grandfather ? 'kakek dari ayah' : '',
                                 $this->brothers > 0 ? 'saudara laki-laki ' . $this->brothers : '',
                                 $this->sisters > 0 ? 'saudara perempuan ' . $this->sisters : '',
+                                $this->grandsons > 0 ? 'cucu laki-laki (dari anak laki) ' . $this->grandsons : '',
+                                $this->granddaughters > 0 ? 'cucu perempuan (dari anak laki) ' . $this->granddaughters : '',
                             ])->filter()->implode(', ')) ?: '— belum ada yang diisi —' }}
                         </p>
                         <p class="mt-2 flex flex-wrap gap-x-3 font-semibold text-emerald-900 underline-offset-2">
@@ -488,8 +539,10 @@
                                 $faraidCodes = collect($result['shares'])->pluck('code')->all();
                                 $lawStatus = static function (array $share) use ($faraidCodes): string {
                                     return match (true) {
-                                        in_array($share['code'], ['son', 'brother'], true) => 'Asabah',
+                                        in_array($share['code'], ['son', 'grandson', 'brother'], true) => 'Asabah',
+                                        $share['code'] === 'grandfather' => 'Asabah · pengganti ayah',
                                         $share['code'] === 'daughter' && in_array('son', $faraidCodes, true) => 'Asabah · 1:2',
+                                        $share['code'] === 'granddaughter' && in_array('grandson', $faraidCodes, true) => 'Asabah · 1:2',
                                         $share['code'] === 'sister' && (in_array('brother', $faraidCodes, true) || in_array('daughter', $faraidCodes, true)) => 'Asabah · 1:2',
                                         $share['code'] === 'father' && ! in_array('son', $faraidCodes, true) => 'Asabah',
                                         default => 'Dzawil Furudh',

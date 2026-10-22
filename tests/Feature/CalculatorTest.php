@@ -74,3 +74,49 @@ it('kalkulator menolak wasiat > 1/3', function () {
     expect($component->result['status'])->toBe('error')
         ->and($component->result['notes'][0])->toContain('sepertiga');
 });
+
+it('kalkulator mendukung ahli waris pengganti — cucu menggantikan anak yang wafat', function () {
+    $testable = Livewire::test(Calculator::class)
+        ->set('estate', '9000000')
+        ->set('spouse', 'husband')
+        ->set('grandsons', 1)
+        ->call('calculate');
+
+    $result = $testable->instance()->result;
+
+    expect($result['status'])->toBe('valid')
+        ->and(collect($result['shares'])->pluck('code')->all())->toBe(['husband', 'grandson'])
+        ->and($result['total_cents'])->toBe(900_000_000);
+
+    $testable->assertSee('Hasil Pembagian')
+        ->assertSee('Cucu laki-laki');
+});
+
+it('panel hijab mahjub menampilkan pasangan pengganti yang terhalang', function () {
+    $testable = Livewire::test(Calculator::class)
+        ->set('estate', '1000000')
+        ->set('sons', 1)
+        ->set('grandsons', 1)
+        ->call('calculate');
+
+    $result = $testable->instance()->result;
+
+    expect($result['status'])->toBe('valid')
+        ->and(collect($result['shares'])->pluck('code')->all())->toBe(['son'])
+        ->and(collect($result['blocked'])->pluck('code')->all())->toContain('grandson');
+
+    $testable->assertSee('Mahjub');
+});
+
+it('kombinasi kakek + cucu ditolak aman oleh mesin (umariyyatan)', function () {
+    $component = Livewire::test(Calculator::class)
+        ->set('estate', '1000000')
+        ->set('grandfather', true)
+        ->set('grandsons', 1)
+        ->call('calculate')
+        ->instance();
+
+    expect($component->result['status'])->toBe('not_supported')
+        ->and($component->result['shares'])->toBe([])
+        ->and($component->result['notes'][0])->toContain('umariyyatân');
+});

@@ -1,6 +1,7 @@
 <?php
 
 use App\Domain\Faraid\EstateDistribution;
+use App\Domain\Faraid\FaraidEngine;
 use App\Services\EstateCalculationService;
 
 /**
@@ -98,7 +99,7 @@ describe('EstateCalculationService — konversi rupiah', function () {
 
         expect($dist->status)->toBe('not_supported')
             ->and($dist->shares)->toBe([])
-            ->and($dist->engineVersion)->toBe('0.3.0')
+            ->and($dist->engineVersion)->toBe(FaraidEngine::VERSION)
             ->and($dist->notes)->not->toBe([]);
     });
 });
