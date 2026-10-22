@@ -1,0 +1,525 @@
+<?php
+
+/**
+ * Dalil & ketentuan untuk modal "Lihat Detail Dalil" pada halaman
+ * Bagian-Bagian Warisan (dzawil furudh).
+ *
+ * Sumber:
+ * - Teks Arab, transliterasi Latin, dan terjemahan ayat: Al-Qur'an Kemenag
+ *   (LPMQ Kementerian Agama RI — "Al-Qur'an dan Tafsirnya, edisi yang
+ *   disempurnakan"; terjemahan edisi 2019). Tanda (a)/(un)/(in) pada
+ *   transliterasi adalah nota harakat akhir bacaan sesuai edisi Kemenag;
+ *   nomor "146/147/191)" adalah rujukan catatan kaki di mushaf.
+ * - KHI: Inpres No. 1 Tahun 1991, Buku II (Hukum Kewarisan), Bab III
+ *   "Besarnya Bahagian" (Pasal 176–182) serta Pasal 171, 173, 174 sebagai
+ *   ketentuan umum. Ejaan beberapa kata dinormalisasi dari cetakan Inpres
+ *   (mis. "separoh"/"bagzaian"), makna tidak diubah.
+ * - Nomor bagian (pecahan) tetap eksak rasional; contoh angka hanya ilustrasi
+ *   DEMO dan tidak menggantikan pendapat ahli faraid/ahli hukum.
+ */
+
+return [
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Ayat Al-Qur'an (teks lengkap, resmi Kemenag)
+    // ─────────────────────────────────────────────────────────────────────────────
+    'verses' => [
+        'QURAN-4-11' => [
+            'label' => 'QS. An-Nisaa: 11',
+            'arab' => 'يُوْصِيْكُمُ اللّٰهُ فِيْٓ اَوْلَادِكُمْ لِلذَّكَرِ مِثْلُ حَظِّ الْاُنْثَيَيْنِ ۚ فَاِنْ كُنَّ نِسَاۤءً فَوْقَ اثْنَتَيْنِ فَلَهُنَّ ثُلُثَا مَا تَرَكَ ۚ وَاِنْ كَانَتْ وَاحِدَةً فَلَهَا النِّصْفُ ۗ وَلِاَبَوَيْهِ لِكُلِّ وَاحِدٍ مِّنْهُمَا السُّدُسُ مِمَّا تَرَكَ اِنْ كَانَ لَهٗ وَلَدٌ ۚ فَاِنْ لَّمْ يَكُنْ لَّهٗ وَلَدٌ وَّوَرِثَهٗٓ اَبَوٰهُ فَلِاُمِّهِ الثُّلُثُ ۚ فَاِنْ كَانَ لَهٗٓ اِخْوَةٌ فَلِاُمِّهِ السُّدُسُ مِنْۢ بَعْدِ وَصِيَّةٍ يُّوْصِيْ بِهَآ اَوْ دَيْنٍ ۗ اٰبَاۤؤُكُمْ وَاَبْنَاۤؤُكُمْۚ لَا تَدْرُوْنَ اَيُّهُمْ اَقْرَبُ لَكُمْ نَفْعًا ۗ فَرِيْضَةً مِّنَ اللّٰهِ ۗ اِنَّ اللّٰهَ كَانَ عَلِيْمًا حَكِيْمًا',
+            'latin' => 'Yūṣīkumullāhu fī aulādikum liż-żakari miṡlu ḥaẓẓil-unṡayain(i), fa in kunna nisā\'an fauqaṡnataini fa lahunna ṡuluṡā mā tarak(a), wa in kānat wāḥidatan fa lahan-niṣf(u), wa li abawaihi likulli wāḥidim minhumas-sudusu mimmā taraka in kāna lahū walad(un), fa illam yakul lahū waladuw wa wariṡahū abawāhu fa li\'ummihiṡ-ṡuluṡ(u), fa in kāna lahū ikhwatun fa li\'ummihis-sudusu mim ba\'di waṣiyyatiy yūṣī bihā au dain(in), ābā\'ukum wa abnā\'ukum, lā tadrūna ayyuhum aqrabu lakum naf\'ā(n), farīḍatam minallāh(i), innallāha kāna \'alīman ḥakīmā(n).',
+            'terjemah' => 'Allah mensyariatkan (mewajibkan) kepadamu tentang (pembagian warisan untuk) anak-anakmu, (yaitu) bagian seorang anak laki-laki sama dengan bagian dua orang anak perempuan.146) Jika anak itu semuanya perempuan yang jumlahnya lebih dari dua, bagian mereka dua pertiga dari harta yang ditinggalkan. Jika dia (anak perempuan) itu seorang saja, dia memperoleh setengah (harta yang ditinggalkan). Untuk kedua orang tua, bagian masing-masing seperenam dari harta yang ditinggalkan, jika dia (yang meninggal) mempunyai anak. Jika dia (yang meninggal) tidak mempunyai anak dan dia diwarisi oleh kedua orang tuanya (saja), ibunya mendapat sepertiga. Jika dia (yang meninggal) mempunyai beberapa saudara, ibunya mendapat seperenam. (Warisan tersebut dibagi) setelah (dipenuhi) wasiat yang dibuatnya atau (dan dilunasi) utangnya. (Tentang) orang tuamu dan anak-anakmu, kamu tidak mengetahui siapa di antara mereka yang lebih banyak manfaatnya bagimu. Ini adalah ketetapan Allah. Sesungguhnya Allah adalah Maha Mengetahui lagi Maha Bijaksana.',
+            'footnote' => 'Catatan Kemenag (146): Bagian laki-laki adalah dua kali bagian perempuan karena kewajiban laki-laki lebih berat daripada perempuan, seperti kewajiban membayar maskawin dan memberi nafkah.',
+        ],
+        'QURAN-4-12' => [
+            'label' => 'QS. An-Nisaa: 12',
+            'arab' => 'وَلَكُمْ نِصْفُ مَا تَرَكَ اَزْوَاجُكُمْ اِنْ لَّمْ يَكُنْ لَّهُنَّ وَلَدٌ ۚ فَاِنْ كَانَ لَهُنَّ وَلَدٌ فَلَكُمُ الرُّبُعُ مِمَّا تَرَكْنَ مِنْۢ بَعْدِ وَصِيَّةٍ يُّوْصِيْنَ بِهَآ اَوْ دَيْنٍ ۗ وَلَهُنَّ الرُّبُعُ مِمَّا تَرَكْتُمْ اِنْ لَّمْ يَكُنْ لَّكُمْ وَلَدٌ ۚ فَاِنْ كَانَ لَكُمْ وَلَدٌ فَلَهُنَّ الثُّمُنُ مِمَّا تَرَكْتُمْ مِّنْۢ بَعْدِ وَصِيَّةٍ تُوْصُوْنَ بِهَآ اَوْ دَيْنٍ ۗ وَاِنْ كَانَ رَجُلٌ يُّوْرَثُ كَلٰلَةً اَوِ امْرَاَةٌ وَّلَهٗٓ اَخٌ اَوْ اُخْتٌ فَلِكُلِّ وَاحِدٍ مِّنْهُمَا السُّدُسُۚ فَاِنْ كَانُوْٓا اَكْثَرَ مِنْ ذٰلِكَ فَهُمْ شُرَكَاۤءُ فِى الثُّلُثِ مِنْۢ بَعْدِ وَصِيَّةٍ يُّوْصٰى بِهَآ اَوْ دَيْنٍۙ غَيْرَ مُضَاۤرٍّ ۚ وَصِيَّةً مِّنَ اللّٰهِ ۗ وَاللّٰهُ عَلِيْمٌ حَلِيْمٌۗ',
+            'latin' => 'Wa lakum niṣfu mā taraka azwājukum illam yakul lahunna walad(un), fa in kāna lahunna waladun fa lakumur-rubu\'u mimmā tarakna mim ba\'di waṣiyyatiy yūṣīna bihā au dain(in), wa lahunnar-rubu\'u mimmā taraktum illam yakul lakum walad(un), fa in kāna lakum waladun fa lahunnaṡ-ṡumunu mimmā taraktum mim ba\'di waṣiyyatiy tūṣūna bihā au dain(in), wa in kāna rajuluy yūraṡu kalālatan awimra\'atuw wa lahū akhun au ukhtun fa likulli wāḥidatim minhumas-sudus(u), fa in kānū akṡara min żālika fa hum syurakā\'u fiṡ-ṡuluṡi mim ba\'di waṣiyyatiy yūṣā bihā au dain(in), gaira muḍārr(in), waṣiyyatam minallāh(i), wallāhu \'alīmun ḥalīm(un).',
+            'terjemah' => 'Bagimu (para suami) seperdua dari harta yang ditinggalkan oleh istri-istrimu, jika mereka tidak mempunyai anak. Jika mereka (istri-istrimu) itu mempunyai anak, kamu mendapat seperempat dari harta yang ditinggalkannya setelah (dipenuhi) wasiat yang mereka buat atau (dan setelah dibayar) utangnya. Bagi mereka (para istri) seperempat harta yang kamu tinggalkan jika kamu tidak mempunyai anak. Jika kamu mempunyai anak, bagi mereka (para istri) seperdelapan dari harta yang kamu tinggalkan (setelah dipenuhi) wasiat yang kamu buat atau (dan setelah dibayar) utang-utangmu. Jika seseorang, baik laki-laki maupun perempuan, meninggal dunia tanpa meninggalkan ayah dan anak, tetapi mempunyai seorang saudara laki-laki (seibu) atau seorang saudara perempuan (seibu), bagi masing-masing dari kedua jenis saudara itu seperenam harta. Akan tetapi, jika mereka (saudara-saudara seibu itu) lebih dari seorang, mereka bersama-sama dalam bagian yang sepertiga itu, setelah (dipenuhi wasiat) yang dibuatnya atau (dan setelah dibayar) utangnya dengan tidak menyusahkan (ahli waris).147) Demikianlah ketentuan Allah. Allah Maha Mengetahui lagi Maha Penyantun.',
+            'footnote' => 'Catatan Kemenag (147): Menyusahkan ahli waris dapat terjadi dengan melakukan tindakan-tindakan seperti mewasiatkan lebih dari sepertiga harta peninggalan dan memberikan wasiat dengan maksud mengurangi harta warisan, meskipun kurang dari sepertiga harta warisan.',
+        ],
+        'QURAN-4-176' => [
+            'label' => 'QS. An-Nisaa: 176',
+            'arab' => 'يَسْتَفْتُوْنَكَۗ قُلِ اللّٰهُ يُفْتِيْكُمْ فِى الْكَلٰلَةِ ۗاِنِ امْرُؤٌا هَلَكَ لَيْسَ لَهٗ وَلَدٌ وَّلَهٗٓ اُخْتٌ فَلَهَا نِصْفُ مَا تَرَكَۚ وَهُوَ يَرِثُهَآ اِنْ لَّمْ يَكُنْ لَّهَا وَلَدٌ ۚ فَاِنْ كَانَتَا اثْنَتَيْنِ فَلَهُمَا الثُّلُثٰنِ مِمَّا تَرَكَ ۗوَاِنْ كَانُوْٓا اِخْوَةً رِّجَالًا وَّنِسَاۤءً فَلِلذَّكَرِ مِثْلُ حَظِّ الْاُنْثَيَيْنِۗ يُبَيِّنُ اللّٰهُ لَكُمْ اَنْ تَضِلُّوْا ۗ وَاللّٰهُ بِكُلِّ شَيْءٍ عَلِيْمٌ',
+            'latin' => 'Yastaftūnak(a), qulillāhu yuftīkum fil-kalālah(ti), inimru\'un halaka laisa lahū waladuw wa lahū ukhtun fa lahā niṣfu mā tarak(a), wa huwa yariṡuhā illam yakul lahā walad(un), fa in kānataṡnataini fa lahumaṡ-ṡuluṡāni mimmā tarak(a), wa in kānū ikhwatar rijālaw wa nisā\'an fa liż-żakari miṡlu ḥaẓẓil-unṡayain(i), yubayyinullāhu lakum an taḍillū, wallāhu bikulli syai\'in \'alīm(un).',
+            'terjemah' => 'Mereka meminta fatwa kepadamu (tentang kalālah).191) Katakanlah, "Allah memberi fatwa kepadamu tentang kalālah, (yaitu) jika seseorang meninggal dan dia tidak mempunyai anak, tetapi mempunyai seorang saudara perempuan, bagiannya (saudara perempuannya itu) seperdua dari harta yang ditinggalkannya. Adapun saudara laki-lakinya mewarisi (seluruh harta saudara perempuan) jika dia tidak mempunyai anak. Akan tetapi, jika saudara perempuan itu dua orang, bagi keduanya dua pertiga dari harta yang ditinggalkan. Jika mereka (ahli waris itu terdiri atas) beberapa saudara laki-laki dan perempuan, bagian seorang saudara laki-laki sama dengan bagian dua orang saudara perempuan. Allah menerangkan (hukum ini) kepadamu agar kamu tidak tersesat. Allah Maha Mengetahui segala sesuatu."',
+            'footnote' => 'Catatan Kemenag (191): Kalālah ialah orang yang wafat tanpa meninggalkan bapak dan anak.',
+        ],
+    ],
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Kompilasi Hukum Islam (Inpres No. 1 Tahun 1991), Buku II, Bab III
+    // "Besarnya Bahagian" + pasal umum. Kutipan ejaan dinormalisasi.
+    // ─────────────────────────────────────────────────────────────────────────────
+    'khi' => [
+        171 => [
+            'judul' => 'Definisi & syarat dasar ahli waris (KHI Pasal 171)',
+            'teks' => 'Hukum kewarisan mengatur pemindahan harta peninggalan (tirkah) pewaris. Ahli waris adalah orang yang pada saat pewaris meninggal dunia mempunyai hubungan darah atau hubungan perkawinan dengan pewaris, beragama Islam, dan tidak terhalang karena hukum untuk menjadi ahli waris.',
+        ],
+        173 => [
+            'judul' => 'Penghalang menjadi ahli waris (KHI Pasal 173)',
+            'teks' => 'Seorang terhalang menjadi ahli waris bila dengan putusan hakim berkekuatan hukum tetap terbukti membunuh/mencoba membunuh atau menganiaya berat pewaris, maupun secara memfitnah menjerumuskan pewaris pada perkara yang ancamannya hukuman 5 tahun penjara atau lebih.',
+        ],
+        174 => [
+            'judul' => 'Daftar ahli waris & urutan (KHI Pasal 174)',
+            'teks' => 'Apabila semua ahli waris ada, yang berhak menerima warisan hanya: anak, ayah, ibu, janda atau duda.',
+        ],
+        176 => [
+            'judul' => 'Bagian anak perempuan (KHI Pasal 176)',
+            'teks' => 'Anak perempuan bila hanya seorang ia mendapat seperdua bagian, bila dua orang atau lebih mereka bersama-sama mendapat dua pertiga bagian, dan apabila anak perempuan bersama-sama dengan anak laki-laki, maka bagian anak laki-laki adalah dua berbanding satu dengan anak perempuan.',
+        ],
+        177 => [
+            'judul' => 'Bagian ayah (KHI Pasal 177)',
+            'teks' => 'Ayah mendapat sepertiga bagian bila pewaris tidak meninggalkan anak, bila ada anak, ayah mendapat seperenam bagian.',
+            'catatan' => 'Catatan SEMA No. 2 Tahun 1994 (Mahkamah Agung): maksud pasal ini ialah ayah mendapat sepertiga bila pewaris tidak meninggalkan anak, tetapi meninggalkan suami/istri dan ibu; bila ada anak, ayah mendapat seperenam.',
+        ],
+        178 => [
+            'judul' => 'Bagian ibu (KHI Pasal 178)',
+            'teks' => '(1) Ibu mendapat seperenam bagian bila ada anak atau dua saudara atau lebih. Bila tidak ada anak atau dua orang saudara atau lebih, maka ia mendapat sepertiga bagian. (2) Ibu mendapat sepertiga bagian dari sisa sesudah diambil oleh janda atau duda bila bersama-sama dengan ayah.',
+        ],
+        179 => [
+            'judul' => 'Bagian suami (KHI Pasal 179)',
+            'teks' => 'Duda (suami pewaris) mendapat seperdua bagian bila pewaris tidak meninggalkan anak, dan bila pewaris meninggalkan anak, maka duda mendapat seperempat bagian.',
+        ],
+        180 => [
+            'judul' => 'Bagian istri (KHI Pasal 180)',
+            'teks' => 'Janda (istri pewaris) mendapat seperempat bagian bila pewaris tidak meninggalkan anak, dan bila pewaris meninggalkan anak maka janda mendapat seperdelapan bagian.',
+        ],
+        181 => [
+            'judul' => 'Bagian saudara seibu (KHI Pasal 181)',
+            'teks' => 'Bila seorang meninggal tanpa meninggalkan anak dan ayah, maka saudara laki-laki dan saudara perempuan seibu masing-masing mendapat seperenam bagian. Bila mereka itu dua orang atau lebih maka mereka bersama-sama mendapat sepertiga bagian.',
+        ],
+        182 => [
+            'judul' => 'Bagian saudara kandung/seayah pada kalalah (KHI Pasal 182)',
+            'teks' => 'Bila seorang meninggal tanpa meninggalkan anak dan ayah, sedang ia mempunyai satu saudara perempuan kandung atau seayah, maka ia mendapat seperdua bagian. Bila saudara perempuan tersebut bersama-sama dengan saudara perempuan kandung atau seayah dua orang atau lebih, maka mereka bersama-sama mendapat dua pertiga bagian. Bila saudara perempuan tersebut bersama-sama dengan saudara laki-laki kandung atau seayah, maka bagian saudara laki-laki dua berbanding satu dengan saudara perempuan.',
+        ],
+    ],
+
+    /**
+     * Syarat umum penerimaan bagian (dzawil furudh) — edukasi, konsisten
+     * dengan Pasal 171(3), 173, dan 174 KHI serta dari kaidah fiqh umum.
+     */
+    'syarat_umum' => [
+        'Pewaris benar-benar meninggal dunia — hak waris baru terbuka saat kematian (KHI Pasal 171).',
+        'Ahli waris masih hidup pada saat pewaris meninggal dunia; kewarisan tidak berlaku perwakilan untuk ahli waris yang lebih dulu tiada (untuk penggantian posisi, perhatikan Pasal 185 tentang kewakilan cucu dari anak laki-laki).',
+        'Terdapat hubungan yang sah: hubungan darah atau perkawinan yang sah dan masih terikat saat pewaris wafat (KHI Pasal 171 ayat 3).',
+        'Beragama Islam sama seperti pewaris — beda agama/murtad tidak mewarisi (KHI Pasal 171 ayat 3).',
+        'Tidak terhalang secara hukum: membunuh atau menganiaya berat pewaris, atau memfitnah menjerumuskan pewaris pada perkara yang ancamannya 5 tahun penjara atau lebih (KHI Pasal 173).',
+        'Bagian tidak terhalang (hijab) oleh ahli waris yang bobotnya lebih menutup, contoh: ibu 1/3 turun ke 1/6 ketika ada keturunan/saudara.',
+        'Bagian dibersihkan dari wasiat maksimal 1/3 harta bersih sesudah biaya & hutang.',
+    ],
+
+    /**
+     * Peta nilai → dalil. Kunci: "{kode_heir}:{pembilang}/{penyebut}".
+     * verse            : kode di config('furudh-dalil.verses')
+     * verse_kelompok   : penjelasan kaitan bagian dengan bagian-bagian ayat
+     * pasals           : nomor pasal referensi KHI pada config('furudh-dalil.khi')
+     * khi_catatan      : catatan tambahan (mis. KHI tak mengatur secara khusus kakek/nenek)
+     * syarat           : syarat khusus kemunculan bagian (lengkap dari syarat_umum)
+     * contoh           : ilustrasi hitung (angka DEMO, seluruhnya bilangan bulat)
+     */
+    'map' => [
+        'husband:1/2' => [
+            'verse' => 'QURAN-4-12',
+            'verse_kelompok' => 'Kalimat "Bagimu (para suami) seperdua dari harta yang ditinggalkan oleh istri-istrimu, jika mereka tidak mempunyai anak."',
+            'pasals' => [179, 174],
+            'syarat' => [
+                'Pewaris (istri) tidak memiliki keturunan (anak/cucu) yang masih hidup.',
+                'Perkawinan sah dan masih terikat pada saat pewaris (istri) meninggal dunia.',
+            ],
+            'contoh' => [
+                'judul' => 'Suami mendapat 1/2',
+                'langkah' => [
+                    'Total harta waris bersih (setelah dipotong biaya pengurusan, hutang, wasiat maks. 1/3): Rp 40.000.000.',
+                    'Suami 1/2 × Rp 40.000.000 = Rp 20.000.000.',
+                    'Sisa Rp 20.000.000: diteruskan kepada ahli waris asabah, jika ada.',
+                ],
+                'catatan' => 'Ilustrasi DEMO — susunan ahli waris lain menentukan hasil akhir.',
+            ],
+        ],
+        'husband:1/4' => [
+            'verse' => 'QURAN-4-12',
+            'verse_kelompok' => 'Kalimat "Jika mereka (istri-istrimu) itu mempunyai anak, kamu mendapat seperempat dari harta yang ditinggalkannya..."',
+            'pasals' => [179, 174],
+            'syarat' => [
+                'Pewaris (istri) mempunyai keturunan (anak atau anak-anak yang masih hidup).',
+                'Perkawinan masih terikat saat pewaris meninggal.',
+            ],
+            'contoh' => [
+                'judul' => 'Suami mendapat 1/4 saat pewaris punya keturunan',
+                'langkah' => [
+                    'Total harta waris bersih: Rp 80.000.000.',
+                    'Suami 1/4 × Rp 80.000.000 = Rp 20.000.000.',
+                    'Sisa Rp 60.000.000 diteruskan kepada keturunan dan/atau ahli waris lain.',
+                ],
+                'catatan' => 'Ilustrasi DEMO.',
+            ],
+        ],
+        'wife:1/4' => [
+            'verse' => 'QURAN-4-12',
+            'verse_kelompok' => 'Kalimat "Bagi mereka (para istri) seperempat harta yang kamu tinggalkan jika kamu tidak mempunyai anak."',
+            'pasals' => [180, 174],
+            'syarat' => [
+                'Pewaris (suami) tidak meninggalkan keturunan.',
+                'Bila istri lebih dari satu, bagian 1/4 tersebut dibagi rata di antara mereka.',
+            ],
+            'contoh' => [
+                'judul' => 'Istri mendapat 1/4 saat tanpa keturunan',
+                'langkah' => [
+                    'Total harta waris bersih: Rp 40.000.000.',
+                    'Istri 1/4 × Rp 40.000.000 = Rp 10.000.000.',
+                    'Bila terdapat 2 istri, masing-masing Rp 5.000.000.',
+                ],
+                'catatan' => 'Ilustrasi DEMO.',
+            ],
+        ],
+        'wife:1/8' => [
+            'verse' => 'QURAN-4-12',
+            'verse_kelompok' => 'Kalimat "Jika kamu mempunyai anak, bagi mereka (para istri) seperdelapan dari harta yang kamu tinggalkan..."',
+            'pasals' => [180, 174],
+            'syarat' => [
+                'Pewaris (suami) meninggalkan keturunan.',
+                'Bila istri lebih dari satu, bagian 1/8 tersebut dibagi rata di antara mereka (QS. An-Nisaa: 12; KHI Pasal 180).',
+            ],
+            'contoh' => [
+                'judul' => 'Istri (beberapa) mendapat 1/8 saat ada keturunan',
+                'langkah' => [
+                    'Total harta waris bersih: Rp 80.000.000.',
+                    'Seluruh istri bersama-sama 1/8 × Rp 80.000.000 = Rp 10.000.000.',
+                    'Dua istri: masing-masing Rp 5.000.000.',
+                ],
+                'catatan' => 'Ilustrasi DEMO.',
+            ],
+        ],
+        'daughter:1/2' => [
+            'verse' => 'QURAN-4-11',
+            'verse_kelompok' => 'Kalimat "Jika dia (anak perempuan) itu seorang saja, dia memperoleh setengah (harta yang ditinggalkan)."',
+            'pasals' => [176, 174],
+            'syarat' => [
+                'Hanya satu anak perempuan yang menerima bagian ini, tanpa anak laki-laki pewaris.',
+                'Bila bersama anak laki-laki, bagian pasti berubah menjadi asabah bil-ghair (2 berbanding 1) sesuai Pasal 176 KHI.',
+            ],
+            'contoh' => [
+                'judul' => 'Satu anak perempuan mendapat 1/2',
+                'langkah' => [
+                    'Total harta waris bersih: Rp 40.000.000.',
+                    'Anak perempuan 1/2 × Rp 40.000.000 = Rp 20.000.000.',
+                    'Sisa Rp 20.000.000 kepada ahli waris lain yang memenuhi syaratnya (contoh: ayah/ibu/pasangan).',
+                ],
+                'catatan' => 'Ilustrasi DEMO.',
+            ],
+        ],
+        'daughter:2/3' => [
+            'verse' => 'QURAN-4-11',
+            'verse_kelompok' => 'Kalimat "Jika anak itu semuanya perempuan yang jumlahnya lebih dari dua, bagian mereka dua pertiga dari harta yang ditinggalkan."',
+            'pasals' => [176, 174],
+            'syarat' => [
+                'Dua anak perempuan atau lebih, dibagi rata, tanpa anak laki-laki pewaris.',
+                'Bagian 2/3 habis dibagi rata; sisa harta diteruskan ke ahli waris asabah sesuai hukumnya.',
+            ],
+            'contoh' => [
+                'judul' => 'Dua anak perempuan + ayah + ibu (harta eksak 6/6)',
+                'langkah' => [
+                    'Total harta waris bersih: Rp 12.000.000.',
+                    'Dua anak perempuan bersama 2/3 = Rp 8.000.000 → masing-masing Rp 4.000.000.',
+                    'Ayah 1/6 = Rp 2.000.000 (KHI Pasal 177).',
+                    'Ibu 1/6 = Rp 2.000.000 (KHI Pasal 178 ayat 1).',
+                    'Total Rp 8 jt + Rp 2 jt + Rp 2 jt = Rp 12.000.000 (habis, tanpa sisa).',
+                ],
+                'catatan' => 'Ilustrasi DEMO — contoh dipilih agar pecahan selalu bilangan bulat.',
+            ],
+        ],
+        'father:1/6' => [
+            'verse' => 'QURAN-4-11',
+            'verse_kelompok' => 'Kalimat "Untuk kedua orang tua, bagian masing-masing seperenam dari harta yang ditinggalkan, jika dia (yang meninggal) mempunyai anak."',
+            'pasals' => [177, 174],
+            'syarat' => [
+                'Pewaris meninggalkan anak (ayah 1/6).',
+                'Bila tidak ada anak: ayah bisa 1/3 (KHI Pasal 177; baca catatan SEMA No. 2/1994) atau menjadi asabah untuk seluruh harta.',
+            ],
+            'contoh' => [
+                'judul' => 'Ayah 1/6 saat pewaris meninggalkan anak',
+                'langkah' => [
+                    'Konteks: pewaris wafat meninggalkan dua anak perempuan, ayah, dan ibu.',
+                    'Total harta waris bersih: Rp 12.000.000.',
+                    'Ayah 1/6 × Rp 12.000.000 = Rp 2.000.000.',
+                    'Sisa kepada dua anak perempuan (2/3 = Rp 8 jt) dan ibu (1/6 = Rp 2 jt).',
+                ],
+                'catatan' => 'Ilustrasi DEMO — total eksak Rp 12.000.000.',
+            ],
+        ],
+        'mother:1/6' => [
+            'verse' => 'QURAN-4-11',
+            'verse_kelompok' => 'Kalimat "Untuk kedua orang tua, bagian masing-masing seperenam..." serta "Jika dia (yang meninggal) mempunyai beberapa saudara, ibunya mendapat seperenam."',
+            'pasals' => [178, 174],
+            'syarat' => [
+                'Pewaris mempunyai keturunan, ATAU memiliki dua saudara atau lebih (KHI Pasal 178 ayat 1; QS. An-Nisaa: 11).',
+                'Bila bersama dengan ayah (tanpa pasangan), ibu menerima 1/3 dari SISA harta sesudah bagian pasangan dibayar (KHI Pasal 178 ayat 2).',
+            ],
+            'contoh' => [
+                'judul' => 'Ibu 1/6 saat ada keturunan/saudara',
+                'langkah' => [
+                    'Konteks: pewaris wafat meninggalkan dua anak perempuan, ayah, dan ibu.',
+                    'Total harta waris bersih: Rp 12.000.000.',
+                    'Ibu 1/6 × Rp 12.000.000 = Rp 2.000.000.',
+                    'Bagian lain: anak perempuan 8jt, ayah 2jt (contoh lengkap pada kartu anak perempuan 2/3).',
+                ],
+                'catatan' => 'Ilustrasi DEMO.',
+            ],
+        ],
+        'mother:1/3' => [
+            'verse' => 'QURAN-4-11',
+            'verse_kelompok' => 'Kalimat "Jika dia (yang meninggal) tidak mempunyai anak dan dia diwarisi oleh kedua orang tuanya (saja), ibunya mendapat sepertiga."',
+            'pasals' => [178, 174],
+            'syarat' => [
+                'Pewaris tidak meninggalkan keturunan dan tidak meninggalkan dua saudara atau lebih.',
+                'Bila bersama dengan ayah (tanpa suami): 1/3 dari SISANYA sesudah bagian pasangan dibayar (KHI Pasal 178 ayat 2).',
+            ],
+            'contoh' => [
+                'judul' => 'Ibu 1/3 saat tanpa keturunan & tanpa saudara',
+                'langkah' => [
+                    'Konteks: pewaris wafat meninggalkan ibu dan kakek (ayah sudah tiada, tanpa pasangan).',
+                    'Total harta waris bersih: Rp 18.000.000.',
+                    'Ibu 1/3 × Rp 18.000.000 = Rp 6.000.000.',
+                    'Sisa Rp 12.000.000 kepada ahli waris asabah (mis. kakek).',
+                ],
+                'catatan' => 'Ilustrasi DEMO.',
+            ],
+        ],
+        'grandmother_mother:1/6' => [
+            'verse' => 'QURAN-4-11',
+            'verse_kelompok' => 'Bagian ibu (1/6) pada ayat 11 menjadi dasar analogi (qiyas) bagi nenek bila ibu telah tiada — fiqh klasik; ayat tidak menyebut nenek secara langsung.',
+            'pasals' => [174],
+            'khi_catatan' => 'KHI Bab III tidak memiliki pasal khusus kakek/nenek. Kakek-nenek mengikuti urutan ahli waris (Pasal 174) dan prinsip fiqh Islam; gunakan pendapat ahli faraid untuk kasus nyata.',
+            'syarat' => [
+                'Nenek dari ibu memperoleh 1/6 bila ibu pewaris sudah tiada atau terhalang.',
+                'Perincian perubahan bagian tetap mengikuti kaidah fiqh; konsultasikan kasus nyata kepada ahli faraid.',
+            ],
+            'contoh' => [
+                'judul' => 'Nenek dari ibu 1/6',
+                'langkah' => [
+                    'Konteks: pewaris wafat; ahli waris: suami, nenek dari ibu (ibu sudah tiada), dan paman seayah (asabah).',
+                    'Total harta waris bersih: Rp 60.000.000.',
+                    'Suami 1/2 = Rp 30.000.000.',
+                    'Nenek 1/6 = Rp 10.000.000.',
+                    'Sisa Rp 20.000.000 kepada asabah (paman seayah).',
+                ],
+                'catatan' => 'Ilustrasi DEMO — contoh dipilih agar pecahan selalu bilangan bulat.',
+            ],
+        ],
+        'grandfather_father:1/6' => [
+            'verse' => 'QURAN-4-11',
+            'verse_kelompok' => 'Dasar analogi (qiyas) dari bagian ibu (ayat 11); ayat tidak menyebut kakek secara langsung.',
+            'pasals' => [174],
+            'khi_catatan' => 'KHI Bab III tidak memiliki pasal khusus kakek/nenek. Kakek menggantikan posisi ayah (Pasal 174: urutan ahli waris) dan rinciannya mengikuti kaidah fiqh; gunakan pendapat ahli faraid untuk kasus nyata.',
+            'syarat' => [
+                'Ayah pewaris sudah tiada atau terhalang — kakek mengambil tempatnya.',
+                'Bila bersama keturunan pewaris yang menutup, rincian bagian kakek mengikuti kaidah fiqh; konsultasikan kasus nyata kepada ahli faraid.',
+            ],
+            'contoh' => [
+                'judul' => 'Kakek dari ayah 1/6',
+                'langkah' => [
+                    'Konteks: pewaris wafat; ahli waris: istri, kakek dari ayah (ayah sudah tiada), dan paman seayah (asabah).',
+                    'Total harta waris bersih: Rp 48.000.000.',
+                    'Istri 1/4 = Rp 12.000.000 (KHI Pasal 180; pewaris tanpa keturunan).',
+                    'Kakek 1/6 = Rp 8.000.000.',
+                    'Sisa Rp 28.000.000 kepada ahli waris asabah (mis. paman seayah).',
+                ],
+                'catatan' => 'Ilustrasi DEMO.',
+            ],
+        ],
+    ],
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Hadis shahih terkait kewarisan (teks Arab + terjemah; petunjuk rujukan)
+    // ─────────────────────────────────────────────────────────────────────────────
+    'hadits' => [
+        'primary' => [
+            'label' => 'HR. at-Tirmidzi No. 2120 — hasan shahih',
+            'sumber' => 'Jami\' at-Tirmidzi; senada diriwayatkan Ibnu Majah No. 2739.',
+            'arab' => 'إِنَّ اللهَ قَدْ أَعْطَى كُلَّ ذِي حَقٍّ حَقَّهُ، فَلَا وَصِيَّةَ لِوَارِثٍ.',
+            'latin' => 'Innallāha qad a\'ṭā kulla żī ḥaqqin ḥaqqahū, falā waṣiyyata liwāriṡ(in).',
+            'terjemah' => 'Sesungguhnya Allah telah memberikan kepada setiap orang yang berhak haknya; maka tidak ada (lagi) wasiat bagi ahli waris.',
+            'kriteria' => 'Imam at-Tirmidzi menilai hadis ini "hasan shahih". Hadis menjadi asas bahwa jatah pasti ahli waris tidak boleh dihilangkan lewat wasiat; wasiat dibatasi maksimal sepertiga harta (QS. An-Nisaa: 12, "...dengan tidak menyusahkan ahli waris").',
+        ],
+        'rumusan' => [
+            'Kaidah "tidak ada wasiat bagi ahli waris": bagian pasti ahli waris tidak boleh dihilangkan dengan wasiat (riwayat senada: at-Tirmidzi No. 2120; Ibnu Majah No. 2739).',
+            'Kaidah "al-qātilu lā yariṡu" — pembunuh tidak mewarisi: diadopsi langsung pada KHI Pasal 173 (halangan hukum bagi ahli waris).',
+            'Kaidah pemisahan hak pasangan/harta bersama sebelum pembagian waris (blok Tahap 5 di halaman Cara Menghitung; prinsip harta gono-gini bagi pernikahan yang tunduk hukum peradilan agama).',
+        ],
+    ],
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Yurisprudensi Mahkamah Agung RI & SEMA terkait hukum kewarisan.
+    // Tautan mengarah ke portal resmi MA (JDIH MA, Direktori Putusan) dan jurnal akademik.
+    // ─────────────────────────────────────────────────────────────────────────────
+    'yurisprudensi' => [
+        'MA-16-K-AG-2010' => [
+            'label' => 'Putusan MA RI No. 16 K/AG/2010 — Wasiat Wajibah Beda Agama',
+            'ringkas' => 'Yurisprudensi MA: ahli waris yang berbeda agama dengan pewaris tidak mewarisi sebagai ahli waris (KHI Pasal 171), namun berhak memperoleh wasiat wajibah (wajib al-wasiyyah) maksimal sepertiga harta warisan. Putusan ini memperluas penerapan wasiat wajibah yang sebelumnya oleh KHI Pasal 209 hanya diberikan kepada anak angkat dan orang tua angkat.',
+            'sumber' => 'Direktori Putusan & Yurisprudensi Mahkamah Agung RI',
+            'link' => 'https://putusan3.mahkamahagung.go.id/yurisprudensi/detail/11eadf086b586f509ef9323230333034.html',
+            'link_label' => 'Buka ringkasan yurisprudensi di Direktori Putusan MA RI',
+            'pasal_tautan' => 'KHI Pasal 209 (wasiat wajibah) & Pasal 171 (syarat ahli waris)',
+        ],
+        'MA-51-K-AG-1999' => [
+            'label' => 'Putusan MA RI No. 51 K/AG/1999 — Kewarisan Beda Agama',
+            'ringkas' => 'Putusan MA yang banyak dirujuk dalam perkara kewarisan beda agama: tahapan pemberian bagian bagi ahli waris beda agama melalui jalur wasiat wajibah, sebelum kasus serupa dikukuhkan kembali pada Putusan MA No. 16 K/AG/2010.',
+            'sumber' => 'Direktori Putusan Mahkamah Agung RI',
+            'link' => 'https://putusan3.mahkamahagung.go.id/',
+            'link_label' => 'Telusuri putusan pada Direktori Putusan MA RI',
+            'pasal_tautan' => 'KHI Pasal 171 (syarat sama agama) — disandingkan yurisprudensi wasiat wajibah',
+        ],
+        'SEMA-2-TAHUN-1994' => [
+            'label' => 'SEMA No. 2 Tahun 1994 — Penafsiran KHI Pasal 177 (Bagian Ayah)',
+            'ringkas' => 'Surat Edaran Mahkamah Agung yang menegaskan maksud KHI Pasal 177: ayah mendapat sepertiga bila pewaris tidak meninggalkan anak tetapi meninggalkan suami/istri dan ibu; bila pewaris meninggalkan anak, ayah mendapat seperenam. SEMA ini rujukan wajib saat komposisi ayah muncul.',
+            'sumber' => 'JDIH Mahkamah Agung RI',
+            'link' => 'https://jdih.mahkamahagung.go.id/',
+            'link_label' => 'Kumpulan SEMA pada JDIH Mahkamah Agung RI',
+            'pasal_tautan' => 'KHI Pasal 177 (bagian ayah)',
+        ],
+    ],
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // KUHPerdata (Buku II — Hak Waris, Staatsblad 1847 No. 23) — mode perdata
+    // (non-Muslim). Teks ditandai parafrase guna menjaga akurasi rujukan resmi.
+    // ─────────────────────────────────────────────────────────────────────────────
+    'kuhperdata' => [
+        'keterangan' => 'Hukum waris perdata (KUHPerdata, Buku II "Hak Waris", Staatsblad 1847 No. 23) berlaku bagi warga non-Muslim. Berikut pokok pengaturan dalam bentuk parafrase/pokok pikiran — bukan kutipan verbatim; baca teks lengkap pada dokumen resmi atau buku terkait di bagian jurnal.',
+        'pasal' => [
+            '832' => [
+                'label' => 'KUHPerdata Pasal 832 ayat (1)',
+                'teks' => 'Pokok pengaturan: hukum waris terbuka karena kematian orang; sejak saat itu terjadi peralihan harta milik kepada para ahli waris sesuai golongannya.',
+                'catatan' => 'Pasal 832 = dasar terbukanya hak waris menurut hukum perdata.',
+            ],
+            '852' => [
+                'label' => 'KUHPerdata Pasal 852 (Golongan I)',
+                'teks' => 'Pokok pengaturan Golongan I: suami/istri yang hidup terlama, anak-anak yang sah, dan keturunannya. Pasangan yang hidup terlama diperlakukan seolah anak sah dan menerima bagian setara dengan bagian setiap anak sah.',
+                'catatan' => 'Bagian setara: jumlah bagian sama besar bagi pasangan dan setiap anak — tanpa perbedaan anak laki-laki dan anak perempuan.',
+            ],
+            '852-b' => [
+                'label' => 'KUHPerdata Pasal 852 huruf b (catatan perkawinan kedua)',
+                'teks' => 'Pokok pengaturan: bagian pasangan dari perkawinan kedua tidak boleh lebih besar daripada bagian anak sah yang terkecil dari perkawinan pertama.',
+                'catatan' => 'Membatasi hak pasangan agar tidak merugikan anak dari perkawinan sebelumnya.',
+            ],
+            '853' => [
+                'label' => 'KUHPerdata Pasal 853 (Penggantian Tempat)',
+                'teks' => 'Pokok pengaturan: hak waris anak dari anak (cucu) dihitung dengan penggantian tempat (representasi) ketika orang tuanya (anak pewaris) lebih dulu wafat; dalam setiap cabang (stam), cucu-cucu membagi bagian orang tuanya sama rata.',
+                'catatan' => 'Bagian setara (Pasal 852) diperhitungkan per cabang (stam) ketika bagian orang tua diwakili cucu-cucunya.',
+            ],
+        ],
+        'golongan' => [
+            'Golongan I — suami/istri yang hidup terlama, anak-anak yang sah, dan keturunannya (Pasal 852).',
+            'Golongan II — orang tua (bapak & ibu) dan saudara-saudara pewaris.',
+            'Golongan III — kakek/nenek pewaris.',
+            'Golongan IV — kerabat sedarah yang lebih jauh.',
+            'Ahli waris golongan yang lebih atas menutup golongan di bawahnya (prinsip "keutamaan kedekatan").',
+        ],
+        'perbandingan' => [
+            'Landasan: Faraid bertumpu pada QS. An-Nisaa: 11, 12, 176 dan KHI Pasal 174–182; KUHPerdata bertumpu Pasal 832–852 Buku II.',
+            'Bagian anak laki-laki vs perempuan: Faraid memakai rasio 2 berbanding 1 (asabah); KUHPerdata menyamakan besar bagian keduanya (bagian setara).',
+            'Metode pembagian: Faraid memakai "asal masalah" dengan kasus \'aul dan radd; KUHPerdata membagi berdasarkan golongan dengan pembagian sama besar dalam setiap golongan.',
+            'Harta bersama: hak separuh pasangan atas harta bersama dipisahkan dahulu sebelum waris dibagi (KHI Pasal 311; di hukum adat/perdata dikenal pula konsep harta gono-gini).',
+            'Terhalang/penghalang: Faraid mempunyai tabel penghalang (mis. ayah menutup saudara); KUHPerdata menentukan penerima berdasarkan kedekatan garis dan penggantian tempat dalam golongan (Pasal 853).',
+        ],
+    ],
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Tautan jurnal ilmiah & rujukan akademik eksternal.
+    // Hanya URL yang sempat diperiksa; klik akan membuka tab baru.
+    // ─────────────────────────────────────────────────────────────────────────────
+    'jurnal' => [
+        'WASIAT-WAJIBAH-2010' => [
+            'label' => 'Studi Analisis Putusan MA Nomor 16 K/AG/2010',
+            'desc' => 'Artikel jurnal nasional (indeks SINTA): wasiat wajibah bagi ahli waris beda agama pada kasus MA No. 16 K/AG/2010.',
+            'sumber' => 'Jurnal Iqtishaduna — UIN Alauddin Makassar',
+            'href' => 'https://journal.uin-alauddin.ac.id/index.php/iqtishaduna/article/view/66070',
+            'tag' => 'SINTA',
+        ],
+        'WASIAT-WAJIBAH-PENEMUAN' => [
+            'label' => 'Wasiat Wajibah sebagai Penemuan Hukum oleh Hakim',
+            'desc' => 'Studi kasus Putusan MA No. 16 K/AG/2010 dalam perkara waris beda agama.',
+            'sumber' => 'Jurnal Hukum Online',
+            'href' => 'https://jurnal.hukumonline.com/a/5cb4915201fb73001038c10c/wasiat-wajibah-sebagai-penemuan-hukum-oleh-hakim-dalam-perkara-waris-beda-agama-studi-kasus-putusan-mahkamah-agung-nomor-16-k-ag-2010-the-wajibah-wasiyah-as-a-legal-invention-of-judges-in-interfaith-inheritance-case-study-decree-of-supreme-court-number-16-k-ag-2010',
+            'tag' => 'SINTA',
+        ],
+        'FARAID-KHI-SCHOLAR' => [
+            'label' => 'Ilmu Faraid & Kompilasi Hukum Islam',
+            'desc' => 'Pencarian literatur akademik (kata kunci: faraid, KHI, kewarisan) di Google Scholar.',
+            'sumber' => 'Google Scholar',
+            'href' => 'https://scholar.google.com/scholar?q=ilmu+faraid+kompilasi+hukum+islam+kewarisan',
+            'tag' => 'Google Scholar',
+        ],
+        'FARAID-KHI-SINTA' => [
+            'label' => 'Portal SINTA — Jurnal Nasional Hukum Islam',
+            'desc' => 'Indeks jurnal nasional: telusuri artikel hukum kewarisan pada jurnal terindeks (Kemendikbudristek).',
+            'sumber' => 'SINTA (Kemendikbudristek)',
+            'href' => 'https://sinta.kemdikbud.go.id/',
+            'tag' => 'SINTA',
+        ],
+        'MA-DIREKTORI' => [
+            'label' => 'Direktori Putusan Mahkamah Agung RI',
+            'desc' => 'Pangkalan putusan & yurisprudensi MA: telusuri perkara waris seperti No. 16 K/AG/2010.',
+            'sumber' => 'Mahkamah Agung RI',
+            'href' => 'https://putusan3.mahkamahagung.go.id/',
+            'tag' => 'MA RI',
+        ],
+        'MA-JDIH' => [
+            'label' => 'JDIH Mahkamah Agung RI',
+            'desc' => 'Jaringan Dokumentasi & Informasi Hukum MA: SEMA, yurisprudensi, produk hukum.',
+            'sumber' => 'Mahkamah Agung RI',
+            'href' => 'https://jdih.mahkamahagung.go.id/',
+            'tag' => 'MA RI',
+        ],
+        'KUHPERDATA-UMSU' => [
+            'label' => 'Hukum Waris Perdata di Indonesia (Buku Pengajaran)',
+            'desc' => 'Buku terbitan UMSU Press: penggolongan ahli waris KUHPerdata (Golongan I–IV, Pasal 852–853) lengkap dengan ilustrasi pembagian.',
+            'sumber' => 'UMSU Press (PDF)',
+            'href' => 'https://umsupress.umsu.ac.id/wp-content/uploads/2024/11/File-Isi-Hukum-Waris-Perdata-368hlm.pdf',
+            'tag' => 'Perdata',
+        ],
+    ],
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Edukasi topik kontemporer (kartu pada tab "Kontemporer" kalkulator).
+    // Murni edukasi referensial — tidak memengaruhi mesin hitung faraid.
+    // ─────────────────────────────────────────────────────────────────────────────
+    'kontemporer' => [
+        [
+            'judul' => 'Wasiat Wajibah Beda Agama (MA No. 16 K/AG/2010)',
+            'ringkas' => 'Ahli waris beda agama tidak mendapat bagian waris sebagai ahli waris, namun Mahkamah Agung membentuk jalur wasiat wajibah maksimal sepertiga harta warisan. Ini adalah pemeliharaan hukum supaya dampak beda agama tidak melumpuhkan perlindungan keluarga.',
+            'rujukan' => [
+                'KHI Pasal 171 — syarat ahli waris: sama agama dengan pewaris.',
+                'KHI Pasal 209 — wasiat wajibah bagi anak angkat (dan orang tua angkat); diperluas oleh yurisprudensi pada kasus beda agama.',
+                'Putusan MA RI No. 16 K/AG/2010 — wasiat wajibah bagi ahli waris beda agama.',
+            ],
+            'jurnal' => ['WASIAT-WAJIBAH-2010', 'WASIAT-WAJIBAH-PENEMUAN', 'MA-DIREKTORI'],
+        ],
+        [
+            'judul' => 'Ahli Waris Beda Agama: Dari MA No. 51 K/AG/1999 ke MA No. 16 K/AG/2010',
+            'ringkas' => 'Putusan MA tentang perkara kewarisan beda agama berkembang bertahap dalam yurisprudensi: perlindungan ahli waris beda agama melalui wasiat wajibah (maksimal 1/3), dipraktiskan bersama penolakan pembagian waris langsung lintas agama.',
+            'rujukan' => [
+                'Putusan MA RI No. 51 K/AG/1999 — kasus kewarisan beda agama (periode dasar).',
+                'Putusan MA RI No. 16 K/AG/2010 — pemantapan wasiat wajibah bagi ahli waris beda agama.',
+            ],
+            'jurnal' => ['MA-DIREKTORI', 'FARAID-KHI-SCHOLAR'],
+        ],
+        [
+            'judul' => 'Kewakilan Cucu: KHI Pasal 185 vs KUHPerdata Pasal 853',
+            'ringkas' => 'Dua peraturan hukum memberi jawaban yang berbeda pada kasus cucu ketika orang tuanya (anak pewaris) lebih dulu wafat:',
+            'rujukan' => [
+                'KHI Pasal 185 — cucu dari anak laki-laki yang lebih dulu wafat mewakili (kewakilan) orang tuanya, kecuali ada penghalangnya.',
+                'KUHPerdata Pasal 853 — cucu menggantikan tempat orang tuanya; cucu-cucu suatu cabang membagi bagian orang tuanya sama rata.',
+            ],
+            'jurnal' => ['FARAID-KHI-SCHOLAR', 'KUHPERDATA-UMSU'],
+        ],
+        [
+            'judul' => 'Harta Bersama / Gono-Gini Sebelum Faraid',
+            'ringkas' => 'Sebelum pembagian waris, hak pasangan atas harta bersama dipisahkan terlebih dahulu. Konsep ini diadopsi dari KHI (Pasal 311) sebagaimana diikuti halaman Cara Menghitung Tahap 5, dan memiliki padanannya dalam hukum adat/perdata dengan nama harta gono-gini.',
+            'rujukan' => [
+                'KHI Pasal 311 — dasar pemisahan harta bersama (gono-gini).',
+                'Yurisprudensi MA tentang perkara harta bersama: telusuri Direktori Putusan MA RI.',
+            ],
+            'jurnal' => ['MA-JDIH', 'KUHPERDATA-UMSU'],
+        ],
+    ],
+];
