@@ -1,0 +1,24 @@
+# Berkas yang TIDAK diunggah ke deployment Vercel
+.git
+.gitignore
+.gitattributes
+.node_version?
+node_modules
+tools
+docs
+tests
+storage
+bootstrap/cache
+.phpunit.result.cache
+.phpunit.cache
+.pint.json.cache
+.idea
+.vscode
+.env
+.env.*
+!.env.example
+public/fonts-manifest.dev.json
+*.exe
+*.zip
+composer.phar
+.vercel

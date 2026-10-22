@@ -29,3 +29,5 @@ Thumbs.db
 /tools/cloudflared.exe
 
 /tools/composer.phar
+.vercel
+.env*
