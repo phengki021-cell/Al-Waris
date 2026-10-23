@@ -225,7 +225,9 @@
                         </span>
                         <span class="min-w-0">
                             <span class="block text-sm font-bold">Tanpa pasangan</span>
-                            <span class="block text-[10px] text-ink/50">kosongkan pilihan</span>
+                            <span class="block text-[10px] text-ink/50">kosongkan pilihan
+                                <span wire:loading wire:target="set('spouse')" class="inline-block animate-pulse font-extrabold uppercase tracking-wider text-gold-deep">menyimpan…</span>
+                            </span>
                         </span>
                     </button>
 
@@ -240,7 +242,9 @@
                         </span>
                         <span class="min-w-0">
                             <span class="block text-sm font-bold">Suami</span>
-                            <span class="block text-[10px] text-ink/50">dzawil furudh 1/2 — ashabah sisa</span>
+                            <span class="block text-[10px] text-ink/50">dzawil furudh 1/2 — ashabah sisa
+                                <span wire:loading wire:target="set('spouse')" class="inline-block animate-pulse font-extrabold uppercase tracking-wider text-gold-deep">menyimpan…</span>
+                            </span>
                         </span>
                     </button>
 
@@ -255,7 +259,9 @@
                         </span>
                         <span class="min-w-0">
                             <span class="block text-sm font-bold">Istri</span>
-                            <span class="block text-[10px] text-ink/50">1/4 atau 1/8 bila ada anak</span>
+                            <span class="block text-[10px] text-ink/50">1/4 atau 1/8 bila ada anak
+                                <span wire:loading wire:target="set('spouse')" class="inline-block animate-pulse font-extrabold uppercase tracking-wider text-gold-deep">menyimpan…</span>
+                            </span>
                         </span>
                     </button>
                 </div>
@@ -353,7 +359,10 @@
                         <span class="u-icon-box h-9 w-9 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="12" cy="7" r="3.4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/><path d="M17 3.5h4M19 1.5v4"/></svg>
                         </span>
-                        <span>AYAH · 1/6 <span class="block text-[10px] font-medium text-ink/45">klik untuk masukkan</span></span>
+                        <span>AYAH · 1/6 <span class="block text-[10px] font-medium text-ink/45">klik untuk masukkan
+                            <span wire:loading wire:target="toggle('father')" class="inline-block animate-pulse font-extrabold uppercase tracking-wider text-gold-deep">menyimpan…</span>
+                        </span>
+                        </span>
                     </button>
 
                     <button type="button"
@@ -365,7 +374,10 @@
                         <span class="u-icon-box h-9 w-9 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="12" cy="7" r="3.4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/><path d="M12 1.2l.8 1.7 1.7.8-1.7.8-.8 1.7-.8-1.7-1.7-.8 1.7-.8.8-1.7Z" fill="currentColor" stroke="none"/></svg>
                         </span>
-                        <span>IBU · 1/6 <span class="block text-[10px] font-medium text-ink/45">klik untuk masukkan</span></span>
+                        <span>IBU · 1/6 <span class="block text-[10px] font-medium text-ink/45">klik untuk masukkan
+                            <span wire:loading wire:target="toggle('mother')" class="inline-block animate-pulse font-extrabold uppercase tracking-wider text-gold-deep">menyimpan…</span>
+                        </span>
+                        </span>
                     </button>
 
                     <button type="button"
@@ -377,7 +389,10 @@
                         <span class="u-icon-box h-9 w-9 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="12" cy="7" r="3.4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/><path d="M19.5 1 17.5 5h4L19.5 9"/></svg>
                         </span>
-                        <span>NENEK DARI IBU <span class="block text-[10px] font-medium text-ink/45">klik untuk masukkan</span></span>
+                        <span>NENEK DARI IBU <span class="block text-[10px] font-medium text-ink/45">klik untuk masukkan
+                            <span wire:loading wire:target="toggle('maternalGrandmother')" class="inline-block animate-pulse font-extrabold uppercase tracking-wider text-gold-deep">menyimpan…</span>
+                        </span>
+                        </span>
                     </button>
 
                     <button type="button"
@@ -389,7 +404,10 @@
                         <span class="u-icon-box h-9 w-9 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="8" cy="7" r="3.4"/><path d="M1.5 21a6.5 6.5 0 0 1 13 0"/><path d="M17 1.5h4l-2 3.5"/><path d="M19 1.5v3"/></svg>
                         </span>
-                        <span>KAKEK DARI AYAH <span class="block text-[10px] font-medium text-ink/45">pengganti ayah · klik untuk masukkan</span></span>
+                        <span>KAKEK DARI AYAH <span class="block text-[10px] font-medium text-ink/45">pengganti ayah · klik untuk masukkan
+                            <span wire:loading wire:target="toggle('grandfather')" class="inline-block animate-pulse font-extrabold uppercase tracking-wider text-gold-deep">menyimpan…</span>
+                        </span>
+                        </span>
                     </button>
                 </div>
 
@@ -1174,7 +1192,9 @@
                             </span>
                             <span class="min-w-0">
                                 <span class="block text-xs font-bold leading-tight">Pasangan hidup terlama</span>
-                                <span class="block text-[10px] font-medium text-ink/45">diperlakukan seolah anak sah · Pasal 852</span>
+                                <span class="block text-[10px] font-medium text-ink/45">diperlakukan seolah anak sah · Pasal 852
+                                    <span wire:loading wire:target="toggle('civilSpouse')" class="inline-block animate-pulse font-extrabold uppercase tracking-wider text-gold-deep">menyimpan…</span>
+                                </span>
                             </span>
                         </button>
 
