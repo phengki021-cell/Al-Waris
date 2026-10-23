@@ -94,8 +94,8 @@ describe('EstateCalculationService — konversi rupiah', function () {
             ->and($dist->totalCents)->toBe(1_000_000_000_000);
     });
 
-    test('komposisi tak didukung → hasil tidak dipaksakan', function () {
-        $dist = service()->calculate(['husband' => true, 'sons' => 1, 'father' => true], ['estate' => 1000.0]);
+    test('komposisi tak didukung (kakek + cucu laki — umariyyatan) → hasil tidak dipaksakan', function () {
+        $dist = service()->calculate(['grandfather' => true, 'grandsons' => 1], ['estate' => 1000.0]);
 
         expect($dist->status)->toBe('not_supported')
             ->and($dist->shares)->toBe([])

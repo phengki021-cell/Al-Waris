@@ -51,11 +51,11 @@ it('hasil valid dapat disimpan ke riwayat (anonim per sesi)', function () {
         ->and($row->participants->first()->results->count())->toBe(1);
 });
 
-it('kalkulator menolak kombinasi tak didukung (ayah + anak laki-laki)', function () {
+it('kalkulator menolak kombinasi tak didukung (kakek + cucu laki-laki — umariyyatan)', function () {
     $component = Livewire::test(Calculator::class)
         ->set('estate', '100000')
-        ->set('father', true)
-        ->set('sons', 1)
+        ->set('grandfather', true)
+        ->set('grandsons', 1)
         ->call('calculate')
         ->instance();
 

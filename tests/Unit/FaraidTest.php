@@ -168,10 +168,37 @@ describe('FaraidEngine — gharawain & penolakan', function () {
             ->and(totalOf($r))->toBe('1');
     });
 
-    test('ayah + anak laki-laki → not_supported (menunggu verifikasi ahli faraid)', function () {
+    test('ayah + anak laki-laki → ayah 1/6, sisa 5/6 untuk anak (ayah tidak menyerap)', function () {
         $r = engine([['father', true], ['sons', 1]]);
 
-        expect($r->status)->toBe('not_supported');
+        expect($r->status)->toBe('valid')
+            ->and(sharesByCode($r))->toBe([
+                'father' => '1/6',
+                'son' => '5/6',
+            ]);
+    });
+
+    test('ayah + anak laki + anak perempuan → sisa dibagi 2:1, total tetap eksak', function () {
+        $r = engine([['father', true], ['sons', 1], ['daughters', 1]]);
+
+        $s = sharesByCode($r);
+
+        expect($r->status)->toBe('valid')
+            ->and($s['father'])->toBe('1/6')
+            ->and($s['son'])->toBe('5/9')
+            ->and($s['daughter'])->toBe('5/18')
+            ->and(totalOf($r))->toBe('1');
+    });
+
+    test('suami + ayah + anak laki-laki → 1/4, 1/6, 7/12', function () {
+        $r = engine([['husband', true], ['father', true], ['sons', 1]]);
+
+        expect($r->status)->toBe('valid')
+            ->and(sharesByCode($r))->toBe([
+                'husband' => '1/4',
+                'father' => '1/6',
+                'son' => '7/12',
+            ]);
     });
 
     test('suami + istri bersamaan → error', function () {

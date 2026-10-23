@@ -47,7 +47,7 @@ namespace App\Domain\Faraid;
 final class FaraidEngine
 {
     /** Versi mesin — ditampilkan di halaman hasil untuk ketertelusuran. */
-    public const VERSION = '0.4.0';
+    public const VERSION = '0.5.0';
 
     /** Nama tampilan untuk UI (dipakai mesin & layer penjelasan). */
     public const NAMES = [
@@ -141,15 +141,10 @@ final class FaraidEngine
         $hasChildren = $sons > 0 || $daughters > 0 || $grandchildren;
         $siblingCount = $brothers + $sisters;
 
-        // ---- Tolak komposisi di luar scope ---------------------------------
-        if ($father && $sons > 0) {
-            $trace[] = 'Ayah + anak laki-laki: aturan asabah gabungan belum diverifikasi.';
-
-            return FaraidResult::notSupported(
-                'Komposisi ayah + anak laki-laki belum didukung Tahap 2 — menunggu validasi ahli faraid.',
-                $trace
-            );
-        }
+        // ---- Fard -----------------------------------------------------------
+        // Ayah bersama anak laki-laki kini didukung (kasus fiqh dasar):
+        // ayah hanya 1/6 dan TIDAK menyerap sisa — sisa untuk anak laki-laki
+        // (dan anak perempuan bersamanya, 2 : 1). Lihat blok asabah.
 
         if ($maternalGrandmother && $hasChildren) {
             $trace[] = 'Nenek-ibu bersama keturunan: belum didukung.';
@@ -220,7 +215,12 @@ final class FaraidEngine
 
         if ($father && $daughters > 0) {
             $fard['father'] = [1, 6, 1, false];
-            $trace[] = 'Langkah 2 — ayah: fard 1/6 (ada anak perempuan) + menyerap sisa.';
+            $trace[] = $sons > 0
+                ? 'Langkah 2 — ayah: fard 1/6 (ada anak laki-laki); anak laki-laki yang menyerap sisa.'
+                : 'Langkah 2 — ayah: fard 1/6 (ada anak perempuan) + menyerap sisa.';
+        } elseif ($father && $sons > 0) {
+            $fard['father'] = [1, 6, 1, false];
+            $trace[] = 'Langkah 2 — ayah: fard 1/6 (ada anak laki-laki); anak laki-laki yang menyerap sisa.';
         }
 
         // Kakek meniru mekanik ayah ketika ayah tiada (lazim dipakai kitab JIL:
