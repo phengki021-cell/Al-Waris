@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Domain\Faraid\EstateDistribution;
 use App\Services\CivilInheritanceService;
 use App\Services\EstateCalculationService;
+use App\Services\HeirExplanationService;
 use App\Services\ReferenceService;
 use App\Services\SaveCalculationService;
 use Illuminate\View\View;
@@ -101,6 +102,12 @@ class Calculator extends Component
 
     public bool $showCivilResult = false;
 
+    /** Papan keterangan dinamis ahli waris (status/bagian/alasan/nominal). */
+    public array $heirEntries = [];
+
+    /** Catatan global bila komposisi belum didukung mesin. */
+    public ?string $heirEntriesNote = null;
+
     public function resetAll(): void
     {
         $this->reset();
@@ -115,7 +122,70 @@ class Calculator extends Component
 
         if (in_array($property, $allowed, true)) {
             $this->{$property} = ! $this->{$property};
+
+            if ($property !== 'civilSpouse') {
+                $this->refreshHeirEntries();
+            }
         }
+    }
+
+    /**
+     * Hook Livewire: perbarui papan keterangan ahli waris setiap input
+     * pilihan/jumlah ahli waris atau nilai harta berubah — tanpa reload.
+     */
+    public function updated($property, $value): void
+    {
+        if (in_array($property, self::PREVIEW_WATCH, true)) {
+            $this->refreshHeirEntries();
+        }
+    }
+
+    public function mount(): void
+    {
+        $this->refreshHeirEntries();
+    }
+
+    /** Properti yang memicu pembaruan papan keterangan ahli waris. */
+    private const PREVIEW_WATCH = [
+        'spouse', 'wifeCount', 'father', 'mother', 'maternalGrandmother', 'grandfather',
+        'sons', 'daughters', 'grandsons', 'granddaughters', 'brothers', 'sisters',
+        'estate', 'debts', 'bequest', 'funeral',
+    ];
+
+    /** Susun argumen ahli waris (dipakai mesin & papan keterangan). */
+    private function heirArguments(): array
+    {
+        return [
+            'husband' => $this->spouse === 'husband',
+            'wife_count' => $this->spouse === 'wife' ? $this->wifeCount : 0,
+            'sons' => $this->sons,
+            'daughters' => $this->daughters,
+            'father' => $this->father,
+            'mother' => $this->mother,
+            'maternal_grandmother' => $this->maternalGrandmother,
+            'grandfather' => $this->grandfather,
+            'grandsons' => $this->grandsons,
+            'granddaughters' => $this->granddaughters,
+            'brothers' => $this->brothers,
+            'sisters' => $this->sisters,
+        ];
+    }
+
+    /** Bina ulang papan keterangan dinamis (service terpisah, mudah diuji). */
+    private function refreshHeirEntries(): void
+    {
+        $preview = app(HeirExplanationService::class)->explain(
+            $this->heirArguments(),
+            [
+                'estate' => (float) ($this->estate ?: 0),
+                'debts' => (float) ($this->debts ?: 0),
+                'bequest' => (float) ($this->bequest ?: 0),
+                'funeral' => (float) ($this->funeral ?: 0),
+            ],
+        );
+
+        $this->heirEntries = $preview['entries'];
+        $this->heirEntriesNote = $preview['note'];
     }
 
     /** Pindah tab kalkulator; setiap tab memelihara input masing-masing. */
@@ -147,6 +217,7 @@ class Calculator extends Component
     public function startNew(): void
     {
         $this->reset();
+        $this->refreshHeirEntries();
     }
 
     public function calculate(): void
@@ -267,20 +338,7 @@ class Calculator extends Component
     private function buildDistribution(): EstateDistribution
     {
         return app(EstateCalculationService::class)->calculate(
-            heirs: [
-                'husband' => $this->spouse === 'husband',
-                'wife_count' => $this->spouse === 'wife' ? $this->wifeCount : 0,
-                'sons' => $this->sons,
-                'daughters' => $this->daughters,
-                'father' => $this->father,
-                'mother' => $this->mother,
-                'maternal_grandmother' => $this->maternalGrandmother,
-                'grandfather' => $this->grandfather,
-                'grandsons' => $this->grandsons,
-                'granddaughters' => $this->granddaughters,
-                'brothers' => $this->brothers,
-                'sisters' => $this->sisters,
-            ],
+            heirs: $this->heirArguments(),
             money: [
                 'estate' => (float) ($this->estate ?: 0),
                 'debts' => (float) ($this->debts ?: 0),

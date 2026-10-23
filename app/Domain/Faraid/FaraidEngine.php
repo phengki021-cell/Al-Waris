@@ -49,8 +49,8 @@ final class FaraidEngine
     /** Versi mesin — ditampilkan di halaman hasil untuk ketertelusuran. */
     public const VERSION = '0.4.0';
 
-    /** Nama tampilan untuk UI. */
-    private const NAMES = [
+    /** Nama tampilan untuk UI (dipakai mesin & layer penjelasan). */
+    public const NAMES = [
         'husband' => 'Suami',
         'wife' => 'Istri',
         'son' => 'Anak laki-laki',

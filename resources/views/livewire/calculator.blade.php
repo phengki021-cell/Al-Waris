@@ -451,6 +451,81 @@
                     </div>
                 </div>
 
+                {{-- Papan keterangan dinamis: berubah langsung mengikuti pilihan --}}
+                <div class="u-smart-card mt-4 overflow-hidden" aria-live="polite">
+                    <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-700 px-4 py-2.5">
+                        <div class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-4 w-4 text-gold-soft" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9-9 9-9-9 9-9 9 9"/></svg>
+                            <p class="text-xs font-extrabold uppercase tracking-widest text-gold-soft">Keterangan setiap ahli waris</p>
+                        </div>
+                        <span class="text-[10px] font-medium text-emerald-100/80">berubah otomatis mengikuti pilihan di atas</span>
+                    </div>
+
+                    @if ($showResult && $result && ($result['status'] ?? null) === 'valid')
+                        <p class="rounded-xl bg-emerald-50 px-4 py-2.5 text-xs font-medium text-emerald-900 ring-1 ring-emerald-200 m-3">
+                            Hasil final sudah dihitung — lihat panel hasil di bawah. Papan ini menunjukkan keterangan sementara sesuai pilihan saat ini.
+                        </p>
+                    @endif
+
+                    @if ($heirEntriesNote)
+                        <p class="mx-3 mt-3 rounded-xl bg-gold-soft/60 px-4 py-2.5 text-xs leading-relaxed text-amber-900 ring-1 ring-gold/30">
+                            {{ $heirEntriesNote }}
+                        </p>
+                    @endif
+
+                    <div class="grid gap-2 p-3 sm:grid-cols-2">
+                        @foreach ($heirEntries as $entry)
+                            <div class="rounded-md p-3 ring-1 @if ($entry['status'] === 'fard') bg-emerald-soft/70 ring-emerald-700/25
+                                @elseif($entry['status'] === 'asabah') bg-gold-soft/40 ring-gold/30
+                                @elseif($entry['status'] === 'mahjub') bg-red-50 ring-red-200
+                                @elseif($entry['status'] === 'pending') bg-red-50/60 ring-red-200
+                                @else bg-white ring-black/8 @endif">
+                                <div class="flex flex-wrap items-center justify-between gap-1.5">
+                                    <p class="text-sm font-bold text-ink">
+                                        {{ $entry['name'] }}
+                                        @if ($entry['count'] > 1)
+                                            <span class="text-xs text-ink/55">(×{{ $entry['count'] }})</span>
+                                        @endif
+                                    </p>
+                                    <span class="rounded-full px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider ring-1
+                                        @if ($entry['status'] === 'fard') bg-emerald-900 text-emerald-50 ring-emerald-900
+                                        @elseif($entry['status'] === 'asabah') bg-gold-soft text-gold-deep ring-gold/40
+                                        @elseif($entry['status'] === 'mahjub') bg-red-600 text-white ring-red-600
+                                        @elseif($entry['status'] === 'pending') bg-white text-red-700 ring-red-300
+                                        @else bg-white text-ink/45 ring-black/10 @endif">
+                                        {{ $entry['label'] }}
+                                    </span>
+                                </div>
+
+                                @if (in_array($entry['status'], ['fard', 'asabah'], true))
+                                    <p class="tnum mt-1 text-xs font-semibold text-emerald-900/85">
+                                        Bagian {{ $entry['share_text'] }}
+                                        @if ($entry['per_person_share'])
+                                            <span class="text-ink/45">· per orang {{ $entry['per_person_share'] }}</span>
+                                        @endif
+                                    </p>
+                                    @if ($entry['amount_text'])
+                                        <p class="tnum mt-0.5 text-sm font-extrabold text-emerald-900">
+                                            {{ $entry['amount_text'] }}
+                                            @if ($entry['per_person_amount_text'])
+                                                <span class="text-[11px] font-bold text-ink/55">· per orang {{ $entry['per_person_amount_text'] }}</span>
+                                            @endif
+                                        </p>
+                                    @endif
+                                @endif
+
+                                <p class="mt-1 text-[11px] leading-relaxed text-ink/65">{{ $entry['reason'] }}</p>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    @if (! $heirEntriesNote && ! collect($heirEntries)->contains(fn ($e) => $e['status'] === 'mahjub' || $e['status'] === 'pending'))
+                        <p class="px-4 pb-3 text-[11px] text-ink/50">
+                            Belum memilih apa pun? Kartu bagian masih kosong — pilih pasangan, orang tua, atau isi jumlah anak untuk melihat perubahannya.
+                        </p>
+                    @endif
+                </div>
+
                 <div class="mt-5 flex flex-wrap gap-3">
                     <button type="submit" class="u-btn-emerald px-7 py-3 text-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16 2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3Z"/></svg>

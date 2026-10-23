@@ -189,3 +189,43 @@ it('dua istri berbagi kolektif 1/8 dan tampil sebagai per istri', function () {
         ->and((float) $wife['per_person_rp'])->toBe(7_500_000.0)
         ->and((float) $son['total_rp'])->toBe(105_000_000.0);
 });
+
+it('papan keterangan ahli waris ter-update langsung saat pilihan berubah', function () {
+    $component = Livewire::test(Calculator::class);
+
+    // Awal: semua idle + petunjuk memilih.
+    $entries = collect($component->get('heirEntries'))->keyBy('code');
+    expect($entries['mother']['status'])->toBe('idle')
+        ->and($entries['sons']['status'])->toBe('idle');
+
+    // Pilih IBU → baris ibu langsung berubah statusnya, tanpa memanggil calculate().
+    $component->set('mother', true);
+    $entries = collect($component->get('heirEntries'))->keyBy('code');
+    expect($entries['mother']['status'])->toBe('fard')
+        ->and($entries['mother']['reason'])->not->toBeEmpty();
+
+    // Tambah anak laki-laki → ibu bergeser ke 1/6 dan anak laki-laki jadi asabah.
+    $component->set('sons', 2);
+    $entries = collect($component->get('heirEntries'))->keyBy('code');
+    expect($entries['mother']['share_text'])->toBe('1/6')
+        ->and($entries['sons']['status'])->toBe('asabah');
+
+    // Kalkulate tetap konsisten dengan papan: hasil valid, ibu 1/6.
+    $component->set('estate', '120000000')->call('calculate')->instance();
+    $shares = collect($component->result['shares']);
+    expect($component->result['status'])->toBe('valid')
+        ->and($shares->firstWhere('code', 'mother')['text'])->toBe('1/6');
+});
+
+it('toggle AYAH juga memperbarui papan keterangan', function () {
+    $component = Livewire::test(Calculator::class);
+
+    $component->call('toggle', 'father');
+    $entries = collect($component->get('heirEntries'))->keyBy('code');
+    expect($entries['father']['status'])->toBe('asabah')
+        ->and($entries['father']['reason'])->toContain('asabah');
+
+    $component->call('toggle', 'father');
+    $entries = collect($component->get('heirEntries'))->keyBy('code');
+    expect($entries['father']['status'])->toBe('idle');
+});
