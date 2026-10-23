@@ -119,7 +119,7 @@ it('papan keterangan: anak laki-laki dan anak perempuan bersama-sama (2:1)', fun
         ->and($entries['sons']['amount_text'])->toContain('80.000.000')
         ->and($entries['daughters']['status'])->toBe('asabah')
         ->and($entries['daughters']['share_text'])->toBe('1/5')
-        ->and($entries['daughters']['reason'])->toContain('1 : 2');
+        ->and($entries['daughters']['reason'])->toContain('2 : 1');
 });
 
 it('papan keterangan: cucu laki-laki terhalang anak laki-laki dengan alasan', function () {

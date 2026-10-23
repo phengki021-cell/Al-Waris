@@ -526,6 +526,131 @@
                     @endif
                 </div>
 
+                {{-- ===== Panel 'ASABAH (tiga jenis) — terpisah dari hijab ===== --}}
+                <div class="u-smart-card mt-4 overflow-hidden" aria-live="polite">
+                    <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-700 px-4 py-2.5">
+                        <div class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-4 w-4 text-gold-soft" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m16 16 3-8 3 8M2 16l3-8 3 8m7 5H9l3-8 3 8m0-16L12 5l-1 1"/></svg>
+                            <p class="text-xs font-extrabold uppercase tracking-widest text-gold-soft">Jenis &lsquo;Ashabah</p>
+                        </div>
+                        <span class="text-[10px] font-medium text-emerald-100/80">ahli waris yang menerima sisa harta — tiga jenis</span>
+                    </div>
+                    <p class="px-4 pt-3 text-[11px] leading-relaxed text-ink/60">
+                        Jenis: <strong class="text-ink">bin nafsi</strong> (dari dirinya sendiri — laki-laki menurun / ayah &amp; kakek menyerap sisa),
+                        <strong class="text-ink">bil ghair</strong> (perempuan bersama laki-laki sederajat — 2 bagian laki-laki : 1 perempuan),
+                        <strong class="text-ink">ma&rsquo;al ghair</strong> (saudara perempuan membagi sisa bersama anak/cucu perempuan).
+                    </p>
+
+                    @php
+                        $asabahPanel = collect($heirEntries)->filter(fn ($e) => $e['status'] === 'asabah');
+                    @endphp
+
+                    @if ($heirEntriesNote)
+                        <p class="mx-4 mt-3 rounded-xl bg-gold-soft/60 px-4 py-2.5 text-xs leading-relaxed text-amber-900 ring-1 ring-gold/30">
+                            Panel &lsquo;ashabah menunggu: {{ $heirEntriesNote }}
+                        </p>
+                    @elseif ($asabahPanel->isEmpty())
+                        <p class="px-4 py-3 text-[11px] text-ink/50">
+                            Belum ada &lsquo;ashabah pada pilihan saat ini. Jika sisa harta ada dan ada ahli waris yang menyerapnya, kartu di bawah otomatis terisi.
+                        </p>
+                    @else
+                        <div class="grid gap-2 p-3 sm:grid-cols-2">
+                            @foreach ($asabahPanel as $a)
+                                <div class="rounded-lg bg-gold-soft/30 p-3 ring-1 ring-gold/30">
+                                    <div class="flex flex-wrap items-center justify-between gap-1.5">
+                                        <p class="text-sm font-bold text-ink">
+                                            {{ $a['name'] }}
+                                            @if ($a['count'] > 1)
+                                                <span class="text-xs text-ink/55">(×{{ $a['count'] }})</span>
+                                            @endif
+                                        </p>
+                                        <span class="rounded-full bg-gold-soft px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-gold-deep ring-1 ring-gold/40">{{ $a['asabah_type_label'] }}</span>
+                                    </div>
+                                    <p class="mt-1 text-[11px] leading-relaxed text-ink/70">{{ $a['reason'] }}</p>
+                                    <p class="mt-1 text-[11px] leading-relaxed text-ink/60">{{ $a['asabah_way'] }}</p>
+                                    <p class="tnum mt-1.5 text-xs font-semibold text-emerald-900/85">
+                                        Bagian {{ $a['share_text'] }}
+                                        @if ($a['per_person_share'])
+                                            <span class="text-ink/45">· per orang {{ $a['per_person_share'] }}</span>
+                                        @endif
+                                    </p>
+                                    @if ($a['amount_text'])
+                                        <p class="tnum mt-0.5 text-sm font-extrabold text-emerald-900">
+                                            {{ $a['amount_text'] }}
+                                            @if ($a['per_person_amount_text'])
+                                                <span class="text-[11px] font-bold text-ink/55">· per orang {{ $a['per_person_amount_text'] }}</span>
+                                            @endif
+                                        </p>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+
+                {{-- ===== Panel HIJAB (hirman & nuqshan) — terpisah dari 'ashabah ===== --}}
+                <div class="u-smart-card mt-4 overflow-hidden" aria-live="polite">
+                    <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-red-900 via-red-800 to-red-700 px-4 py-2.5">
+                        <div class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-4 w-4 text-red-50" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3a6 6 0 0 0-6 6v3l-2 4h16l-2-4V9a6 6 0 0 0-6-6M10 20a2 2 0 0 0 4 0"/></svg>
+                            <p class="text-xs font-extrabold uppercase tracking-widest text-red-50">Hijab (Penghalang Warisan)</p>
+                        </div>
+                        <span class="text-[10px] font-medium text-red-100/80">hijab hirman &amp; hijab nuqshan</span>
+                    </div>
+                    <p class="px-4 pt-3 text-[11px] leading-relaxed text-ink/60">
+                        <strong class="text-ink">Hirman</strong> = terhalang seluruhnya (tidak memperoleh apa-apa).
+                        <strong class="text-ink">Nuqshan</strong> = bagiannya berkurang (masih menerima). Keduanya muncul otomatis mengikuti pilihan.
+                    </p>
+
+                    @php
+                        $hijabPanel = collect($heirEntries)->filter(fn ($e) => $e['hijab'] !== null);
+                    @endphp
+
+                    @if ($heirEntriesNote)
+                        <p class="mx-4 mt-3 rounded-xl bg-red-50 px-4 py-2.5 text-xs leading-relaxed text-red-900 ring-1 ring-red-200">
+                            Panel hijab menunggu: {{ $heirEntriesNote }}
+                        </p>
+                    @elseif ($hijabPanel->isEmpty())
+                        <p class="px-4 py-3 text-[11px] text-ink/50">
+                            Belum ada hijab pada pilihan saat ini — seluruh ahli waris yang dipilih tetap menerima bagiannya.
+                        </p>
+                    @else
+                        <div class="grid gap-2 p-3 sm:grid-cols-2">
+                            @foreach ($hijabPanel as $hijabEntry)
+                                @php $hij = $hijabEntry['hijab']; @endphp
+                                <div class="rounded-lg p-3 ring-1 {{ $hij['type'] === 'hirman' ? 'bg-red-50 ring-red-200' : 'bg-gold-soft/30 ring-gold/30' }}">
+                                    <div class="flex flex-wrap items-center justify-between gap-1.5">
+                                        <p class="text-sm font-bold text-ink">
+                                            {{ $hijabEntry['name'] }}
+                                            @if ($hijabEntry['count'] > 1)
+                                                <span class="text-xs text-ink/55">(×{{ $hijabEntry['count'] }})</span>
+                                            @endif
+                                        </p>
+                                        <span class="rounded-full px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider ring-1 {{ $hij['type'] === 'hirman' ? 'bg-red-600 text-white ring-red-600' : 'bg-gold-soft text-gold-deep ring-gold/40' }}">{{ $hij['type_label'] }}</span>
+                                    </div>
+                                    <p class="mt-1 text-[11px] font-semibold text-red-800">{{ $hij['cause_label'] }}</p>
+                                    <p class="mt-0.5 text-[11px] leading-relaxed text-ink/70">{{ $hij['reason'] }}</p>
+                                    <p class="mt-0.5 text-[11px] leading-relaxed text-ink/60">{{ $hijabEntry['reason'] }}</p>
+                                    <p class="mt-1 text-[11px] font-bold {{ $hij['type'] === 'hirman' ? 'text-red-800' : 'text-gold-deep' }}">
+                                        Status akhir: {{ $hij['type'] === 'hirman' ? 'terhalang seluruhnya' : 'bagian berkurang' }}
+                                        @if ($hij['final_share'])
+                                            · bagian akhir {{ $hij['final_share'] }}
+                                        @endif
+                                    </p>
+                                    @if ($hij['type'] === 'nuqshan' && $hijabEntry['amount_text'])
+                                        <p class="tnum mt-0.5 text-sm font-extrabold text-emerald-900">
+                                            {{ $hijabEntry['amount_text'] }}
+                                            @if ($hijabEntry['per_person_amount_text'])
+                                                <span class="text-[11px] font-bold text-ink/55">· per orang {{ $hijabEntry['per_person_amount_text'] }}</span>
+                                            @endif
+                                        </p>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+
                 <div class="mt-5 flex flex-wrap gap-3">
                     <button type="submit" class="u-btn-emerald px-7 py-3 text-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16 2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3Z"/></svg>
