@@ -230,6 +230,7 @@ class Calculator extends Component
         $this->validate([...self::RULES], self::MESSAGES);
 
         $this->result = $this->buildDistribution()->toDisplayArray();
+        $this->refreshHeirEntries();
         $this->showResult = true;
     }
 

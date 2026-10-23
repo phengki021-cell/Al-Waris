@@ -135,6 +135,18 @@ it('hijab nuqshan ibu juga dipicu dua saudara atau lebih (sesuai mesin)', functi
         ->and($ibu['hijab']['cause'])->toContain('Dua saudara');
 });
 
+it('jamak: kartu belum-dipilih tetap memakai nama Indonesia, bukan kode mesin', function () {
+    $p = panel(['husband' => false, 'wife_count' => 0, 'sons' => 0, 'daughters' => 0,
+        'father' => false, 'mother' => false, 'maternal_grandmother' => false,
+        'grandfather' => false, 'grandsons' => 0, 'granddaughters' => 0, 'brothers' => 0, 'sisters' => 0]);
+
+    $byCode = collect($p['entries'])->keyBy('code');
+    expect($byCode['daughters']['name'])->toBe('Anak perempuan')
+        ->and($byCode['brothers']['name'])->toContain('Saudara')
+        ->and($byCode['sisters']['name'])->toContain('Saudara')
+        ->and($byCode['grandsons']['name'])->toContain('Cucu');
+});
+
 it('total pembagian tetap utuh pada kasus asabah & nuqshan', function () {
     // 2 anak L + 1 anak P harta 100 juta → asabah menyerap seluruh sisa.
     $p = panel(['husband' => false, 'wife_count' => 0, 'sons' => 2, 'daughters' => 1,

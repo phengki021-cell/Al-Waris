@@ -105,7 +105,8 @@ it('panel hijab mahjub menampilkan pasangan pengganti yang terhalang', function 
         ->and(collect($result['shares'])->pluck('code')->all())->toBe(['son'])
         ->and(collect($result['blocked'])->pluck('code')->all())->toContain('grandson');
 
-    $testable->assertSee('Mahjub');
+    $testable->assertSee('Hijab Hirman')
+        ->assertSee('Terhalang oleh anak laki-laki');
 });
 
 it('kombinasi kakek + cucu ditolak aman oleh mesin (umariyyatan)', function () {

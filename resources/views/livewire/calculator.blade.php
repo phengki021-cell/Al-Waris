@@ -736,17 +736,39 @@
                             {{-- ===== Visual Result Banner: donut chart interaktif + kartu rincian berbadge ===== --}}
                             @php
                                 $palette = ['#064E3B', '#047857', '#10B981', '#34D399', '#6EE7B7', '#F59E0B', '#D97706', '#0F766E', '#115E59', '#059669'];
-                                $faraidCodes = collect($result['shares'])->pluck('code')->all();
-                                $lawStatus = static function (array $share) use ($faraidCodes): string {
-                                    return match (true) {
-                                        in_array($share['code'], ['son', 'grandson', 'brother'], true) => 'Asabah',
-                                        $share['code'] === 'grandfather' => 'Asabah · pengganti ayah',
-                                        $share['code'] === 'daughter' && in_array('son', $faraidCodes, true) => 'Asabah · 1:2',
-                                        $share['code'] === 'granddaughter' && in_array('grandson', $faraidCodes, true) => 'Asabah · 1:2',
-                                        $share['code'] === 'sister' && (in_array('brother', $faraidCodes, true) || in_array('daughter', $faraidCodes, true)) => 'Asabah · 1:2',
-                                        $share['code'] === 'father' && ! in_array('son', $faraidCodes, true) => 'Asabah',
-                                        default => 'Dzawil Furudh',
-                                    };
+
+                                // Peta kartu hasil (kode tunggal) → papan keterangan $heirEntries
+                                // (kode jamak). Label jenis 'Ashabah & hijab diambil dari
+                                // sumber yang sama dengan panel terpisah agar konsisten.
+                                $entryLookup = collect($heirEntries)->keyBy('code');
+                                $entryForShare = static function (string $code) use ($entryLookup): ?array {
+                                    $pluralMap = [
+                                        'son' => 'sons', 'daughter' => 'daughters',
+                                        'grandson' => 'grandsons', 'granddaughter' => 'granddaughters',
+                                        'brother' => 'brothers', 'sister' => 'sisters',
+                                    ];
+                                    return $entryLookup->get($pluralMap[$code] ?? $code);
+                                };
+                                $asabahLabel = static function (string $code) use ($entryForShare): ?string {
+                                    $entry = $entryForShare($code);
+                                    return ($entry !== null && $entry['status'] === 'asabah' && $entry['asabah_type_label'] !== null)
+                                        ? $entry['asabah_type_label']
+                                        : null;
+                                };
+                                $nuqshanLabel = static function (string $code) use ($entryForShare): ?string {
+                                    $entry = $entryForShare($code);
+                                    return ($entry !== null && ($entry['hijab']['type'] ?? null) === 'nuqshan')
+                                        ? $entry['hijab']['type_label']
+                                        : null;
+                                };
+                                $hirmanEntry = static function (string $code) use ($entryForShare): ?array {
+                                    $entry = $entryForShare($code);
+                                    return ($entry !== null && ($entry['hijab']['type'] ?? null) === 'hirman')
+                                        ? $entry['hijab']
+                                        : null;
+                                };
+                                $lawStatus = static function (array $share) use ($asabahLabel): string {
+                                    return $asabahLabel($share['code']) ?? 'Dzawil Furudh';
                                 };
                                 $donutSlices = [];
                                 $cumulative = 0.0;
@@ -797,7 +819,7 @@
                                     @foreach ($result['shares'] as $cardIndex => $cardShare)
                                         @php
                                             $cardStatus = $lawStatus($cardShare);
-                                            $cardIsAsabah = str_starts_with($cardStatus, 'Asabah');
+                                            $cardIsAsabah = $asabahLabel($cardShare['code']) !== null;
                                         @endphp
                                         <div
                                             class="u-smart-card flex flex-wrap items-start justify-between gap-2 p-3.5"
@@ -827,6 +849,9 @@
                                             </div>
                                             <div class="flex shrink-0 flex-col items-end gap-1">
                                                 <span class="rounded-full px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider ring-1 {{ $cardIsAsabah ? 'bg-gold-soft/70 text-gold-deep ring-gold/40' : 'bg-emerald-soft text-emerald-900 ring-emerald-700/30' }}">{{ $cardStatus }}</span>
+                                                @if ($nuqshanLabel($cardShare['code']))
+                                                    <span class="rounded-full bg-red-50 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-red-800 ring-1 ring-red-200">{{ $nuqshanLabel($cardShare['code']) }}</span>
+                                                @endif
                                                 @if ($cardShare['disputed'])
                                                     <span class="rounded bg-gold-soft px-1.5 py-0.5 text-[10px] font-bold text-gold-deep">beda pendapat</span>
                                                 @endif
@@ -863,6 +888,12 @@
                                                     @if ($share['disputed'])
                                                         <span class="ml-1 rounded bg-gold-soft px-1.5 py-0.5 text-[10px] font-bold text-gold-deep">beda pendapat</span>
                                                     @endif
+                                                    @if ($asabahLabel($share['code']))
+                                                        <span class="mt-1 inline-block rounded-full bg-gold-soft px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-gold-deep ring-1 ring-gold/40">{{ $asabahLabel($share['code']) }}</span>
+                                                    @endif
+                                                    @if ($nuqshanLabel($share['code']))
+                                                        <span class="mt-1 inline-block rounded-full bg-red-50 px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-red-800 ring-1 ring-red-200">{{ $nuqshanLabel($share['code']) }}</span>
+                                                    @endif
                                                 </td>
                                                 <td class="tnum px-4 py-2.5 font-semibold text-emerald-900">
                                                     {{ $share['text'] }}
@@ -893,12 +924,19 @@
                                 <h3 class="mt-6 font-bold text-emerald-900">Ahli waris terhalang (hijab)</h3>
                                 <div class="mt-2 grid gap-2.5 sm:grid-cols-2">
                                     @foreach ($result['blocked'] as $blocked)
+                                        @php $blockedHirman = $hirmanEntry($blocked['code']); @endphp
                                         <div class="u-smart-card flex flex-wrap items-start justify-between gap-2 p-3.5">
                                             <div class="min-w-0">
                                                 <p class="text-sm font-bold text-emerald-900">{{ $blocked['name'] }}</p>
+                                                @if ($blockedHirman !== null && $blockedHirman['cause'])
+                                                    <p class="mt-0.5 text-xs font-semibold text-red-800">{{ $blockedHirman['cause_label'] }}</p>
+                                                @endif
                                                 <p class="mt-0.5 text-xs text-ink/70">{{ $blocked['reason'] }}</p>
+                                                @if ($blockedHirman !== null)
+                                                    <p class="mt-0.5 text-[11px] text-ink/60">{{ $blockedHirman['reason'] }}</p>
+                                                @endif
                                             </div>
-                                            <span class="shrink-0 rounded-full bg-gold-soft/70 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-gold-deep ring-1 ring-gold/40">Hijab · Mahjub</span>
+                                            <span class="shrink-0 rounded-full bg-red-50 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-red-800 ring-1 ring-red-200">Hijab Hirman</span>
                                         </div>
                                     @endforeach
                                 </div>

@@ -182,7 +182,7 @@ final class HeirExplanationService
             // Komposisi belum didukung mesin — jangan pernah tampilkan angka.
             return [
                 'code' => $code,
-                'name' => FaraidEngine::NAMES[$code] ?? $code,
+                'name' => FaraidEngine::NAMES[self::SHARE_CODE[$code] ?? $code] ?? $code,
                 'count' => $count,
                 'status' => 'pending',
                 'label' => 'Kasus belum didukung',
@@ -200,7 +200,7 @@ final class HeirExplanationService
 
         return [
             'code' => $code,
-            'name' => FaraidEngine::NAMES[$code] ?? $code,
+            'name' => FaraidEngine::NAMES[self::SHARE_CODE[$code] ?? $code] ?? $code,
             'count' => $count,
             'status' => 'idle',
             'label' => 'Tidak dipilih',
