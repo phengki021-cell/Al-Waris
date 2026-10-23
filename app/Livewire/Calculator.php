@@ -22,6 +22,7 @@ class Calculator extends Component
         'bequest' => ['nullable', 'numeric', 'min:0'],
         'funeral' => ['nullable', 'numeric', 'min:0'],
         'spouse' => ['nullable', 'in:husband,wife'],
+        'decedentGender' => ['required', 'in:laki-laki,perempuan'],
         'wifeCount' => ['integer', 'min:1', 'max:4'],
         'sons' => ['integer', 'min:0', 'max:30'],
         'daughters' => ['integer', 'min:0', 'max:30'],
@@ -58,6 +59,9 @@ class Calculator extends Component
     public string $funeral = '';
 
     // --- Ahli waris (mode Faraidh — alur asli) ---
+    /** Jenis kelamin pewaris: menentukan pasangan yang sah (laki-laki → istri; perempuan → suami). */
+    public string $decedentGender = 'laki-laki';
+
     public string $spouse = '';            // '' | 'husband' | 'wife'
 
     public int $wifeCount = 1;
@@ -224,10 +228,25 @@ class Calculator extends Component
     {
         // Validasi gagal tidak boleh menghapus input pengguna (kesalahan yang
         // dapat dipulihkan) — Livewire mempertahankan properti; panel hasil
-        // ditutup agar tidak membingungkan dengan lama.
+        // ditungup agar tidak membingungkan dengan lama.
         $this->showResult = false;
 
         $this->validate([...self::RULES], self::MESSAGES);
+
+        // Pasangan harus sesuai jenis kelamin pewaris (dinamis, bukan satu
+        // pesan untuk semua kondisi): pewaris laki-laki beristri, pewaris
+        // perempuan bersuami.
+        if ($this->spouse === 'husband' && $this->decedentGender === 'laki-laki') {
+            $this->addError('spouse', 'Pewaris laki-laki tidak memiliki suami. Periksa jenis kelamin pewaris yang dimasukkan, atau kosongkan pasangan / pilih “Istri”.');
+
+            return;
+        }
+
+        if ($this->spouse === 'wife' && $this->decedentGender === 'perempuan') {
+            $this->addError('spouse', 'Pewaris perempuan tidak memiliki istri. Periksa jenis kelamin pewaris yang dimasukkan, atau kosongkan pasangan / pilih “Suami”.');
+
+            return;
+        }
 
         $this->result = $this->buildDistribution()->toDisplayArray();
         $this->refreshHeirEntries();
@@ -246,6 +265,8 @@ class Calculator extends Component
         'funeral.numeric' => 'Biaya pengurusan jenazah harus berupa angka dalam rupiah.',
         'funeral.min' => 'Biaya pengurusan jenazah tidak boleh bernilai negatif.',
         'spouse.in' => 'Pilihan pasangan tidak dikenal — pilih Suami, Istri, atau kosongkan.',
+        'decedentGender.required' => 'Jenis kelamin pewaris wajib dipilih.',
+        'decedentGender.in' => 'Jenis kelamin pewaris tidak dikenal — pilih Laki-laki atau Perempuan.',
         'wifeCount.integer' => 'Jumlah istri harus berupa bilangan bulat.',
         'wifeCount.min' => 'Jumlah istri minimal 1.',
         'wifeCount.max' => 'Jumlah istri maksimal 4 sesuai syariat.',

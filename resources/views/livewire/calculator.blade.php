@@ -212,6 +212,26 @@
             <fieldset class="rounded-2xl border border-black/5 bg-surface/60 p-4 md:p-5">
                 <legend class="u-kicker px-1 text-emerald-900/70">2 · Ahli waris yang masih hidup</legend>
 
+                {{-- Jenis kelamin pewaris: menentukan pasangan yang sah --}}
+                <div class="mt-3" role="radiogroup" aria-label="Jenis kelamin pewaris">
+                    <p class="text-[0.78rem] font-bold text-ink md:text-sm">Jenis kelamin pewaris</p>
+                    <p class="text-[10px] font-medium text-ink/45">Pewaris laki-laki → pilih pasangan “Istri”; pewaris perempuan → pilih pasangan “Suami”.</p>
+                    <div class="mt-2 flex gap-2">
+                        @foreach (['laki-laki' => 'Laki-laki', 'perempuan' => 'Perempuan'] as $genderValue => $genderLabel)
+                            <button type="button"
+                                x-data="{ on: $wire.get('decedentGender') }"
+                                x-effect="on = $wire.get('decedentGender')"
+                                x-on:click="on = '{{ $genderValue }}'; $wire.set('decedentGender', '{{ $genderValue }}')"
+                                :class="on === '{{ $genderValue }}' ? 'u-choice u-choice-active px-4 py-2.5' : 'u-choice px-4 py-2.5 text-ink/70'"
+                                :aria-pressed="on === '{{ $genderValue }}' ? 'true' : 'false'"
+                                role="radio">
+                                <span class="block text-xs font-bold">{{ $genderLabel }}<span wire:loading wire:target="set('decedentGender')" class="ms-1 inline-block animate-pulse text-[9px] font-extrabold uppercase tracking-wider text-gold-deep">menyimpan…</span></span>
+                            </button>
+                        @endforeach
+                    </div>
+                    @error('decedentGender')<p class="mt-1.5 text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                </div>
+
                 {{-- Pasangan: kartu pilihan visual --}}
                 <div class="mt-3 grid gap-2 sm:grid-cols-3">
                     <button type="button"

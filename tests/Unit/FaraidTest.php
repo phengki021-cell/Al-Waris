@@ -168,6 +168,22 @@ describe('FaraidEngine — gharawain & penolakan', function () {
             ->and(totalOf($r))->toBe('1');
     });
 
+    test('suami + ayah + 1 anak laki + 2 anak perempuan → 1/4, 1/6, sisa 7/12 (2:1)', function () {
+        $r = engine([['husband', true], ['father', true], ['sons', 1], ['daughters', 2]]);
+
+        $s = sharesByCode($r);
+
+        expect($r->status)->toBe('valid')
+            ->and($s['husband'])->toBe('1/4')
+            ->and($s['father'])->toBe('1/6')
+            ->and($s['son'])->toBe('7/24')          // 2 unit dari 4 unit sisa 7/12
+            ->and(totalOf($r))->toBe('1');
+
+        // Anak laki-laki TIDAK sama dengan bagian tiap anak perempuan (2 : 1).
+        $perDaughter = collect($r->shares)->firstWhere('code', 'daughter');
+        expect($perDaughter['per_person_text'])->toBe('7/48');
+    });
+
     test('ayah + anak laki-laki → ayah 1/6, sisa 5/6 untuk anak (ayah tidak menyerap)', function () {
         $r = engine([['father', true], ['sons', 1]]);
 

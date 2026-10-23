@@ -176,6 +176,7 @@ it('tab mode perdata Livewire menghitung panel tersendiri dan tidak tersenggol f
     $faraid = Livewire::test(Calculator::class)
         ->set('estate', '9800000')
         ->set('funeral', '800000')
+        ->set('decedentGender', 'perempuan')
         ->set('spouse', 'husband')
         ->set('sons', 1)
         ->call('calculate');

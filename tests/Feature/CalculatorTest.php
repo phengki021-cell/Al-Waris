@@ -11,6 +11,7 @@ it('kalkulator Livewire menghitung kasus acuan (Rp 9 juta bersih)', function () 
     $component = Livewire::test(Calculator::class)
         ->set('estate', '9800000')
         ->set('funeral', '800000')
+        ->set('decedentGender', 'perempuan')
         ->set('spouse', 'husband')
         ->set('sons', 1)
         ->call('calculate');
@@ -33,6 +34,7 @@ it('hasil valid dapat disimpan ke riwayat (anonim per sesi)', function () {
     $component = Livewire::test(Calculator::class)
         ->set('estate', '9800000')
         ->set('funeral', '800000')
+        ->set('decedentGender', 'perempuan')
         ->set('spouse', 'husband')
         ->set('sons', 1)
         ->call('calculate')
@@ -49,6 +51,60 @@ it('hasil valid dapat disimpan ke riwayat (anonim per sesi)', function () {
         ->and($row->engine_version)->toBe(FaraidEngine::VERSION)
         ->and($row->participants()->count())->toBe(2)
         ->and($row->participants->first()->results->count())->toBe(1);
+});
+
+it('validasi jenis kelamin pewaris: pewaris laki-laki tidak berhak bersuami', function () {
+    $component = Livewire::test(Calculator::class)
+        ->set('estate', '100000')
+        ->set('spouse', 'husband')
+        ->call('calculate');
+
+    // Error dinamis pada field pasangan; hasil tidak muncul; input dipertahankan.
+    $component->assertHasErrors(['spouse'])
+        ->assertSee('Pewaris laki-laki tidak memiliki suami');
+
+    expect($component->instance()->showResult)->toBeFalse()
+        ->and($component->instance()->spouse)->toBe('husband');
+});
+
+it('validasi jenis kelamin pewaris: pewaris perempuan tidak berhak beristri', function () {
+    $component = Livewire::test(Calculator::class)
+        ->set('estate', '100000')
+        ->set('decedentGender', 'perempuan')
+        ->set('spouse', 'wife')
+        ->call('calculate');
+
+    $component->assertHasErrors(['spouse'])
+        ->assertSee('Pewaris perempuan tidak memiliki istri');
+
+    expect($component->instance()->showResult)->toBeFalse()
+        ->and($component->instance()->spouse)->toBe('wife');
+});
+
+it('pasangan sesuai jenis kelamin pewaris dihitung normal (pewaris laki-laki + istri)', function () {
+    $component = Livewire::test(Calculator::class)
+        ->set('estate', '12000000')
+        ->set('decedentGender', 'laki-laki')
+        ->set('spouse', 'wife')
+        ->set('sons', 1)
+        ->call('calculate')
+        ->instance();
+
+    expect($component->showResult)->toBeTrue()
+        ->and($component->result['status'])->toBe('valid');
+});
+
+it('pasangan sesuai jenis kelamin pewaris (pewaris perempuan bersuami) dihitung normal', function () {
+    $component = Livewire::test(Calculator::class)
+        ->set('estate', '12000000')
+        ->set('decedentGender', 'perempuan')
+        ->set('spouse', 'husband')
+        ->set('sons', 1)
+        ->call('calculate')
+        ->instance();
+
+    expect($component->showResult)->toBeTrue()
+        ->and($component->result['status'])->toBe('valid');
 });
 
 it('kalkulator menolak kombinasi tak didukung (kakek + cucu laki-laki — umariyyatan)', function () {
@@ -78,6 +134,7 @@ it('kalkulator menolak wasiat > 1/3', function () {
 it('kalkulator mendukung ahli waris pengganti — cucu menggantikan anak yang wafat', function () {
     $testable = Livewire::test(Calculator::class)
         ->set('estate', '9000000')
+        ->set('decedentGender', 'perempuan')
         ->set('spouse', 'husband')
         ->set('grandsons', 1)
         ->call('calculate');

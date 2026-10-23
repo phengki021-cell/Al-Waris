@@ -14,6 +14,7 @@ uses(RefreshDatabase::class);
 it('alur: hitung → hasil → kembali mengubah input (input tetap) → hasil tersembunyi', function () {
     $component = Livewire::test(Calculator::class)
         ->set('estate', '9800000')
+        ->set('decedentGender', 'perempuan')
         ->set('spouse', 'husband')
         ->set('sons', 1)
         ->call('calculate');
@@ -67,6 +68,7 @@ it('cek perhitungan valid tetap bekerja dengan versi mesin tercatat pada baris h
     $component = Livewire::test(Calculator::class)
         ->set('estate', '9800000')
         ->set('funeral', '800000')
+        ->set('decedentGender', 'perempuan')
         ->set('spouse', 'husband')
         ->set('sons', 1)
         ->call('calculate');

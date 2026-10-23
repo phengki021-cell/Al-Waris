@@ -156,6 +156,7 @@ it('total pembagian tetap utuh pada kasus asabah & nuqshan', function () {
 
     $liv = Livewire::test(App\Livewire\Calculator::class)
         ->set('estate', '100000000')
+        ->set('decedentGender', 'perempuan')
         ->set('spouse', 'husband')
         ->set('sons', 2)
         ->set('daughters', 1)
