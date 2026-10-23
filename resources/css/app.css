@@ -26,8 +26,8 @@
 
     /* === Turunan === */
     --color-emerald-soft: var(--alw-emerald-soft, #E6EDFF);  /* tint navy-terang */
+    --color-gold-deep: var(--alw-gold-deep, #B8913B);     /* Gold 600 — flip terang di dark */
     --color-gold-soft: #F7EED3;     /* tint gold pada area terang */
-    --color-gold-deep: #B8913B;     /* Gold 600 â€” border/link kuat */
     --color-haze: var(--alw-haze, rgba(8, 21, 47, 0.05));
 
     /* === Pemetaan token legasi (kompatibilitas seluruh halaman) === */
@@ -77,6 +77,7 @@
         --alw-line: rgba(8, 21, 47, 0.12);
         --alw-soft-line: rgba(8, 21, 47, 0.08);
         --alw-muted: rgba(8, 21, 47, 0.55);
+        --alw-gold-deep: #B8913B;
         color-scheme: light;
     }
 
@@ -94,6 +95,7 @@
         --alw-line: rgba(231, 236, 250, 0.18);
         --alw-soft-line: rgba(231, 236, 250, 0.12);
         --alw-muted: rgba(231, 236, 250, 0.6);
+        --alw-gold-deep: #E3C67E;
         color-scheme: dark;
     }
 
@@ -834,4 +836,26 @@
     .u-choice {
         transition: none;
     }
+}
+
+/* =========================================================
+   Koreksi kontras mode gelap — taruh di luar @layer agar pasti
+   mengalahkan utilities Tailwind terbespesifitas apa pun.
+   ========================================================= */
+@layer utilities {
+    .theme-dark [class*="text-ivory"] { color: #E7ECFA; }
+    .theme-dark [class*="text-primary"] { color: #C7D6F8; }
+    .theme-dark [class*="text-emerald-800"] { color: #A8BDF0; }
+    .theme-dark [class*="text-deep"] { color: #E7ECFA; }
+    .theme-dark [class*="text-charcoal"] { color: #E7ECFA; }
+    .theme-dark [class*="ring-black"] { --tw-ring-color: rgba(231, 236, 250, 0.14); }
+    .theme-dark [class*="border-black"] { border-color: rgba(231, 236, 250, 0.14); }
+
+    /* Pengecualian: permukaan gold-soft (krem) tetap terang di dark → teksnya tetap gelap */
+    .theme-dark [class*="bg-gold-soft"][class*="text-gold-deep"] { color: #8A692B; }
+    .theme-dark [class*="bg-gold-soft"][class*="text-charcoal"] { color: #101B33; }
+    .theme-dark [class*="bg-gold-soft"][class*="text-ink"] { color: #101B33; }
+    .theme-dark [class*="bg-gold-soft"][class*="text-primary"] { color: #08152F; }
+    .theme-dark [class*="bg-gold-soft"][class*="text-emerald-900"] { color: #08152F; }
+    .theme-dark [class*="bg-gold-soft"][class*="text-emerald-800"] { color: #0C1D3E; }
 }
