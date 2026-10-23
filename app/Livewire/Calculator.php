@@ -106,6 +106,18 @@ class Calculator extends Component
         $this->reset();
     }
 
+    /** Toggle pilihan ahli waris (kartu AYAH/IBU/nenek/kakek & pasangan perdata).
+     * Whitelist agar hanya properti boolean tertentu yang bisa berubah.
+     */
+    public function toggle(string $property): void
+    {
+        $allowed = ['father', 'mother', 'maternalGrandmother', 'grandfather', 'civilSpouse'];
+
+        if (in_array($property, $allowed, true)) {
+            $this->{$property} = ! $this->{$property};
+        }
+    }
+
     /** Pindah tab kalkulator; setiap tab memelihara input masing-masing. */
     public function setTab(string $tab): void
     {

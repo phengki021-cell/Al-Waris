@@ -120,3 +120,72 @@ it('kombinasi kakek + cucu ditolak aman oleh mesin (umariyyatan)', function () {
         ->and($component->result['shares'])->toBe([])
         ->and($component->result['notes'][0])->toContain('umariyyatân');
 });
+
+it('kartu AYAH dan IBU dapat dipilih lalu dibatalkan lewat toggle()', function () {
+    $component = Livewire::test(Calculator::class);
+
+    // Pilih Ayah dan Ibu bersamaan, keduanya tersimpan.
+    $component->call('toggle', 'father')->call('toggle', 'mother');
+    expect($component->instance()->father)->toBeTrue()
+        ->and($component->instance()->mother)->toBeTrue();
+
+    // Batal memilih Ibu — Ayah tidak ikut hilang (input lain dipertahankan).
+    $component->call('toggle', 'mother');
+    expect($component->instance()->father)->toBeTrue()
+        ->and($component->instance()->mother)->toBeFalse();
+
+    // Pilihan ikut memengaruhi hasil perhitungan.
+    $component->set('estate', '12000000')->call('calculate')->instance();
+    expect($component->result['shares'])->not->toBeEmpty();
+});
+
+it('toggle() menolak properti di luar whitelist', function () {
+    $component = Livewire::test(Calculator::class)->set('estate', '5000');
+
+    $component->call('toggle', 'estate');
+    expect($component->get('estate'))->toBe('5000');
+
+    $component->call('toggle', 'sons');
+    expect($component->instance()->sons)->toBe(0);
+});
+
+it('toggle() menggeser pasangan pada mode perdata (KUHPerdata)', function () {
+    $component = Livewire::test(Calculator::class);
+
+    $component->call('toggle', 'civilSpouse');
+    expect($component->instance()->civilSpouse)->toBeTrue();
+
+    $component->call('toggle', 'civilSpouse');
+    expect($component->instance()->civilSpouse)->toBeFalse();
+});
+
+it('tombol reset memunculkan dialog konfirmasi, bukan langsung menghapus', function () {
+    $component = Livewire::test(Calculator::class);
+
+    $component->assertSee('Apakah kamu yakin ingin menghapus semua data')
+        ->assertSee('Batal')
+        ->assertSee('Ya, Mulai Baru');
+});
+
+it('dua istri berbagi kolektif 1/8 dan tampil sebagai per istri', function () {
+    $testable = Livewire::test(Calculator::class)
+        ->set('estate', '120000000')
+        ->set('spouse', 'wife')
+        ->set('wifeCount', 2)
+        ->set('sons', 1)
+        ->call('calculate');
+
+    $testable->assertSee('1/16')->assertSee('7.500.000')->assertSee('kolektif');
+
+    $component = $testable->instance();
+
+    $shares = collect($component->result['shares']);
+    $wife = $shares->firstWhere('code', 'wife');
+    $son = $shares->firstWhere('code', 'son');
+
+    expect($wife['text'])->toBe('1/8')
+        ->and($wife['per_person_text'])->toBe('1/16')
+        ->and((float) $wife['total_rp'])->toBe(15_000_000.0)
+        ->and((float) $wife['per_person_rp'])->toBe(7_500_000.0)
+        ->and((float) $son['total_rp'])->toBe(105_000_000.0);
+});

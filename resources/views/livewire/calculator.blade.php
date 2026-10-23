@@ -456,7 +456,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16 2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3Z"/></svg>
                         Hitung Sekarang
                     </button>
-                    <button type="button" wire:click="startNew" wire:loading.attr="disabled"
+                    <button type="button" x-on:click="$dispatch('open-reset-modal', { mode: 'faraid' })"
                         class="rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-900/5">
                         Mulai Perhitungan Baru
                     </button>
@@ -482,7 +482,7 @@
                         class="u-choice px-5 py-2.5 text-sm">
                         ← Kembali mengubah input
                     </button>
-                    <button type="button" wire:click="startNew"
+                    <button type="button" x-on:click="$dispatch('open-reset-modal', { mode: 'faraid' })"
                         class="u-choice px-5 py-2.5 text-sm">
                         + Mulai perhitungan baru
                     </button>
@@ -611,6 +611,9 @@
                                                         <span class="text-xs text-ink/55">(×{{ $cardShare['count'] }})</span>
                                                     @endif
                                                 </p>
+                                                @if ($cardShare['code'] === 'wife' && $cardShare['count'] > 1)
+                                                    <p class="mt-0.5 text-[11px] text-ink/60">Bagian kolektif <strong>seluruh</strong> istri — dibagi rata, bukan {{ $cardShare['text'] }} per istri.</p>
+                                                @endif
                                                 <p class="tnum mt-0.5 text-xs font-semibold text-emerald-900/85">
                                                     {{ $cardShare['text'] }}
                                                     @if ($cardShare['per_person_text'] !== null)
@@ -653,6 +656,9 @@
                                                     {{ $share['name'] }}
                                                     @if ($share['count'] > 1)
                                                         <span class="text-xs text-ink/55">(×{{ $share['count'] }})</span>
+                                                    @endif
+                                                    @if ($share['code'] === 'wife' && $share['count'] > 1)
+                                                        <span class="block text-[10px] text-ink/40">bagian kolektif seluruh istri — dibagi rata</span>
                                                     @endif
                                                     @if ($share['disputed'])
                                                         <span class="ml-1 rounded bg-gold-soft px-1.5 py-0.5 text-[10px] font-bold text-gold-deep">beda pendapat</span>
@@ -968,7 +974,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path stroke-linecap="round" d="M7 21h10M12 3v18"/></svg>
                         Hitung (Mode Perdata)
                     </button>
-                    <button type="button" wire:click="startNewCivil" wire:loading.attr="disabled"
+                    <button type="button" x-on:click="$dispatch('open-reset-modal', { mode: 'civil' })"
                         class="rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-900/5">
                         Mulai Perhitungan Baru
                     </button>
@@ -1244,4 +1250,37 @@
             </p>
         </div>
     @endif
+
+    {{-- Modal konfirmasi sebelum reset — input tidak dihapus jika memilih Batal --}}
+    <div x-data="{ open: false, mode: 'faraid' }"
+        @open-reset-modal.window="mode = $event.detail.mode || 'faraid'; open = true"
+        @keydown.escape.window="open = false">
+        <div x-cloak x-show="open" class="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style="display: none" aria-hidden="true">
+            <div class="absolute inset-0 bg-emerald-950/50 backdrop-blur-sm"
+                x-on:click="open = false" aria-hidden="true"></div>
+            <div x-show="open" x-transition role="dialog" aria-modal="true"
+                aria-labelledby="reset-modal-title"
+                class="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-xl ring-1 ring-emerald-950/10">
+                <h3 id="reset-modal-title" class="text-lg font-bold text-ink">
+                    Mulai perhitungan baru?
+                </h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink/70">
+                    Apakah kamu yakin ingin menghapus semua data dan memulai perhitungan baru?
+                    Semua input yang sudah kamu isi <strong class="text-ink">akan dihapus</strong>.
+                </p>
+                <div class="mt-5 flex flex-wrap justify-end gap-3">
+                    <button type="button" x-on:click="open = false"
+                        class="rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-900/5">
+                        Batal
+                    </button>
+                    <button type="button"
+                        x-on:click="mode === 'civil' ? $wire.startNewCivil() : $wire.startNew(); open = false"
+                        class="u-btn-emerald px-5 py-2.5 text-sm" autofocus>
+                        Ya, Mulai Baru
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
