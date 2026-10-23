@@ -90,7 +90,7 @@
 
                     {{-- Strip urutan eksekusi harta (1→4) --}}
                     <ol class="mb-4 flex flex-wrap items-center gap-1.5 text-[0.68rem] font-bold tracking-wide uppercase text-ink/70" aria-label="Urutan eksekusi harta">
-                        <li class="rounded-full bg-white px-2.5 py-1 ring-1 ring-emerald-900/10 text-emerald-900">Harta Peninggalan</li>
+                        <li class="rounded-full bg-paper px-2.5 py-1 ring-1 ring-emerald-900/10 text-emerald-900">Harta Peninggalan</li>
                         <li aria-hidden="true" class="text-gold-deep">→</li>
                         <li class="rounded-full bg-gold-soft px-2.5 py-1 text-gold-deep ring-1 ring-gold/40">1 · Biaya Jenazah</li>
                         <li aria-hidden="true" class="text-gold-deep">→</li>
@@ -471,7 +471,7 @@
 
                 {{-- Ringkasan input (mengikuti jejak asli) --}}
                 <div class="u-smart-card mt-4 overflow-hidden">
-                    <div class="flex items-center gap-2 bg-gradient-to-r from-emerald-900 to-emerald-700 px-4 py-2.5">
+                    <div class="flex items-center gap-2 bg-gradient-to-r from-[#08152F] to-[#24479E] px-4 py-2.5">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-4 w-4 text-gold-soft" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><path stroke-linecap="round" d="M9 12h6M9 16h6M9 8h2"/></svg>
                         <p class="text-xs font-extrabold tracking-widest text-gold-soft uppercase">Ringkasan input</p>
                     </div>
@@ -505,7 +505,7 @@
 
                 {{-- Papan keterangan dinamis: berubah langsung mengikuti pilihan --}}
                 <div class="u-smart-card mt-4 overflow-hidden" aria-live="polite">
-                    <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-700 px-4 py-2.5">
+                    <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-[#050D1D] via-[#08152F] to-[#24479E] px-4 py-2.5">
                         <div class="flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-4 w-4 text-gold-soft" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9-9 9-9-9 9-9 9 9"/></svg>
                             <p class="text-xs font-extrabold uppercase tracking-widest text-gold-soft">Keterangan setiap ahli waris</p>
@@ -531,7 +531,7 @@
                                 @elseif($entry['status'] === 'asabah') bg-gold-soft/40 ring-gold/30
                                 @elseif($entry['status'] === 'mahjub') bg-red-50 ring-red-200
                                 @elseif($entry['status'] === 'pending') bg-red-50/60 ring-red-200
-                                @else bg-white ring-black/8 @endif">
+                                @else bg-paper ring-emerald-900/10 @endif">
                                 <div class="flex flex-wrap items-center justify-between gap-1.5">
                                     <p class="text-sm font-bold text-ink">
                                         {{ $entry['name'] }}
@@ -540,11 +540,11 @@
                                         @endif
                                     </p>
                                     <span class="rounded-full px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider ring-1
-                                        @if ($entry['status'] === 'fard') bg-emerald-900 text-emerald-50 ring-emerald-900
+                                        @if ($entry['status'] === 'fard') bg-[#08152F] text-[#F0F4FF] ring-[#08152F]
                                         @elseif($entry['status'] === 'asabah') bg-gold-soft text-gold-deep ring-gold/40
                                         @elseif($entry['status'] === 'mahjub') bg-red-600 text-white ring-red-600
-                                        @elseif($entry['status'] === 'pending') bg-white text-red-700 ring-red-300
-                                        @else bg-white text-ink/45 ring-black/10 @endif">
+                                        @elseif($entry['status'] === 'pending') bg-paper text-red-700 ring-red-300
+                                        @else bg-paper text-ink/45 ring-emerald-900/10 @endif">
                                         {{ $entry['label'] }}
                                     </span>
                                 </div>
@@ -580,7 +580,7 @@
 
                 {{-- ===== Panel 'ASABAH (tiga jenis) — terpisah dari hijab ===== --}}
                 <div class="u-smart-card mt-4 overflow-hidden" aria-live="polite">
-                    <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-700 px-4 py-2.5">
+                    <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-[#050D1D] via-[#08152F] to-[#24479E] px-4 py-2.5">
                         <div class="flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-4 w-4 text-gold-soft" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m16 16 3-8 3 8M2 16l3-8 3 8m7 5H9l3-8 3 8m0-16L12 5l-1 1"/></svg>
                             <p class="text-xs font-extrabold uppercase tracking-widest text-gold-soft">Jenis &lsquo;Ashabah</p>
@@ -709,7 +709,7 @@
                         Hitung Sekarang
                     </button>
                     <button type="button" x-on:click="$dispatch('open-reset-modal', { mode: 'faraid' })"
-                        class="rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-900/5">
+                        class="rounded-full border border-emerald-900/10 bg-paper px-6 py-3 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-900/5">
                         Mulai Perhitungan Baru
                     </button>
 
@@ -754,7 +754,7 @@
 
                 @if ($result['status'] === 'valid')
                     <div class="u-smart-card overflow-hidden">
-                        <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-700 px-5 py-3.5">
+                        <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-[#050D1D] via-[#08152F] to-[#24479E] px-5 py-3.5">
                             <h2 class="u-display text-lg text-ivory">Hasil Pembagian</h2>
                             <span class="u-chip">DEMO — verifikasi ahli faraid</span>
                         </div>
@@ -798,7 +798,7 @@
 
                             {{-- ===== Visual Result Banner: donut chart interaktif + kartu rincian berbadge ===== --}}
                             @php
-                                $palette = ['#064E3B', '#047857', '#10B981', '#34D399', '#6EE7B7', '#F59E0B', '#D97706', '#0F766E', '#115E59', '#059669'];
+                                $palette = ['#08152F', '#10254B', '#00CFFF', '#57D4FF', '#9FC9FF', '#D4AF57', '#B8913B', '#4A3AB0', '#2B2170', '#8058F5'];
 
                                 // Peta kartu hasil (kode tunggal) → papan keterangan $heirEntries
                                 // (kode jamak). Label jenis 'Ashabah & hijab diambil dari
@@ -1029,15 +1029,21 @@
                                 </p>
                             @endif
 
-                            {{-- Simpan ke riwayat --}}
+                            {{-- Simpan ke riwayat + cetak/PDF --}}
                             <div class="mt-5 border-t border-emerald-900/10 pt-4">
                                 <button type="button" wire:click="saveToHistory" wire:loading.attr="disabled"
                                     class="u-btn-gold px-6 py-2.5 text-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                     Simpan ke Riwayat
                                 </button>
+                                <button type="button" x-data x-on:click="window.print()"
+                                    class="u-btn-ghost ml-2 px-6 py-2.5 text-sm text-charcoal ring-1 ring-charcoal/15">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 8V3.5h10V8M7 17.5H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M7 14.5h10v6H7z"/></svg>
+                                    Cetak / Simpan PDF
+                                </button>
                                 <p class="mt-2 text-xs text-ink/50">
                                     Riwayat disimpan anonim menggunakan sesi peramban ini dan bisa Anda hapus di halaman Riwayat.
+                                    Menu cetak peramban menyediakan opsi “Simpan sebagai PDF”.
                                 </p>
                             </div>
                         </div>
@@ -1267,7 +1273,7 @@
                         </div>
                     </div>
 
-                    <p class="mt-3 rounded-xl bg-white px-4 py-2.5 text-xs leading-relaxed text-ink/70 ring-1 ring-black/5">
+                    <p class="mt-3 rounded-xl bg-paper px-4 py-2.5 text-xs leading-relaxed text-ink/70 ring-1 ring-emerald-900/10">
                         Berbeda dengan faraid: bagian anak laki-laki dan anak perempuan <strong class="text-ink">SAMA BESAR</strong>
                         (Pasal 852). Anak yang lebih dulu wafat digantikan cucu-cucunya <strong class="text-ink">satu bagian per
                         cabang</strong>, dan cucu dalam cabang membagi sama rata (Pasal 853).
@@ -1280,7 +1286,7 @@
                         Hitung (Mode Perdata)
                     </button>
                     <button type="button" x-on:click="$dispatch('open-reset-modal', { mode: 'civil' })"
-                        class="rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-900/5">
+                        class="rounded-full border border-emerald-900/10 bg-paper px-6 py-3 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-900/5">
                         Mulai Perhitungan Baru
                     </button>
                 </div>
@@ -1294,7 +1300,7 @@
                 @if ($showCivilResult && $civilResult)
                     @if ($civilResult['status'] === 'valid')
                         <div class="u-smart-card overflow-hidden">
-                            <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-700 px-5 py-3.5">
+                            <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-[#050D1D] via-[#08152F] to-[#24479E] px-5 py-3.5">
                                 <h2 class="u-display text-lg text-ivory">Hasil Pembagian Perdata — Golongan I</h2>
                                 <span class="u-chip">DEMO — bukan nasihat hukum</span>
                             </div>
@@ -1318,7 +1324,7 @@
 
                                 {{-- Visual Result Banner mode perdata: donut + kartu berbadge --}}
                                 @php
-                                    $civilPalette = ['#064E3B', '#047857', '#10B981', '#34D399', '#6EE7B7', '#F59E0B', '#D97706', '#0F766E', '#115E59', '#059669'];
+                                    $civilPalette = ['#08152F', '#10254B', '#00CFFF', '#57D4FF', '#9FC9FF', '#D4AF57', '#B8913B', '#4A3AB0', '#2B2170', '#8058F5'];
                                     $civilSlices = [];
                                     $civilCumulative = 0.0;
                                     foreach (collect($civilResult['entries'])->values() as $civilIndex => $civilEntry) {
@@ -1501,7 +1507,7 @@
              ===================================================== --}}
         <div class="mt-6 space-y-4">
             <div class="u-smart-card overflow-hidden">
-                <div class="bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-700 px-5 py-3.5">
+                <div class="bg-gradient-to-r from-[#050D1D] via-[#08152F] to-[#24479E] px-5 py-3.5">
                     <h2 class="u-display text-lg text-ivory">Topik Kontemporer — peta rujukan</h2>
                 </div>
                 <p class="px-5 py-4 text-sm leading-relaxed text-ink/70">
@@ -1566,7 +1572,7 @@
                 x-on:click="open = false" aria-hidden="true"></div>
             <div x-show="open" x-transition role="dialog" aria-modal="true"
                 aria-labelledby="reset-modal-title"
-                class="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-xl ring-1 ring-emerald-950/10">
+                class="relative w-full max-w-md rounded-2xl bg-paper p-6 shadow-xl ring-1 ring-emerald-900/10">
                 <h3 id="reset-modal-title" class="text-lg font-bold text-ink">
                     Mulai perhitungan baru?
                 </h3>
@@ -1576,7 +1582,7 @@
                 </p>
                 <div class="mt-5 flex flex-wrap justify-end gap-3">
                     <button type="button" x-on:click="open = false"
-                        class="rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-900/5">
+                        class="rounded-full border border-emerald-900/10 bg-paper px-5 py-2.5 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-900/5">
                         Batal
                     </button>
                     <button type="button"

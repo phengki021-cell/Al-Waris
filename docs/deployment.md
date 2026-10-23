@@ -204,3 +204,34 @@ Panduan domain gratis Student Pack & subdomain kampus `.ui.ac.id`:
 - Reset data demo: `SKIP_SEED=0` (bawaan) agar seed master dijalankan tiap boot; set `SKIP_SEED=1` untuk mempercepat boot tanpa seed.
 - Log & health: dashboard Render → service → Logs/Events; health `/up`.
 
+
+---
+
+## 10. Lampiran Tahap 3 — status finalisasi ( Oktober 2026 )
+
+### Status terverifikasi otomatis
+- Test: 178 PASS (unit mesin faraid + feature Livewire + PWA + halaman).
+- PHPStan level 5: 0 error.
+- Aset produksi: `public/build/*` ter-build (Poppins + Amiri self-hosted, CSS 78 kB, JS 6.9 kB).
+- Mesin faraid: `FaraidEngine 0.6.0` (perbaikan kakek terhalang ayah + regresi test).
+- Halaman error bawaan: 404 & 500 berbahasa; debug wajib OFF (`APP_DEBUG=false`).
+
+### Urutan perintah finalisasi di file lokal (Windows 11: PowerShell)
+```powershell
+cd warisku
+composer install --no-dev --optimize-autoloader   # bila menyiapkan paket produksi via Composer
+npm run build                                     # hasil latest di public/build (wajib di-upload)
+php artisan config:clear && php artisan view:clear
+php artisan test --compact                        # sanity 178 PASS
+```
+
+### Checklist unggah (survival shared hosting / cPanel)
+1. Upload SELURUH folder (kecuali `.env` lama, `node_modules`, `storage/logs/*`, `database/database.sqlite` bila tak ingin data dev ikut).
+2. document root → `public/` (bukan folder root proyek).
+3. Buat `.env` produksi di server (jangan upload `.env` lokal!): `APP_DEBUG=false`, `APP_KEY` baru (`php artisan key:generate --show` lalu tempel), DB sesuai host.
+4. `chmod 775 storage bootstrap/cache` bila akses SSH; via File Manager cPanel cukup biarkan 755 + ownership benar.
+5. Migrasi aman: `php artisan migrate --force` (idempotent; TIDAK pernah `migrate:fresh` di produksi).
+6. Cache produksi: `php artisan config:cache && php artisan route:cache && php artisan view:cache`.
+7. HTTPS aktif (AutoSSL/Let's Encrypt) — wajib untuk manifest/service worker PWA.
+8. `php artisan storage:link` bila mengaktifkan file publik; proyek ini tidak storing upload user, opsional.
+9. Verifikasi pasca-deploy: buka `/manifest.json`, `/sw.js`, `/`, `/hitung-warisan` — semua 200.

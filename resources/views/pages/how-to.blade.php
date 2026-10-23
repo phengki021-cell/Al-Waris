@@ -127,7 +127,7 @@
                                             </span>
                                             <span class="mt-1 flex shrink-0 flex-col items-end gap-1">
                                                 <span class="rounded bg-accent-soft px-2 py-0.5 text-[10px] font-semibold text-primary">{{ $j['tag'] ?? 'Jurnal' }}</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="1.6" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0h-6m6 0v6"/></svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#B8913B" stroke-width="1.6" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0h-6m6 0v6"/></svg>
                                             </span>
                                         </a>
                                     </li>
@@ -186,7 +186,7 @@
                             </span>
                             <span class="mt-1 flex shrink-0 flex-col items-end gap-1">
                                 <span class="rounded bg-accent-soft px-2 py-0.5 text-[10px] font-semibold text-primary">{{ $j['tag'] ?? 'Jurnal' }}</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="1.6" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0h-6m6 0v6"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#B8913B" stroke-width="1.6" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0h-6m6 0v6"/></svg>
                             </span>
                         </a>
                     </li>

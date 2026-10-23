@@ -53,14 +53,6 @@ final class HeirExplanationService
         'sisters' => 'Isi jumlah saudara sedarah perempuan bila ada.',
     ];
 
-    /** Nama akrab penyebab hijab untuk ditampilkan di panel Hijab. */
-    private const CAUSE_NAMES = [
-        'Ayah' => 'Ayah',
-        'Anak laki-laki' => 'Anak laki-laki',
-        'Anak perempuan' => 'Anak perempuan',
-        'Cucu laki-laki' => 'Cucu laki-laki',
-    ];
-
     /**
      * Bangun papan keterangan dari input formulir.
      *
@@ -178,8 +170,10 @@ final class HeirExplanationService
             ];
         }
 
-        if ($selected && $blocked === null && $share === null) {
-            // Komposisi belum didukung mesin — jangan pernah tampilkan angka.
+        // Titik ini tercapai saat ahli waris DIPILIH tetapi tidak menerima
+        // bagian maupun hijab → komposisi belum didukung mesin.
+        // Jangan pernah tampilkan angka.
+        if ($selected) {
             return [
                 'code' => $code,
                 'name' => FaraidEngine::NAMES[self::SHARE_CODE[$code] ?? $code] ?? $code,

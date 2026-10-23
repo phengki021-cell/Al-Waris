@@ -6,43 +6,97 @@
 @source '../../storage/framework/views/*.php';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-    --font-display: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-sans: 'Poppins', 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-display: 'Poppins', 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 
-    /* Font kaligrafi Arab (Al-Qur'an & hadis) — self-hosted via @fontsource */
+    /* Font kaligrafi Arab (Al-Qur'an & hadis) â€” self-hosted via @fontsource */
     --font-quran: 'Amiri', 'Noto Naskh Arabic', 'Scheherazade New', 'Segoe UI Arabic', serif;
 
-    /* === Palet inti Al-Waris — Modern Islamic LegalTech (Emerald x Gold) === */
-    --color-deep: #064E3B;      /* Emerald Green 900 — kanvas gelap utama */
-    --color-forest: #065F46;    /* Emerald Green 800 — panel gelap kedua */
-    --color-gold: #F59E0B;      /* Gold 500 — aksen highlight legalitas */
-    --color-ivory: #F8FAFC;     /* Slate 50 — kanvas terang bersih */
-    --color-charcoal: #0F172A;  /* Slate 900 — teks gelap kontras tinggi */
+    /* === Palet inti Al-Waris â€” Futuristic Islamic LegalTech (Navy x Burgundy x Gold) === */
+    --color-deep: #08152F;      /* Navy 950 â€” kanvas gelap utama (sidebar, hero, footer) */
+    --color-forest: #10254B;    /* Navy 800 â€” panel gelap kedua */
+    --color-maroon: #8E1744;    /* Burgundy â€” aksen identitas & status aktif */
+    --color-gold: #D4AF57;      /* Gold â€” aksen highlight legalitas */
+    --color-ivory: var(--alw-canvas, #F4F6FB);     /* kanvas konten (berbalik di dark) */
+    --color-charcoal: var(--alw-ink, #101B33);  /* teks gelap → terang di dark */
+
+    /* === Aksen futuristik === */
+    --color-cyan-x: #00CFFF;    /* neon cyan â€” fokus, grafik */
+    --color-violet-x: #8058F5;  /* ungu neon â€” gradasi aksen */
 
     /* === Turunan === */
-    --color-emerald-soft: #D1FAE5;  /* tint emerald terang */
-    --color-gold-soft: #FEF3C7;     /* tint gold pada area terang */
-    --color-gold-deep: #D97706;     /* Gold 600 — border/link kuat */
-    --color-haze: rgba(6, 78, 59, 0.06);
+    --color-emerald-soft: var(--alw-emerald-soft, #E6EDFF);  /* tint navy-terang */
+    --color-gold-soft: #F7EED3;     /* tint gold pada area terang */
+    --color-gold-deep: #B8913B;     /* Gold 600 â€” border/link kuat */
+    --color-haze: var(--alw-haze, rgba(8, 21, 47, 0.05));
 
     /* === Pemetaan token legasi (kompatibilitas seluruh halaman) === */
-    --color-primary: #064E3B;       /* panel gelap inti */
-    --color-primary-700: #047857;   /* hover / gradasi emerald terang */
-    --color-accent: #D97706;        /* gold aksi (link, aksen legal) */
-    --color-accent-soft: #FEF3C7;   /* tint gold di area terang */
-    --color-surface: #F1F5F9;       /* panel dalam kartu putih (slate-100) */
-    --color-ink: #0F172A;           /* teks utama */
-    --color-paper: #FFFFFF;         /* kartu putih bersih */
+    --color-primary: #08152F;       /* panel gelap inti */
+    --color-primary-700: #14347E;   /* hover / gradasi navy terang */
+    --color-accent: #B8913B;        /* gold aksi (link, aksen legal) */
+    --color-accent-soft: #F7EED3;   /* tint gold di area terang */
+    --color-surface: var(--alw-surface, #EEF1F8);   /* panel dalam kartu */
+    --color-ink: var(--alw-ink, #101B33);           /* teks utama */
+    --color-paper: var(--alw-paper, #FFFFFF);       /* kartu putih */
 
-    --shadow-lift: 0 12px 32px -14px rgba(6, 78, 59, 0.35);
-    --shadow-smooth: 0 4px 18px -8px rgba(6, 78, 59, 0.18), 0 1px 2px rgba(6, 78, 59, 0.06);
-    --shadow-glow: 0 0 0 1px rgba(245, 158, 11, 0.4), 0 14px 44px -16px rgba(16, 185, 129, 0.5);
+    /* === Remap skala emerald â†’ navy-burgundy futuristik ===
+       Seluruh view lama memakai utilitas emerald-*; nilai digeser ke identitas
+       baru tanpa menyentuh markup (Tailwind 4 theme override). */
+    --color-emerald-50: var(--alw-e50, #F0F4FF);
+    --color-emerald-100: var(--alw-e100, #DDE6FA);
+    --color-emerald-200: var(--alw-e200, #BCCEF5);
+    --color-emerald-300: #8DABEC;
+    --color-emerald-400: #4B72C4;
+    --color-emerald-500: #24479E;
+    --color-emerald-600: #14347E;
+    --color-emerald-700: #10254B;
+    --color-emerald-800: #0C1D3E;
+    --color-emerald-900: var(--alw-e900, #08152F);
+    --color-emerald-950: #050D1D;
+
+    --shadow-lift: 0 12px 32px -14px rgba(8, 21, 47, 0.4);
+    --shadow-smooth: 0 4px 18px -8px rgba(8, 21, 47, 0.2), 0 1px 2px rgba(8, 21, 47, 0.06);
+    --shadow-glow: 0 0 0 1px rgba(212, 175, 87, 0.4), 0 14px 44px -16px rgba(128, 88, 245, 0.5);
 }
 
 /* =========================================================
-   Dasar
+   Dasar — variabel runtime tema (terang ≔ default, gelap = .theme-dark)
    ========================================================= */
 @layer base {
+    :root {
+        --alw-canvas: #F4F6FB;
+        --alw-paper: #FFFFFF;
+        --alw-surface: #EEF1F8;
+        --alw-ink: #101B33;
+        --alw-haze: rgba(8, 21, 47, 0.05);
+        --alw-emerald-soft: #E6EDFF;
+        --alw-e50: #F0F4FF;
+        --alw-e100: #DDE6FA;
+        --alw-e200: #BCCEF5;
+        --alw-e900: #08152F;
+        --alw-line: rgba(8, 21, 47, 0.12);
+        --alw-soft-line: rgba(8, 21, 47, 0.08);
+        --alw-muted: rgba(8, 21, 47, 0.55);
+        color-scheme: light;
+    }
+
+    .theme-dark {
+        --alw-canvas: #0A1830;
+        --alw-paper: #10254B;
+        --alw-surface: #0B1B3A;
+        --alw-ink: #E7ECFA;
+        --alw-haze: rgba(231, 236, 250, 0.08);
+        --alw-emerald-soft: #14305E;
+        --alw-e50: #0E2145;
+        --alw-e100: #132A56;
+        --alw-e200: #23345E;
+        --alw-e900: #E7ECFA;
+        --alw-line: rgba(231, 236, 250, 0.18);
+        --alw-soft-line: rgba(231, 236, 250, 0.12);
+        --alw-muted: rgba(231, 236, 250, 0.6);
+        color-scheme: dark;
+    }
+
     html {
         scroll-behavior: smooth;
         -webkit-text-size-adjust: 100%;
@@ -59,12 +113,12 @@
     }
 
     ::selection {
-        background: rgba(16, 185, 129, 0.25);
-        color: #064E3B;
+        background: rgba(0, 207, 255, 0.25);
+        color: #08152F;
     }
 
     :focus-visible {
-        outline: 2px solid #10B981;
+        outline: 2px solid #00CFFF;
         outline-offset: 2px;
     }
 
@@ -73,12 +127,12 @@
         letter-spacing: -0.02em;
     }
 
-    /* Angka & persen jadwal rapat — nuansa editorial */
+    /* Angka & persen jadwal rapat â€” nuansa editorial */
     .tnum {
         font-variant-numeric: tabular-nums;
     }
 
-    /* Teks Al-Qur'an & hadis — kaligrafi jelas dan luas */
+    /* Teks Al-Qur'an & hadis â€” kaligrafi jelas dan luas */
     .verse-arab {
         font-family: var(--font-quran);
         font-size: 1.5rem;
@@ -98,7 +152,7 @@
    Komponen desain sistem
    ========================================================= */
 @layer components {
-    /* Kicker — label bab kecil di atas judul */
+    /* Kicker â€” label bab kecil di atas judul */
     .u-kicker {
         display: inline-flex;
         align-items: center;
@@ -128,11 +182,11 @@
 
     /* Garis tipis emas */
     .u-hairline {
-        background: linear-gradient(90deg, rgba(245, 158, 11, 0) 0%, rgba(245, 158, 11, 0.8) 18%, rgba(245, 158, 11, 0.8) 82%, rgba(245, 158, 11, 0) 100%);
+        background: linear-gradient(90deg, rgba(212, 175, 87, 0) 0%, rgba(212, 175, 87, 0.8) 18%, rgba(212, 175, 87, 0.8) 82%, rgba(212, 175, 87, 0) 100%);
         height: 1px;
     }
 
-    /* Tekstur geometri Islami 8 titik — sangat halus */
+    /* Tekstur geometri Islami 8 titik â€” sangat halus */
     .u-lattice {
         position: relative;
         isolation: isolate;
@@ -150,11 +204,11 @@
     }
 
     .u-lattice-dark::before {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23064E3B' stroke-width='1'%3E%3Crect x='18' y='18' width='36' height='36'/%3E%3Crect x='18' y='18' width='36' height='36' transform='rotate(45 36 36)'/%3E%3Ccircle cx='36' cy='36' r='18'/%3E%3C/g%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%2308152F' stroke-width='1'%3E%3Crect x='18' y='18' width='36' height='36'/%3E%3Crect x='18' y='18' width='36' height='36' transform='rotate(45 36 36)'/%3E%3Ccircle cx='36' cy='36' r='18'/%3E%3C/g%3E%3C/svg%3E");
         opacity: 0.04;
     }
 
-    /* Tombol emas — pergeseran cahaya halus */
+    /* Tombol emas â€” pergeseran cahaya halus */
     .u-btn-gold {
         position: relative;
         overflow: hidden;
@@ -162,10 +216,10 @@
         align-items: center;
         gap: 0.5rem;
         border-radius: 9999px;
-        background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 55%, #D97706 100%);
-        color: #064E3B;
+        background: linear-gradient(135deg, #E3C67E 0%, #D4AF57 55%, #B8913B 100%);
+        color: #08152F;
         font-weight: 700;
-        box-shadow: 0 10px 26px -12px rgba(217, 119, 6, 0.55);
+        box-shadow: 0 10px 26px -12px rgba(184, 145, 59, 0.55);
         transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s, filter 0.35s;
     }
 
@@ -181,7 +235,7 @@
     .u-btn-gold:hover {
         transform: translateY(-2px);
         filter: brightness(1.04);
-        box-shadow: 0 16px 38px -14px rgba(245, 158, 11, 0.7);
+        box-shadow: 0 16px 38px -14px rgba(212, 175, 87, 0.7);
     }
 
     .u-btn-gold:hover::after {
@@ -200,17 +254,17 @@
         justify-content: center;
         gap: 0.5rem;
         border-radius: 9999px;
-        background: linear-gradient(135deg, #064E3B 0%, #047857 60%, #059669 120%);
+        background: linear-gradient(135deg, #08152F 0%, #10254B 60%, #8058F5 120%);
         color: #FFFFFF;
         font-weight: 700;
-        box-shadow: 0 12px 30px -12px rgba(6, 78, 59, 0.55);
+        box-shadow: 0 12px 30px -12px rgba(8, 21, 47, 0.55);
         transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s, filter 0.35s;
     }
 
     .u-btn-emerald:hover {
         transform: translateY(-2px);
         filter: brightness(1.06);
-        box-shadow: 0 18px 40px -14px rgba(4, 120, 87, 0.6), 0 0 0 1px rgba(245, 158, 11, 0.35);
+        box-shadow: 0 18px 40px -14px rgba(20, 52, 126, 0.6), 0 0 0 1px rgba(212, 175, 87, 0.35);
     }
 
     /* Tombol sekunder gelap */
@@ -219,38 +273,38 @@
         align-items: center;
         gap: 0.5rem;
         border-radius: 9999px;
-        border: 1px solid rgba(245, 158, 11, 0.45);
+        border: 1px solid rgba(212, 175, 87, 0.45);
         color: #F8FAFC;
         font-weight: 500;
         transition: border-color 0.3s, background 0.3s, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .u-btn-ghost:hover {
-        border-color: rgba(245, 158, 11, 0.9);
-        background: rgba(245, 158, 11, 0.08);
+        border-color: rgba(212, 175, 87, 0.9);
+        background: rgba(212, 175, 87, 0.08);
         transform: translateY(-2px);
     }
 
-    /* Tombol rujukan resmi — jurnal / putusan MA */
+    /* Tombol rujukan resmi â€” jurnal / putusan MA */
     .u-ref-btn {
         display: inline-flex;
         align-items: center;
         gap: 0.45rem;
         border-radius: 0.75rem;
-        background: linear-gradient(135deg, #064E3B 0%, #047857 100%);
+        background: linear-gradient(135deg, #08152F 0%, #10254B 100%);
         color: #FFFFFF;
         font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.01em;
         padding: 0.5rem 0.85rem;
-        box-shadow: 0 6px 18px -8px rgba(6, 78, 59, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        box-shadow: 0 6px 18px -8px rgba(8, 21, 47, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.18);
         transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s, filter 0.3s;
     }
 
     .u-ref-btn:hover {
         transform: translateY(-2px);
         filter: brightness(1.08);
-        box-shadow: 0 10px 24px -10px rgba(4, 120, 87, 0.6), 0 0 0 1px rgba(245, 158, 11, 0.5);
+        box-shadow: 0 10px 24px -10px rgba(20, 52, 126, 0.6), 0 0 0 1px rgba(212, 175, 87, 0.5);
     }
 
     /* Kartu terangkhat saat hover */
@@ -266,9 +320,9 @@
     /* === Glassmorphism bar untuk tab switcher mode === */
     .u-glassbar {
         border-radius: 1.25rem;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(241, 245, 249, 0.78) 100%);
-        border: 1px solid rgba(255, 255, 255, 0.85);
-        box-shadow: 0 10px 30px -14px rgba(6, 78, 59, 0.28), 0 1px 2px rgba(6, 78, 59, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        background: linear-gradient(135deg, var(--alw-paper) 0%, var(--alw-surface) 100%);
+        border: 1px solid var(--alw-line);
+        box-shadow: 0 10px 30px -14px rgba(8, 21, 47, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.14);
         backdrop-filter: blur(16px) saturate(1.4);
         -webkit-backdrop-filter: blur(16px) saturate(1.4);
     }
@@ -281,41 +335,41 @@
     }
 
     .u-tab:hover:not(.u-tab-active) {
-        background: rgba(209, 250, 229, 0.55);
-        border-color: rgba(16, 185, 129, 0.25);
+        background: var(--alw-e50);
+        border-color: rgba(0, 207, 255, 0.25);
         transform: translateY(-1px);
     }
 
     /* Active-border bercahaya: emerald inti + halo gold */
     .u-tab-active {
-        background: linear-gradient(135deg, #064E3B 0%, #047857 70%, #059669 130%);
+        background: linear-gradient(135deg, #08152F 0%, #10254B 70%, #8058F5 130%);
         color: #FFFFFF;
-        border-color: rgba(245, 158, 11, 0.55);
+        border-color: rgba(212, 175, 87, 0.55);
         box-shadow:
-            0 0 0 1px rgba(245, 158, 11, 0.35),
-            0 0 22px rgba(16, 185, 129, 0.38),
-            0 14px 30px -14px rgba(6, 78, 59, 0.65);
+            0 0 0 1px rgba(212, 175, 87, 0.35),
+            0 0 22px rgba(0, 207, 255, 0.38),
+            0 14px 30px -14px rgba(8, 21, 47, 0.65);
         transform: translateY(-1px);
     }
 
     .u-tab-active .u-tab-icon {
         background: rgba(255, 255, 255, 0.14);
         color: #FCD34D;
-        border-color: rgba(252, 211, 77, 0.45);
+        border-color: rgba(227, 198, 126, 0.45);
     }
 
     /* === Smart cards — form harta & kewajiban === */
     .u-smart-card {
         border-radius: 1rem;
-        background: #FFFFFF;
-        border: 1px solid rgba(15, 23, 42, 0.07);
+        background: var(--alw-paper);
+        border: 1px solid var(--alw-soft-line);
         box-shadow: var(--shadow-smooth);
         transition: box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .u-smart-card:hover {
-        border-color: rgba(16, 185, 129, 0.35);
-        box-shadow: 0 10px 28px -12px rgba(6, 78, 59, 0.22);
+        border-color: rgba(0, 207, 255, 0.35);
+        box-shadow: 0 10px 28px -12px rgba(8, 21, 47, 0.22);
         transform: translateY(-2px);
     }
 
@@ -328,11 +382,11 @@
         height: 1.35rem;
         padding: 0 0.3rem;
         border-radius: 9999px;
-        background: linear-gradient(135deg, #FBBF24, #D97706);
-        color: #064E3B;
+        background: linear-gradient(135deg, #E3C67E, #B8913B);
+        color: #08152F;
         font-size: 0.6875rem;
         font-weight: 800;
-        box-shadow: 0 4px 10px -3px rgba(217, 119, 6, 0.5);
+        box-shadow: 0 4px 10px -3px rgba(184, 145, 59, 0.5);
     }
 
     /* Ikon kotak berbufet dalam kartu kecil */
@@ -341,35 +395,39 @@
         align-items: center;
         justify-content: center;
         border-radius: 0.75rem;
-        background: #ECFDF5;
-        border: 1px solid rgba(16, 185, 129, 0.3);
-        color: #065F46;
+        background: var(--alw-e50);
+        border: 1px solid rgba(0, 207, 255, 0.3);
+        color: #4B72C4;
         transition: background 0.35s, color 0.35s, border-color 0.35s;
     }
 
-    /* === Input premium — fokus bercahaya emerald === */
+    .theme-dark .u-icon-box {
+        color: #8DABEC;
+    }
+
+    /* === Input premium — fokus bercahaya cyan === */
     .u-input {
         width: 100%;
         border-radius: 0.75rem;
-        border: 1px solid rgba(15, 23, 42, 0.14);
-        background: #FFFFFF;
-        color: #0F172A;
+        border: 1px solid var(--alw-line);
+        background: var(--alw-paper);
+        color: var(--alw-ink);
         transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
     }
 
     .u-input::placeholder {
-        color: rgba(15, 23, 42, 0.32);
+        color: var(--alw-muted);
     }
 
     .u-input:hover {
-        border-color: rgba(16, 185, 129, 0.4);
+        border-color: rgba(0, 207, 255, 0.4);
     }
 
     .u-input:focus {
         outline: none;
-        border-color: #10B981;
-        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.16);
-        background: #FFFFFF;
+        border-color: #00CFFF;
+        box-shadow: 0 0 0 4px rgba(0, 207, 255, 0.16);
+        background: var(--alw-paper);
     }
 
     /* === Visual choice cards (ahli waris) — smooth hover & active === */
@@ -379,9 +437,9 @@
         align-items: center;
         gap: 0.6rem;
         border-radius: 1rem;
-        border: 1px solid rgba(15, 23, 42, 0.09);
-        background: #FFFFFF;
-        color: #0F172A;
+        border: 1px solid var(--alw-soft-line);
+        background: var(--alw-paper);
+        color: var(--alw-ink);
         font-weight: 600;
         box-shadow: var(--shadow-smooth);
         cursor: pointer;
@@ -390,8 +448,8 @@
     }
 
     .u-choice:hover {
-        border-color: rgba(16, 185, 129, 0.45);
-        background: rgba(236, 253, 245, 0.6);
+        border-color: rgba(0, 207, 255, 0.45);
+        background: var(--alw-e50);
         transform: translateY(-2px);
     }
 
@@ -400,25 +458,25 @@
     }
 
     .u-choice .u-icon-box {
-        background: #F1F5F9;
-        border-color: rgba(15, 23, 42, 0.08);
-        color: #065F46;
+        background: var(--alw-surface);
+        border-color: var(--alw-soft-line);
+        color: #4B72C4;
     }
 
     .u-choice-active {
-        background: linear-gradient(135deg, rgba(6, 78, 59, 0.06), rgba(4, 120, 87, 0.1));
-        border-color: rgba(16, 185, 129, 0.5);
-        color: #064E3B;
+        background: linear-gradient(135deg, rgba(8, 21, 47, 0.06), rgba(20, 52, 126, 0.1));
+        border-color: rgba(0, 207, 255, 0.5);
+        color: var(--alw-ink);
         box-shadow:
-            0 0 0 1px rgba(16, 185, 129, 0.28),
-            0 0 16px rgba(16, 185, 129, 0.25),
-            0 10px 24px -12px rgba(6, 78, 59, 0.3),
-            inset 0 0 0 1px rgba(245, 158, 11, 0.28);
+            0 0 0 1px rgba(0, 207, 255, 0.28),
+            0 0 16px rgba(0, 207, 255, 0.25),
+            0 10px 24px -12px rgba(8, 21, 47, 0.3),
+            inset 0 0 0 1px rgba(212, 175, 87, 0.28);
     }
 
     .u-choice-active .u-icon-box {
-        background: linear-gradient(135deg, #064E3B, #047857);
-        border-color: rgba(245, 158, 11, 0.4);
+        background: linear-gradient(135deg, #08152F, #10254B);
+        border-color: rgba(212, 175, 87, 0.4);
         color: #FCD34D;
     }
 
@@ -430,17 +488,17 @@
         width: 2rem;
         height: 2rem;
         border-radius: 0.65rem;
-        border: 1px solid rgba(15, 23, 42, 0.1);
-        background: #FFFFFF;
-        color: #064E3B;
+        border: 1px solid var(--alw-soft-line);
+        background: var(--alw-paper);
+        color: var(--alw-ink);
         font-weight: 700;
         transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.2s;
     }
 
     .u-step-btn:hover {
-        background: #ECFDF5;
-        border-color: rgba(16, 185, 129, 0.45);
-        color: #047857;
+        background: var(--alw-e50);
+        border-color: rgba(0, 207, 255, 0.45);
+        color: var(--alw-ink);
     }
 
     .u-step-btn:active {
@@ -449,16 +507,16 @@
 
     /* Panel kaca gelap */
     .u-glass {
-        background: rgba(6, 78, 59, 0.55);
-        border: 1px solid rgba(245, 158, 11, 0.2);
+        background: rgba(8, 21, 47, 0.55);
+        border: 1px solid rgba(212, 175, 87, 0.2);
         backdrop-filter: blur(10px);
     }
 
-    /* Header modal mewah emerald → gold */
+    /* Header modal mewah emerald â†’ gold */
     .u-modal-head {
         position: relative;
         overflow: hidden;
-        background: linear-gradient(120deg, #064E3B 0%, #047857 62%, #059669 100%);
+        background: linear-gradient(120deg, #08152F 0%, #10254B 62%, #8058F5 100%);
         color: #F8FAFC;
     }
 
@@ -468,7 +526,7 @@
         inset: 0;
         z-index: 0;
         background:
-            radial-gradient(42rem 16rem at -10% -60%, rgba(252, 211, 77, 0.16), transparent),
+            radial-gradient(42rem 16rem at -10% -60%, rgba(227, 198, 126, 0.16), transparent),
             radial-gradient(38rem 14rem at 110% -40%, rgba(255, 255, 255, 0.12), transparent);
         pointer-events: none;
     }
@@ -476,7 +534,7 @@
     /* Garis emas bawah header modal */
     .u-modal-headline {
         height: 2px;
-        background: linear-gradient(90deg, rgba(245, 158, 11, 0) 0%, rgba(245, 158, 11, 0.95) 20%, rgba(252, 211, 77, 0.95) 80%, rgba(245, 158, 11, 0) 100%);
+        background: linear-gradient(90deg, rgba(212, 175, 87, 0) 0%, rgba(212, 175, 87, 0.95) 20%, rgba(227, 198, 126, 0.95) 80%, rgba(212, 175, 87, 0) 100%);
     }
 
     /* Chip rujukan */
@@ -485,9 +543,9 @@
         align-items: center;
         gap: 0.35rem;
         border-radius: 9999px;
-        background: rgba(245, 158, 11, 0.14);
-        border: 1px solid rgba(245, 158, 11, 0.4);
-        color: #D97706;
+        background: rgba(212, 175, 87, 0.14);
+        border: 1px solid rgba(212, 175, 87, 0.4);
+        color: #B8913B;
         font-size: 0.65rem;
         font-weight: 800;
         letter-spacing: 0.14em;
@@ -501,36 +559,36 @@
         font-weight: 800;
         letter-spacing: 0.16em;
         text-transform: uppercase;
-        color: rgba(6, 78, 59, 0.72);
+        color: var(--alw-muted);
     }
 
     /* Kartu pasal */
     .u-pasal-card {
         position: relative;
         border-radius: 1rem;
-        background: #FFFFFF;
-        border: 1px solid rgba(15, 23, 42, 0.07);
-        border-left: 3px solid #10B981;
+        background: var(--alw-paper);
+        border: 1px solid var(--alw-soft-line);
+        border-left: 3px solid #00CFFF;
         box-shadow: var(--shadow-smooth);
         overflow: hidden;
         transition: border-color 0.3s, box-shadow 0.35s;
     }
 
     .u-pasal-card:hover {
-        border-color: rgba(16, 185, 129, 0.4);
-        border-left-color: #F59E0B;
-        box-shadow: 0 10px 26px -12px rgba(6, 78, 59, 0.22);
+        border-color: rgba(0, 207, 255, 0.4);
+        border-left-color: #D4AF57;
+        box-shadow: 0 10px 26px -12px rgba(8, 21, 47, 0.22);
     }
 
-    /* === Kotak ayat Al-Qur'an/hadis — krem halus + bingkai hias Islami === */
+    /* === Kotak ayat Al-Qur'an/hadis â€” krem halus + bingkai hias Islami === */
     .u-verse-box {
         position: relative;
         border-radius: 1rem;
-        background: #FFFBEB;
-        border: 1px solid rgba(217, 119, 6, 0.35);
+        background: #FDFBF3;
+        border: 1px solid rgba(184, 145, 59, 0.35);
         box-shadow:
             inset 0 0 0 1px rgba(255, 255, 255, 0.65),
-            0 8px 22px -12px rgba(217, 119, 6, 0.3);
+            0 8px 22px -12px rgba(184, 145, 59, 0.3);
     }
 
     /* Bingkai hias dalam: garis emas tipis putus-putus */
@@ -539,7 +597,7 @@
         position: absolute;
         inset: 6px;
         border-radius: 0.7rem;
-        border: 1px dashed rgba(217, 119, 6, 0.45);
+        border: 1px dashed rgba(184, 145, 59, 0.45);
         pointer-events: none;
     }
 
@@ -550,18 +608,18 @@
         inset: 0;
         pointer-events: none;
         background:
-            radial-gradient(circle at 13px 13px, #D97706 0 2.5px, transparent 3px),
-            radial-gradient(circle at calc(100% - 13px) 13px, #D97706 0 2.5px, transparent 3px),
-            radial-gradient(circle at 13px calc(100% - 13px), #D97706 0 2.5px, transparent 3px),
-            radial-gradient(circle at calc(100% - 13px) calc(100% - 13px), #D97706 0 2.5px, transparent 3px);
+            radial-gradient(circle at 13px 13px, #B8913B 0 2.5px, transparent 3px),
+            radial-gradient(circle at calc(100% - 13px) 13px, #B8913B 0 2.5px, transparent 3px),
+            radial-gradient(circle at 13px calc(100% - 13px), #B8913B 0 2.5px, transparent 3px),
+            radial-gradient(circle at calc(100% - 13px) calc(100% - 13px), #B8913B 0 2.5px, transparent 3px);
     }
 
-    /* Terjemahan — bergaris kiri aksen hijau emerald */
+    /* Terjemahan â€” bergaris kiri aksen hijau emerald */
     .u-verse-terjemah {
-        border-left: 3px solid #10B981;
+        border-left: 3px solid #00CFFF;
     }
 
-    /* Tombol CTA rujukan emerald-gold — "BACA JURNAL & PUTUSAN MA TERKAIT" */
+    /* Tombol CTA rujukan emerald-gold â€” "BACA JURNAL & PUTUSAN MA TERKAIT" */
     .u-btn-ref-cta {
         position: relative;
         display: inline-flex;
@@ -569,15 +627,15 @@
         justify-content: center;
         gap: 0.55rem;
         border-radius: 9999px;
-        background: linear-gradient(120deg, #064E3B 0%, #047857 52%, #D97706 135%);
+        background: linear-gradient(120deg, #08152F 0%, #10254B 52%, #B8913B 135%);
         color: #FFFFFF;
         font-weight: 800;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         box-shadow:
-            0 10px 26px -12px rgba(6, 78, 59, 0.6),
-            0 0 0 1px rgba(245, 158, 11, 0.45),
-            0 0 18px rgba(245, 158, 11, 0.25);
+            0 10px 26px -12px rgba(8, 21, 47, 0.6),
+            0 0 0 1px rgba(212, 175, 87, 0.45),
+            0 0 18px rgba(212, 175, 87, 0.25);
         transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s, filter 0.35s;
     }
 
@@ -585,12 +643,12 @@
         transform: translateY(-2px);
         filter: brightness(1.07);
         box-shadow:
-            0 16px 34px -14px rgba(4, 120, 87, 0.65),
-            0 0 0 1px rgba(245, 158, 11, 0.7),
-            0 0 26px rgba(245, 158, 11, 0.4);
+            0 16px 34px -14px rgba(20, 52, 126, 0.65),
+            0 0 0 1px rgba(212, 175, 87, 0.7),
+            0 0 26px rgba(212, 175, 87, 0.4);
     }
 
-    /* Segmen donut chart — transisi halus saat hover */
+    /* Segmen donut chart â€” transisi halus saat hover */
     .u-donut-seg {
         transition: stroke-width 0.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s;
         cursor: pointer;
@@ -615,7 +673,7 @@
         bottom: 0;
         height: 1.5px;
         border-radius: 2px;
-        background: #F59E0B;
+        background: #D4AF57;
         transition: right 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -632,7 +690,15 @@
         color: #FCD34D;
     }
 
-    /* Reveal-on-scroll */
+    /* Nav aktif sidebar â€” pill burgundy bercahaya ala futuristik */
+.u-sidenav-active {
+    background: linear-gradient(120deg, rgba(142, 23, 68, 0.32), rgba(128, 88, 245, 0.18));
+    color: #FFFFFF;
+    box-shadow: inset 0 0 0 1px rgba(212, 175, 87, 0.35), 0 0 22px rgba(142, 23, 68, 0.35);
+    border: 1px solid transparent;
+}
+
+/* Reveal-on-scroll */
     [data-reveal] {
         opacity: 0;
         transform: translateY(18px);
@@ -646,20 +712,20 @@
         transform: none;
     }
 
-    /* Loading state elegan — shimmer hairline */
+    /* Loading state elegan â€” shimmer hairline */
     .u-loading::after {
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(100deg, transparent 40%, rgba(245, 158, 11, 0.25) 50%, transparent 60%);
+        background: linear-gradient(100deg, transparent 40%, rgba(212, 175, 87, 0.25) 50%, transparent 60%);
         background-size: 200% 100%;
         animation: u-shimmer 1.4s linear infinite;
     }
 
     .u-spinner {
         border-radius: 9999px;
-        border: 2px solid rgba(16, 185, 129, 0.25);
-        border-top-color: #10B981;
+        border: 2px solid rgba(0, 207, 255, 0.25);
+        border-top-color: #00CFFF;
         animation: u-spin 0.9s linear infinite;
     }
 }
@@ -706,6 +772,39 @@
 .u-loop-rotate { animation: u-rotate-slow 90s linear infinite; transform-origin: center; }
 .u-drift { animation: u-drift 9s ease-in-out infinite; }
 
+/* =========================================================
+    Cetak / PDF — hanya panel hasil yang tampil
+   ========================================================= */
+@media print {
+    header, aside, footer, nav[aria-label='Navigasi cepat'], nav[aria-label='Navigasi samping'],
+    #pwa-install-banner, #pwa-install-popup, [wire\:loading] {
+        display: none !important;
+    }
+
+    .lg\:pl-72 {
+        padding-left: 0 !important;
+    }
+
+    main {
+        max-width: none !important;
+        padding: 0 !important;
+    }
+
+    /* Pecahan & nominal hitam di atas hijau muda lama — jadikan netral untuk printer. */
+    .text-emerald-900 {
+        color: #08152F !important;
+    }
+
+    body {
+        background: #FFFFFF !important;
+    }
+
+    [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -729,6 +828,7 @@
 
     .u-btn-gold::after,
     .u-lift,
+    .u-sidenav-active,
     .u-navlink::after,
     .u-smart-card,
     .u-choice {

@@ -105,7 +105,7 @@ document.addEventListener('alpine:init', () => {
             label: String(slice.label ?? ''),
             value: Number(slice.value ?? 0),
             pct: Number(slice.pct ?? 0),
-            color: String(slice.color ?? '#047857'),
+            color: String(slice.color ?? '#10254B'),
         })),
 
         get total() {

@@ -77,3 +77,56 @@ it('cek perhitungan valid tetap bekerja dengan versi mesin tercatat pada baris h
 
     expect($result['engine_version'])->toBe(FaraidEngine::VERSION);
 });
+
+/* =========================================================================
+ * TAHAP 2 — kasus mesin "tidak didukung" & tampilan hijab tetap ramah diperbaik
+ * ========================================================================= */
+
+it('kasus mesin not_supported: peringatan tampil, input TIDAK hilang, dapat langsung dikoreksi', function () {
+    $component = Livewire::test(Calculator::class)
+        ->set('estate', '50000000')
+        ->set('grandfather', true)   // kakek + saudara = umariyyatan (di luar cakupan aman)
+        ->set('brothers', 1)
+        ->call('calculate');
+
+    expect($component->instance()->result['status'])->toBe('not_supported')
+        ->and($component->instance()->showResult)->toBeTrue()      // panel peringatan tampil
+        // Input seluruhnya tetap — pengguna koreksi satu bagian tanpa muat ulang.
+        ->and($component->instance()->estate)->toBe('50000000')
+        ->and($component->instance()->grandfather)->toBeTrue()
+        ->and($component->instance()->brothers)->toBe(1);
+
+    $component->assertSee('didukung');   // peringatan eksplisit di UI
+
+    // Perbaiki satu field lalu hitung ulang langsung tanpa reset:
+    $component->set('grandfather', false)->call('calculate');
+
+    expect($component->instance()->result['status'])->toBe('valid');
+});
+
+it('hasil valid: hijab tampil dengan alasan tanpa menghapus pilihan pengguna', function () {
+    $component = Livewire::test(Calculator::class)
+        ->set('estate', '80000000')
+        ->set('father', true)
+        ->set('daughters', 1)
+        ->set('sisters', 1)
+        ->call('calculate');
+
+    $result = $component->instance()->result;
+
+    expect($result['status'])->toBe('valid')
+        // Pilihan saudara tetap ada di state (tidak dihapus diam-diam)…
+        ->and($component->instance()->sisters)->toBe(1)
+        // …namun menerima nominal nol dengan alasan hijab.
+        ->and(collect($result['shares'])->firstWhere('code', 'sister'))->toBeNull()
+        ->and(collect($result['blocked'])->firstWhere('code', 'sister')['reason'])->toContain('ayah');
+});
+
+it('fitur cetak/PDF: tombol nyata tampil pada hasil valid (window.print, bukan dekorasi)', function () {
+    $component = Livewire::test(Calculator::class)
+        ->set('estate', '3000000')
+        ->set('sons', 1)
+        ->call('calculate');
+
+    $component->assertSee('Cetak / Simpan PDF');
+});

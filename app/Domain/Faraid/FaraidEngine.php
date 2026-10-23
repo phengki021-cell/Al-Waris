@@ -37,6 +37,8 @@ namespace App\Domain\Faraid;
  *  - Kakek dari ayah: terhalang oleh ayah yang masih ada maupun oleh
  *    anak laki-laki; selain itu meniru mekanik ayah (fard 1/6 bila ada
  *    anak perempuan, lalu menyerap sisa).
+ *    (v0.6.0 — perbaikan: kakek salah mendapat fard 1/6 saat ayah
+ *    hadir; regressi diteteskan di tests/Unit/FaraidTahap2AuditTest.php.)
  *  - Cucu laki-laki (dari anak laki-laki): terhalang oleh anak laki-laki;
  *    selain itu asabah pengganti ayahnya (2 satuan) dan pada hubungan laki-laki menurun (far') mendahului ayah/kakek pada sisa.
  *  - Cucu perempuan (dari anak laki-laki): terhalang oleh anak perempuan;
@@ -47,7 +49,7 @@ namespace App\Domain\Faraid;
 final class FaraidEngine
 {
     /** Versi mesin — ditampilkan di halaman hasil untuk ketertelusuran. */
-    public const VERSION = '0.5.0';
+    public const VERSION = '0.6.0';
 
     /** Nama tampilan untuk UI (dipakai mesin & layer penjelasan). */
     public const NAMES = [
@@ -225,7 +227,10 @@ final class FaraidEngine
 
         // Kakek meniru mekanik ayah ketika ayah tiada (lazim dipakai kitab JIL:
         // "kakek menggantikan ayah"). Fard 1/6 hanya bila ada anak perempuan.
-        if ($grandfather && $daughters > 0) {
+        // Kakek ATAU ayah hadir bersama → kakek terhalang (hijab hirman):
+        // TIDAK boleh mendapat fard melainkan hanya masuk daftar terhalang
+        // (regresi Tahap 2: sebelumnya kakek salah menerima 1/6 saat ayah ada).
+        if ($grandfather && ! $father && $daughters > 0) {
             $fard['grandfather'] = [1, 6, 1, false];
             $trace[] = 'Langkah 2 — kakek dari ayah: fard 1/6 (ada anak perempuan) + menyerap sisa (analog ayah).';
         }

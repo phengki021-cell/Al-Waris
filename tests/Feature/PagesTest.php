@@ -27,6 +27,25 @@ it('seluruh rute bernama terdefinisi dan tidak mencekik', function () {
     }
 });
 
+it('menampilkan kredit pengembang Hengki Pranata di halaman publik', function (string $route) {
+    $this->get(route($route))
+        ->assertOk()
+        ->assertSee('Hengki Pranata')
+        ->assertSee('Warisan Islam, Untuk Masa Depan');
+})->with([
+    'Beranda' => 'home',
+    'Tentang' => 'about',
+    'Kalkulator' => 'calculate',
+]);
+
+it('halaman tentang menyajikan seksi Tentang Pengembang', function () {
+    $this->get(route('about'))
+        ->assertOk()
+        ->assertSee('Tentang Pengembang')
+        ->assertSee('Dikembangkan oleh')
+        ->assertSee('HP');
+});
+
 it('halaman 404 informatif berbahasa Indonesia', function () {
     $this->get('/halaman-tidak-ada-xyz')
         ->assertNotFound()
