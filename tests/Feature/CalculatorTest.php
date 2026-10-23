@@ -140,6 +140,31 @@ it('kartu AYAH dan IBU dapat dipilih lalu dibatalkan lewat toggle()', function (
     expect($component->result['shares'])->not->toBeEmpty();
 });
 
+it('klik ganda AYAH (cepat) tidak menghilangkan input lain; hasil ada bila data lengkap', function () {
+    $component = Livewire::test(Calculator::class)
+        ->set('estate', '100000000')
+        ->call('toggle', 'father')
+        ->call('toggle', 'father') // bolak-balik dua kali seperti pengguna panik
+        ->call('toggle', 'father');
+
+    expect($component->instance()->father)->toBeTrue()
+        ->and($component->instance()->mother)->toBeFalse();
+
+    $component->call('calculate');
+    expect($component->instance()->result['status'])->toBe('valid');
+});
+
+it('klik ganda AYAH (cepat) gagal-ditangani: hasil kosong menampilkan ringkasan error', function () {
+    $component = Livewire::test(Calculator::class)
+        ->call('toggle', 'father')
+        ->call('calculate'); // harta kosong → validasi gagal, hasil tidak muncul
+
+    expect($component->instance()->showResult)->toBeFalse();
+    // tetapi input user tidak hilang dan pesannya jelas
+    $component->assertSee('Hasil belum bisa muncul')
+        ->assertSee('Total harta peninggalan wajib diisi');
+});
+
 it('toggle() menolak properti di luar whitelist', function () {
     $component = Livewire::test(Calculator::class)->set('estate', '5000');
 

@@ -215,9 +215,11 @@
                 {{-- Pasangan: kartu pilihan visual --}}
                 <div class="mt-3 grid gap-2 sm:grid-cols-3">
                     <button type="button"
-                        x-on:click="$wire.set('spouse', '')"
-                        :class="$wire.get('spouse') === '' ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
-                        :aria-pressed="$wire.get('spouse') === '' ? 'true' : 'false'">
+                        x-data="{ sel: $wire.get('spouse') }"
+                        x-effect="sel = $wire.get('spouse')"
+                        x-on:click="sel = ''; $wire.set('spouse', '')"
+                        :class="sel === '' ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
+                        :aria-pressed="sel === '' ? 'true' : 'false'">
                         <span class="u-icon-box h-9 w-9 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 21a6.5 6.5 0 0 1 13 0"/><path d="M19 8.5 21 10m0 0-2 1.5M21 10h-3.5"/></svg>
                         </span>
@@ -228,9 +230,11 @@
                     </button>
 
                     <button type="button"
-                        x-on:click="$wire.set('spouse', 'husband')"
-                        :class="$wire.get('spouse') === 'husband' ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
-                        :aria-pressed="$wire.get('spouse') === 'husband' ? 'true' : 'false'">
+                        x-data="{ sel: $wire.get('spouse') }"
+                        x-effect="sel = $wire.get('spouse')"
+                        x-on:click="sel = 'husband'; $wire.set('spouse', 'husband')"
+                        :class="sel === 'husband' ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
+                        :aria-pressed="sel === 'husband' ? 'true' : 'false'">
                         <span class="u-icon-box h-9 w-9 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="12" cy="7.5" r="3.5"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/><path d="M12 11.5v2l-1.2 3 1.2 3 1.2-3-1.2-3v-2" fill="currentColor" stroke="none"/></svg>
                         </span>
@@ -241,9 +245,11 @@
                     </button>
 
                     <button type="button"
-                        x-on:click="$wire.set('spouse', 'wife')"
-                        :class="$wire.get('spouse') === 'wife' ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
-                        :aria-pressed="$wire.get('spouse') === 'wife' ? 'true' : 'false'">
+                        x-data="{ sel: $wire.get('spouse') }"
+                        x-effect="sel = $wire.get('spouse')"
+                        x-on:click="sel = 'wife'; $wire.set('spouse', 'wife')"
+                        :class="sel === 'wife' ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
+                        :aria-pressed="sel === 'wife' ? 'true' : 'false'">
                         <span class="u-icon-box h-9 w-9 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="12" cy="7.5" r="3.5"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/><path d="M12 11.5l-1.6 2 1.6 1.6 1.6-1.6-1.6-2Z" fill="currentColor" stroke="none"/></svg>
                         </span>
@@ -339,9 +345,11 @@
                 {{-- Orang tua, nenek & kakek (pengganti ayah) — visual toggle cards --}}
                 <div class="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
                     <button type="button"
-                        x-on:click="$wire.toggle('father')"
-                        :class="$wire.get('father') ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
-                        :aria-pressed="$wire.get('father') ? 'true' : 'false'">
+                        x-data="{ on: $wire.get('father') }"
+                        x-effect="on = $wire.get('father')"
+                        x-on:click="on = !on; $wire.toggle('father')"
+                        :class="on ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
+                        :aria-pressed="on ? 'true' : 'false'">
                         <span class="u-icon-box h-9 w-9 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="12" cy="7" r="3.4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/><path d="M17 3.5h4M19 1.5v4"/></svg>
                         </span>
@@ -349,9 +357,11 @@
                     </button>
 
                     <button type="button"
-                        x-on:click="$wire.toggle('mother')"
-                        :class="$wire.get('mother') ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
-                        :aria-pressed="$wire.get('mother') ? 'true' : 'false'">
+                        x-data="{ on: $wire.get('mother') }"
+                        x-effect="on = $wire.get('mother')"
+                        x-on:click="on = !on; $wire.toggle('mother')"
+                        :class="on ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
+                        :aria-pressed="on ? 'true' : 'false'">
                         <span class="u-icon-box h-9 w-9 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="12" cy="7" r="3.4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/><path d="M12 1.2l.8 1.7 1.7.8-1.7.8-.8 1.7-.8-1.7-1.7-.8 1.7-.8.8-1.7Z" fill="currentColor" stroke="none"/></svg>
                         </span>
@@ -359,9 +369,11 @@
                     </button>
 
                     <button type="button"
-                        x-on:click="$wire.toggle('maternalGrandmother')"
-                        :class="$wire.get('maternalGrandmother') ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
-                        :aria-pressed="$wire.get('maternalGrandmother') ? 'true' : 'false'">
+                        x-data="{ on: $wire.get('maternalGrandmother') }"
+                        x-effect="on = $wire.get('maternalGrandmother')"
+                        x-on:click="on = !on; $wire.toggle('maternalGrandmother')"
+                        :class="on ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
+                        :aria-pressed="on ? 'true' : 'false'">
                         <span class="u-icon-box h-9 w-9 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="12" cy="7" r="3.4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/><path d="M19.5 1 17.5 5h4L19.5 9"/></svg>
                         </span>
@@ -369,9 +381,11 @@
                     </button>
 
                     <button type="button"
-                        x-on:click="$wire.toggle('grandfather')"
-                        :class="$wire.get('grandfather') ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
-                        :aria-pressed="$wire.get('grandfather') ? 'true' : 'false'">
+                        x-data="{ on: $wire.get('grandfather') }"
+                        x-effect="on = $wire.get('grandfather')"
+                        x-on:click="on = !on; $wire.toggle('grandfather')"
+                        :class="on ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
+                        :aria-pressed="on ? 'true' : 'false'">
                         <span class="u-icon-box h-9 w-9 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="8" cy="7" r="3.4"/><path d="M1.5 21a6.5 6.5 0 0 1 13 0"/><path d="M17 1.5h4l-2 3.5"/><path d="M19 1.5v3"/></svg>
                         </span>
@@ -660,6 +674,17 @@
                         class="rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-900/5">
                         Mulai Perhitungan Baru
                     </button>
+
+                    @if ($errors->any())
+                        <div class="w-full rounded-xl bg-red-50 p-3 text-xs leading-relaxed text-red-800 ring-1 ring-red-200" role="alert">
+                            <p class="font-extrabold uppercase tracking-wider">Hasil belum bisa muncul — periksa dulu:</p>
+                            <ul class="mt-1 list-disc space-y-0.5 pl-4">
+                                @foreach ($errors->all() as $validationMessage)
+                                    <li>{{ $validationMessage }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
 
                 <div wire:loading wire:target="calculate" class="mt-3 text-sm font-medium text-emerald-900">
@@ -1139,9 +1164,11 @@
                     <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
                         {{-- Toggle pasangan hidup terlama --}}
                         <button type="button"
-                            x-on:click="$wire.toggle('civilSpouse')"
-                            :class="$wire.get('civilSpouse') ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
-                            :aria-pressed="$wire.get('civilSpouse') ? 'true' : 'false'">
+                            x-data="{ on: $wire.get('civilSpouse') }"
+                            x-effect="on = $wire.get('civilSpouse')"
+                            x-on:click="on = !on; $wire.toggle('civilSpouse')"
+                            :class="on ? 'u-choice u-choice-active px-4 py-3' : 'u-choice px-4 py-3 text-ink/70'"
+                            :aria-pressed="on ? 'true' : 'false'">
                             <span class="u-icon-box h-9 w-9 shrink-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="8" cy="7.5" r="3"/><path d="M2.5 20a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="7.5" r="3"/><path d="M11.5 20a5.5 5.5 0 0 1 11 0"/></svg>
                             </span>
