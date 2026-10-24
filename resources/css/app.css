@@ -27,14 +27,14 @@
     /* === Turunan === */
     --color-emerald-soft: var(--alw-emerald-soft, #E6EDFF);  /* tint navy-terang */
     --color-gold-deep: var(--alw-gold-deep, #B8913B);     /* Gold 600 — flip terang di dark */
-    --color-gold-soft: #F7EED3;     /* tint gold pada area terang */
+    --color-gold-soft: var(--alw-gold-soft, #F7EED3);     /* tint gold — flip gelap-emas di dark */
     --color-haze: var(--alw-haze, rgba(8, 21, 47, 0.05));
 
     /* === Pemetaan token legasi (kompatibilitas seluruh halaman) === */
     --color-primary: #08152F;       /* panel gelap inti */
     --color-primary-700: #14347E;   /* hover / gradasi navy terang */
     --color-accent: #B8913B;        /* gold aksi (link, aksen legal) */
-    --color-accent-soft: #F7EED3;   /* tint gold di area terang */
+    --color-accent-soft: var(--alw-gold-soft, #F7EED3);   /* tint gold di area terang */
     --color-surface: var(--alw-surface, #EEF1F8);   /* panel dalam kartu */
     --color-ink: var(--alw-ink, #101B33);           /* teks utama */
     --color-paper: var(--alw-paper, #FFFFFF);       /* kartu putih */
@@ -78,6 +78,8 @@
         --alw-soft-line: rgba(8, 21, 47, 0.08);
         --alw-muted: rgba(8, 21, 47, 0.55);
         --alw-gold-deep: #B8913B;
+        --alw-gold-soft: #F7EED3;
+        --alw-amber-900: #78350F;
         color-scheme: light;
     }
 
@@ -96,6 +98,8 @@
         --alw-soft-line: rgba(231, 236, 250, 0.12);
         --alw-muted: rgba(231, 236, 250, 0.6);
         --alw-gold-deep: #E3C67E;
+        --alw-gold-soft: #2A2413;
+        --alw-amber-900: #E9CE84;
         color-scheme: dark;
     }
 
@@ -848,14 +852,8 @@
     .theme-dark [class*="text-emerald-800"] { color: #A8BDF0; }
     .theme-dark [class*="text-deep"] { color: #E7ECFA; }
     .theme-dark [class*="text-charcoal"] { color: #E7ECFA; }
+    .theme-dark [class*="text-gold-soft"] { color: #E7C973; }
+    .theme-dark [class*="text-amber-900"] { color: var(--alw-amber-900); }
     .theme-dark [class*="ring-black"] { --tw-ring-color: rgba(231, 236, 250, 0.14); }
     .theme-dark [class*="border-black"] { border-color: rgba(231, 236, 250, 0.14); }
-
-    /* Pengecualian: permukaan gold-soft (krem) tetap terang di dark → teksnya tetap gelap */
-    .theme-dark [class*="bg-gold-soft"][class*="text-gold-deep"] { color: #8A692B; }
-    .theme-dark [class*="bg-gold-soft"][class*="text-charcoal"] { color: #101B33; }
-    .theme-dark [class*="bg-gold-soft"][class*="text-ink"] { color: #101B33; }
-    .theme-dark [class*="bg-gold-soft"][class*="text-primary"] { color: #08152F; }
-    .theme-dark [class*="bg-gold-soft"][class*="text-emerald-900"] { color: #08152F; }
-    .theme-dark [class*="bg-gold-soft"][class*="text-emerald-800"] { color: #0C1D3E; }
 }
