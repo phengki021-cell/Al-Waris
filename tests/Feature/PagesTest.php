@@ -82,6 +82,16 @@ it('data istri menampilkan bagian maksimum 1/4 dan saudara sedarah laki-laki ber
         ->and($sedarah->max_share_numerator)->toBeNull();
 });
 
+it('ahli waris berperan ganda tampil di kedua golongan dengan chip penjelas', function () {
+    $this->seed(Database\Seeders\HeirSeeder::class);
+
+    $this->get(route('heirs'))
+        ->assertOk()
+        ->assertSee('Juga berperan: Ashabah bil ghair')            // kartu di golongan Ashabah
+        ->assertSee('Tampil juga di golongan Ashabah')         // kartu asli di Dzawil Furudh
+        ->assertSee('Ashabah binafsih — ketika pewaris hanya menyisakan anak perempuan');
+});
+
 it('menyajikan manifest dengan ikon disk yang ada', function () {
     foreach (['icon-192.png', 'icon-512.png', 'maskable-192.png', 'maskable-512.png', 'apple-touch-icon-180.png', 'favicon-48.png'] as $icon) {
         expect(is_file(public_path("icons/{$icon}")))->toBeTrue("Ikon {$icon} harus ada");

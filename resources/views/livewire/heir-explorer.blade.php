@@ -158,6 +158,16 @@
                                     Bagian maksimum: {{ $heir->max_share_numerator }}/{{ $heir->max_share_denominator }}
                                 </span>
                             @endif
+                            @if ($heir->offsetExists('dual_home'))
+                                <span class="mt-2 inline-flex items-center gap-1 rounded-lg bg-gold-soft/60 px-2 py-1 text-[11px] font-semibold leading-snug text-amber-900">
+                                    <span aria-hidden="true">&rarr;</span> {{ $heir->offsetGet('dual_home') }}
+                                </span>
+                            @endif
+                            @if ($heir->offsetExists('dual_note'))
+                                <span class="mt-2 inline-flex items-center gap-1 rounded-lg bg-accent-soft px-2 py-1 text-[11px] font-semibold leading-snug text-primary">
+                                    <span aria-hidden="true">&larr;</span> Juga berperan: {{ $heir->offsetGet('dual_note') }}
+                                </span>
+                            @endif
                         </span>
                         <span class="mt-1 shrink-0 self-start rounded-lg border border-gold/60 bg-gold-soft/60 px-2.5 py-1 text-xs font-bold text-gold-deep transition group-hover:bg-gold group-hover:text-white">
                             Lihat Detail <span aria-hidden="true">&rarr;</span>

@@ -36,6 +36,7 @@ class HeirExplorer extends Component
 
     public function render(): View
     {
+        /** @var \Illuminate\Support\Collection<string, \Illuminate\Support\Collection<int, Heir>> $groups */
         $groups = Heir::query()
             ->active()
             ->with(['shares', 'source'])
@@ -44,7 +45,48 @@ class HeirExplorer extends Component
             ->get()
             ->groupBy('category');
 
+        // Ahli waris berperan ganda: tampil di golongan asalnya DAN di golongan
+        // kedua (mis. anak perempuan: dzawil furudh sekaligus ashabah bil ghair
+        // bila bersama anak laki-laki). Klon tampil di golongan tambahan
+        // disertai chip penjelas agar pembaca tidak mengira data ganda.
         $categories = [
+            'fard' => 'Dzawil Furudh',
+            'asabah' => 'Ashabah',
+            'arham' => 'Dzawil Arham',
+            'hajib' => 'Penghalang',
+        ];
+
+        $dualRoles = [
+            'daughter' => ['asabah' => 'Ashabah bil ghair — ketika bersama anak laki-laki (nisbah 2 : 1)'],
+            'daughter_of_son' => ['asabah' => 'Ashabah bil ghair — ketika bersama putu laki-laki (nisbah 2 : 1)'],
+            'sister_female_full' => ['asabah' => 'Ashabah bil ghair — ketika bersama saudara sedarah laki-laki (nisbah 2 : 1)'],
+            'sister_paternal' => ['asabah' => 'Ashabah bil ghair — ketika bersama saudara seayah laki-laki (nisbah 2 : 1)'],
+            'father' => ['asabah' => 'Ashabah binafsih — ketika pewaris hanya menyisakan anak perempuan'],
+            'grandfather_father' => ['asabah' => 'Pengganti ayah — menerima sisa bila pewaris hanya menyisakan anak perempuan'],
+        ];
+
+        $all = $groups->flatMap(fn ($g) => $g->values());
+
+        foreach ($dualRoles as $code => $roles) {
+            $heir = $all->firstWhere('code', $code);
+
+            if ($heir === null) {
+                continue;
+            }
+
+            foreach ($roles as $extraCategory => $note) {
+                if ($extraCategory !== $heir->category) {
+                    $heir->setAttribute('dual_home', 'Tampil juga di golongan '.$categories[$extraCategory]);
+                    $clone = clone $heir;
+                    $heir->offsetUnset('dual_home');
+                    $clone->setAttribute('dual_note', $note);
+                    $groups->put($extraCategory, ($groups->get($extraCategory) ?? new \Illuminate\Support\Collection())->push($clone));
+                    $groups->get($extraCategory)->sortBy('name_id');
+                }
+            }
+        }
+
+        $fullCategories = [
             'fard' => 'Dzawil Furudh (bagian pasti)',
             'asabah' => 'Ashabah (menerima sisa)',
             'arham' => 'Dzawil Arham (kerabat)',
@@ -53,7 +95,7 @@ class HeirExplorer extends Component
 
         return view('livewire.heir-explorer', [
             'groups' => $groups,
-            'categories' => $categories,
+            'categories' => $fullCategories,
         ]);
     }
 
