@@ -32,7 +32,8 @@
                 <p class="mt-1 text-ink/80">
                     Menerima sisa karena <strong>menyertai</strong> orang lain yang menjadi sebabnya.
                     Contoh: <strong>putu laki-laki</strong> (cucu dari anak laki-laki) bersama putri
-                    pewaris, <strong>saudara perempuan sedarah/seayah</strong> bersama saudara
+                    pewaris, <strong>anak perempuan</strong> bersama anak laki-laki (nisbah 2 : 1),
+                    <strong>saudara perempuan sedarah/seayah</strong> bersama saudara
                     laki-laki mereka (nisbah 2 : 1), serta <strong>nenek</strong> bila bersama kakek
                     menurut ketentuan KHI.
                 </p>
