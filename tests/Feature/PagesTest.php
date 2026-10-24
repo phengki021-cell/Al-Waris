@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -51,6 +52,34 @@ it('halaman 404 informatif berbahasa Indonesia', function () {
         ->assertNotFound()
         ->assertSee('Halaman tidak ditemukan')
         ->assertSee('Ke Beranda');
+});
+
+it('halaman ahli waris menyajikan materi ashabah, hijab, dan ahli waris pengganti', function () {
+    $this->get(route('heirs'))
+        ->assertOk()
+        ->assertSee('Ashabah')
+        ->assertSee('bil ghair')
+        ->assertSee('bertakhsis')
+        ->assertSee('Hijab')
+        ->assertSee('mahjub')
+        ->assertSee('Hijab nuqshan')
+        ->assertSee('Ahli Waris Pengganti')
+        ->assertSee('Mawla')
+        ->assertSee('Musafir al-Islam');
+});
+
+it('data istri menampilkan bagian maksimum 1/4 dan saudara sedarah laki-laki berkategori asabah', function () {
+    $this->seed(Database\Seeders\HeirSeeder::class);
+
+    $istri = App\Models\Heir::query()->where('code', 'wife')->first();
+    expect($istri)->not->toBeNull()
+        ->and((int) $istri->max_share_numerator)->toBe(1)
+        ->and((int) $istri->max_share_denominator)->toBe(4);
+
+    $sedarah = App\Models\Heir::query()->where('code', 'sibling_male_full')->first();
+    expect($sedarah)->not->toBeNull()
+        ->and($sedarah->category)->toBe('asabah')
+        ->and($sedarah->max_share_numerator)->toBeNull();
 });
 
 it('menyajikan manifest dengan ikon disk yang ada', function () {
