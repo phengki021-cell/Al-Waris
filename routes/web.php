@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController as AdminAuth;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\Admin\HeirAdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PwaController;
@@ -40,3 +43,18 @@ Route::get('/kebijakan-privasi', [PageController::class, 'privacy'])->name('priv
 
 // Referensi
 Route::get('/referensi', SourceController::class)->name('sources');
+
+// ===== Panel admin (kayak pengelolaan master data sifasya) =====
+Route::get('/admin/login', [AdminAuth::class, 'showLogin'])->name('admin.login');
+Route::post('/admin/login', [AdminAuth::class, 'login'])->middleware('throttle:10,1')->name('admin.attempt');
+Route::post('/admin/logout', [AdminAuth::class, 'logout'])->name('admin.logout');
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function (): void {
+    Route::get('/', [AdminDashboard::class, 'index'])->name('dashboard');
+    Route::get('/ahli-waris', [HeirAdminController::class, 'index'])->name('heirs');
+    Route::get('/ahli-waris/baru', [HeirAdminController::class, 'create'])->name('heirs.create');
+    Route::post('/ahli-waris', [HeirAdminController::class, 'store'])->name('heirs.store');
+    Route::get('/ahli-waris/{heir}/edit', [HeirAdminController::class, 'edit'])->name('heirs.edit');
+    Route::put('/ahli-waris/{heir}', [HeirAdminController::class, 'update'])->name('heirs.update');
+    Route::delete('/ahli-waris/{heir}', [HeirAdminController::class, 'destroy'])->name('heirs.destroy');
+});

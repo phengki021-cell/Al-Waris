@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 /**
  * cuplikan konten per halaman untuk navigasi menu edukasi Tahap 2.
  */
@@ -90,6 +93,37 @@ it('ahli waris berperan ganda tampil di kedua golongan dengan chip penjelas', fu
         ->assertSee('Juga berperan: Ashabah bil ghair')            // kartu di golongan Ashabah
         ->assertSee('Tampil juga di golongan Ashabah')         // kartu asli di Dzawil Furudh
         ->assertSee('Ashabah binafsih — ketika pewaris hanya menyisakan anak perempuan');
+});
+
+it('panel admin: tamu diarahkan ke login, login salah ditolak, admin dapat dashboard & CRUD', function () {
+    $this->seed(Database\Seeders\AdminSeeder::class);
+
+    // Tamu ke dashboard → redirect ke login
+    $this->get(route('admin.dashboard'))->assertRedirect(route('admin.login'));
+
+    // Halaman login terbuka
+    $this->get(route('admin.login'))->assertOk()->assertSee('Panel Admin');
+
+    // Login salah → kembali dengan error
+    $this->post(route('admin.attempt'), ['email' => 'admin@alwariscom.online', 'password' => 'salah-xyz'])
+        ->assertSessionHasErrors('email');
+
+    // Login benar → dashboard
+    $admin = User::query()->where('email', 'admin@alwariscom.online')->firstOrFail();
+    $this->actingAs($admin)->get(route('admin.dashboard'))
+        ->assertOk()
+        ->assertSee('Dashboard')
+        ->assertSee('Kelola Ahli Waris');
+
+    // Halaman CRUD ahli waris terbuka untuk admin
+    $this->actingAs($admin)->get(route('admin.heirs'))->assertOk()->assertSee('Kelola Ahli Waris');
+
+    // Akun bukan admin → 403
+    $biasa = User::create(['name' => 'Pengguna Biasa', 'email' => 'biasa@alwariscom.online', 'password' => Hash::make('rahasia-123'), 'is_admin' => false]);
+    $this->actingAs($biasa)->get(route('admin.dashboard'))->assertForbidden();
+
+    // Logout
+    $this->actingAs($admin)->post(route('admin.logout'))->assertRedirect(route('admin.login'));
 });
 
 it('menyajikan manifest dengan ikon disk yang ada', function () {

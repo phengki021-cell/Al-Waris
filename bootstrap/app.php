@@ -16,6 +16,10 @@ return Application::configure(basePath: dirname(__DIR__))
         // ke server lokal — percayai header X-Forwarded-* agar protokol aset,
         // manifest & Livewire memakai skema https publik (tanpa mixed content).
         $middleware->trustProxies(at: '*');
+
+        $middleware->alias(['admin' => App\Http\Middleware\EnsureUserIsAdmin::class]);
+
+        $middleware->redirectGuestsTo(fn () => route('admin.login'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
