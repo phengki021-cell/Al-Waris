@@ -121,7 +121,7 @@
                                     x-effect="sync($wire.get('estate'))"
                                     class="u-input tnum py-2.5 pl-11 pr-3 text-sm font-bold tracking-wide md:text-base">
                             </div>
-                            @error('estate')<p class="mt-1.5 text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                            @error('estate')<p class="mt-1.5 text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                         </div>
 
                         {{-- 4 · Harta bersih govo-goni indikator: pemisahan pihak --}}
@@ -158,7 +158,7 @@
                                     x-effect="sync($wire.get('funeral'))"
                                     class="u-input tnum py-2.5 pl-11 pr-3 text-sm font-bold tracking-wide md:text-base">
                             </div>
-                            @error('funeral')<p class="mt-1.5 text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                            @error('funeral')<p class="mt-1.5 text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                         </div>
 
                         {{-- 2 · Hutang --}}
@@ -180,7 +180,7 @@
                                     x-effect="sync($wire.get('debts'))"
                                     class="u-input tnum py-2.5 pl-11 pr-3 text-sm font-bold tracking-wide md:text-base">
                             </div>
-                            @error('debts')<p class="mt-1.5 text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                            @error('debts')<p class="mt-1.5 text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                         </div>
 
                         {{-- 3 · Wasiat --}}
@@ -202,7 +202,7 @@
                                     x-effect="sync($wire.get('bequest'))"
                                     class="u-input tnum py-2.5 pl-11 pr-3 text-sm font-bold tracking-wide md:text-base">
                             </div>
-                            @error('bequest')<p class="mt-1.5 text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                            @error('bequest')<p class="mt-1.5 text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                         </div>
                     </div>
                 </fieldset>
@@ -229,7 +229,7 @@
                             </button>
                         @endforeach
                     </div>
-                    @error('decedentGender')<p class="mt-1.5 text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                    @error('decedentGender')<p class="mt-1.5 text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                 </div>
 
                 {{-- Pasangan: kartu pilihan visual --}}
@@ -294,7 +294,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="7" cy="8" r="3"/><path d="M2 20a5 5 0 0 1 10 0"/><circle cx="17" cy="8" r="3"/><path d="M12 20a5 5 0 0 1 10 0"/></svg>
                         </span>
                         <p class="text-xs font-bold text-ink">Jumlah istri <span class="font-medium text-ink/50">(1–4 sesuai syariat)</span></p>
-                        @error('wifeCount')<p class="w-full text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                        @error('wifeCount')<p class="w-full text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                     </div>
                     <div class="flex items-center gap-1.5">
                         <button type="button" class="u-step-btn" aria-label="Kurangi jumlah istri"
@@ -319,7 +319,7 @@
                             <span class="tnum min-w-8 text-center text-lg font-extrabold text-emerald-900" aria-live="polite" x-text="$wire.get('sons')"></span>
                             <button type="button" class="u-step-btn" aria-label="Tambah anak laki-laki" x-on:click="$wire.set('sons', Math.min(30, $wire.get('sons') + 1))">+</button>
                         </div>
-                        @error('sons')<p class="w-full text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                        @error('sons')<p class="w-full text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                     </div>
 
                     <div class="u-smart-card flex flex-wrap items-center justify-between gap-2 p-3.5">
@@ -334,7 +334,7 @@
                             <span class="tnum min-w-8 text-center text-lg font-extrabold text-emerald-900" aria-live="polite" x-text="$wire.get('daughters')"></span>
                             <button type="button" class="u-step-btn" aria-label="Tambah anak perempuan" x-on:click="$wire.set('daughters', Math.min(30, $wire.get('daughters') + 1))">+</button>
                         </div>
-                        @error('daughters')<p class="w-full text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                        @error('daughters')<p class="w-full text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                     </div>
 
                     <div class="u-smart-card flex flex-wrap items-center justify-between gap-2 p-3.5">
@@ -349,7 +349,7 @@
                             <span class="tnum min-w-8 text-center text-lg font-extrabold text-emerald-900" aria-live="polite" x-text="$wire.get('brothers')"></span>
                             <button type="button" class="u-step-btn" aria-label="Tambah saudara laki-laki" x-on:click="$wire.set('brothers', Math.min(30, $wire.get('brothers') + 1))">+</button>
                         </div>
-                        @error('brothers')<p class="w-full text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                        @error('brothers')<p class="w-full text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                     </div>
 
                     <div class="u-smart-card flex flex-wrap items-center justify-between gap-2 p-3.5">
@@ -364,7 +364,7 @@
                             <span class="tnum min-w-8 text-center text-lg font-extrabold text-emerald-900" aria-live="polite" x-text="$wire.get('sisters')"></span>
                             <button type="button" class="u-step-btn" aria-label="Tambah saudara perempuan" x-on:click="$wire.set('sisters', Math.min(30, $wire.get('sisters') + 1))">+</button>
                         </div>
-                        @error('sisters')<p class="w-full text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                        @error('sisters')<p class="w-full text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                     </div>
                 </div>
 
@@ -446,7 +446,7 @@
                             <span class="tnum min-w-8 text-center text-lg font-extrabold text-emerald-900" aria-live="polite" x-text="$wire.get('grandsons')"></span>
                             <button type="button" class="u-step-btn" aria-label="Tambah cucu laki-laki" x-on:click="$wire.set('grandsons', Math.min(30, $wire.get('grandsons') + 1))">+</button>
                         </div>
-                        @error('grandsons')<p class="w-full text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                        @error('grandsons')<p class="w-full text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                     </div>
 
                     <div class="u-smart-card flex flex-wrap items-center justify-between gap-2 p-3.5">
@@ -461,7 +461,7 @@
                             <span class="tnum min-w-8 text-center text-lg font-extrabold text-emerald-900" aria-live="polite" x-text="$wire.get('granddaughters')"></span>
                             <button type="button" class="u-step-btn" aria-label="Tambah cucu perempuan" x-on:click="$wire.set('granddaughters', Math.min(30, $wire.get('granddaughters') + 1))">+</button>
                         </div>
-                        @error('granddaughters')<p class="w-full text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                        @error('granddaughters')<p class="w-full text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                     </div>
                 </div>
                 <p class="mt-2 text-xs leading-relaxed text-ink/60">
@@ -543,7 +543,7 @@
                                         @if ($entry['status'] === 'fard') bg-[#08152F] text-[#F0F4FF] ring-[#08152F]
                                         @elseif($entry['status'] === 'asabah') bg-gold-soft text-gold-deep ring-gold/40
                                         @elseif($entry['status'] === 'mahjub') bg-red-600 text-white ring-red-600
-                                        @elseif($entry['status'] === 'pending') bg-paper text-red-700 ring-red-300
+                                        @elseif($entry['status'] === 'pending') bg-paper text-red-900 ring-red-300
                                         @else bg-paper text-ink/45 ring-emerald-900/10 @endif">
                                         {{ $entry['label'] }}
                                     </span>
@@ -790,7 +790,7 @@
                                 </div>
                                 <div class="rounded-xl p-3.5 ring-1 {{ $result['total_cents'] === $netCents ? 'bg-emerald-50 ring-emerald-200' : 'bg-red-50 ring-red-200' }}">
                                     <dt class="text-xs text-ink/55">Konsistensi total</dt>
-                                    <dd class="font-bold {{ $result['total_cents'] === $netCents ? 'text-emerald-800' : 'text-red-700' }}">
+                                    <dd class="font-bold {{ $result['total_cents'] === $netCents ? 'text-emerald-800' : 'text-red-900' }}">
                                         {{ $result['total_cents'] === $netCents ? '✓ konsisten' : '✗ tidak konsisten' }}
                                     </dd>
                                 </div>
@@ -1119,7 +1119,7 @@
                                     x-effect="sync($wire.get('estate'))"
                                     class="u-input tnum py-2.5 pl-11 pr-3 text-sm font-bold tracking-wide md:text-base">
                             </div>
-                            @error('estate')<p class="mt-1.5 text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                            @error('estate')<p class="mt-1.5 text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                         </div>
 
                         {{-- 4 · Harta bersih indikator --}}
@@ -1155,7 +1155,7 @@
                                     x-effect="sync($wire.get('funeral'))"
                                     class="u-input tnum py-2.5 pl-11 pr-3 text-sm font-bold tracking-wide md:text-base">
                             </div>
-                            @error('funeral')<p class="mt-1.5 text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                            @error('funeral')<p class="mt-1.5 text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="u-smart-card p-4">
@@ -1176,7 +1176,7 @@
                                     x-effect="sync($wire.get('debts'))"
                                     class="u-input tnum py-2.5 pl-11 pr-3 text-sm font-bold tracking-wide md:text-base">
                             </div>
-                            @error('debts')<p class="mt-1.5 text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                            @error('debts')<p class="mt-1.5 text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                         </div>
 
                         <div class="u-smart-card p-4">
@@ -1197,7 +1197,7 @@
                                     x-effect="sync($wire.get('bequest'))"
                                     class="u-input tnum py-2.5 pl-11 pr-3 text-sm font-bold tracking-wide md:text-base">
                             </div>
-                            @error('bequest')<p class="mt-1.5 text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                            @error('bequest')<p class="mt-1.5 text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                         </div>
                     </div>
                 </fieldset>
@@ -1237,7 +1237,7 @@
                                 <span class="tnum min-w-8 text-center text-lg font-extrabold text-emerald-900" aria-live="polite" x-text="$wire.get('civilChildren')"></span>
                                 <button type="button" class="u-step-btn" aria-label="Tambah anak sah" x-on:click="$wire.set('civilChildren', Math.min(30, $wire.get('civilChildren') + 1))">+</button>
                             </div>
-                            @error('civilChildren')<p class="w-full text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                            @error('civilChildren')<p class="w-full text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                         </div>
 
                         {{-- Counter: cabang --}}
@@ -1253,7 +1253,7 @@
                                 <span class="tnum min-w-8 text-center text-lg font-extrabold text-emerald-900" aria-live="polite" x-text="$wire.get('civilBranches')"></span>
                                 <button type="button" class="u-step-btn" aria-label="Tambah cabang anak wafat" x-on:click="$wire.set('civilBranches', Math.min(30, $wire.get('civilBranches') + 1))">+</button>
                             </div>
-                            @error('civilBranches')<p class="w-full text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                            @error('civilBranches')<p class="w-full text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                         </div>
 
                         {{-- Counter: total cucu --}}
@@ -1269,7 +1269,7 @@
                                 <span class="tnum min-w-8 text-center text-lg font-extrabold text-emerald-900" aria-live="polite" x-text="$wire.get('civilGrandchildren')"></span>
                                 <button type="button" class="u-step-btn" aria-label="Tambah total cucu" x-on:click="$wire.set('civilGrandchildren', Math.min(99, $wire.get('civilGrandchildren') + 1))">+</button>
                             </div>
-                            @error('civilGrandchildren')<p class="w-full text-xs font-medium text-red-600">{{ $message }}</p>@enderror
+                            @error('civilGrandchildren')<p class="w-full text-xs font-medium text-red-800">{{ $message }}</p>@enderror
                         </div>
                     </div>
 

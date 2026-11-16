@@ -35,7 +35,7 @@
         @csrf
         @method('PUT')
         @if ($errors->has('kata_sandi_lama'))
-            <p class="rounded-xl bg-red-50 p-3 text-sm text-red-700 ring-1 ring-red-200">{{ $errors->first('kata_sandi_lama') }}</p>
+            <p class="rounded-xl bg-red-50 p-3 text-sm text-red-900 ring-1 ring-red-200">{{ $errors->first('kata_sandi_lama') }}</p>
         @endif
         <div>
             <label class="block text-sm font-semibold text-ink/80">Kata sandi lama</label>

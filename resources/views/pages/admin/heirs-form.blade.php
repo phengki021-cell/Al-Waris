@@ -9,7 +9,7 @@
 </div>
 
 @if ($errors->any())
-    <div class="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-700 ring-1 ring-red-200">
+    <div class="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-900 ring-1 ring-red-200">
         @foreach ($errors->all() as $error)
             <p>{{ $error }}</p>
         @endforeach
@@ -23,11 +23,11 @@
     @endif
 
     <div>
-        <label class="block text-sm font-semibold text-ink/80">Kode (unik, bahasa Inggris) <span class="text-red-600">*</span></label>
+        <label class="block text-sm font-semibold text-ink/80">Kode (unik, bahasa Inggris) <span class="text-red-800">*</span></label>
         <input name="code" value="{{ old('code', $heir->code) }}" required class="mt-1 w-full rounded-xl border border-black/10 bg-surface px-3 py-2.5 text-sm">
     </div>
     <div>
-        <label class="block text-sm font-semibold text-ink/80">Nama (Indonesia) <span class="text-red-600">*</span></label>
+        <label class="block text-sm font-semibold text-ink/80">Nama (Indonesia) <span class="text-red-800">*</span></label>
         <input name="name_id" value="{{ old('name_id', $heir->name_id) }}" required class="mt-1 w-full rounded-xl border border-black/10 bg-surface px-3 py-2.5 text-sm">
     </div>
     <div>
@@ -70,7 +70,7 @@
         </label>
     </div>
     <div class="md:col-span-2">
-        <label class="block text-sm font-semibold text-ink/80">Penjelasan singkat <span class="text-red-600">*</span></label>
+        <label class="block text-sm font-semibold text-ink/80">Penjelasan singkat <span class="text-red-800">*</span></label>
         <textarea name="detail" rows="4" required class="mt-1 w-full rounded-xl border border-black/10 bg-surface px-3 py-2.5 text-sm">{{ old('detail', $heir->detail) }}</textarea>
     </div>
     <div class="md:col-span-2">

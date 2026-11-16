@@ -9,7 +9,7 @@
 </div>
 
 @if ($errors->any())
-    <div class="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-700 ring-1 ring-red-200">
+    <div class="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-900 ring-1 ring-red-200">
         @foreach ($errors->all() as $error)
             <p>{{ $error }}</p>
         @endforeach
@@ -23,11 +23,11 @@
     @endif
 
     <div>
-        <label class="block text-sm font-semibold text-ink/80">Kode (unik) <span class="text-red-600">*</span></label>
+        <label class="block text-sm font-semibold text-ink/80">Kode (unik) <span class="text-red-800">*</span></label>
         <input name="code" required value="{{ old('code', $source->code) }}" class="mt-1 w-full rounded-xl border border-black/10 bg-surface px-3 py-2.5 text-sm">
     </div>
     <div>
-        <label class="block text-sm font-semibold text-ink/80">Judul <span class="text-red-600">*</span></label>
+        <label class="block text-sm font-semibold text-ink/80">Judul <span class="text-red-800">*</span></label>
         <input name="title" required value="{{ old('title', $source->title) }}" class="mt-1 w-full rounded-xl border border-black/10 bg-surface px-3 py-2.5 text-sm">
     </div>
     <div>

@@ -43,7 +43,7 @@
                             <form method="POST" action="{{ route('admin.sources.destroy', $source) }}" onsubmit="return confirm('Hapus referensi {{ $source->title }}?')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="rounded-lg bg-red-50 px-3 py-1.5 text-xs font-bold text-red-700 ring-1 ring-red-200 transition hover:bg-red-100">Hapus</button>
+                                <button type="submit" class="rounded-lg bg-red-50 px-3 py-1.5 text-xs font-bold text-red-900 ring-1 ring-red-200 transition hover:bg-red-100">Hapus</button>
                             </form>
                         </div>
                     </td>

@@ -18,7 +18,7 @@
         </div>
 
         @if ($errors->any())
-            <div class="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-700 ring-1 ring-red-200" role="alert">
+            <div class="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-900 ring-1 ring-red-200" role="alert">
                 {{ $errors->first() }}
             </div>
         @endif

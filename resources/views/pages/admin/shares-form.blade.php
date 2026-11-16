@@ -9,7 +9,7 @@
 </div>
 
 @if ($errors->any())
-    <div class="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-700 ring-1 ring-red-200">
+    <div class="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-900 ring-1 ring-red-200">
         @foreach ($errors->all() as $error)
             <p>{{ $error }}</p>
         @endforeach
@@ -23,7 +23,7 @@
     @endif
 
     <div class="md:col-span-2">
-        <label class="block text-sm font-semibold text-ink/80">Ahli waris <span class="text-red-600">*</span></label>
+        <label class="block text-sm font-semibold text-ink/80">Ahli waris <span class="text-red-800">*</span></label>
         <select name="heir_id" required class="mt-1 w-full rounded-xl border border-black/10 bg-surface px-3 py-2.5 text-sm">
             <option value="">— pilih —</option>
             @foreach ($heirs as $heir)
@@ -51,7 +51,7 @@
         </select>
     </div>
     <div class="md:col-span-2">
-        <label class="block text-sm font-semibold text-ink/80">Syarat bagian <span class="text-red-600">*</span></label>
+        <label class="block text-sm font-semibold text-ink/80">Syarat bagian <span class="text-red-800">*</span></label>
         <input name="condition" required maxlength="500" value="{{ old('condition', $share->condition) }}" class="mt-1 w-full rounded-xl border border-black/10 bg-surface px-3 py-2.5 text-sm">
         <p class="mt-1 text-xs text-ink/60">Contoh: "Bila pewaris tidak memiliki keturunan".</p>
     </div>

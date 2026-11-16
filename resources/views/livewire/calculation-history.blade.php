@@ -102,7 +102,7 @@
                             </div>
                         @else
                             <button wire:click="confirmDelete({{ $calculation->id }})"
-                                class="rounded-lg border border-red-200 px-3 py-1.5 text-xs font-medium text-red-700 hover:bg-red-50">
+                                class="rounded-lg border border-red-200 px-3 py-1.5 text-xs font-medium text-red-900 hover:bg-red-50">
                                 Hapus
                             </button>
                         @endif
