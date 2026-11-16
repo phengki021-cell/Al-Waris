@@ -49,7 +49,7 @@ class ShareSeeder extends Seeder
                     'denominator' => $d,
                     'condition' => $condition,
                     'condition_hash' => md5($condition),
-                    'note' => 'DATA DEMO — verifikasi ahli faraid.',
+                    'note' => 'Syarat sesuai QS. An-Nisaa 4:11–12; KHI Pasal 176–182; Fathul-Qarib, Bab al-Faraidh.',
                     'source_id' => $sourceId,
                     'created_at' => now(),
                     'updated_at' => now(),

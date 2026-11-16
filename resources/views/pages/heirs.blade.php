@@ -50,7 +50,7 @@
                             Sumber: {{ $heir->source->title }} — {{ $heir->source->reference }}
                         </p>
                     @endif
-                    <p class="mt-1 text-[10px] text-ink/40">DATA DEMO — verifikasi ahli faraid.</p>
+                    <p class="mt-1 text-[10px] text-ink/40">Dalil: QS. An-Nisaa 4:11&ndash;12, 4:176; KHI Pasal 176&ndash;182; Fathul-Qarib.</p>
                 </article>
             @empty
                 <p class="text-sm text-ink/70">Belum ada data.</p>

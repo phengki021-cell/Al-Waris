@@ -31,7 +31,7 @@
                     <span class="inline-flex items-center gap-1 rounded border border-gold/60 bg-gold-soft/60 px-2 py-1 font-bold text-gold-deep transition group-hover:bg-gold group-hover:text-white">
                         Lihat Detail Dalil <span aria-hidden="true">&rarr;</span>
                     </span>
-                    <span class="text-[10px] text-ink/30">DATA DEMO</span>
+                    <span class="text-[10px] text-ink/40">Syarat sesuai QS. An-Nisaa 4:11&ndash;12; KHI Pasal 176&ndash;182</span>
                 </span>
             </button>
         @empty
