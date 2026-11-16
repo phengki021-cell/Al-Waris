@@ -3,6 +3,9 @@
 use App\Http\Controllers\Admin\AuthController as AdminAuth;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\HeirAdminController;
+use App\Http\Controllers\Admin\ProfileController as AdminProfile;
+use App\Http\Controllers\Admin\ShareAdminController;
+use App\Http\Controllers\Admin\SourceAdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PwaController;
@@ -57,4 +60,25 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/ahli-waris/{heir}/edit', [HeirAdminController::class, 'edit'])->name('heirs.edit');
     Route::put('/ahli-waris/{heir}', [HeirAdminController::class, 'update'])->name('heirs.update');
     Route::delete('/ahli-waris/{heir}', [HeirAdminController::class, 'destroy'])->name('heirs.destroy');
+
+    // Bagian warisan (shares)
+    Route::get('/bagian-warisan', [ShareAdminController::class, 'index'])->name('shares');
+    Route::get('/bagian-warisan/baru', [ShareAdminController::class, 'create'])->name('shares.create');
+    Route::post('/bagian-warisan', [ShareAdminController::class, 'store'])->name('shares.store');
+    Route::get('/bagian-warisan/{share}/edit', [ShareAdminController::class, 'edit'])->name('shares.edit');
+    Route::put('/bagian-warisan/{share}', [ShareAdminController::class, 'update'])->name('shares.update');
+    Route::delete('/bagian-warisan/{share}', [ShareAdminController::class, 'destroy'])->name('shares.destroy');
+
+    // Referensi (sources)
+    Route::get('/referensi', [SourceAdminController::class, 'index'])->name('sources');
+    Route::get('/referensi/baru', [SourceAdminController::class, 'create'])->name('sources.create');
+    Route::post('/referensi', [SourceAdminController::class, 'store'])->name('sources.store');
+    Route::get('/referensi/{source}/edit', [SourceAdminController::class, 'edit'])->name('sources.edit');
+    Route::put('/referensi/{source}', [SourceAdminController::class, 'update'])->name('sources.update');
+    Route::delete('/referensi/{source}', [SourceAdminController::class, 'destroy'])->name('sources.destroy');
+
+    // Profil admin (ganti nama & kata sandi)
+    Route::get('/profil', [AdminProfile::class, 'show'])->name('profile');
+    Route::put('/profil/nama', [AdminProfile::class, 'updateName'])->name('profile.name');
+    Route::put('/profil/sandi', [AdminProfile::class, 'updatePassword'])->name('profile.password');
 });

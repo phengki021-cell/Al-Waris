@@ -126,6 +126,59 @@ it('panel admin: tamu diarahkan ke login, login salah ditolak, admin dapat dashb
     $this->actingAs($admin)->post(route('admin.logout'))->assertRedirect(route('admin.login'));
 });
 
+it('admin dapat mengelola bagian warisan, referensi, dan profil (ganti sandi)', function () {
+    $this->seed(Database\Seeders\AdminSeeder::class);
+    $this->seed(Database\Seeders\HeirSeeder::class);
+    $admin = User::query()->where('email', 'admin@alwariscom.online')->firstOrFail();
+
+    // Daftar & form bagian warisan + referensi
+    $this->actingAs($admin)->get(route('admin.shares'))->assertOk()->assertSee('Kelola Bagian Warisan');
+    $this->actingAs($admin)->get(route('admin.shares.create'))->assertOk()->assertSee('Tambah Bagian Warisan');
+    $this->actingAs($admin)->get(route('admin.sources'))->assertOk()->assertSee('Kelola Referensi');
+    $this->actingAs($admin)->get(route('admin.sources.create'))->assertOk()->assertSee('Tambah Referensi');
+
+    // Tambah referensi baru
+    $this->actingAs($admin)->post(route('admin.sources.store'), [
+        'code' => 'test-src',
+        'title' => 'Referensi Uji Otomatis',
+        'type' => 'kitab',
+        'reference' => 'QS. An-Nisaa: 11',
+        'is_primary' => '0',
+    ])->assertRedirect(route('admin.sources'))->assertSessionHas('status');
+    $source = App\Models\Source::query()->where('code', 'test-src')->firstOrFail();
+    expect($source->title)->toBe('Referensi Uji Otomatis');
+
+    // Tambah bagian warisan (condition_hash otomatis md5)
+    $heir = App\Models\Heir::query()->where('code', 'husband')->first();
+    $this->actingAs($admin)->post(route('admin.shares.store'), [
+        'heir_id' => $heir->id,
+        'numerator' => 1,
+        'denominator' => 3,
+        'condition' => 'Bila pewaris tidak memiliki keturunan (uji admin)',
+    ])->assertRedirect(route('admin.shares'))->assertSessionHas('status');
+    $share = App\Models\Share::query()
+        ->where('heir_id', $heir->id)
+        ->where('numerator', 1)
+        ->where('denominator', 3)
+        ->where('condition_hash', md5('Bila pewaris tidak memiliki keturunan (uji admin)'))
+        ->firstOrFail();
+    expect($share)->not->toBeNull();
+
+    // Profil admin: ganti sandi salah → error; benar → sukses; login dengan sandi baru
+    $this->actingAs($admin)->put(route('admin.profile.password'), [
+        'kata_sandi_lama' => 'salah-xyz',
+        'kata_sandi_baru' => 'sandi-baru-1234',
+        'kata_sandi_baru_konfirmasi' => 'sandi-baru-1234',
+    ])->assertSessionHasErrors('kata_sandi_lama');
+
+    $this->actingAs($admin)->put(route('admin.profile.password'), [
+        'kata_sandi_lama' => 'Alwaris-Admin#2026',
+        'kata_sandi_baru' => 'sandi-baru-1234',
+        'kata_sandi_baru_konfirmasi' => 'sandi-baru-1234',
+    ])->assertSessionHas('status');
+    expect(Hash::check('sandi-baru-1234', $admin->fresh()->password))->toBeTrue();
+});
+
 it('menyajikan manifest dengan ikon disk yang ada', function () {
     foreach (['icon-192.png', 'icon-512.png', 'maskable-192.png', 'maskable-512.png', 'apple-touch-icon-180.png', 'favicon-48.png'] as $icon) {
         expect(is_file(public_path("icons/{$icon}")))->toBeTrue("Ikon {$icon} harus ada");

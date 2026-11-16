@@ -36,6 +36,9 @@
     <h2 class="text-lg font-bold">Pintasan Kelola</h2>
     <div class="mt-3 flex flex-wrap gap-3">
         <a href="{{ route('admin.heirs') }}" class="u-btn-gold px-4 py-2 text-sm">Kelola Ahli Waris</a>
+        <a href="{{ route('admin.shares') }}" class="rounded-xl border border-gold/40 px-4 py-2 text-sm font-bold text-gold-deep transition hover:bg-gold-soft">Kelola Bagian Warisan</a>
+        <a href="{{ route('admin.sources') }}" class="rounded-xl border border-gold/40 px-4 py-2 text-sm font-bold text-gold-deep transition hover:bg-gold-soft">Kelola Referensi</a>
+        <a href="{{ route('admin.profile') }}" class="rounded-xl border border-gold/40 px-4 py-2 text-sm font-bold text-gold-deep transition hover:bg-gold-soft">Profil &amp; Ganti Sandi</a>
         <a href="{{ route('heirs') }}" class="rounded-xl border border-gold/40 px-4 py-2 text-sm font-bold text-gold-deep transition hover:bg-gold-soft">Lihat Halaman Publik</a>
     </div>
 </section>
