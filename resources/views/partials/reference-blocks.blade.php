@@ -16,13 +16,13 @@
         </p>
         <p class="mt-3 rounded-2xl border border-emerald-900/10 bg-surface p-4 text-sm italic text-ink/80">
             {{ $h['latin'] ?? '' }}
-            <span class="mt-2 block text-[10px] not-italic text-ink/40">
+            <span class="mt-2 block text-[10px] not-italic text-ink/70">
                 Nota transliterasi: tanda (in)/(un) adalah harakat akhir bacaan.
             </span>
         </p>
         <div class="u-verse-terjemah mt-3 rounded-r-xl bg-surface p-4 ring-1 ring-emerald-900/10">
             <p class="text-sm text-ink/80">{{ $h['terjemah'] ?? '' }}</p>
-            <p class="mt-2 text-[10px] text-ink/40">{{ $h['sumber'] ?? '' }}</p>
+            <p class="mt-2 text-[10px] text-ink/70">{{ $h['sumber'] ?? '' }}</p>
             @if (! empty($h['kriteria'] ?? null))
                 <p class="mt-2 inline-flex rounded-lg bg-gold-soft/70 px-2 py-1 text-xs font-semibold text-gold-deep ring-1 ring-gold/40">{{ $h['kriteria'] }}</p>
             @endif
@@ -81,7 +81,7 @@
                 <li class="u-pasal-card p-4">
                     <p class="text-sm font-extrabold uppercase tracking-wide text-emerald-900">{{ $y['label'] }}</p>
                     @if (! empty($y['pasal_tautan']))
-                        <p class="mt-1 text-[10px] tracking-wide uppercase text-ink/40">{{ $y['pasal_tautan'] }}</p>
+                        <p class="mt-1 text-[10px] tracking-wide uppercase text-ink/70">{{ $y['pasal_tautan'] }}</p>
                     @endif
                     <p class="mt-1 text-sm text-ink/80">{{ $y['ringkas'] }}</p>
                     @if (! empty($y['link']))
@@ -90,7 +90,7 @@
                                 {{ $y['link_label'] ?? 'Buka sumber resmi MA' }}
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="inline h-3.5 w-3.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0h-6m6 0v6"/></svg>
                             </a>
-                            <span class="text-[10px] text-ink/40">{{ $y['sumber'] ?? '' }} — tautan luar</span>
+                            <span class="text-[10px] text-ink/70">{{ $y['sumber'] ?? '' }} — tautan luar</span>
                         </p>
                     @endif
                 </li>
@@ -102,7 +102,7 @@
 @if (! empty($jurnal))
     <section>
         <h2 class="u-sec-title">Baca Jurnal Ilmiah Terkait</h2>
-        <p class="mt-2 text-[10px] tracking-wide uppercase text-ink/40">
+        <p class="mt-2 text-[10px] tracking-wide uppercase text-ink/70">
             Referensi pembelajaran akademik — jurnal terindeks SINTA, Google Scholar &amp; portal resmi Mahkamah Agung (tautan luar)
         </p>
         <ul class="mt-2 space-y-2">
@@ -113,7 +113,7 @@
                         <span class="min-w-0">
                             <span class="block text-sm font-bold text-emerald-900">{{ $j['label'] }}</span>
                             <span class="mt-1 block text-xs text-ink/70">{{ $j['desc'] ?? '' }}</span>
-                            <span class="mt-1 block text-[10px] text-ink/40">{{ $j['sumber'] ?? '' }}</span>
+                            <span class="mt-1 block text-[10px] text-ink/70">{{ $j['sumber'] ?? '' }}</span>
                         </span>
                         <span class="mt-0.5 flex shrink-0 flex-col items-end gap-1.5">
                             <span class="rounded bg-gold-soft/70 px-2 py-0.5 text-[10px] font-extrabold text-gold-deep ring-1 ring-gold/40">{{ $j['tag'] ?? 'Jurnal' }}</span>
@@ -125,7 +125,7 @@
                 </li>
             @endforeach
         </ul>
-        <p class="mt-2 text-center text-[10px] text-ink/40">
+        <p class="mt-2 text-center text-[10px] text-ink/70">
             Daftar tautan dapat bertambah — lihat juga halaman <a href="{{ route('sources') }}" class="font-semibold text-gold-deep underline transition hover:text-emerald-900">Referensi</a>.
         </p>
     </section>

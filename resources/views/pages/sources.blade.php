@@ -72,7 +72,7 @@
                     <li class="rounded-lg bg-surface p-3">
                         <p class="text-sm font-semibold">{{ $j['label'] }}</p>
                         <p class="mt-1 text-xs text-ink/70">{{ $j['desc'] ?? '' }}</p>
-                        <p class="mt-0.5 text-[10px] text-ink/40">{{ $j['sumber'] ?? '' }}</p>
+                        <p class="mt-0.5 text-[10px] text-ink/70">{{ $j['sumber'] ?? '' }}</p>
                         <a href="{{ $j['href'] }}" target="_blank" rel="noopener noreferrer" class="mt-2 inline-block text-xs text-accent underline">
                             Buka tautan jurnal
                         </a>

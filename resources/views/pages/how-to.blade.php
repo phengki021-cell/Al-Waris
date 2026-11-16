@@ -97,7 +97,7 @@
                                     <li class="rounded-lg bg-paper p-3 ring-1 ring-black/5">
                                         <p class="text-sm font-semibold text-primary">{{ $y['label'] }}</p>
                                         @if (! empty($y['pasal_tautan']))
-                                            <p class="mt-1 text-[10px] tracking-wide text-ink/40 uppercase">{{ $y['pasal_tautan'] }}</p>
+                                            <p class="mt-1 text-[10px] tracking-wide text-ink/70 uppercase">{{ $y['pasal_tautan'] }}</p>
                                         @endif
                                         <p class="mt-1 text-sm text-ink/80">{{ $y['ringkas'] }}</p>
                                         @if (! empty($y['link']))
@@ -106,7 +106,7 @@
                                                 {{ $y['link_label'] ?? 'Buka sumber resmi MA' }}
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="inline h-3 w-3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7m0 0h-6m6 0v6"/></svg>
                                             </a>
-                                            <span class="ml-1 text-[10px] text-ink/40">{{ $y['sumber'] ?? '' }} — tautan luar</span>
+                                            <span class="ml-1 text-[10px] text-ink/70">{{ $y['sumber'] ?? '' }} — tautan luar</span>
                                         @endif
                                     </li>
                                 @endforeach
@@ -123,7 +123,7 @@
                                             <span class="min-w-0">
                                                 <span class="block text-sm font-semibold text-primary">{{ $j['label'] }}</span>
                                                 <span class="mt-0.5 block text-xs text-ink/70">{{ $j['desc'] ?? '' }}</span>
-                                                <span class="mt-0.5 block text-[10px] text-ink/40">{{ $j['sumber'] ?? '' }} — tautan luar</span>
+                                                <span class="mt-0.5 block text-[10px] text-ink/70">{{ $j['sumber'] ?? '' }} — tautan luar</span>
                                             </span>
                                             <span class="mt-1 flex shrink-0 flex-col items-end gap-1">
                                                 <span class="rounded bg-accent-soft px-2 py-0.5 text-[10px] font-semibold text-primary">{{ $j['tag'] ?? 'Jurnal' }}</span>
@@ -158,7 +158,7 @@
                     <li class="rounded-xl bg-surface p-4">
                         <p class="text-sm font-semibold text-primary">{{ $y['label'] }}</p>
                         @if (! empty($y['pasal_tautan']))
-                            <p class="mt-1 text-[10px] tracking-wide text-ink/40 uppercase">{{ $y['pasal_tautan'] }}</p>
+                            <p class="mt-1 text-[10px] tracking-wide text-ink/70 uppercase">{{ $y['pasal_tautan'] }}</p>
                         @endif
                         <p class="mt-1 text-xs text-ink/70">{{ $y['ringkas'] }}</p>
                         @if (! empty($y['link']))
@@ -182,7 +182,7 @@
                             <span class="min-w-0">
                                 <span class="block text-sm font-semibold text-primary">{{ $j['label'] }}</span>
                                 <span class="mt-0.5 block text-xs text-ink/70">{{ $j['desc'] ?? '' }}</span>
-                                <span class="mt-0.5 block text-[10px] text-ink/40">{{ $j['sumber'] ?? '' }} — tautan luar</span>
+                                <span class="mt-0.5 block text-[10px] text-ink/70">{{ $j['sumber'] ?? '' }} — tautan luar</span>
                             </span>
                             <span class="mt-1 flex shrink-0 flex-col items-end gap-1">
                                 <span class="rounded bg-accent-soft px-2 py-0.5 text-[10px] font-semibold text-primary">{{ $j['tag'] ?? 'Jurnal' }}</span>

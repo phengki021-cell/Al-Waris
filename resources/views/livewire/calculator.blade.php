@@ -874,7 +874,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="mt-2 text-center text-[10px] text-ink/40">Sentuh/arahkan ke bagian untuk rincian</p>
+                                    <p class="mt-2 text-center text-[10px] text-ink/70">Sentuh/arahkan ke bagian untuk rincian</p>
                                 </div>
 
                                 {{-- Summary cards — %, Rp, badge status hukum --}}
@@ -946,7 +946,7 @@
                                                         <span class="text-xs text-ink/55">(×{{ $share['count'] }})</span>
                                                     @endif
                                                     @if ($share['code'] === 'wife' && $share['count'] > 1)
-                                                        <span class="block text-[10px] text-ink/40">bagian kolektif seluruh istri — dibagi rata</span>
+                                                        <span class="block text-[10px] text-ink/70">bagian kolektif seluruh istri — dibagi rata</span>
                                                     @endif
                                                     @if ($share['disputed'])
                                                         <span class="ml-1 rounded bg-gold-soft px-1.5 py-0.5 text-[10px] font-bold text-gold-deep">beda pendapat</span>
@@ -961,7 +961,7 @@
                                                 <td class="tnum px-4 py-2.5 font-semibold text-emerald-900">
                                                     {{ $share['text'] }}
                                                     @if ($share['per_person_text'] !== null)
-                                                        <span class="block text-[10px] text-ink/40">· per orang {{ $share['per_person_text'] }}</span>
+                                                        <span class="block text-[10px] text-ink/70">· per orang {{ $share['per_person_text'] }}</span>
                                                     @endif
                                                 </td>
                                                 <td class="tnum px-4 py-2.5 text-right text-xs text-ink/70">
@@ -1367,7 +1367,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="mt-2 text-center text-[10px] text-ink/40">Sentuh/arahkan ke bagian untuk rincian</p>
+                                        <p class="mt-2 text-center text-[10px] text-ink/70">Sentuh/arahkan ke bagian untuk rincian</p>
                                     </div>
 
                                     <div class="grid gap-2.5 sm:grid-cols-2">
@@ -1424,7 +1424,7 @@
                                                         @if ($entry['count'] > 1)
                                                             <span class="text-xs text-ink/55">(×{{ $entry['count'] }})</span>
                                                         @endif
-                                                        <span class="block text-[10px] text-ink/40">{{ $entry['rujukan'] }}</span>
+                                                        <span class="block text-[10px] text-ink/70">{{ $entry['rujukan'] }}</span>
                                                         @if (! empty($entry['catatan']))
                                                             <span class="mt-0.5 block text-[10px] italic text-ink/50">{{ $entry['catatan'] }}</span>
                                                         @endif

@@ -26,14 +26,14 @@
 
     /* === Turunan === */
     --color-emerald-soft: var(--alw-emerald-soft, #E6EDFF);  /* tint navy-terang */
-    --color-gold-deep: var(--alw-gold-deep, #B8913B);     /* Gold 600 — flip terang di dark */
+    --color-gold-deep: var(--alw-gold-deep, #8F6D24);     /* Gold 600 - flip terang di dark */
     --color-gold-soft: var(--alw-gold-soft, #F7EED3);     /* tint gold — flip gelap-emas di dark */
     --color-haze: var(--alw-haze, rgba(8, 21, 47, 0.05));
 
     /* === Pemetaan token legasi (kompatibilitas seluruh halaman) === */
     --color-primary: #08152F;       /* panel gelap inti */
     --color-primary-700: #14347E;   /* hover / gradasi navy terang */
-    --color-accent: #B8913B;        /* gold aksi (link, aksen legal) */
+    --color-accent: #8F6D24;        /* gold aksi (link, aksen legal) */
     --color-accent-soft: var(--alw-gold-soft, #F7EED3);   /* tint gold di area terang */
     --color-surface: var(--alw-surface, #EEF1F8);   /* panel dalam kartu */
     --color-ink: var(--alw-ink, #101B33);           /* teks utama */
@@ -77,7 +77,7 @@
         --alw-line: rgba(8, 21, 47, 0.12);
         --alw-soft-line: rgba(8, 21, 47, 0.08);
         --alw-muted: rgba(8, 21, 47, 0.55);
-        --alw-gold-deep: #B8913B;
+        --alw-gold-deep: #8F6D24;
         --alw-gold-soft: #F7EED3;
         --alw-amber-900: #78350F;
         color-scheme: light;
@@ -551,7 +551,7 @@
         border-radius: 9999px;
         background: rgba(212, 175, 87, 0.14);
         border: 1px solid rgba(212, 175, 87, 0.4);
-        color: #B8913B;
+        color: #8F6D24;
         font-size: 0.65rem;
         font-weight: 800;
         letter-spacing: 0.14em;

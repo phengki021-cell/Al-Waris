@@ -226,7 +226,7 @@
                     <section>
                         <h2 class="u-sec-title">Definisi &amp; Pengertian</h2>
                         <p class="mt-2 rounded-xl bg-surface p-4 text-sm text-ink/80">{{ $this->selectedProfile['definisi'] }}</p>
-                        <p class="mt-1 text-[10px] text-ink/40">Kategori: {{ $categories[$this->selectedHeir->category] ?? $this->selectedHeir->category }}</p>
+                        <p class="mt-1 text-[10px] text-ink/70">Kategori: {{ $categories[$this->selectedHeir->category] ?? $this->selectedHeir->category }}</p>
                     </section>
 
                     {{-- (b) Syarat mendapatkan warisan --}}
@@ -275,14 +275,14 @@
                             </p>
                             <p class="mt-3 rounded-xl bg-surface p-4 text-sm italic text-ink/80">
                                 {{ $this->selectedProfile['verse']['latin'] }}
-                                <span class="mt-2 block text-[10px] not-italic text-ink/40">
+                                <span class="mt-2 block text-[10px] not-italic text-ink/70">
                                     Nota transliterasi Kemenag: tanda (a)/(un)/(in) adalah harakat akhir bacaan.
                                 </span>
                             </p>
                             <div class="u-verse-terjemah mt-3 rounded-r-xl bg-surface p-4">
                                 <p class="text-sm text-ink/80">{{ $this->selectedProfile['verse']['terjemah'] }}</p>
                                 <p class="mt-2 text-xs text-ink/50">{{ $this->selectedProfile['verse']['footnote'] }}</p>
-                                <p class="mt-2 text-[10px] text-ink/40">
+                                <p class="mt-2 text-[10px] text-ink/70">
                                     Teks Arab, Latin &amp; Terjemahan: Quran Kemenag — LPMQ Kementerian Agama RI
                                     (Al-Qur'an dan Tafsirnya, edisi yang disempurnakan).
                                 </p>

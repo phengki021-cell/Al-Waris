@@ -31,7 +31,7 @@
                     <span class="inline-flex items-center gap-1 rounded border border-gold/60 bg-gold-soft/60 px-2 py-1 font-bold text-gold-deep transition group-hover:bg-gold group-hover:text-white">
                         Lihat Detail Dalil <span aria-hidden="true">&rarr;</span>
                     </span>
-                    <span class="text-[10px] text-ink/40">Syarat sesuai QS. An-Nisaa 4:11&ndash;12; KHI Pasal 176&ndash;182</span>
+                    <span class="text-[10px] text-ink/70">Syarat sesuai QS. An-Nisaa 4:11&ndash;12; KHI Pasal 176&ndash;182</span>
                 </span>
             </button>
         @empty
@@ -96,14 +96,14 @@
                             </p>
                             <p class="mt-3 rounded-xl bg-surface p-4 text-sm italic text-ink/80">
                                 {{ $this->selectedDalil['verse']['latin'] }}
-                                <span class="mt-2 block text-[10px] not-italic text-ink/40">
+                                <span class="mt-2 block text-[10px] not-italic text-ink/70">
                                     Nota transliterasi Kemenag: tanda (a)/(un)/(in) adalah harakat akhir bacaan.
                                 </span>
                             </p>
                             <div class="u-verse-terjemah mt-3 rounded-r-xl bg-surface p-4">
                                 <p class="text-sm text-ink/80">{{ $this->selectedDalil['verse']['terjemah'] }}</p>
                                 <p class="mt-2 text-xs text-ink/50">{{ $this->selectedDalil['verse']['footnote'] }}</p>
-                                <p class="mt-2 text-[10px] text-ink/40">
+                                <p class="mt-2 text-[10px] text-ink/70">
                                     Teks Arab, Latin &amp; Terjemahan: Quran Kemenag — LPMQ Kementerian Agama RI
                                     (Al-Qur'an dan Tafsirnya, edisi yang disempurnakan).
                                 </p>
