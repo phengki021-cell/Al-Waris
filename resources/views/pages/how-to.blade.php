@@ -5,7 +5,8 @@
 @section('content')
 @include('partials.back-button')
 <section class="mt-3">
-    <h1 class="text-2xl font-bold md:text-3xl">Cara Menghitung Warisan</h1>
+    <p class="u-kicker text-gold-deep">Panduan</p>
+    <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">Cara Menghitung Warisan</h1>
     <p class="mt-2 text-sm text-ink/70 max-w-3xl">
         Ilmu faraid disusun dalam tahapan yang rapi. Klik setiap tahapan untuk membuka
         detail penjelasan <span class="font-medium">rumus</span>,
@@ -19,13 +20,16 @@
 <section class="mt-6 space-y-4">
     @foreach ($steps as $code => $step)
         <details
-            class="group overflow-hidden rounded-xl bg-paper shadow-sm ring-1 ring-black/5 open:ring-2 open:ring-accent"
+            class="group overflow-hidden rounded-3xl bg-paper shadow-smooth ring-1 ring-black/5 transition open:ring-2 open:ring-gold/50"
             id="tahap-{{ $code }}"
         >
             <summary class="flex cursor-pointer select-none items-start justify-between gap-3 p-4 md:p-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent">
-                <span class="min-w-0 flex-1">
-                    <span class="block font-semibold text-primary">{{ $step['judul'] }}</span>
-                    <span class="mt-1 block text-sm text-ink/80">{{ $step['ringkasan'] }}</span>
+                <span class="flex min-w-0 flex-1 items-start gap-3.5">
+                    <span class="tnum grid h-10 w-10 shrink-0 place-items-center rounded-2xl text-ivory shadow-smooth" style="background:linear-gradient(135deg, #123D32 0%, #147F70 100%)" aria-hidden="true">{{ $loop->iteration }}</span>
+                    <span class="min-w-0">
+                        <span class="block font-bold text-deep">{{ $step['judul'] }}</span>
+                        <span class="mt-1 block text-sm text-ink/70">{{ $step['ringkasan'] }}</span>
+                    </span>
                 </span>
                 <span class="mt-1 flex shrink-0 items-center gap-2">
                     <span class="hidden rounded-lg border border-accent px-2 py-1 text-xs font-medium text-accent md:inline-flex">

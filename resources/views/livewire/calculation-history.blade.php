@@ -1,6 +1,7 @@
 <div class="mx-auto max-w-4xl">
     @include('partials.back-button')
-    <h1 class="mt-3 text-2xl font-bold md:text-3xl">Riwayat Perhitungan</h1>
+    <p class="u-kicker text-gold-deep">Riwayat</p>
+    <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">Riwayat Perhitungan</h1>
     <p class="mt-2 text-sm text-ink/70">
         Riwayat tersimpan <strong>anonim per sesi peramban</strong>. Data tetap di perangkat/peramban Anda
         dan tidak terhubung ke akun mana pun. Lihat <a href="{{ route('privacy') }}" class="text-primary underline">Kebijakan Privasi</a>.
@@ -25,10 +26,14 @@
     @else
         <ul class="mt-6 space-y-3">
             @foreach ($calculations as $calculation)
-                <li class="rounded-xl bg-paper p-4 shadow-sm ring-1 ring-black/5">
+                <li class="rounded-3xl bg-paper p-5 shadow-smooth ring-1 ring-black/5 transition hover:ring-gold/40">
                     <div class="flex flex-wrap items-start justify-between gap-3">
-                        <div class="text-sm">
-                            <p class="font-semibold text-primary">{{ $calculation->reference_code }}</p>
+                        <div class="flex min-w-0 items-start gap-3.5">
+                            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-emerald-100 text-emerald-900 ring-1 ring-emerald-200" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l2.5 2.5"/><circle cx="12" cy="12" r="9"/></svg>
+                            </span>
+                            <div class="min-w-0 text-sm">
+                                <p class="font-bold text-deep">{{ $calculation->reference_code }}</p>
                             <p class="mt-1 text-xs text-ink/60">
                                 {{ $calculation->created_at->format('d M Y H:i') }}
                                 · Metode: {{ ($calculation->method ?? '—') }}
@@ -38,6 +43,8 @@
                                 Harta bersih dibagi: <strong>Rp {{ number_format((float) $calculation->net_estate, 2, ',', '.') }}</strong>
                                 · Jumlah penerima: {{ $calculation->participants->sum('count') }}
                             </p>
+                            </div>
+                        </div>
 
                             {{-- Detail yang dapat dibuka/tutup --}}
                             @if ($this->expandedDetails[$calculation->id] ?? false)

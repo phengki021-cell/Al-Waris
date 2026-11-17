@@ -5,7 +5,8 @@
 @section('content')
 @include('partials.back-button')
 <section class="mt-3 max-w-3xl">
-    <h1 class="text-2xl font-bold md:text-3xl">Tentang Al-Waris</h1>
+    <p class="u-kicker text-gold-deep">Tentang</p>
+    <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">Tentang Al-Waris</h1>
 
     {{-- Tujuan Al Waris — identitas misi --}}
     <div class="u-smart-card mt-6 p-6 md:p-8">
