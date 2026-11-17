@@ -471,7 +471,7 @@
 
                 {{-- Ringkasan input (mengikuti jejak asli) --}}
                 <div class="u-smart-card mt-4 overflow-hidden">
-                    <div class="flex items-center gap-2 bg-gradient-to-r from-[#08152F] to-[#24479E] px-4 py-2.5">
+                    <div class="flex items-center gap-2 bg-gradient-to-r from-[#101B18] to-[#1B5E48] px-4 py-2.5">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-4 w-4 text-gold-soft" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><path stroke-linecap="round" d="M9 12h6M9 16h6M9 8h2"/></svg>
                         <p class="text-xs font-extrabold tracking-widest text-gold-soft uppercase">Ringkasan input</p>
                     </div>
@@ -505,7 +505,7 @@
 
                 {{-- Papan keterangan dinamis: berubah langsung mengikuti pilihan --}}
                 <div class="u-smart-card mt-4 overflow-hidden" aria-live="polite">
-                    <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-[#050D1D] via-[#08152F] to-[#24479E] px-4 py-2.5">
+                    <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-[#0A120E] via-[#101B18] to-[#1B5E48] px-4 py-2.5">
                         <div class="flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-4 w-4 text-gold-soft" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9-9 9-9-9 9-9 9 9"/></svg>
                             <p class="text-xs font-extrabold uppercase tracking-widest text-gold-soft">Keterangan setiap ahli waris</p>
@@ -540,7 +540,7 @@
                                         @endif
                                     </p>
                                     <span class="rounded-full px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider ring-1
-                                        @if ($entry['status'] === 'fard') bg-[#08152F] text-[#F0F4FF] ring-[#08152F]
+                                        @if ($entry['status'] === 'fard') bg-[#101B18] text-[#EEF4F1] ring-[#101B18]
                                         @elseif($entry['status'] === 'asabah') bg-gold-soft text-gold-deep ring-gold/40
                                         @elseif($entry['status'] === 'mahjub') bg-red-600 text-white ring-red-600
                                         @elseif($entry['status'] === 'pending') bg-paper text-red-900 ring-red-300
@@ -580,7 +580,7 @@
 
                 {{-- ===== Panel 'ASABAH (tiga jenis) — terpisah dari hijab ===== --}}
                 <div class="u-smart-card mt-4 overflow-hidden" aria-live="polite">
-                    <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-[#050D1D] via-[#08152F] to-[#24479E] px-4 py-2.5">
+                    <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-[#0A120E] via-[#101B18] to-[#1B5E48] px-4 py-2.5">
                         <div class="flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-4 w-4 text-gold-soft" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m16 16 3-8 3 8M2 16l3-8 3 8m7 5H9l3-8 3 8m0-16L12 5l-1 1"/></svg>
                             <p class="text-xs font-extrabold uppercase tracking-widest text-gold-soft">Jenis &lsquo;Ashabah</p>
@@ -754,7 +754,7 @@
 
                 @if ($result['status'] === 'valid')
                     <div class="u-smart-card overflow-hidden">
-                        <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-[#050D1D] via-[#08152F] to-[#24479E] px-5 py-3.5">
+                        <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-[#0A120E] via-[#101B18] to-[#1B5E48] px-5 py-3.5">
                             <h2 class="u-display text-lg text-ivory">Hasil Pembagian</h2>
                             <span class="u-chip">DEMO — verifikasi ahli faraid</span>
                         </div>
@@ -798,7 +798,7 @@
 
                             {{-- ===== Visual Result Banner: donut chart interaktif + kartu rincian berbadge ===== --}}
                             @php
-                                $palette = ['#08152F', '#10254B', '#00CFFF', '#57D4FF', '#9FC9FF', '#D4AF57', '#B8913B', '#4A3AB0', '#2B2170', '#8058F5'];
+                                $palette = ['#101B18', '#1B2B26', '#2FBF8F', '#5FD9AE', '#A7CBB8', '#D8B66A', '#8A6D33', '#9C7C3C', '#2B2170', '#9C7C3C'];
 
                                 // Peta kartu hasil (kode tunggal) → papan keterangan $heirEntries
                                 // (kode jamak). Label jenis 'Ashabah & hijab diambil dari
@@ -1300,7 +1300,7 @@
                 @if ($showCivilResult && $civilResult)
                     @if ($civilResult['status'] === 'valid')
                         <div class="u-smart-card overflow-hidden">
-                            <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-[#050D1D] via-[#08152F] to-[#24479E] px-5 py-3.5">
+                            <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-[#0A120E] via-[#101B18] to-[#1B5E48] px-5 py-3.5">
                                 <h2 class="u-display text-lg text-ivory">Hasil Pembagian Perdata — Golongan I</h2>
                                 <span class="u-chip">DEMO — bukan nasihat hukum</span>
                             </div>
@@ -1324,7 +1324,7 @@
 
                                 {{-- Visual Result Banner mode perdata: donut + kartu berbadge --}}
                                 @php
-                                    $civilPalette = ['#08152F', '#10254B', '#00CFFF', '#57D4FF', '#9FC9FF', '#D4AF57', '#B8913B', '#4A3AB0', '#2B2170', '#8058F5'];
+                                    $civilPalette = ['#101B18', '#1B2B26', '#2FBF8F', '#5FD9AE', '#A7CBB8', '#D8B66A', '#8A6D33', '#9C7C3C', '#2B2170', '#9C7C3C'];
                                     $civilSlices = [];
                                     $civilCumulative = 0.0;
                                     foreach (collect($civilResult['entries'])->values() as $civilIndex => $civilEntry) {
@@ -1507,7 +1507,7 @@
              ===================================================== --}}
         <div class="mt-6 space-y-4">
             <div class="u-smart-card overflow-hidden">
-                <div class="bg-gradient-to-r from-[#050D1D] via-[#08152F] to-[#24479E] px-5 py-3.5">
+                <div class="bg-gradient-to-r from-[#0A120E] via-[#101B18] to-[#1B5E48] px-5 py-3.5">
                     <h2 class="u-display text-lg text-ivory">Topik Kontemporer — peta rujukan</h2>
                 </div>
                 <p class="px-5 py-4 text-sm leading-relaxed text-ink/70">

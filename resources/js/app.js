@@ -66,6 +66,46 @@ if ('serviceWorker' in navigator) {
  * menimpa format pada setiap render.
  */
 document.addEventListener('alpine:init', () => {
+    /*
+     * Toggle tema 3 mode: Terang → Gelap → Sistem.
+     * Nilai tersimpan di localStorage 'al-waris-theme'; script anti-FOUC di
+     * layouts/app.blade.php menerapkan mode yang sama sebelum paint.
+     */
+    Alpine.data('themeToggle', () => ({
+        mode: 'system',
+
+        init() {
+            try {
+                const stored = localStorage.getItem('al-waris-theme');
+
+                this.mode = stored === 'light' || stored === 'dark' ? stored : 'system';
+            } catch {
+                this.mode = 'system';
+            }
+        },
+
+        cycle() {
+            const order = ['light', 'dark', 'system'];
+
+            this.mode = order[(order.indexOf(this.mode) + 1) % order.length];
+
+            try {
+                localStorage.setItem('al-waris-theme', this.mode);
+            } catch {
+                // Mode privat: tema hanya berlaku di kunjungan ini.
+            }
+
+            const dark = this.mode === 'dark'
+                || (this.mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+            document.documentElement.classList.toggle('theme-dark', dark);
+        },
+
+        label() {
+            return { light: 'Terang', dark: 'Gelap', system: 'Sistem' }[this.mode] ?? 'Sistem';
+        },
+    }));
+
     Alpine.data('rupiahInput', (prop) => ({
         normalize(text) {
             return String(text ?? '')
@@ -105,7 +145,7 @@ document.addEventListener('alpine:init', () => {
             label: String(slice.label ?? ''),
             value: Number(slice.value ?? 0),
             pct: Number(slice.pct ?? 0),
-            color: String(slice.color ?? '#10254B'),
+            color: String(slice.color ?? '#1B5E48'),
         })),
 
         get total() {

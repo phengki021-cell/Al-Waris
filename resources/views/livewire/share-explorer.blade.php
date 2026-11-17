@@ -10,30 +10,48 @@
     </section>
 
     <section class="mt-6">
-        @forelse ($shares as $share)
-            <button
-                type="button"
-                wire:click="openDetail({{ $share->id }})"
-                class="u-choice group mb-2 flex w-full items-start justify-between gap-4 overflow-hidden p-4 text-left"
-                aria-haspopup="dialog"
-            >
-                <span class="min-w-0 flex-1">
-                    <span class="block text-sm font-semibold">
-                        {{ $share->heir->name_id }}
-                        <span class="ml-2 rounded bg-accent-soft px-2 py-0.5 text-xs text-primary">{{ $share->toText() }}</span>
-                    </span>
-                    <span class="mt-1 block text-xs text-ink/70">{{ $share->condition }}</span>
-                </span>
-                <span class="mt-1 flex shrink-0 flex-col items-end gap-1 text-xs text-ink/50 md:text-right">
-                    @if ($share->source)
-                        <span>{{ $share->source->title }} ({{ $share->source->reference }})</span>
-                    @endif
-                    <span class="inline-flex items-center gap-1 rounded border border-gold/60 bg-gold-soft/60 px-2 py-1 font-bold text-gold-deep transition group-hover:bg-gold group-hover:text-white">
-                        Lihat Detail Dalil <span aria-hidden="true">&rarr;</span>
-                    </span>
-                    <span class="text-[10px] text-ink/70">Syarat sesuai QS. An-Nisaa 4:11&ndash;12; KHI Pasal 176&ndash;182</span>
-                </span>
-            </button>
+        @php
+            // Kelompokkan aturan berdasarkan jatah pecahannya; urutan didaktik:
+            // 1/2 → 1/4 → 1/8 → 2/3 → 1/3 → 1/6 → sisanya.
+            $order = ['1/2', '1/4', '1/8', '2/3', '1/3', '1/6'];
+            $grouped = $shares->groupBy(fn ($s) => $s->toText());
+            $sorted = collect($order)->filter(fn ($f) => $grouped->has($f))
+                ->concat($grouped->keys()->reject(fn ($k) => in_array($k, $order))->sort());
+        @endphp
+        @forelse ($sorted as $fraction)
+            @php $rules = $grouped[$fraction]; [$n, $d] = explode('/', $fraction); @endphp
+            <div data-reveal class="u-choice group mb-3 overflow-hidden rounded-3xl bg-paper ring-1 ring-black/5 transition hover:ring-gold/40">
+                <div class="flex flex-col gap-4 p-5 sm:flex-row sm:items-start md:p-6">
+                    {{-- Pecahan besar --}}
+                    <div class="flex shrink-0 items-center gap-4 sm:flex-col sm:gap-1.5 sm:items-center sm:w-24">
+                        <span class="tnum text-4xl font-bold leading-none text-[#123D32]">{{ $n }}</span>
+                        <span class="h-px w-10 bg-gold sm:w-12" aria-hidden="true"></span>
+                        <span class="tnum text-4xl font-bold leading-none text-gold-deep">{{ $d }}</span>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <p class="u-kicker text-gold-deep">Bagian {{ $fraction }}</p>
+                        @foreach ($rules as $rule)
+                            <button
+                                type="button"
+                                wire:click="openDetail({{ $rule->id }})"
+                                class="mt-3 flex w-full flex-col gap-1 rounded-2xl bg-surface/60 p-4 text-left ring-1 ring-black/5 transition hover:bg-gold-soft/40 hover:ring-gold/40"
+                                aria-haspopup="dialog"
+                            >
+                                <span class="flex flex-wrap items-center gap-2">
+                                    <span class="text-sm font-semibold text-deep">{{ $rule->heir->name_id }}</span>
+                                    <span class="inline-flex items-center gap-1 rounded border border-gold/60 bg-gold-soft/60 px-2 py-0.5 text-[0.68rem] font-bold text-gold-deep transition group-hover:bg-gold group-hover:text-white">
+                                        Lihat Detail Dalil <span aria-hidden="true">&rarr;</span>
+                                    </span>
+                                </span>
+                                <span class="text-xs leading-relaxed text-ink/70">{{ $rule->condition }}</span>
+                                @if ($rule->source)
+                                    <span class="text-[0.68rem] text-ink/50">{{ $rule->source->title }} ({{ $rule->source->reference }})</span>
+                                @endif
+                            </button>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         @empty
             <div class="rounded-xl bg-paper p-8 text-center text-sm text-ink/60">
                 Belum ada bagian yang dipetakan (empty state). Silakan cek dokumen <code>docs/database-design.md</code>.
