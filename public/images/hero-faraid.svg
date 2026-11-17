@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 380" role="img" aria-label="Ilustrasi timbangan keadilan emas dan mushaf Al-Qur'an di atas rehal, dengan ornamen geometris Islam">
+  <defs>
+    <radialGradient id="hf-glow" cx="42%" cy="38%" r="70%">
+      <stop offset="0%" stop-color="#1B5E48"/>
+      <stop offset="55%" stop-color="#123D32"/>
+      <stop offset="100%" stop-color="#09271F"/>
+    </radialGradient>
+    <linearGradient id="hf-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F0DCA8"/>
+      <stop offset="45%" stop-color="#D8B66A"/>
+      <stop offset="100%" stop-color="#8A6D33"/>
+    </linearGradient>
+    <linearGradient id="hf-gold-v" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8CE93"/>
+      <stop offset="100%" stop-color="#A9823C"/>
+    </linearGradient>
+    <linearGradient id="hf-page" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FDFBF3"/>
+      <stop offset="100%" stop-color="#EFE6C8"/>
+    </linearGradient>
+    <linearGradient id="hf-wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8A6D33"/>
+      <stop offset="100%" stop-color="#5C4A20"/>
+    </linearGradient>
+    <pattern id="hf-ornament" width="52" height="52" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#D8B66A" stroke-width="1">
+        <rect x="14" y="14" width="24" height="24" opacity="0.5"/>
+        <rect x="14" y="14" width="24" height="24" transform="rotate(45 26 26)" opacity="0.35"/>
+        <circle cx="26" cy="26" r="3" opacity="0.4"/>
+      </g>
+    </pattern>
+    <filter id="hf-soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+  </defs>
+
+  <!-- Latar interior emerald -->
+  <rect width="520" height="380" rx="28" fill="url(#hf-glow)"/>
+  <rect width="520" height="380" rx="28" fill="url(#hf-ornament)" opacity="0.08"/>
+
+  <!-- Cahaya lembut di belakang objek -->
+  <ellipse cx="235" cy="150" rx="180" ry="130" fill="#D8B66A" opacity="0.14" filter="url(#hf-soft)"/>
+  <ellipse cx="395" cy="270" rx="110" ry="80" fill="#147F70" opacity="0.2" filter="url(#hf-soft)"/>
+
+  <!-- Lengkung mihrab -->
+  <g fill="none" stroke="#D8B66A" opacity="0.25" stroke-width="2">
+    <path d="M120 330V180a115 115 0 0 1 230 0v150"/>
+    <path d="M138 330V184a97 97 0 0 1 194 0v146" opacity="0.5"/>
+  </g>
+
+  <!-- ===== TIMBANGAN EMAS ===== -->
+  <g>
+    <!-- Tiang -->
+    <rect x="172" y="92" width="9" height="200" rx="4.5" fill="url(#hf-gold-v)"/>
+    <circle cx="176.5" cy="88" r="10" fill="url(#hf-gold)"/>
+    <circle cx="176.5" cy="88" r="4" fill="#8A6D33" opacity="0.6"/>
+    <!-- Lengan -->
+    <path d="M60 108h233" stroke="url(#hf-gold)" stroke-width="6" stroke-linecap="round"/>
+    <!-- Tali kiri -->
+    <path d="M60 110 40 158M60 110l20 48" stroke="#D8B66A" stroke-width="2" opacity="0.8"/>
+    <path d="M263 110l-20 48M263 110l20 48" stroke="#D8B66A" stroke-width="2" opacity="0.8"/>
+    <!-- Cawan kiri -->
+    <path d="M28 158a32 16 0 0 0 64 0Z" fill="url(#hf-gold)"/>
+    <ellipse cx="60" cy="158" rx="32" ry="5" fill="#F0DCA8" opacity="0.5"/>
+    <!-- Cawan kanan -->
+    <path d="M231 158a32 16 0 0 0 64 0Z" fill="url(#hf-gold)"/>
+    <ellipse cx="263" cy="158" rx="32" ry="5" fill="#F0DCA8" opacity="0.5"/>
+    <!-- Kaki & dudukan -->
+    <path d="M150 292h53l-14 22h-25Z" fill="url(#hf-wood)"/>
+    <rect x="128" y="314" width="97" height="10" rx="5" fill="url(#hf-wood)"/>
+  </g>
+
+  <!-- ===== MUSHAF TERBUKA DI ATAS REHAL ===== -->
+  <g>
+    <!-- Rehal (sandaran X) -->
+    <path d="M330 316 368 262l10 6-36 54Z" fill="url(#hf-wood)"/>
+    <path d="M416 316l-38-54-10 6 36 54Z" fill="url(#hf-wood)"/>
+    <rect x="318" y="314" width="110" height="9" rx="4.5" fill="url(#hf-wood)"/>
+    <!-- Halaman terbuka -->
+    <path d="M292 262c22-12 48-12 62-4v50c-14-8-40-8-62 4Z" fill="url(#hf-page)"/>
+    <path d="M446 262c-22-12-48-12-62-4v50c14-8 40-8 62 4Z" fill="url(#hf-page)"/>
+    <!-- Garis teks halaman -->
+    <g stroke="#C9B47E" stroke-width="2" stroke-linecap="round" opacity="0.8">
+      <path d="M300 272c16-7 34-8 46-4M300 282c16-7 34-8 46-4M300 292c16-7 34-8 46-4"/>
+      <path d="M438 272c-16-7-34-8-46-4M438 282c-16-7-34-8-46-4M438 292c-16-7-34-8-46-4"/>
+    </g>
+    <!-- Punggung/cover -->
+    <path d="M354 258c6-2 12-2 18 0v52c-6-2-12-2-18 0Z" fill="url(#hf-gold)"/>
+  </g>
+
+  <!-- Ornamen bintang kecil melayang -->
+  <g fill="#D8B66A">
+    <path d="M468 96l4 10 10 4-10 4-4 10-4-10-10-4 10-4Z" opacity="0.8"/>
+    <circle cx="66" cy="60" r="3.5" opacity="0.6"/>
+    <circle cx="492" cy="200" r="3" opacity="0.5"/>
+    <circle cx="34" cy="238" r="3" opacity="0.45"/>
+  </g>
+</svg>

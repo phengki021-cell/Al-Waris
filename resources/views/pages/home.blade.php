@@ -69,23 +69,18 @@
             @endforeach
         </nav>
 
-        {{-- Area informasi: ilustrasi timbangan keadilan + mushaf --}}
-        <div class="mt-7 flex items-center gap-4 rounded-2xl bg-white/8 p-4 ring-1 ring-white/10 md:mt-8 md:gap-5 md:p-5">
-            <svg viewBox="0 0 64 64" class="h-14 w-14 shrink-0 md:h-16 md:w-16" role="img" aria-label="Ilustrasi timbangan keadilan dan kitab faraid">
-                <g fill="none" stroke="#D8B66A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M32 12v34"/>
-                    <path d="M18 18h28"/>
-                    <path d="m10 34 8-16 8 16c-2.3 1.7-5.1 2.6-8 2.6S12.3 35.7 10 34Z"/>
-                    <path d="m38 34 8-16 8 16c-2.3 1.7-5.1 2.6-8 2.6s-5.7-.9-8-2.6Z"/>
-                    <path d="M24 50h16"/>
-                    <rect x="44" y="38" width="12" height="16" rx="1.5" opacity="0.85"/>
-                    <path d="M47 42h6M47 46h6" opacity="0.7"/>
-                </g>
-                <circle cx="32" cy="12" r="2.4" fill="#D8B66A"/>
-            </svg>
-            <div class="min-w-0">
-                <h1 class="text-lg font-bold leading-snug md:text-xl">Ilmu Faraid dan Keadilan</h1>
-                <p class="mt-1 text-xs leading-relaxed text-ivory/75 md:text-sm">Pembagian warisan berdasarkan ketentuan hukum Islam.</p>
+        {{-- Area informasi: gambar utama timbangan keadilan + mushaf --}}
+        <div class="mt-7 flex flex-col items-center gap-5 rounded-3xl bg-white/8 p-4 ring-1 ring-white/10 sm:flex-row sm:gap-6 md:mt-8 md:p-6">
+            <img src="/images/hero-faraid.svg" alt="" width="520" height="380" loading="eager"
+                 class="w-full max-w-[15rem] shrink-0 rounded-2xl shadow-lg shadow-[#09271F]/40 sm:max-w-[17rem] md:max-w-xs"
+                 aria-hidden="true">
+            <div class="min-w-0 text-center sm:text-left">
+                <h1 class="text-lg font-bold leading-snug md:text-2xl">Ilmu Faraid dan Keadilan</h1>
+                <p class="mt-1.5 text-xs leading-relaxed text-ivory/80 md:text-sm">Pembagian warisan berdasarkan ketentuan hukum Islam.</p>
+                <a href="{{ route('calculate') }}" class="mt-4 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-xs font-bold text-[#09271F] shadow-lg shadow-[#09271F]/30 transition hover:bg-gold/90 active:scale-95">
+                    Hitung Warisan
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3.5 w-3.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
+                </a>
             </div>
         </div>
     </div>
@@ -123,16 +118,9 @@
        class="group relative flex items-center gap-4 overflow-hidden rounded-3xl bg-gradient-to-r from-gold-soft via-paper to-emerald-soft p-5 ring-1 ring-gold/35 md:gap-5 md:p-6">
         <div class="pointer-events-none absolute -right-8 -top-10 h-36 w-36 rounded-full opacity-25 blur-[40px]" aria-hidden="true"
              style="background:radial-gradient(closest-side, rgba(216,182,106,0.9), transparent)"></div>
-        <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-[#123D32] text-gold ring-1 ring-gold/40 md:h-16 md:w-16">
-            <svg viewBox="0 0 64 64" class="h-8 w-8 md:h-9 md:w-9" aria-hidden="true">
-                <g fill="none" stroke="#D8B66A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M32 14v30"/><path d="M20 20h24"/>
-                    <path d="m13 34 7-14 7 14c-2 1.5-4.4 2.2-7 2.2S15 35.5 13 34Z"/>
-                    <path d="m37 34 7-14 7 14c-2 1.5-4.4 2.2-7 2.2s-5-.7-7-2.2Z"/>
-                    <path d="M25 48h14"/>
-                </g>
-            </svg>
-        </span>
+        <img src="/images/banner-faraid.svg" alt="" width="260" height="160" loading="lazy"
+             class="h-16 w-auto shrink-0 md:h-20"
+             aria-hidden="true">
         <div class="min-w-0 flex-1">
             <p class="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-gold-deep">Edukasi</p>
             <h2 class="mt-0.5 text-base font-bold text-deep md:text-lg">Mengenal Ilmu Faraid</h2>
