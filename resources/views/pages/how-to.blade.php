@@ -3,7 +3,8 @@
 @section('title', 'Cara Menghitung')
 
 @section('content')
-<section>
+@include('partials.back-button')
+<section class="mt-3">
     <h1 class="text-2xl font-bold md:text-3xl">Cara Menghitung Warisan</h1>
     <p class="mt-2 text-sm text-ink/70 max-w-3xl">
         Ilmu faraid disusun dalam tahapan yang rapi. Klik setiap tahapan untuk membuka

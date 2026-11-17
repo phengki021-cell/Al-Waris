@@ -3,7 +3,8 @@
 @section('title', 'Sumber dan Referensi')
 
 @section('content')
-<section>
+@include('partials.back-button')
+<section class="mt-3">
     <h1 class="text-2xl font-bold md:text-3xl">Sumber / Referensi</h1>
     <p class="mt-2 text-sm text-ink/70 max-w-3xl">
         Daftar sumber yang menjadi basis aturan faraid di Al-Waris. Setiap bagian warisan dapat ditautkan ke

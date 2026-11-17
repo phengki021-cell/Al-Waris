@@ -3,7 +3,8 @@
 @section('title', 'Pasang Al-Waris di Perangkat')
 
 @section('content')
-<div class="mx-auto max-w-3xl">
+@include('partials.back-button')
+<div class="mx-auto mt-3 max-w-3xl">
     <h1 class="text-2xl font-bold md:text-3xl">Pasang Al-Waris di Perangkat</h1>
     <p class="mt-3 text-ink/70">
         Al-Waris adalah <strong>PWA (Progressive Web App)</strong> — situs web yang dapat

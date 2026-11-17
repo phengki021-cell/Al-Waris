@@ -1,5 +1,6 @@
 <div x-data @keydown.escape.window="$wire.closeDetail()">
-    <section>
+    @include('partials.back-button')
+    <section class="mt-3">
         <p class="u-kicker text-gold-deep">Faraidh</p>
         <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">Ahli Waris</h1>
         <p class="mt-2 text-sm text-ink/70">

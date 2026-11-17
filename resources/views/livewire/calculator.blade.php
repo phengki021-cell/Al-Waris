@@ -1,5 +1,6 @@
 <div x-data class="mx-auto max-w-4xl">
-    <div class="flex flex-wrap items-end justify-between gap-3">
+    @include('partials.back-button')
+    <div class="mt-3 flex flex-wrap items-end justify-between gap-3">
         <div>
             <p class="u-kicker text-gold-deep">Kalkulator</p>
             <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">Hitung Warisan Otomatis</h1>

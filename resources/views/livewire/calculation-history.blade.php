@@ -1,5 +1,6 @@
 <div class="mx-auto max-w-4xl">
-    <h1 class="text-2xl font-bold md:text-3xl">Riwayat Perhitungan</h1>
+    @include('partials.back-button')
+    <h1 class="mt-3 text-2xl font-bold md:text-3xl">Riwayat Perhitungan</h1>
     <p class="mt-2 text-sm text-ink/70">
         Riwayat tersimpan <strong>anonim per sesi peramban</strong>. Data tetap di perangkat/peramban Anda
         dan tidak terhubung ke akun mana pun. Lihat <a href="{{ route('privacy') }}" class="text-primary underline">Kebijakan Privasi</a>.

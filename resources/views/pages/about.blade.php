@@ -3,7 +3,8 @@
 @section('title', 'Tentang')
 
 @section('content')
-<section class="max-w-3xl">
+@include('partials.back-button')
+<section class="mt-3 max-w-3xl">
     <h1 class="text-2xl font-bold md:text-3xl">Tentang Al-Waris</h1>
 
     {{-- Tujuan Al Waris — identitas misi --}}
