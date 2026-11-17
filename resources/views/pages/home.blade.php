@@ -96,7 +96,7 @@
      (halaman yang belum tampil di shortcut header)
      ========================================================= --}}
 <section class="mt-7 md:mt-9" aria-label="Menu layanan">
-    <div class="grid grid-cols-4 gap-3 md:grid-cols-8">
+    <div class="grid grid-cols-4 gap-3 md:max-w-3xl">
         @foreach ([
             ['route' => 'history', 'label' => 'Riwayat', 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M3.5 5v3.5H7"/><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 8.5A8.5 8.5 0 1 1 3.9 12"/><path stroke-linecap="round" d="M12 8v4.5l3 2"/>'],
             ['route' => 'sources', 'label' => 'Referensi', 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M5 4h6a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M14 7a3 3 0 0 1 3-3h2v13h-2a3 3 0 0 0-3 3"/><path stroke-linecap="round" d="M8 8h3M8 11h3"/>'],
@@ -106,7 +106,7 @@
             <a data-reveal href="{{ route($service['route']) }}"
                class="group flex flex-col items-center gap-2 rounded-2xl bg-paper p-3.5 text-center ring-1 ring-black/5 shadow-smooth transition hover:-translate-y-0.5 hover:ring-gold/40 active:scale-[0.97]"
                @if (request()->routeIs($service['route'])) aria-current="page" @endif>
-                <span class="grid h-11 w-11 place-items-center rounded-xl bg-[#123D32]/8 text-[#123D32] ring-1 ring-[#123D32]/10 transition group-hover:bg-[#123D32]/12">
+                <span class="grid h-11 w-11 place-items-center rounded-xl bg-emerald-100 text-emerald-900 ring-1 ring-emerald-200 transition group-hover:bg-emerald-200">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5" aria-hidden="true">{!! $service['icon'] !!}</svg>
                 </span>
                 <span class="text-[0.66rem] font-semibold leading-tight text-charcoal/80">{{ $service['label'] }}</span>
@@ -120,8 +120,7 @@
      ========================================================= --}}
 <section class="mt-7 md:mt-9" aria-label="Banner edukasi">
     <a href="{{ route('how-to') }}"
-       class="group relative flex items-center gap-4 overflow-hidden rounded-3xl p-5 ring-1 ring-gold/35 md:gap-5 md:p-6"
-       style="background:linear-gradient(120deg, #F5EDDA 0%, #FFFFFF 42%, #EEF4F1 74%, #E3EEE7 100%)">
+       class="group relative flex items-center gap-4 overflow-hidden rounded-3xl bg-gradient-to-r from-gold-soft via-paper to-emerald-soft p-5 ring-1 ring-gold/35 md:gap-5 md:p-6">
         <div class="pointer-events-none absolute -right-8 -top-10 h-36 w-36 rounded-full opacity-25 blur-[40px]" aria-hidden="true"
              style="background:radial-gradient(closest-side, rgba(216,182,106,0.9), transparent)"></div>
         <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-[#123D32] text-gold ring-1 ring-gold/40 md:h-16 md:w-16">
@@ -139,7 +138,7 @@
             <h2 class="mt-0.5 text-base font-bold text-deep md:text-lg">Mengenal Ilmu Faraid</h2>
             <p class="mt-1 text-xs leading-relaxed text-charcoal/65 md:text-[0.8rem]">Pelajari ketentuan pembagian harta warisan berdasarkan Al-Qur'an dan hukum Islam.</p>
         </div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#123D32" stroke-width="1.8" class="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5 shrink-0 text-accent transition-transform group-hover:translate-x-1" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg>
     </a>
 </section>
 
@@ -160,7 +159,7 @@
                 {{ $sourcesCount }} sumber rujukan terpasang: Al-Qur'an (QS. An-Nisaa 4:11–12, 4:176),
                 Kompilasi Hukum Islam (Inpres 1/1991), dan kitab Fathul-Qarib.
             </p>
-            <span class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-[#123D32]">
+            <span class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-accent">
                 Lihat semua referensi
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
             </span>
@@ -178,7 +177,7 @@
                 {{ $heirsCount }} golongan ahli waris dan {{ $sharesCount }} aturan bagian pasti —
                 dzawil furudh, ashabah, hingga kaidah hijab dan ahli waris pengganti.
             </p>
-            <span class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-[#123D32]">
+            <span class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-accent">
                 Pelajari ahli waris
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
             </span>
@@ -199,7 +198,7 @@
                     Belum ada riwayat. Setelah menghitung, hasilnya tersimpan di sini untuk ditinjau kembali.
                 @endif
             </p>
-            <span class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-[#123D32]">
+            <span class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-accent">
                 Buka riwayat
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
             </span>
@@ -217,7 +216,7 @@
                 Al-Waris adalah alat bantu edukasi dan simulasi faraid — bukan pengganti ahli faraid.
                 Dikembangkan oleh Hengki Pranata.
             </p>
-            <span class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-[#123D32]">
+            <span class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-accent">
                 Tentang aplikasi
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
             </span>
