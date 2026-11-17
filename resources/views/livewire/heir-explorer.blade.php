@@ -129,48 +129,76 @@
     </section>
 
     @foreach ($groups as $category => $group)
+        @php
+            // Identitas visual tiap golongan: warna & keterangan singkat.
+            $meta = match ($category) {
+                'fard'   => ['Dzawil Furudh (bagian pasti)', 'Penerima bagian pasti (1/2, 1/4, 1/8, dst.)', 'linear-gradient(120deg, #123D32 0%, #147F70 100%)'],
+                'asabah' => ['Ashabah (menerima sisa)', 'Menerima sisa harta setelah bagian pasti terbayar', 'linear-gradient(120deg, #1B4A3C 0%, #3D8A6C 100%)'],
+                'arham'  => ['Dzawil Arham', 'Kerabat yang belum berhak bila ada yang lebih dekat', 'linear-gradient(120deg, #8A6D33 0%, #D8B66A 100%)'],
+                'hajib'  => ['Penghalang', 'Menghalangi kerabat yang lebih jauh', 'linear-gradient(120deg, #263238 0%, #37474F 100%)'],
+                default  => [$category, '', 'linear-gradient(120deg, #123D32 0%, #147F70 100%)'],
+            };
+        @endphp
         <section class="mt-8">
-            <h2 class="text-lg font-semibold text-primary">
-                {{ $categories[$category] ?? $category }} <span class="text-sm text-ink/50">({{ $group->count() }})</span>
-            </h2>
+            <div class="flex flex-wrap items-end justify-between gap-2">
+                <div>
+                    <h2 class="text-lg font-bold text-deep md:text-xl">{{ $meta[0] }} <span class="text-sm font-semibold text-ink/40">({{ $group->count() }})</span></h2>
+                    <p class="mt-0.5 text-xs text-ink/60">{{ $meta[1] }}</p>
+                </div>
+                <span class="hidden h-2.5 w-24 rounded-full sm:block" style="background:{{ $meta[2] }}" aria-hidden="true"></span>
+            </div>
 
-            <div class="mt-3 grid gap-3 md:grid-cols-2">
+            <div class="mt-4 grid gap-3 md:grid-cols-2">
                 @forelse ($group as $heir)
                     <button
                         type="button"
                         wire:click="openDetail({{ $heir->id }})"
-                        class="u-choice group w-full flex items-start justify-between gap-3 p-4 text-left"
+                        class="u-choice group flex w-full items-start gap-4 rounded-3xl bg-paper p-4 text-left shadow-smooth ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:ring-gold/40 md:p-5"
                         aria-haspopup="dialog"
                     >
+                        {{-- Avatar ikon gender --}}
+                        <span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-ivory shadow-smooth md:h-14 md:w-14"
+                              style="background:{{ $meta[2] }}" aria-hidden="true">
+                            @if ($heir->gender === 'm')
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-6 w-6"><circle cx="10" cy="14" r="4.5"/><path stroke-linecap="round" d="M13.5 10.5 20 4m0 0h-4.5M20 4v4.5"/></svg>
+                            @else
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-6 w-6"><circle cx="12" cy="9" r="4.5"/><path stroke-linecap="round" d="M12 13.5V21m0-3h-3m3 0h3"/></svg>
+                            @endif
+                        </span>
+
                         <span class="min-w-0 flex-1">
-                            <span class="flex items-baseline gap-2">
-                                <span class="font-semibold text-primary">{{ $heir->name_id }}</span>
+                            <span class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                                <span class="font-bold text-deep">{{ $heir->name_id }}</span>
                                 @if ($heir->name_ar)
                                     <span class="text-xs italic text-ink/50">{{ $heir->name_ar }}</span>
                                 @endif
-                                <span class="rounded bg-accent-soft px-2 py-0.5 text-xs text-primary">
+                                <span class="rounded-full px-2 py-0.5 text-[0.62rem] font-bold ring-1 {{ $heir->gender === 'm' ? 'bg-[#123D32]/8 text-[#123D32] ring-[#123D32]/15' : 'bg-gold-soft/70 text-gold-deep ring-gold/30' }}">
                                     {{ $heir->gender === 'm' ? 'Laki-laki' : 'Perempuan' }}
                                 </span>
                             </span>
-                            <span class="mt-2 block line-clamp-2 text-sm text-ink/80">{{ $heir->detail }}</span>
-                            @if ($heir->max_share_numerator !== null)
-                                <span class="mt-2 block text-xs text-accent">
-                                    Bagian maksimum: {{ $heir->max_share_numerator }}/{{ $heir->max_share_denominator }}
-                                </span>
-                            @endif
-                            @if ($heir->offsetExists('dual_home'))
-                                <span class="mt-2 inline-flex items-center gap-1 rounded-lg bg-gold-soft/60 px-2 py-1 text-[11px] font-semibold leading-snug text-amber-900">
-                                    <span aria-hidden="true">&rarr;</span> {{ $heir->offsetGet('dual_home') }}
-                                </span>
-                            @endif
-                            @if ($heir->offsetExists('dual_note'))
-                                <span class="mt-2 inline-flex items-center gap-1 rounded-lg bg-accent-soft px-2 py-1 text-[11px] font-semibold leading-snug text-primary">
-                                    <span aria-hidden="true">&larr;</span> Juga berperan: {{ $heir->offsetGet('dual_note') }}
-                                </span>
-                            @endif
+                            <span class="mt-1.5 block line-clamp-2 text-xs leading-relaxed text-ink/75 md:text-sm">{{ $heir->detail }}</span>
+
+                            <span class="mt-2 flex flex-wrap items-center gap-1.5">
+                                @if ($heir->max_share_numerator !== null)
+                                    <span class="tnum rounded-lg bg-[#123D32]/8 px-2 py-1 text-[0.68rem] font-bold text-[#123D32] ring-1 ring-[#123D32]/15">
+                                        Maks {{ $heir->max_share_numerator }}/{{ $heir->max_share_denominator }}
+                                    </span>
+                                @endif
+                                @if ($heir->offsetExists('dual_home'))
+                                    <span class="inline-flex items-center gap-1 rounded-lg bg-gold-soft/60 px-2 py-1 text-[0.68rem] font-semibold leading-snug text-gold-deep ring-1 ring-gold/30">
+                                        <span aria-hidden="true">&rarr;</span> {{ $heir->offsetGet('dual_home') }}
+                                    </span>
+                                @endif
+                                @if ($heir->offsetExists('dual_note'))
+                                    <span class="inline-flex items-center gap-1 rounded-lg bg-gold-soft/60 px-2 py-1 text-[0.68rem] font-semibold leading-snug text-gold-deep ring-1 ring-gold/30">
+                                        <span aria-hidden="true">&larr;</span> Juga berperan: {{ $heir->offsetGet('dual_note') }}
+                                    </span>
+                                @endif
+                            </span>
                         </span>
-                        <span class="mt-1 shrink-0 self-start rounded-lg border border-gold/60 bg-gold-soft/60 px-2.5 py-1 text-xs font-bold text-gold-deep transition group-hover:bg-gold group-hover:text-white">
-                            Lihat Detail <span aria-hidden="true">&rarr;</span>
+
+                        <span class="mt-1 shrink-0 self-start rounded-xl border border-gold/60 bg-gold-soft/60 px-2.5 py-1.5 text-[0.68rem] font-bold text-gold-deep transition group-hover:bg-gold group-hover:text-white">
+                            Detail <span aria-hidden="true">&rarr;</span>
                         </span>
                     </button>
                 @empty

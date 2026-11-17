@@ -9,51 +9,79 @@
         </p>
     </section>
 
-    <section class="mt-6">
+    {{-- ===== DUA SISTEM HUKUM: Faraid vs Perdata — pembeda yang jelas ===== --}}
+    <section class="mt-6 grid gap-3 sm:grid-cols-2" aria-label="Dua sistem hukum waris">
+        <div class="relative overflow-hidden rounded-3xl p-5 text-ivory shadow-smooth" style="background:linear-gradient(135deg, #123D32 0%, #147F70 100%)">
+            <div class="pointer-events-none absolute inset-0 opacity-[0.08]" aria-hidden="true" style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22><g fill=%22none%22 stroke=%22%23D8B66A%22><rect x=%2212%22 y=%2212%22 width=%2216%22 height=%2216%22/></g></svg>'); background-size:40px 40px"></div>
+            <p class="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-gold">Sistem 1 &bull; aktif di halaman ini</p>
+            <h2 class="mt-1 text-lg font-bold">Hukum Islam (Faraid)</h2>
+            <p class="mt-1.5 text-xs leading-relaxed text-ivory/80">Bagian pasti dari Al-Qur'an &amp; KHI — suami 1/2, istri 1/8, anak perempuan 2/3, dst.</p>
+        </div>
+        <a href="{{ route('calculate') }}" class="group relative overflow-hidden rounded-3xl bg-paper p-5 shadow-smooth ring-1 ring-black/5 transition hover:ring-gold/40">
+            <p class="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-charcoal/50">Sistem 2 &bull; mode kalkulator terpisah</p>
+            <h2 class="mt-1 text-lg font-bold text-deep">Hukum Perdata Umum (KUHPerdata)</h2>
+            <p class="mt-1.5 text-xs leading-relaxed text-charcoal/60">Golongan I: pasangan &amp; anak bagian setara (Pasal 852) + penggantian cucu per cabang (Pasal 853).</p>
+            <span class="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-[#123D32]">
+                Buka tab perdata di kalkulator
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3.5 w-3.5 transition group-hover:translate-x-0.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
+            </span>
+        </a>
+    </section>
+
+    {{-- ===== Kartu per ahli waris — satu kartu = satu ahli waris ===== --}}
+    <section class="mt-8" aria-label="Daftar bagian per ahli waris">
         @php
-            // Kelompokkan aturan berdasarkan jatah pecahannya; urutan didaktik:
-            // 1/2 → 1/4 → 1/8 → 2/3 → 1/3 → 1/6 → sisanya.
-            $order = ['1/2', '1/4', '1/8', '2/3', '1/3', '1/6'];
-            $grouped = $shares->groupBy(fn ($s) => $s->toText());
-            $sorted = collect($order)->filter(fn ($f) => $grouped->has($f))
-                ->concat($grouped->keys()->reject(fn ($k) => in_array($k, $order))->sort());
+            // Satu kartu per ahli waris; kartu berisi semua kondisi bagian orang itu.
+            $perHeir = $shares->groupBy(fn ($s) => $s->heir->id)->sortBy(fn ($g) => $g->first()->heir->name_id);
         @endphp
-        @forelse ($sorted as $fraction)
-            @php $rules = $grouped[$fraction]; [$n, $d] = explode('/', $fraction); @endphp
-            <div data-reveal class="u-choice group mb-3 overflow-hidden rounded-3xl bg-paper ring-1 ring-black/5 transition hover:ring-gold/40">
-                <div class="flex flex-col gap-4 p-5 sm:flex-row sm:items-start md:p-6">
-                    {{-- Pecahan besar --}}
-                    <div class="flex shrink-0 items-center gap-4 sm:flex-col sm:gap-1.5 sm:items-center sm:w-24">
-                        <span class="tnum text-4xl font-bold leading-none text-[#123D32]">{{ $n }}</span>
-                        <span class="h-px w-10 bg-gold sm:w-12" aria-hidden="true"></span>
-                        <span class="tnum text-4xl font-bold leading-none text-gold-deep">{{ $d }}</span>
+        @forelse ($perHeir as $rules)
+            @php $heir = $rules->first()->heir; @endphp
+            <div data-reveal class="mb-4 overflow-hidden rounded-3xl bg-paper shadow-smooth ring-1 ring-black/5 transition hover:ring-gold/40">
+                {{-- Kepala kartu: gradient hijau + nama + pecahan --}}
+                <div class="flex items-center justify-between gap-3 px-5 py-4 text-ivory md:px-6" style="background:linear-gradient(120deg, #123D32 0%, #147F70 100%)">
+                    <div class="min-w-0">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <h2 class="truncate text-base font-bold md:text-lg">{{ $heir->name_id }}</h2>
+                            <span class="rounded-full bg-white/12 px-2 py-0.5 text-[0.62rem] font-semibold ring-1 ring-white/25">{{ $heir->gender === 'm' ? 'Laki-laki' : 'Perempuan' }}</span>
+                            @if ($heir->name_ar)
+                                <span class="text-xs italic text-gold-soft">{{ $heir->name_ar }}</span>
+                            @endif
+                        </div>
+                        <p class="mt-0.5 text-[0.65rem] uppercase tracking-[0.2em] text-gold/90">Dzawil Furudh — bagian pasti</p>
                     </div>
-                    <div class="min-w-0 flex-1">
-                        <p class="u-kicker text-gold-deep">Bagian {{ $fraction }}</p>
+                    {{-- Chips pecahan yang dimiliki --}}
+                    <div class="flex shrink-0 flex-wrap justify-end gap-1.5">
                         @foreach ($rules as $rule)
-                            <button
-                                type="button"
-                                wire:click="openDetail({{ $rule->id }})"
-                                class="mt-3 flex w-full flex-col gap-1 rounded-2xl bg-surface/60 p-4 text-left ring-1 ring-black/5 transition hover:bg-gold-soft/40 hover:ring-gold/40"
-                                aria-haspopup="dialog"
-                            >
-                                <span class="flex flex-wrap items-center gap-2">
-                                    <span class="text-sm font-semibold text-deep">{{ $rule->heir->name_id }}</span>
-                                    <span class="inline-flex items-center gap-1 rounded border border-gold/60 bg-gold-soft/60 px-2 py-0.5 text-[0.68rem] font-bold text-gold-deep transition group-hover:bg-gold group-hover:text-white">
-                                        Lihat Detail Dalil <span aria-hidden="true">&rarr;</span>
-                                    </span>
-                                </span>
-                                <span class="text-xs leading-relaxed text-ink/70">{{ $rule->condition }}</span>
-                                @if ($rule->source)
-                                    <span class="text-[0.68rem] text-ink/50">{{ $rule->source->title }} ({{ $rule->source->reference }})</span>
-                                @endif
-                            </button>
+                            <span class="tnum grid min-w-11 place-items-center rounded-xl bg-white/10 px-2.5 py-1.5 text-sm font-bold text-gold ring-1 ring-gold/40">{{ $rule->toText() }}</span>
                         @endforeach
                     </div>
                 </div>
+
+                {{-- Baris kondisi: klik untuk buka dalil --}}
+                <div class="p-3 md:p-4">
+                    @foreach ($rules as $rule)
+                        <button
+                            type="button"
+                            wire:click="openDetail({{ $rule->id }})"
+                            class="group/row mt-1.5 flex w-full items-center justify-between gap-3 rounded-2xl bg-surface p-4 text-left ring-1 ring-black/5 transition first:mt-0 hover:bg-gold-soft/30 hover:ring-gold/40"
+                            aria-haspopup="dialog"
+                        >
+                            <span class="min-w-0">
+                                <span class="block text-sm font-semibold text-deep">{{ $rule->toText() }} — kondisi {{ $loop->iteration }} dari {{ $rules->count() }}</span>
+                                <span class="mt-1 block text-xs leading-relaxed text-ink/70">{{ $rule->condition }}</span>
+                                @if ($rule->source)
+                                    <span class="mt-1 block text-[0.68rem] text-ink/50">{{ $rule->source->title }} ({{ $rule->source->reference }})</span>
+                                @endif
+                            </span>
+                            <span class="inline-flex shrink-0 items-center gap-1 rounded-xl border border-gold/60 bg-gold-soft/60 px-2.5 py-1.5 text-[0.68rem] font-bold text-gold-deep transition group-hover/row:bg-gold group-hover/row:text-white">
+                                Detail Dalil <span aria-hidden="true">&rarr;</span>
+                            </span>
+                        </button>
+                    @endforeach
+                </div>
             </div>
         @empty
-            <div class="rounded-xl bg-paper p-8 text-center text-sm text-ink/60">
+            <div class="rounded-2xl bg-paper p-8 text-center text-sm text-ink/60 shadow-smooth ring-1 ring-black/5">
                 Belum ada bagian yang dipetakan (empty state). Silakan cek dokumen <code>docs/database-design.md</code>.
             </div>
         @endforelse

@@ -143,7 +143,8 @@
         </div>
     </aside>
 
-    {{-- ===== Header mobile ===== --}}
+    {{-- ===== Header mobile — disembunyikan di Beranda (beranda punya header gradient sendiri) ===== --}}
+    @unless (request()->routeIs('home'))
     <header x-data="{ open: false }" class="sticky top-0 z-40 border-b border-gold/15 text-ivory shadow-lg shadow-deep/30 backdrop-blur lg:hidden" style="background:rgba(16,27,24,0.94)">
         <div class="flex h-16 items-center justify-between px-4">
             <a href="{{ route('home') }}" class="group flex items-center gap-2.5">
@@ -209,6 +210,7 @@
             </nav>
         </div>
     </header>
+    @endunless
 
     {{-- ===== Shell konten ===== --}}
     <div class="lg:pl-72">
@@ -289,15 +291,15 @@
          5 menu: Beranda • Panduan • KALKULATOR (tengah, menonjol) • Riwayat • Lainnya --}}
     <div x-data="{ more: false }" class="md:hidden">
         <nav aria-label="Navigasi cepat"
-             class="fixed inset-x-0 bottom-0 z-40 border-t border-gold/20"
-             style="background:rgba(16,27,24,0.96); backdrop-filter:blur(14px); padding-bottom: env(safe-area-inset-bottom);">
+             class="fixed inset-x-0 bottom-0 z-40 border-t border-charcoal/10 bg-paper/95 shadow-[0_-8px_28px_-14px_rgba(16,27,24,0.28)] backdrop-blur"
+             style="padding-bottom: env(safe-area-inset-bottom);">
             <div class="mx-auto grid max-w-lg grid-cols-5 items-end px-2 pt-1.5 pb-2">
                 {{-- 1. Beranda --}}
                 @php $active = request()->routeIs('home'); @endphp
                 <a href="{{ route('home') }}" aria-current="{{ $active ? 'page' : 'false' }}"
-                   class="group relative flex flex-col items-center gap-0.5 rounded-xl px-1 py-1 text-[0.6rem] font-semibold transition-colors duration-300 {{ $active ? 'text-gold' : 'text-ivory/60' }}">
+                   class="group relative flex flex-col items-center gap-0.5 rounded-xl px-1 py-1 text-[0.6rem] font-semibold transition-colors duration-300 {{ $active ? 'text-gold-deep' : 'text-charcoal/55' }}">
                     @if ($active)<span class="absolute -top-1.5 h-1 w-8 rounded-full bg-gold shadow-[0_0_10px_rgba(216,182,106,0.9)]" aria-hidden="true"></span>@endif
-                    <span class="grid h-8 w-8 place-items-center rounded-lg transition-colors duration-300 {{ $active ? 'bg-[#123D32]/60 text-gold' : '' }}">
+                    <span class="grid h-8 w-8 place-items-center rounded-lg transition-colors duration-300 {{ $active ? 'bg-emerald-soft text-gold-deep' : '' }}">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-[1.15rem] w-[1.15rem]" aria-hidden="true">{!! $navLinks['home'][1] !!}</svg>
                     </span>
                     {{ $navLinks['home'][0] }}
@@ -306,9 +308,9 @@
                 {{-- 2. Panduan --}}
                 @php $active = request()->routeIs('how-to'); @endphp
                 <a href="{{ route('how-to') }}" aria-current="{{ $active ? 'page' : 'false' }}"
-                   class="group relative flex flex-col items-center gap-0.5 rounded-xl px-1 py-1 text-[0.6rem] font-semibold transition-colors duration-300 {{ $active ? 'text-gold' : 'text-ivory/60' }}">
+                   class="group relative flex flex-col items-center gap-0.5 rounded-xl px-1 py-1 text-[0.6rem] font-semibold transition-colors duration-300 {{ $active ? 'text-gold-deep' : 'text-charcoal/55' }}">
                     @if ($active)<span class="absolute -top-1.5 h-1 w-8 rounded-full bg-gold shadow-[0_0_10px_rgba(216,182,106,0.9)]" aria-hidden="true"></span>@endif
-                    <span class="grid h-8 w-8 place-items-center rounded-lg transition-colors duration-300 {{ $active ? 'bg-[#123D32]/60 text-gold' : '' }}">
+                    <span class="grid h-8 w-8 place-items-center rounded-lg transition-colors duration-300 {{ $active ? 'bg-emerald-soft text-gold-deep' : '' }}">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-[1.15rem] w-[1.15rem]" aria-hidden="true">{!! $navLinks['how-to'][1] !!}</svg>
                     </span>
                     {{ $navLinks['how-to'][0] }}
@@ -329,9 +331,9 @@
                 {{-- 4. Riwayat --}}
                 @php $active = request()->routeIs('history'); @endphp
                 <a href="{{ route('history') }}" aria-current="{{ $active ? 'page' : 'false' }}"
-                   class="group relative flex flex-col items-center gap-0.5 rounded-xl px-1 py-1 text-[0.6rem] font-semibold transition-colors duration-300 {{ $active ? 'text-gold' : 'text-ivory/60' }}">
+                   class="group relative flex flex-col items-center gap-0.5 rounded-xl px-1 py-1 text-[0.6rem] font-semibold transition-colors duration-300 {{ $active ? 'text-gold-deep' : 'text-charcoal/55' }}">
                     @if ($active)<span class="absolute -top-1.5 h-1 w-8 rounded-full bg-gold shadow-[0_0_10px_rgba(216,182,106,0.9)]" aria-hidden="true"></span>@endif
-                    <span class="grid h-8 w-8 place-items-center rounded-lg transition-colors duration-300 {{ $active ? 'bg-[#123D32]/60 text-gold' : '' }}">
+                    <span class="grid h-8 w-8 place-items-center rounded-lg transition-colors duration-300 {{ $active ? 'bg-emerald-soft text-gold-deep' : '' }}">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-[1.15rem] w-[1.15rem]" aria-hidden="true">{!! $navLinks['history'][1] !!}</svg>
                     </span>
                     {{ $navLinks['history'][0] }}
@@ -340,7 +342,7 @@
                 {{-- 5. Lainnya — membuka sheet menu sekunder --}}
                 <button type="button"
                         x-on:click="more = true"
-                        class="flex flex-col items-center gap-0.5 rounded-xl px-1 py-1 text-[0.6rem] font-semibold transition-colors duration-300 text-ivory/60"
+                        class="flex flex-col items-center gap-0.5 rounded-xl px-1 py-1 text-[0.6rem] font-semibold transition-colors duration-300 text-charcoal/55"
                         aria-haspopup="dialog"
                         aria-label="Buka menu lainnya">
                     <span class="grid h-8 w-8 place-items-center rounded-lg">
