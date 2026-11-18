@@ -26,8 +26,8 @@
         {{-- Baris atas: logo + nama + tema --}}
         <div class="flex items-center justify-between gap-3">
             <div class="flex items-center gap-3">
-                <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 ring-1 ring-gold/50">
-                    @include('partials.logo', ['class' => 'h-7 w-7'])
+                <span class="shrink-0 overflow-hidden rounded-xl ring-1 ring-gold/50">
+                    <img src="/images/logo-al-waris.png" alt="Logo Al-Waris" class="h-11 w-11 object-cover" loading="eager">
                 </span>
                 <span>
                     <span class="block text-base font-bold uppercase tracking-[0.26em] md:text-lg">Al&nbsp;Waris</span>

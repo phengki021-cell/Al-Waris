@@ -92,8 +92,8 @@
            aria-label="Navigasi samping">
         {{-- Logo --}}
         <a href="{{ route('home') }}" class="group flex items-center gap-3 px-6 pt-7 pb-6">
-            <span class="relative grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[#123D32]/90 ring-1 ring-gold/50 shadow-glow">
-                @include('partials.logo', ['class' => 'h-7 w-7'])
+            <span class="shrink-0 overflow-hidden rounded-xl ring-1 ring-gold/50 shadow-glow">
+                <img src="/images/logo-al-waris.png" alt="Logo Al-Waris" class="h-11 w-11 object-cover">
             </span>
             <span class="leading-none">
                 <span class="block text-lg font-bold uppercase tracking-[0.28em] text-ivory">Al&nbsp;Waris</span>
@@ -142,8 +142,8 @@
     <header x-data="{ open: false }" class="sticky top-0 z-40 border-b border-gold/15 text-ivory shadow-lg shadow-deep/30 backdrop-blur lg:hidden" style="background:rgba(16,27,24,0.94)">
         <div class="flex h-16 items-center justify-between px-4">
             <a href="{{ route('home') }}" class="group flex items-center gap-2.5">
-                <span class="grid h-9 w-9 place-items-center rounded-lg bg-[#123D32]/90 ring-1 ring-gold/50">
-                    @include('partials.logo', ['class' => 'h-5.5 w-5.5'])
+                <span class="shrink-0 overflow-hidden rounded-lg ring-1 ring-gold/50">
+                    <img src="/images/logo-al-waris.png" alt="Logo Al-Waris" class="h-9 w-9 object-cover" loading="eager">
                 </span>
                 <span class="text-sm font-bold uppercase tracking-[0.24em] text-ivory">Al&nbsp;Waris</span>
             </a>
