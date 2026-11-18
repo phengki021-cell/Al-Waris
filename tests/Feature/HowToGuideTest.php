@@ -21,10 +21,29 @@ it('halaman cara menghitung menampilkan seluruh tahapan yang dapat diklik', func
         ->assertSee('Pembagian Dzawil Furudh')
         ->assertSee('Ashabah (Menerima Sisa)')
         ->assertSee('Radd')
+        ->assertSee('Gharrawain')
         ->assertSee('Pemisahan Harta Bersama')
         ->assertSee('Rumus')
         ->assertSee('Landasan Fikih')
-        ->assertSee('Contoh Studi Kasus');
+        ->assertSee('Contoh Studi Kasus')
+        ->assertSee('Tabel Bagian Ahli Waris')
+        ->assertSee('Diagram Proporsi')
+        ->assertSee('Tahapan Penyelesaian')
+        ->assertSee('Kesimpulan');
+});
+
+it('menampilkan materi gharrawain: dua kasus, tabel, dan angka eksak', function () {
+    $response = $this->get('/cara-menghitung');
+
+    $response->assertOk()
+        ->assertSee('Gharrawain kasus 1', false)
+        ->assertSee('Gharrawain kasus 2', false)
+        // Kasus 1 (harta Rp 120 juta): suami 60 jt, ibu 20 jt, ayah 40 jt.
+        ->assertSee('Rp 60.000.000')
+        ->assertSee('Rp 20.000.000')
+        ->assertSee('Rp 40.000.000')
+        // Kasus 2 (harta Rp 240 juta): istri 60 jt, ibu 60 jt, ayah 120 jt.
+        ->assertSee('Rp 240.000.000');
 });
 
 it('menampilkan studi kasus dengan angka rupiah yang dihitung eksak', function () {
@@ -45,6 +64,7 @@ it('config tahapan memuat rumus, landasan, dan contoh lengkap', function () {
         ->and($steps)->toHaveKey('dzawil-furudh')
         ->and($steps)->toHaveKey('asabah')
         ->and($steps)->toHaveKey('awal-radd')
+        ->and($steps)->toHaveKey('gharrawain')
         ->and($steps)->toHaveKey('harta-bersama');
 
     foreach ($steps as $code => $step) {
@@ -56,6 +76,8 @@ it('config tahapan memuat rumus, landasan, dan contoh lengkap', function () {
             Arr::get($step, 'contoh'),
             Arr::get($step, 'contoh_aul'),
             Arr::get($step, 'contoh_radd'),
+            Arr::get($step, 'contoh_suami'),
+            Arr::get($step, 'contoh_istri'),
         ];
 
         $jumlahKasus = 0;

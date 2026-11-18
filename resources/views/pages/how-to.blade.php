@@ -66,7 +66,7 @@
                 <section>
                     <h3 class="text-xs font-bold tracking-widest text-ink/50 uppercase">Contoh Studi Kasus</h3>
                     <div class="mt-2 space-y-4">
-                        @foreach ([$step['contoh'] ?? null, $step['contoh_aul'] ?? null, $step['contoh_radd'] ?? null] as $kasus)
+                        @foreach ([$step['contoh'] ?? null, $step['contoh_aul'] ?? null, $step['contoh_radd'] ?? null, $step['contoh_suami'] ?? null, $step['contoh_istri'] ?? null] as $kasus)
                             @if (is_array($kasus))
                                 <div class="rounded-xl bg-surface p-4">
                                     <p class="text-sm font-semibold text-primary">{{ $kasus['judul'] }}</p>
@@ -86,6 +86,80 @@
                         @endforeach
                     </div>
                 </section>
+
+                {{-- Tabel bagian ahli waris (opsional, mis. gharrawain) --}}
+                @if (isset($step['tabel']) && is_array($step['tabel']))
+                    <section>
+                        <h3 class="text-xs font-bold tracking-widest text-ink/50 uppercase">{{ $step['tabel']['judul'] ?? 'Tabel Bagian Ahli Waris' }}</h3>
+                        <div class="mt-2 overflow-x-auto rounded-xl ring-1 ring-black/5">
+                            <table class="w-full text-sm">
+                                <thead>
+                                    <tr class="border-b border-black/5 bg-black/5 text-left text-xs uppercase tracking-wider text-ink/60">
+                                        @foreach ($step['tabel']['header'] as $th)
+                                            <th class="px-4 py-2.5 {{ $loop->first ? '' : 'whitespace-nowrap' }}">{{ $th }}</th>
+                                        @endforeach
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($step['tabel']['rows'] as $row)
+                                        <tr class="border-b border-black/5 last:border-0 transition hover:bg-black/3">
+                                            @foreach ($row as $td)
+                                                <td class="px-4 py-2.5 {{ $loop->first ? 'font-bold text-deep' : 'tnum text-ink/80' }}">{{ $td }}</td>
+                                            @endforeach
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                @endif
+
+                {{-- Diagram proporsi (opsional, mis. gharrawain) --}}
+                @if (isset($step['diagram']) && is_array($step['diagram']))
+                    <section>
+                        <h3 class="text-xs font-bold tracking-widest text-ink/50 uppercase">{{ $step['diagram']['judul'] ?? 'Diagram Proporsi' }}</h3>
+                        <div class="mt-2 space-y-4">
+                            @foreach ($step['diagram']['kasus'] as $kasusDiagram)
+                                <div class="rounded-xl bg-surface p-4">
+                                    <p class="text-xs font-semibold text-primary">{{ $kasusDiagram['label'] }}</p>
+                                    <div class="mt-2.5 flex h-6 w-full overflow-hidden rounded-full ring-1 ring-black/10" role="img" aria-label="{{ $kasusDiagram['label'] }}">
+                                        @foreach ($kasusDiagram['segmen'] as $segmen)
+                                            <div class="h-full" style="width: {{ $segmen[1] }}%; background: {{ $segmen[2] }};"></div>
+                                        @endforeach
+                                    </div>
+                                    <div class="mt-2 flex flex-wrap gap-1.5">
+                                        @foreach ($kasusDiagram['segmen'] as $segmen)
+                                            <span class="inline-flex items-center gap-1.5 rounded-full bg-paper px-2.5 py-1 text-[10px] font-bold text-ink ring-1 ring-black/5">
+                                                <span class="h-2 w-2 rounded-full" style="background: {{ $segmen[2] }};" aria-hidden="true"></span>
+                                                {{ $segmen[0] }}
+                                            </span>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </section>
+                @endif
+
+                {{-- Tahapan penyelesaian (opsional) --}}
+                @if (isset($step['tahapan']) && is_array($step['tahapan']))
+                    <section>
+                        <h3 class="text-xs font-bold tracking-widest text-ink/50 uppercase">Tahapan Penyelesaian</h3>
+                        <ol class="mt-2 list-inside list-decimal space-y-1 text-sm text-ink/80">
+                            @foreach ($step['tahapan'] as $tahap)
+                                <li>{{ $tahap }}</li>
+                            @endforeach
+                        </ol>
+                    </section>
+                @endif
+
+                {{-- Kesimpulan (opsional) --}}
+                @if (isset($step['kesimpulan']))
+                    <section>
+                        <h3 class="text-xs font-bold tracking-widest text-ink/50 uppercase">Kesimpulan</h3>
+                        <p class="mt-2 rounded-xl border border-gold/40 bg-gold-soft/50 p-4 text-sm leading-relaxed text-ink/85">{{ $step['kesimpulan'] }}</p>
+                    </section>
+                @endif
 
                 {{-- Rujukan tahap ini: yurisprudensi MA & jurnal ilmiah --}}
                 @php $rujukan = $stepReferences[$code] ?? ['yurisprudensi' => [], 'jurnal' => []]; @endphp

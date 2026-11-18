@@ -159,6 +159,97 @@ return [
             ],
         ],
 
+        'gharrawain' => [
+            'judul' => 'Tahap 4b — Gharrawain (الغراوين): Ibu Bersama Pasangan & Ayah',
+            'ringkasan' => 'Dua kasus pembagian ibu yang mengandung keraguan (gharar): ibu bersama pasangan dan ayah. Ibu 1/3 dari sisa setelah pasangan; ayah menerima sisanya sebagai asabah.',
+            'rujukan' => [
+                'jurnal' => ['FARAID-KHI-SINTA'],
+            ],
+            'rumus' => [
+                'Pengertian: gharrawain (الغراوين) = ghararayn — "dua keraguan"; dua komposisi waris yang bagian ibunya menjadi tempat perdebatan ulama.',
+                'Sebab disebut gharrawain: pada kedua komposisi ini AYAH hadir, sehingga hak ibu 1/3 menjadi meragukan — apakah 1/3 penuh dari harta atau 1/3 dari sisa setelah pasangan.',
+                'Bentuk kasus pertama: SUAMI + IBU + AYAH (tanpa ahli waris lain).',
+                'Bentuk kasus kedua: ISTRI + IBU + AYAH (tanpa ahli waris lain).',
+                'Rumus: bagian ibu = 1/3 × (1 − bagian pasangan); bagian ayah = 1 − bagian pasangan − bagian ibu (ayah sebagai asabah menangkap sisa).',
+                'Bila ada ahli waris lain (anak, saudara, kakek, nenek), komposisi berubah dan kasus gharrawain ini TIDAK diterapkan — aturan umum (dzawil furudh, asabah, hijab) yang berlaku.',
+            ],
+            'landasan' => [
+                'Kaidah: kedua kasus ini dikenal klasik sebagai gharrawain karena keduanya mengandung gharar (keraguan) menentukan bagian ibu.',
+                'Pendapat yang dipakai aplikasi (pendekatan kitab-kitab faraid Indonesia): ibu memperoleh 1/3 dari SISA setelah bagian suami/istri; ayah menerima sisanya.',
+                'KHI Pasal 176 (ibu 1/6 bila ada keturunan; 1/3 bila tidak) dan Pasal 178 menjadi pijakan bagian-bagian dasar; penyelesaian gharrawain mengikuti pendapat di atas.',
+                'Diakui terdapat beda pendapat di antara ulama mengenai bagian ibu pada komposisi ini — verifikasi ahli faraid untuk kasus nyata.',
+            ],
+            'contoh_suami' => [
+                'judul' => 'Gharrawain kasus 1: suami + ibu + ayah',
+                'harta_awal' => 'Rp 120.000.000',
+                'partisipan' => 'Suami (1/2), ibu, ayah — tanpa keturunan dan saudara',
+                'langkah' => [
+                    'Bagian pasti awal: suami 1/2 (QS. An-Nisaa: 12); ibu & ayah meragukan → gharrawain.',
+                    'Sisa setelah suami: 1 − 1/2 = 1/2 → Rp 60.000.000.',
+                    'Ibu: 1/3 dari sisa = 1/3 × Rp 60.000.000 = Rp 20.000.000 (setara 1/6).',
+                    'Ayah: sisanya sebagai asabah = Rp 60.000.000 − Rp 20.000.000 = Rp 40.000.000 (setara 1/3).',
+                    'Verifikasi: Rp 60.000.000 + Rp 20.000.000 + Rp 40.000.000 = Rp 120.000.000 (habis terbagi).',
+                ],
+                'hasil' => 'Suami Rp 60.000.000 (1/2); ibu Rp 20.000.000 (1/6); ayah Rp 40.000.000 (1/3).',
+                'catatan' => 'Ibu "1/3 dari sisa" menyerupai posisi 1/6 ketika ayah hadir — inilah gharar yang diperdebatkan ulama.',
+            ],
+            'contoh_istri' => [
+                'judul' => 'Gharrawain kasus 2: istri + ibu + ayah',
+                'harta_awal' => 'Rp 240.000.000',
+                'partisipan' => 'Istri (1/4), ibu, ayah — tanpa keturunan dan saudara',
+                'langkah' => [
+                    'Bagian pasti awal: istri 1/4 (QS. An-Nisaa: 12, pewaris tanpa keturunan).',
+                    'Sisa setelah istri: 1 − 1/4 = 3/4 → Rp 180.000.000.',
+                    'Ibu: 1/3 dari sisa = 1/3 × Rp 180.000.000 = Rp 60.000.000 (setara 1/4).',
+                    'Ayah: sisanya sebagai asabah = Rp 180.000.000 − Rp 60.000.000 = Rp 120.000.000 (setara 1/2).',
+                    'Verifikasi: Rp 60.000.000 + Rp 60.000.000 + Rp 120.000.000 = Rp 240.000.000 (habis terbagi).',
+                ],
+                'hasil' => 'Istri Rp 60.000.000 (1/4); ibu Rp 60.000.000 (1/4); ayah Rp 120.000.000 (1/2).',
+                'catatan' => 'Pada kasus istri, keraguan bagian ibu lebih terasa: 1/4 hasil resep gharrawain vs 1/6 pada pendapat lain.',
+            ],
+            'tabel' => [
+                'judul' => 'Tabel Bagian Ahli Waris — Gharrawain',
+                'header' => ['Ahli Waris', 'Kasus 1: Suami + Ibu + Ayah', 'Kasus 2: Istri + Ibu + Ayah'],
+                'rows' => [
+                    ['Suami', '1/2', '—'],
+                    ['Istri', '—', '1/4'],
+                    ['Ibu', '1/6 (1/3 dari sisa setelah suami)', '1/4 (1/3 dari sisa setelah istri)'],
+                    ['Ayah', '1/3 (sisa, sebagai asabah)', '1/2 (sisa, sebagai asabah)'],
+                    ['Total', '1 (12/12)', '1 (4/4)'],
+                ],
+            ],
+            'diagram' => [
+                'judul' => 'Diagram Proporsi Pembagian',
+                'kasus' => [
+                    [
+                        'label' => 'Kasus 1 — Suami + Ibu + Ayah (harta Rp 120.000.000)',
+                        'segmen' => [
+                            ['Suami 1/2', 50, '#123D32'],
+                            ['Ibu 1/6', 16.7, '#D8B66A'],
+                            ['Ayah 1/3', 33.3, '#147F70'],
+                        ],
+                    ],
+                    [
+                        'label' => 'Kasus 2 — Istri + Ibu + Ayah (harta Rp 240.000.000)',
+                        'segmen' => [
+                            ['Istri 1/4', 25, '#123D32'],
+                            ['Ibu 1/4', 25, '#D8B66A'],
+                            ['Ayah 1/2', 50, '#147F70'],
+                        ],
+                    ],
+                ],
+            ],
+            'tahapan' => [
+                'Pastikan komposisi TEPAT pasangan + ibu + ayah — tidak ada anak, cucu, saudara, kakek, maupun nenek-ibu.',
+                'Hitung bagian pasti pasangan: suami 1/2 (tanpa keturunan) atau istri 1/4 (tanpa keturunan).',
+                'Hitung sisa setelah pasangan: 1 − bagian pasangan.',
+                'Bagian ibu = 1/3 × sisa (setara pecahan: 1/6 untuk kasus suami; 1/4 untuk kasus istri).',
+                'Bagian ayah = sisa − bagian ibu, sebagai asabah penangkap sisa.',
+                'Verifikasi: jumlah seluruh bagian = 1 (harta habis terbagi tanpa radd maupun aul).',
+            ],
+            'kesimpulan' => 'Gharrawain adalah dua kasus khusus ibu bersama pasangan dan ayah. Resep yang dipakai: ibu mendapat 1/3 dari sisa setelah bagian pasangan, dan ayah menerima sisanya — sehingga harta habis terbagi tanpa radd/aul. Cara mengingat sederhananya: "pasangan ambil haknya, sisanya dibagi tiga — satu bagian untuk ibu, dua bagian untuk ayah." Karena mengandung beda pendapat klasik, selalu verifikasi dengan ahli faraid untuk keputusan nyata.',
+        ],
+
         'harta-bersama' => [
             'judul' => 'Tahap 5 — Pemisahan Harta Bersama',
             'ringkasan' => 'Kerangka batas: sebelum faraid, hak pasangan (hal-hal yang menyebut) atas harta bersama dipisah terlebih dahulu.',
