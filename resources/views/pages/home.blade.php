@@ -79,6 +79,9 @@
             <div class="pointer-events-none absolute -top-20 right-0 h-44 w-44 rounded-full opacity-30 blur-[56px]" aria-hidden="true"
                  style="background:radial-gradient(closest-side, rgba(47,191,143,0.45), transparent)"></div>
 
+            {{-- Emblem orbital astrolab — dekoratif di belakang ilustrasi, logo statis di pusat --}}
+            @include('partials.emblem-orbital')
+
             <img src="/images/hero-faraid.svg" alt="" width="520" height="380" loading="eager"
                  class="relative w-full max-w-[16rem] shrink-0 rounded-2xl shadow-lg shadow-[#09271F]/50 ring-1 ring-gold/20 sm:max-w-[17rem] md:max-w-xs"
                  aria-hidden="true">

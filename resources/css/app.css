@@ -779,6 +779,45 @@
 .u-drift { animation: u-drift 9s ease-in-out infinite; }
 
 /* =========================================================
+   Emblem orbital astrolab (beranda) — berlapis, arah & kecepatan berbeda.
+   Semua lapisan dekoratif: pointer-events none via wadahnya.
+   ========================================================= */
+@keyframes u-rotate-rev {
+    to { transform: rotate(-360deg); }
+}
+
+@keyframes u-orb-glow {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.04); }
+}
+
+@keyframes u-orb-soft {
+    0%, 100% { opacity: 0.9; }
+    50% { opacity: 0.55; }
+}
+
+.u-orb-cw {
+    animation: u-rotate-slow var(--orb-dur, 90s) linear infinite;
+    transform-origin: 50% 50%;
+    transform-box: view-box;
+}
+
+.u-orb-ccw {
+    animation: u-rotate-rev var(--orb-dur, 70s) linear infinite;
+    transform-origin: 50% 50%;
+    transform-box: view-box;
+}
+
+.u-orb-glow {
+    animation: u-orb-glow var(--orb-dur, 7s) ease-in-out infinite;
+    transform-origin: 50% 50%;
+}
+
+.u-orb-soft {
+    animation: u-orb-soft var(--orb-dur, 9s) ease-in-out infinite;
+}
+
+/* =========================================================
     Cetak / PDF — hanya panel hasil yang tampil
    ========================================================= */
 @media print {
@@ -827,6 +866,10 @@
     .u-float,
     .u-loop-rotate,
     .u-drift,
+    .u-orb-cw,
+    .u-orb-ccw,
+    .u-orb-glow,
+    .u-orb-soft,
     .u-loading::after,
     .u-spinner {
         animation: none;
