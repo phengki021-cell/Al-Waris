@@ -49,7 +49,7 @@
         </div>
 
         {{-- Shortcut ikon horizontal (digeser bila layar sempit) --}}
-        <nav class="mt-7 flex gap-6 overflow-x-auto pb-1 md:gap-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        <nav class="mt-7 flex gap-6 overflow-x-auto pb-1 md:justify-center md:gap-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
              aria-label="Menu cepat">
             @foreach ([
                 ['route' => 'heirs', 'label' => 'Ahli Waris', 'icon' => '<circle cx="12" cy="8" r="3.25"/><path stroke-linecap="round" stroke-linejoin="round" d="M5 19.5c.6-3.2 3.4-5.25 7-5.25s6.4 2.05 7 5.25"/>'],
@@ -72,7 +72,7 @@
         </nav>
 
         {{-- Area informasi: gambar utama timbangan keadilan + mushaf --}}
-        <div class="relative mt-7 flex flex-col items-center gap-5 overflow-hidden rounded-3xl bg-white/8 p-4 ring-1 ring-white/10 sm:flex-row sm:gap-6 md:mt-8 md:p-6">
+        <div class="relative mt-7 flex flex-col items-center gap-5 overflow-hidden rounded-3xl bg-white/8 p-4 ring-1 ring-white/10 sm:flex-row sm:gap-6 md:mt-8 md:p-6 lg:mx-auto lg:max-w-5xl lg:gap-8 lg:p-8">
             {{-- Kedalaman: glow emerald-toska ganda --}}
             <div class="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full opacity-35 blur-[60px]" aria-hidden="true"
                  style="background:radial-gradient(closest-side, rgba(20,127,112,0.55), transparent)"></div>
@@ -83,11 +83,11 @@
             @include('partials.emblem-orbital')
 
             <img src="/images/hero-faraid.svg" alt="" width="520" height="380" loading="eager"
-                 class="relative w-full max-w-[16rem] shrink-0 rounded-2xl shadow-lg shadow-[#09271F]/50 ring-1 ring-gold/20 sm:max-w-[17rem] md:max-w-xs"
+                 class="relative w-full max-w-[16rem] shrink-0 rounded-2xl shadow-lg shadow-[#09271F]/50 ring-1 ring-gold/20 sm:max-w-[17rem] md:max-w-xs lg:max-w-sm"
                  aria-hidden="true">
             <div class="relative min-w-0 text-center sm:text-left">
-                <h1 class="text-xl font-bold leading-snug md:text-2xl">Ilmu Faraid dan Keadilan</h1>
-                <p class="mt-2 text-sm leading-relaxed text-ivory/80 md:text-sm">Pembagian warisan berdasarkan ketentuan hukum Islam.</p>
+                <h1 class="text-xl font-bold leading-snug md:text-2xl lg:text-3xl">Ilmu Faraid dan Keadilan</h1>
+                <p class="mt-2 text-sm leading-relaxed text-ivory/80 md:text-sm lg:text-base">Pembagian warisan berdasarkan ketentuan hukum Islam.</p>
                 <a href="{{ route('calculate') }}" class="mt-4 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-[#09271F] shadow-lg shadow-[#09271F]/40 transition hover:-translate-y-0.5 hover:bg-gold/90 active:scale-95">
                     Hitung Warisan
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
@@ -102,7 +102,7 @@
      (halaman yang belum tampil di shortcut header)
      ========================================================= --}}
 <section class="mt-7 md:mt-9" aria-label="Menu layanan">
-    <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 md:max-w-3xl">
+    <div class="mx-auto grid grid-cols-2 gap-3 sm:grid-cols-4 md:max-w-3xl">
         @foreach ([
             ['route' => 'history', 'label' => 'Riwayat', 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M3.5 5v3.5H7"/><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 8.5A8.5 8.5 0 1 1 3.9 12"/><path stroke-linecap="round" d="M12 8v4.5l3 2"/>'],
             ['route' => 'sources', 'label' => 'Referensi', 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M5 4h6a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M14 7a3 3 0 0 1 3-3h2v13h-2a3 3 0 0 0-3 3"/><path stroke-linecap="round" d="M8 8h3M8 11h3"/>'],
@@ -126,7 +126,7 @@
      ========================================================= --}}
 <section class="mt-7 md:mt-9" aria-label="Banner edukasi">
     <a href="{{ route('how-to') }}"
-       class="group relative flex items-center gap-4 overflow-hidden rounded-3xl bg-gradient-to-r from-gold-soft via-paper to-emerald-soft p-5 ring-1 ring-gold/35 shadow-smooth transition hover:-translate-y-0.5 hover:ring-gold/60 md:gap-5 md:p-6">
+       class="group relative flex items-center gap-4 overflow-hidden rounded-3xl bg-gradient-to-r from-gold-soft via-paper to-emerald-soft p-5 ring-1 ring-gold/35 shadow-smooth transition hover:-translate-y-0.5 hover:ring-gold/60 md:gap-5 md:p-6 lg:mx-auto lg:max-w-5xl">
         <div class="pointer-events-none absolute -right-8 -top-10 h-36 w-36 rounded-full opacity-25 blur-[40px]" aria-hidden="true"
              style="background:radial-gradient(closest-side, rgba(216,182,106,0.9), transparent)"></div>
         <div class="pointer-events-none absolute -bottom-12 left-1/3 h-28 w-28 rounded-full opacity-20 blur-[36px]" aria-hidden="true"
@@ -147,7 +147,7 @@
      KARTU KONTEN — informasi dari data yang benar-benar ada
      ========================================================= --}}
 <section class="mt-7 md:mt-9" aria-label="Informasi aplikasi">
-    <div class="grid gap-3 md:grid-cols-2">
+    <div class="mx-auto grid gap-3 md:grid-cols-2 lg:max-w-5xl">
         {{-- Referensi hukum --}}
         <a data-reveal href="{{ route('sources') }}" class="u-lift group rounded-3xl bg-paper p-5 ring-1 ring-black/5 shadow-smooth transition hover:ring-gold/40 md:p-6">
             <div class="flex items-center gap-3">

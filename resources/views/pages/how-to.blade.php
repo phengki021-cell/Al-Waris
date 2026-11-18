@@ -17,7 +17,7 @@
     </p>
 </section>
 
-<section class="mt-6 space-y-4">
+<section class="mx-auto mt-6 max-w-5xl space-y-4">
     @foreach ($steps as $code => $step)
         <details
             class="group overflow-hidden rounded-3xl bg-paper shadow-smooth ring-1 ring-black/5 transition open:ring-2 open:ring-gold/50"
@@ -221,7 +221,7 @@
 </section>
 
 {{-- ===== Pusat rujukan: yurisprudensi MA & jurnal ilmiah (SINTA / Google Scholar) ===== --}}
-<section class="mt-10 rounded-xl bg-paper p-5 shadow-sm ring-1 ring-black/5 md:p-6">
+<section class="mx-auto mt-10 max-w-5xl rounded-xl bg-paper p-5 shadow-sm ring-1 ring-black/5 md:p-6">
     <h2 class="text-lg font-semibold text-primary">Pusat Rujukan — Yurisprudensi MA &amp; Jurnal Ilmiah Terkait</h2>
     <p class="mt-2 text-sm text-ink/70">
         Referensi pembelajaran akademik sebagai pelengkap tahapan di atas: putusan &amp; surat edaran
@@ -275,7 +275,7 @@
     </div>
 </section>
 
-<section class="mt-8 rounded-xl bg-primary p-6 text-white">
+<section class="mx-auto mt-8 max-w-5xl rounded-xl bg-primary p-6 text-white">
     <h2 class="text-lg font-bold">Belajar dengan kalkulator</h2>
     <p class="mt-2 text-sm text-white/85">
         Pahami tahapan di atas, lalu latih langsung di <a href="{{ route('calculate') }}" class="text-accent underline">Hitung Warisan</a>:

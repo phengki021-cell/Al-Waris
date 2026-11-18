@@ -46,7 +46,7 @@
 </section>
 
 {{-- ===== Rujukan digital: yurisprudensi MA RI + jurnal ilmiah (tautan luar) ===== --}}
-<section class="mt-10">
+<section class="mx-auto mt-10 max-w-5xl">
     <h2 class="text-xs font-bold uppercase tracking-widest text-ink/50">Rujukan Digital — Yurisprudensi &amp; Jurnal Ilmiah</h2>
     <p class="mt-2 text-xs text-ink/60">
         Putusan dan SEMA Mahkamah Agung RI serta artikel jurnal terindeks (SINTA, Google Scholar) yang dirujuk
