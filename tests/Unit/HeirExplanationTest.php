@@ -6,7 +6,7 @@ use App\Services\HeirExplanationService;
  * Papan keterangan dinamis: status, bagian, dan alasan per ahli waris —
  * seluruh pecahan takaran diambil dari output mesin (tidak dihitung di sini).
  */
-it('papan keterangan: suami + ayah + ibu (tanpa anak) — ibu 1/3, ayah sisa', function () {
+it('papan keterangan: suami + ayah + ibu (tanpa anak) — gharrawain: ibu 1/6, ayah 1/3', function () {
     $panel = app(HeirExplanationService::class)->explain(
         heirs: ['husband' => true, 'wife_count' => 0, 'sons' => 0, 'daughters' => 0,
             'father' => true, 'mother' => true, 'maternal_grandmother' => false,
@@ -27,15 +27,15 @@ it('papan keterangan: suami + ayah + ibu (tanpa anak) — ibu 1/3, ayah sisa', f
         ->and($husband['reason'])->toContain('1/2');
 
     $father = $entries['father'];
-    expect($father['status'])->toBe('asabah')
-        // 1/6 fard — total bab tiga pihak = 1/2 + 1/6 + 1/3 = 1 (tidak ada radd)
-        ->and($father['share_text'])->toBe('1/6')
+    // Resep gharrawain: sisa setelah suami = 1/2; ayah menerima sisanya = 1/3.
+    expect($father['share_text'])->toBe('1/3')
         ->and($father['reason'])->toContain('asabah');
 
     $mother = $entries['mother'];
+    // Ibu 1/3 dari sisa setelah suami (1/3 × 1/2 = 1/6).
     expect($mother['status'])->toBe('fard')
-        ->and($mother['share_text'])->toBe('1/3')
-        ->and($mother['reason'])->toContain('1/3');
+        ->and($mother['share_text'])->toBe('1/6')
+        ->and($mother['reason'])->toContain('1/6');
 });
 
 it('papan keterangan: istri + ayah + ibu + anak laki-laki (ayah 1/6, anak menyerap sisa)', function () {

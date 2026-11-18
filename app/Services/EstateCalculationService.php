@@ -90,7 +90,99 @@ final class EstateCalculationService
             disputed: $result->isDisputed(),
             rounding: $shares['rounding'],
             totalCents: $shares['total'],
+            classification: $this->classification($result->method, $shares['list']),
         );
+    }
+
+    /**
+     * Klasifikasi otomatis "jenis perhitungan" dari HASIL MATEMATIS mesin
+     * (method yang diputuskan FaraidEngine): biasa / aul / radd / gharrawain.
+     * Tidak ada pilihan manual di UI — pengguna hanya memilih ahli waris.
+     *
+     * @param  list<array<string, mixed>>  $shares
+     * @return array{code: string, label: string, reason: string, asal: int, heirs: list<array{name: string, text: string}>}
+     */
+    private function classification(?string $method, array $shares): array
+    {
+        $heirs = array_map(
+            fn (array $s): array => ['name' => $s['name'], 'text' => $s['text']],
+            $shares
+        );
+
+        // Asal masalah = KPK penyebut seluruh bagian akhir (eksak, tanpa float).
+        $asal = 1;
+        foreach ($shares as $s) {
+            $asal = $this->lcm($asal, (int) $s['d']);
+        }
+
+        return match ($method) {
+            'aul' => [
+                'code' => 'aul',
+                'label' => "Perhitungan 'Aul",
+                'reason' => 'Jumlah seluruh bagian pasti melebihi satu asal, sehingga asal masalah DINAIKKAN (pembilang pecahan dijumlahkan menjadi penyebut baru). Setiap ahli waris menerima proporsi bagian pastinya dari asal yang dinaikkan.',
+                'asal' => $asal,
+                'heirs' => $heirs,
+            ],
+            'radd' => [
+                'code' => 'radd',
+                'label' => 'Perhitungan Radd',
+                'reason' => 'Setelah seluruh bagian pasti dibagikan masih ada SISA harta, dan tidak ada asabah yang menyerapnya. Sisa dikembalikan secara proporsional kepada ahli waris berbagian pasti (pasangan tidak menerima radd).',
+                'asal' => $asal,
+                'heirs' => $heirs,
+            ],
+            'gharawain' => $this->isGrandmotherGharawain($shares)
+                ? [
+                    'code' => 'gharrawain',
+                    'label' => 'Perhitungan Gharrawain',
+                    'reason' => 'Kasus gharrawain (beda pendapat klasik): hak nenek dari ibu ketika ibu masih hidup. Aplikasi memakai pendapat yang memberi nenek 1/6 dan sisanya diradd-kan bersama.',
+                    'asal' => $asal,
+                    'heirs' => $heirs,
+                ]
+                : [
+                    'code' => 'gharrawain',
+                    'label' => 'Perhitungan Gharrawain',
+                    'reason' => 'Kasus gharrawain (pasangan + ibu + ayah): ibu memperoleh SEPERTIGA DARI SISA setelah bagian suami/istri diberikan, dan ayah menerima sisanya sebagai asabah. Terdapat beda pendapat klasik pada komposisi ini.',
+                    'asal' => $asal,
+                    'heirs' => $heirs,
+                ],
+            default => [
+                'code' => 'biasa',
+                'label' => 'Perhitungan Biasa',
+                'reason' => 'Jumlah seluruh bagian pasti TEPAT satu asal ('.$asal.'-an); tidak ada sisa yang dikembalikan (radd) maupun asal masalah yang dinaikkan (aul).',
+                'asal' => $asal,
+                'heirs' => $heirs,
+            ],
+        };
+    }
+
+    /** @param  list<array<string, mixed>>  $shares */
+    private function isGrandmotherGharawain(array $shares): bool
+    {
+        foreach ($shares as $s) {
+            if (($s['code'] ?? '') === 'maternal_grandmother') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function lcm(int $a, int $b): int
+    {
+        if ($a === 0 || $b === 0) {
+            return max($a, $b);
+        }
+
+        return (int) (abs($a * $b) / $this->gcd($a, $b));
+    }
+
+    private function gcd(int $a, int $b): int
+    {
+        while ($b !== 0) {
+            [$a, $b] = [$b, $a % $b];
+        }
+
+        return abs($a);
     }
 
     /**

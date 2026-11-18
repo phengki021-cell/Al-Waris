@@ -78,15 +78,56 @@ describe('FaraidEngine — amal ummi', function () {
             ->and(totalOf($r))->toBe('1');
     });
 
-    test('suami + ibu + ayah: 1/2, 1/3, 1/6', function () {
+    test('suami + ibu + ayah (gharrawain): 1/2, ibu 1/6, ayah 1/3', function () {
         $r = engine([['husband', true], ['mother', true], ['father', true]]);
 
         $s = sharesByCode($r);
 
-        expect($s['husband'])->toBe('1/2')
+        expect($r->method)->toBe('gharawain')
+            ->and($s['husband'])->toBe('1/2')
+            ->and($s['mother'])->toBe('1/6')
+            ->and($s['father'])->toBe('1/3')
+            ->and(totalOf($r))->toBe('1');
+    });
+
+    test('istri + ibu + ayah (gharrawain): istri 1/4, ibu 1/4, ayah 1/2', function () {
+        // Resep gharrawain: istri 1/4 (tanpa keturunan); sisa 3/4; ibu 1/3 dari sisa = 1/4; ayah sisanya 1/2.
+        $r = engine([['wife_count', 1], ['mother', true], ['father', true]]);
+
+        $s = sharesByCode($r);
+
+        expect($r->method)->toBe('gharawain')
+            ->and($s['wife'])->toBe('1/4')
+            ->and($s['mother'])->toBe('1/4')
+            ->and($s['father'])->toBe('1/2')
+            ->and(totalOf($r))->toBe('1');
+    });
+
+    test('gharrawain TIDAK diterapkan bila ada ahli waris lain (saudara) — komposisi berubah', function () {
+        // Ayah menghalangi saudara (hijab hirman); ibu 1/3, ayah 1/6, total pas.
+        $r = engine([['husband', true], ['mother', true], ['father', true], ['brothers', 1]]);
+
+        $s = sharesByCode($r);
+
+        expect($r->method)->toBe('amal_ummi')
+            ->and($s['husband'])->toBe('1/2')
             ->and($s['mother'])->toBe('1/3')
             ->and($s['father'])->toBe('1/6')
+            ->and(isset($s['brother']))->toBeFalse() // terhalang ayah
             ->and(totalOf($r))->toBe('1');
+    });
+
+    test('gharrawain TIDAK diterapkan bila ada keturunan (anak perempuan)', function () {
+        // Suami 1/4 + anak pr 1/2 + ayah 1/6 + ibu 1/6 = 13/12 > 1 → 'aul, asal 12 dinaikkan jadi 13.
+        $r = engine([['husband', true], ['mother', true], ['father', true], ['daughters', 1]]);
+
+        $s = sharesByCode($r);
+
+        expect($r->method)->toBe('aul')
+            ->and($s['husband'])->toBe('3/13')
+            ->and($s['mother'])->toBe('2/13')
+            ->and($s['father'])->toBe('2/13')
+            ->and($s['daughter'])->toBe('6/13');
     });
 });
 
@@ -303,15 +344,16 @@ describe("FaraidEngine — tahap 3: ta'sib, hijab, & kasus acuan lain", function
             ->and(totalOf($r))->toBe('1');
     });
 
-    test('salah satu kasus klasik: ibu + ayah + suami (ayah menangkap sisa)', function () {
-        // Kasus klasik "1/2 + 1/3 + 1/6": ayah absah ketika tidak ada keturunan.
+    test('salah satu kasus klasik: ibu + ayah + suami (gharrawain: ibu 1/3 dari sisa setelah suami)', function () {
+        // Resep gharrawain: suami 1/2; sisa 1/2; ibu 1/3 dari sisa = 1/6; ayah sisanya 1/3.
         $r = engine([['husband', true], ['father', true], ['mother', true]]);
 
         $s = sharesByCode($r);
 
-        expect($s['husband'])->toBe('1/2')
-            ->and($s['mother'])->toBe('1/3')
-            ->and($s['father'])->toBe('1/6')
+        expect($r->method)->toBe('gharawain')
+            ->and($s['husband'])->toBe('1/2')
+            ->and($s['mother'])->toBe('1/6')
+            ->and($s['father'])->toBe('1/3')
             ->and(totalOf($r))->toBe('1');
     });
 

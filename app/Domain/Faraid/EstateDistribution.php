@@ -30,6 +30,7 @@ final class EstateDistribution
         public readonly bool $disputed,
         public readonly array $rounding,
         public readonly int $totalCents,
+        public readonly ?array $classification = null,
     ) {}
 
     public function isValid(): bool
@@ -59,6 +60,7 @@ final class EstateDistribution
             'disputed' => $this->disputed,
             'rounding' => $this->rounding,
             'total_cents' => $this->totalCents,
+            'classification' => $this->classification,
         ];
     }
 }

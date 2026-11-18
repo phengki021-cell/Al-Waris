@@ -754,6 +754,28 @@
                 @php $netCents = (int) round($result['net_estate'] * 100); @endphp
 
                 @if ($result['status'] === 'valid')
+                    {{-- ===== Kartu JENIS PERHITUNGAN: klasifikasi otomatis dari mesin ===== --}}
+                    @php $classification = $result['classification'] ?? null; @endphp
+                    @if ($classification)
+                        <div class="mb-4 overflow-hidden rounded-3xl shadow-smooth ring-1 ring-gold/40">
+                            <div class="bg-gradient-to-r from-[#123D32] via-[#147F70] to-[#1B5E48] px-5 py-4">
+                                <p class="text-[10px] font-extrabold uppercase tracking-widest text-gold-soft/90">Jenis Perhitungan — terdeteksi otomatis</p>
+                                <p class="u-display mt-1 text-xl text-ivory md:text-2xl">{{ $classification['label'] }}</p>
+                            </div>
+                            <div class="bg-paper p-5">
+                                <p class="text-xs leading-relaxed text-ink/80 md:text-sm">{{ $classification['reason'] }}</p>
+                                <p class="tnum mt-2.5 text-xs font-bold text-emerald-900">Asal masalah: {{ $classification['asal'] }}-an</p>
+                                <div class="mt-3 flex flex-wrap gap-1.5">
+                                    @foreach ($classification['heirs'] as $heir)
+                                        <span class="rounded-full bg-emerald-100 px-3 py-1 text-[11px] font-bold text-emerald-900 ring-1 ring-emerald-200">
+                                            {{ $heir['name'] }} · <span class="tnum">{{ $heir['text'] }}</span>
+                                        </span>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="u-smart-card overflow-hidden">
                         <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-[#0A120E] via-[#101B18] to-[#1B5E48] px-5 py-3.5">
                             <h2 class="u-display text-lg text-ivory">Hasil Pembagian</h2>

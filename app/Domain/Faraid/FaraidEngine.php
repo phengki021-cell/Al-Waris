@@ -188,6 +188,20 @@ final class FaraidEngine
         $fard = [];     // kode => [n, d, count, disputed]
         $isGharawain = false;
 
+        // Kasus Gharrawain klasik "pasangan + ibu + ayah": hanya bila komposisi
+        // TEPAT suami ATAU istri + ibu + ayah, tanpa ahli waris lain apa pun
+        // (tanpa keturunan, saudara, kakek, nenek-ibu). Resep: ibu memperoleh
+        // 1/3 dari SISA setelah bagian pasangan; ayah menerima sisanya sebagai
+        // asabah. Jangan diterapkan bila ada ahli waris lain yang mengubah
+        // susunan kasus (keturunan, saudara, kakek, nenek-ibu).
+        $isSpouseParentsGharawain = ($hasHusband xor $wifeCount > 0)
+            && $mother
+            && $father
+            && ! $hasChildren
+            && $siblingCount === 0
+            && ! $grandfather
+            && ! $maternalGrandmother;
+
         if ($hasHusband) {
             $fard['husband'] = $hasChildren
                 ? [1, 4, 1, false]
@@ -230,13 +244,29 @@ final class FaraidEngine
         // Kakek ATAU ayah hadir bersama → kakek terhalang (hijab hirman):
         // TIDAK boleh mendapat fard melainkan hanya masuk daftar terhalang
         // (regresi Tahap 2: sebelumnya kakek salah menerima 1/6 saat ayah ada).
-        if ($grandfather && ! $father && $daughters > 0) {
+        $grandfatherHasFard = $grandfather && ! $father && $daughters > 0;
+        if ($grandfatherHasFard) {
             $fard['grandfather'] = [1, 6, 1, false];
             $trace[] = 'Langkah 2 — kakek dari ayah: fard 1/6 (ada anak perempuan) + menyerap sisa (analog ayah).';
         }
 
         if ($mother) {
-            if ($hasChildren || $siblingCount >= 2) {
+            if ($isSpouseParentsGharawain) {
+                // Gharrawain: ibu = 1/3 × (1 − bagian pasangan); ayah = sisanya.
+                $spouseFrac = $hasHusband
+                    ? RationalNumber::of(1, 2)
+                    : RationalNumber::of(1, 4);
+                $afterSpouse = RationalNumber::of(1)->subtract($spouseFrac)->simplify();
+                $motherShare = $afterSpouse->divide(RationalNumber::of(3))->simplify();
+                $fatherShare = $afterSpouse->subtract($motherShare)->simplify();
+
+                $isGharawain = true;
+                $fard['mother'] = [$motherShare->numerator, $motherShare->denominator, 1, true];
+                $fard['father'] = [$fatherShare->numerator, $fatherShare->denominator, 1, true];
+                $trace[] = 'Langkah 2 — kasus gharrawain (pasangan + ibu + ayah): sisa setelah pasangan = '
+                    .$afterSpouse->toText().'; ibu 1/3 dari sisa = '.$motherShare->toText()
+                    .'; ayah menerima sisanya sebagai asabah = '.$fatherShare->toText().'.';
+            } elseif ($hasChildren || $siblingCount >= 2) {
                 $fard['mother'] = [1, 6, 1, false];
                 $trace[] = 'Langkah 2 — ibu: 1/6 '.($hasChildren ? '(ada keturunan)' : '(dua saudara atau lebih)').'.';
             } elseif ($maternalGrandmother && ! $father) {
@@ -384,7 +414,7 @@ final class FaraidEngine
                     }
 
                     if ($grandfatherAbsorbs) {
-                        $grandfatherShare = isset($fard['grandfather'])
+                        $grandfatherShare = $grandfatherHasFard
                             ? RationalNumber::of($fard['grandfather'][0], $fard['grandfather'][1])->add($remainder)
                             : $remainder;
 
@@ -455,7 +485,9 @@ final class FaraidEngine
         }
         if ($isGharawain) {
             $method = 'gharawain';
-            $notes[] = 'Kasus gharawain: ada perbedaan pendapat mengenai hak nenek ketika ibu hadir. Aplikasi memakai pendapat yang memberi nenek-ibu 1/6 dan sisanya diradd-kan bersama.';
+            $notes[] = $isSpouseParentsGharawain
+                ? 'Kasus gharrawain (pasangan + ibu + ayah): ada perbedaan pendapat klasik mengenai ibu pada komposisi ini. Aplikasi memakai resep: ibu 1/3 dari sisa setelah bagian pasangan, dan ayah menerima sisanya sebagai asabah.'
+                : 'Kasus gharawain: ada perbedaan pendapat mengenai hak nenek ketika ibu hadir. Aplikasi memakai pendapat yang memberi nenek-ibu 1/6 dan sisanya diradd-kan bersama.';
         }
 
         if ($isRadd) {
