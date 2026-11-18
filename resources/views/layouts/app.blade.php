@@ -93,13 +93,7 @@
         {{-- Logo --}}
         <a href="{{ route('home') }}" class="group flex items-center gap-3 px-6 pt-7 pb-6">
             <span class="relative grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[#123D32]/90 ring-1 ring-gold/50 shadow-glow">
-                <svg viewBox="0 0 48 48" class="h-7 w-7" aria-hidden="true">
-                    <g fill="none" stroke="#D8B66A" stroke-width="2">
-                        <rect x="13" y="13" width="22" height="22"/>
-                        <rect x="13" y="13" width="22" height="22" transform="rotate(45 24 24)"/>
-                    </g>
-                    <circle cx="24" cy="24" r="3" fill="#2FBF8F"/>
-                </svg>
+                @include('partials.logo', ['class' => 'h-7 w-7'])
             </span>
             <span class="leading-none">
                 <span class="block text-lg font-bold uppercase tracking-[0.28em] text-ivory">Al&nbsp;Waris</span>
@@ -149,12 +143,7 @@
         <div class="flex h-16 items-center justify-between px-4">
             <a href="{{ route('home') }}" class="group flex items-center gap-2.5">
                 <span class="grid h-9 w-9 place-items-center rounded-lg bg-[#123D32]/90 ring-1 ring-gold/50">
-                    <svg viewBox="0 0 48 48" class="h-5.5 w-5.5" aria-hidden="true">
-                        <g fill="none" stroke="#D8B66A" stroke-width="2.4">
-                            <rect x="13" y="13" width="22" height="22"/>
-                            <rect x="13" y="13" width="22" height="22" transform="rotate(45 24 24)"/>
-                        </g>
-                    </svg>
+                    @include('partials.logo', ['class' => 'h-5.5 w-5.5'])
                 </span>
                 <span class="text-sm font-bold uppercase tracking-[0.24em] text-ivory">Al&nbsp;Waris</span>
             </a>
@@ -247,13 +236,13 @@
         </div>
 
         {{-- ===== Konten utama ===== --}}
-        <main id="main" class="mx-auto max-w-7xl px-4 pb-36 pt-8 md:px-8 md:pb-12 md:pt-10 lg:pb-16">
+        <main id="main" class="mx-auto max-w-7xl px-4 pb-36 pt-8 md:px-8 md:pt-10 lg:pb-16">
             {{ $slot ?? $content ?? '' }}
             @yield('content')
         </main>
 
         {{-- ===== Footer ===== --}}
-        <footer class="u-lattice bg-deep text-ivory/80 md:pb-0 pb-24">
+        <footer class="u-lattice bg-deep text-ivory/80 pb-24 lg:pb-0">
             <div class="u-hairline opacity-60"></div>
             <div class="mx-auto max-w-7xl px-4 py-12 md:px-8 md:grid md:grid-cols-3 md:gap-10">
                 <div>
@@ -289,7 +278,7 @@
 
     {{-- ===== Bottom navigation mobile (ala aplikasi Android) =====
          5 menu: Beranda • Panduan • KALKULATOR (tengah, menonjol) • Riwayat • Lainnya --}}
-    <div x-data="{ more: false }" class="md:hidden">
+    <div x-data="{ more: false }" class="lg:hidden">
         <nav aria-label="Navigasi cepat"
              class="fixed inset-x-0 bottom-0 z-40 border-t border-charcoal/10 bg-paper/95 shadow-[0_-8px_28px_-14px_rgba(16,27,24,0.28)] backdrop-blur"
              style="padding-bottom: env(safe-area-inset-bottom);">
@@ -325,7 +314,7 @@
                           aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-6 w-6">{!! $navLinks['calculate'][1] !!}</svg>
                     </span>
-                    <span class="mt-1 text-[0.62rem] font-bold tracking-wide {{ request()->routeIs('calculate') ? 'text-gold' : 'text-ivory/70' }}">Kalkulator</span>
+                    <span class="mt-1 text-[0.62rem] font-bold tracking-wide {{ request()->routeIs('calculate') ? 'text-gold-deep' : 'text-charcoal/60' }}">Kalkulator</span>
                 </a>
 
                 {{-- 4. Riwayat --}}

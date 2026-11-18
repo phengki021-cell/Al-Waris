@@ -15,19 +15,19 @@
          style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 48 48%22><g fill=%22none%22 stroke=%22%23D8B66A%22 stroke-width=%221%22><rect x=%2214%22 y=%2214%22 width=%2220%22 height=%2220%22/><rect x=%2214%22 y=%2214%22 width=%2220%22 height=%2220%22 transform=%22rotate(45 24 24)%22/></g></svg>'); background-size:48px 48px;"></div>
     <div class="pointer-events-none absolute -top-24 -right-16 h-64 w-64 rounded-full opacity-40 blur-[70px]" aria-hidden="true"
          style="background:radial-gradient(closest-side, rgba(216,182,106,0.5), transparent)"></div>
+    {{-- Partikel emas mengambang — sangat halus, nonaktif pada reduced motion --}}
+    <div class="u-float pointer-events-none absolute left-[12%] top-[38%] h-1.5 w-1.5 rounded-full bg-gold/70 blur-[1px]" style="animation-duration:9s" aria-hidden="true"></div>
+    <div class="u-float pointer-events-none absolute left-[28%] top-[62%] h-1 w-1 rounded-full bg-gold/50 blur-[1px]" style="animation-duration:12s;animation-delay:-4s" aria-hidden="true"></div>
+    <div class="u-float pointer-events-none absolute right-[18%] top-[24%] h-1 w-1 rounded-full bg-[#2FBF8F]/60 blur-[1px]" style="animation-duration:10s;animation-delay:-7s" aria-hidden="true"></div>
+    <div class="u-float pointer-events-none absolute right-[8%] top-[52%] h-1.5 w-1.5 rounded-full bg-gold/60 blur-[1px]" style="animation-duration:11s;animation-delay:-2s" aria-hidden="true"></div>
+    <div class="u-float pointer-events-none absolute left-[6%] top-[16%] h-1 w-1 rounded-full bg-gold/40 blur-[1px]" style="animation-duration:13s;animation-delay:-9s" aria-hidden="true"></div>
 
     <div class="relative px-5 pb-6 pt-6 sm:px-8 md:px-10 md:pt-8">
         {{-- Baris atas: logo + nama + tema --}}
         <div class="flex items-center justify-between gap-3">
             <div class="flex items-center gap-3">
                 <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 ring-1 ring-gold/50">
-                    <svg viewBox="0 0 48 48" class="h-6 w-6" aria-hidden="true">
-                        <g fill="none" stroke="#D8B66A" stroke-width="2">
-                            <rect x="13" y="13" width="22" height="22"/>
-                            <rect x="13" y="13" width="22" height="22" transform="rotate(45 24 24)"/>
-                        </g>
-                        <circle cx="24" cy="24" r="3" fill="#2FBF8F"/>
-                    </svg>
+                    @include('partials.logo', ['class' => 'h-7 w-7'])
                 </span>
                 <span>
                     <span class="block text-base font-bold uppercase tracking-[0.26em] md:text-lg">Al&nbsp;Waris</span>
@@ -59,27 +59,35 @@
             ] as $shortcut)
                 @php $active = request()->routeIs($shortcut['route']); @endphp
                 <a href="{{ route($shortcut['route']) }}"
-                   class="group flex w-16 shrink-0 flex-col items-center gap-2 md:w-[4.5rem]"
+                   class="group flex w-[4.5rem] shrink-0 flex-col items-center gap-2 sm:w-20"
                    @if ($active) aria-current="page" @endif>
-                    <span class="grid h-14 w-14 place-items-center rounded-2xl ring-1 transition-transform duration-200 group-active:scale-95 {{ $active ? 'bg-white/15 ring-gold/60' : 'bg-white/8 ring-white/15 group-hover:bg-white/15 group-hover:ring-gold/40' }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#D8B66A" stroke-width="1.6" class="h-6 w-6" aria-hidden="true">{!! $shortcut['icon'] !!}</svg>
+                    <span class="relative grid h-14 w-14 place-items-center rounded-2xl ring-1 transition-all duration-300 group-hover:-translate-y-0.5 group-active:scale-95 {{ $active ? 'ring-gold/60' : 'ring-white/15 group-hover:ring-gold/40' }}"
+                          style="background:linear-gradient(140deg, rgba(18,61,50,0.55) 0%, rgba(20,127,112,0.45) 100%); box-shadow:0 6px 18px -8px rgba(9,39,31,0.55), inset 0 1px 0 rgba(255,255,255,0.10);">
+                        <span class="pointer-events-none absolute inset-x-3 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" aria-hidden="true"></span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#D8B66A" stroke-width="1.6" class="h-6 w-6 transition-transform duration-300 group-hover:scale-110" aria-hidden="true">{!! $shortcut['icon'] !!}</svg>
                     </span>
-                    <span class="text-center text-[0.62rem] font-semibold leading-tight text-ivory/90">{{ $shortcut['label'] }}</span>
+                    <span class="text-center text-[0.62rem] font-semibold leading-tight text-ivory/90 transition-colors group-hover:text-gold">{{ $shortcut['label'] }}</span>
                 </a>
             @endforeach
         </nav>
 
         {{-- Area informasi: gambar utama timbangan keadilan + mushaf --}}
-        <div class="mt-7 flex flex-col items-center gap-5 rounded-3xl bg-white/8 p-4 ring-1 ring-white/10 sm:flex-row sm:gap-6 md:mt-8 md:p-6">
+        <div class="relative mt-7 flex flex-col items-center gap-5 overflow-hidden rounded-3xl bg-white/8 p-4 ring-1 ring-white/10 sm:flex-row sm:gap-6 md:mt-8 md:p-6">
+            {{-- Kedalaman: glow emerald-toska ganda --}}
+            <div class="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full opacity-35 blur-[60px]" aria-hidden="true"
+                 style="background:radial-gradient(closest-side, rgba(20,127,112,0.55), transparent)"></div>
+            <div class="pointer-events-none absolute -top-20 right-0 h-44 w-44 rounded-full opacity-30 blur-[56px]" aria-hidden="true"
+                 style="background:radial-gradient(closest-side, rgba(47,191,143,0.45), transparent)"></div>
+
             <img src="/images/hero-faraid.svg" alt="" width="520" height="380" loading="eager"
-                 class="w-full max-w-[15rem] shrink-0 rounded-2xl shadow-lg shadow-[#09271F]/40 sm:max-w-[17rem] md:max-w-xs"
+                 class="relative w-full max-w-[16rem] shrink-0 rounded-2xl shadow-lg shadow-[#09271F]/50 ring-1 ring-gold/20 sm:max-w-[17rem] md:max-w-xs"
                  aria-hidden="true">
-            <div class="min-w-0 text-center sm:text-left">
-                <h1 class="text-lg font-bold leading-snug md:text-2xl">Ilmu Faraid dan Keadilan</h1>
-                <p class="mt-1.5 text-xs leading-relaxed text-ivory/80 md:text-sm">Pembagian warisan berdasarkan ketentuan hukum Islam.</p>
-                <a href="{{ route('calculate') }}" class="mt-4 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-xs font-bold text-[#09271F] shadow-lg shadow-[#09271F]/30 transition hover:bg-gold/90 active:scale-95">
+            <div class="relative min-w-0 text-center sm:text-left">
+                <h1 class="text-xl font-bold leading-snug md:text-2xl">Ilmu Faraid dan Keadilan</h1>
+                <p class="mt-2 text-sm leading-relaxed text-ivory/80 md:text-sm">Pembagian warisan berdasarkan ketentuan hukum Islam.</p>
+                <a href="{{ route('calculate') }}" class="mt-4 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-[#09271F] shadow-lg shadow-[#09271F]/40 transition hover:-translate-y-0.5 hover:bg-gold/90 active:scale-95">
                     Hitung Warisan
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3.5 w-3.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
                 </a>
             </div>
         </div>
@@ -91,7 +99,7 @@
      (halaman yang belum tampil di shortcut header)
      ========================================================= --}}
 <section class="mt-7 md:mt-9" aria-label="Menu layanan">
-    <div class="grid grid-cols-4 gap-3 md:max-w-3xl">
+    <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 md:max-w-3xl">
         @foreach ([
             ['route' => 'history', 'label' => 'Riwayat', 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M3.5 5v3.5H7"/><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 8.5A8.5 8.5 0 1 1 3.9 12"/><path stroke-linecap="round" d="M12 8v4.5l3 2"/>'],
             ['route' => 'sources', 'label' => 'Referensi', 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M5 4h6a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M14 7a3 3 0 0 1 3-3h2v13h-2a3 3 0 0 0-3 3"/><path stroke-linecap="round" d="M8 8h3M8 11h3"/>'],
@@ -115,11 +123,13 @@
      ========================================================= --}}
 <section class="mt-7 md:mt-9" aria-label="Banner edukasi">
     <a href="{{ route('how-to') }}"
-       class="group relative flex items-center gap-4 overflow-hidden rounded-3xl bg-gradient-to-r from-gold-soft via-paper to-emerald-soft p-5 ring-1 ring-gold/35 md:gap-5 md:p-6">
+       class="group relative flex items-center gap-4 overflow-hidden rounded-3xl bg-gradient-to-r from-gold-soft via-paper to-emerald-soft p-5 ring-1 ring-gold/35 shadow-smooth transition hover:-translate-y-0.5 hover:ring-gold/60 md:gap-5 md:p-6">
         <div class="pointer-events-none absolute -right-8 -top-10 h-36 w-36 rounded-full opacity-25 blur-[40px]" aria-hidden="true"
              style="background:radial-gradient(closest-side, rgba(216,182,106,0.9), transparent)"></div>
+        <div class="pointer-events-none absolute -bottom-12 left-1/3 h-28 w-28 rounded-full opacity-20 blur-[36px]" aria-hidden="true"
+             style="background:radial-gradient(closest-side, rgba(20,127,112,0.8), transparent)"></div>
         <img src="/images/banner-faraid.svg" alt="" width="260" height="160" loading="lazy"
-             class="h-16 w-auto shrink-0 md:h-20"
+             class="relative h-16 w-auto shrink-0 transition-transform duration-300 group-hover:scale-[1.04] md:h-20"
              aria-hidden="true">
         <div class="min-w-0 flex-1">
             <p class="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-gold-deep">Edukasi</p>
@@ -216,7 +226,8 @@
 <div
     id="pwa-install-banner"
     hidden
-    class="fixed inset-x-3 bottom-3 z-50 max-w-md rounded-2xl bg-deep p-4 text-ivory shadow-2xl ring-1 ring-gold/40 sm:left-auto sm:right-4 sm:w-96"
+    class="fixed inset-x-3 bottom-24 z-50 max-w-md rounded-2xl bg-deep p-4 text-ivory shadow-2xl ring-1 ring-gold/40 sm:left-auto sm:right-4 sm:w-96 md:bottom-4"
+    style="margin-bottom: env(safe-area-inset-bottom);"
     role="dialog"
     aria-labelledby="pwa-install-title"
     aria-describedby="pwa-install-desc"

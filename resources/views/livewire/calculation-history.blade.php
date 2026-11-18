@@ -24,7 +24,7 @@
             </p>
         </div>
     @else
-        <ul class="mt-6 space-y-3">
+        <ul class="mt-6 grid gap-3 md:grid-cols-2">
             @foreach ($calculations as $calculation)
                 <li class="rounded-3xl bg-paper p-5 shadow-smooth ring-1 ring-black/5 transition hover:ring-gold/40">
                     <div class="flex flex-wrap items-start justify-between gap-3">

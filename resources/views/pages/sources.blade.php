@@ -13,7 +13,7 @@
     </p>
 </section>
 
-<section class="mt-6">
+<section class="mx-auto mt-6 max-w-5xl">
     @foreach ($sources as $source)
         <article class="mb-3 flex items-start justify-between gap-4 rounded-3xl bg-paper p-5 shadow-smooth ring-1 ring-black/5 transition hover:ring-gold/40">
             <div class="flex min-w-0 items-start gap-3.5">
