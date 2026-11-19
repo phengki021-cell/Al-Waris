@@ -998,3 +998,31 @@
     .alw-splash-logo { width: 5.5rem; height: 5.5rem; }
 }
 
+
+.alw-splash-loader {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(60vw, 14rem);
+    height: 3px;
+    border-radius: 9999px;
+    background: rgba(216,182,106,0.18);
+    overflow: hidden;
+}
+.alw-splash-loader-bar {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #8A6D33, #D8B66A, #F5EDDA);
+    border-radius: 9999px;
+    animation: alw-splash-load 4s ease-in-out forwards;
+}
+@keyframes alw-splash-load {
+    0% { width: 0%; }
+    60% { width: 70%; }
+    100% { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .alw-splash-loader-bar { animation: none; width: 100%; }
+}

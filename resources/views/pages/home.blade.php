@@ -25,6 +25,7 @@
         <div class="alw-splash-line"></div>
         <p class="alw-splash-tagline">WARISAN ISLAM, UNTUK MASA DEPAN</p>
     </div>
+    <div class="alw-splash-loader" aria-hidden="true"><span class="alw-splash-loader-bar"></span></div>
 </div>
 <script>
 (function () {
@@ -32,11 +33,11 @@
     if (!splash) return;
     if (sessionStorage.getItem('alw-splash-shown')) { splash.remove(); return; }
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var delay = reduce ? 600 : 2600;
+    var delay = reduce ? 800 : 4000;
     setTimeout(function () {
         splash.classList.add('alw-splash--done');
         sessionStorage.setItem('alw-splash-shown', '1');
-        setTimeout(function () { splash.remove(); }, 750);
+        setTimeout(function () { splash.remove(); }, 800);
     }, delay);
 })();
 </script>
