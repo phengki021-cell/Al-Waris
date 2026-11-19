@@ -225,6 +225,7 @@
         background: linear-gradient(135deg, #E3CB8F 0%, #D8B66A 55%, #8A6D33 100%);
         color: #101B18;
         font-weight: 700;
+        justify-content: center;
         box-shadow: 0 10px 26px -12px rgba(184, 150, 90, 0.55);
         transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s, filter 0.35s;
     }
