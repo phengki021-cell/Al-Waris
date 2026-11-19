@@ -76,11 +76,5 @@
             <circle cx="50" cy="4" r="0.8" fill="#2FBF8F" opacity="0.85"/>
         </svg>
 
-        {{-- Logo Al-Waris di PUSAT â€” statis, tidak ikut berputar --}}
-        {{-- Logo resmi Al-Waris di PUSAT — statis, tidak ikut berputar --}}
-        <div class="absolute inset-0 grid place-items-center">
-            <img src="/images/logo-al-waris.png" alt="Logo Al-Waris"
-                 class="h-16 w-16 rounded-2xl object-cover ring-1 ring-gold/50 shadow-[0_0_24px_rgba(216,182,106,0.4)] md:h-20 md:w-20">
-        </div>
     </div>
 </div>
