@@ -11,16 +11,16 @@
          style="background:linear-gradient(135deg, #09271F 0%, #123D32 46%, #147F70 100%)"
          aria-label="Beranda Al-Waris">
     {{-- Tekstur geometris Islam sangat halus --}}
-    <div class="pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true"
+    <div class="u-bg-drift pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true"
          style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 48 48%22><g fill=%22none%22 stroke=%22%23D8B66A%22 stroke-width=%221%22><rect x=%2214%22 y=%2214%22 width=%2220%22 height=%2220%22/><rect x=%2214%22 y=%2214%22 width=%2220%22 height=%2220%22 transform=%22rotate(45 24 24)%22/></g></svg>'); background-size:48px 48px;"></div>
-    <div class="pointer-events-none absolute -top-24 -right-16 h-64 w-64 rounded-full opacity-40 blur-[70px]" aria-hidden="true"
+    <div class="u-glow-pulse pointer-events-none absolute -top-24 -right-16 h-64 w-64 rounded-full opacity-40 blur-[70px]" aria-hidden="true"
          style="background:radial-gradient(closest-side, rgba(216,182,106,0.5), transparent)"></div>
     {{-- Partikel emas mengambang — sangat halus, nonaktif pada reduced motion --}}
-    <div class="u-float pointer-events-none absolute left-[12%] top-[38%] h-1.5 w-1.5 rounded-full bg-gold/70 blur-[1px]" style="animation-duration:9s" aria-hidden="true"></div>
-    <div class="u-float pointer-events-none absolute left-[28%] top-[62%] h-1 w-1 rounded-full bg-gold/50 blur-[1px]" style="animation-duration:12s;animation-delay:-4s" aria-hidden="true"></div>
-    <div class="u-float pointer-events-none absolute right-[18%] top-[24%] h-1 w-1 rounded-full bg-[#2FBF8F]/60 blur-[1px]" style="animation-duration:10s;animation-delay:-7s" aria-hidden="true"></div>
-    <div class="u-float pointer-events-none absolute right-[8%] top-[52%] h-1.5 w-1.5 rounded-full bg-gold/60 blur-[1px]" style="animation-duration:11s;animation-delay:-2s" aria-hidden="true"></div>
-    <div class="u-float pointer-events-none absolute left-[6%] top-[16%] h-1 w-1 rounded-full bg-gold/40 blur-[1px]" style="animation-duration:13s;animation-delay:-9s" aria-hidden="true"></div>
+    <div class="u-twinkle pointer-events-none absolute left-[12%] top-[38%] h-1.5 w-1.5 rounded-full bg-gold/70 blur-[1px]" style="animation-duration:9s" aria-hidden="true"></div>
+    <div class="u-twinkle pointer-events-none absolute left-[28%] top-[62%] h-1 w-1 rounded-full bg-gold/50 blur-[1px]" style="animation-duration:12s;animation-delay:-4s" aria-hidden="true"></div>
+    <div class="u-twinkle pointer-events-none absolute right-[18%] top-[24%] h-1 w-1 rounded-full bg-[#2FBF8F]/60 blur-[1px]" style="animation-duration:10s;animation-delay:-7s" aria-hidden="true"></div>
+    <div class="u-twinkle pointer-events-none absolute right-[8%] top-[52%] h-1.5 w-1.5 rounded-full bg-gold/60 blur-[1px]" style="animation-duration:11s;animation-delay:-2s" aria-hidden="true"></div>
+    <div class="u-twinkle pointer-events-none absolute left-[6%] top-[16%] h-1 w-1 rounded-full bg-gold/40 blur-[1px]" style="animation-duration:13s;animation-delay:-9s" aria-hidden="true"></div>
 
     <div class="relative px-5 pb-6 pt-6 sm:px-8 md:px-10 md:pt-8">
         {{-- Baris atas: logo + nama + tema --}}
@@ -74,9 +74,9 @@
         {{-- Area informasi: gambar utama timbangan keadilan + mushaf --}}
         <div class="relative mt-7 flex flex-col items-center gap-5 overflow-hidden rounded-3xl bg-white/8 p-4 ring-1 ring-white/10 sm:flex-row sm:gap-6 md:mt-8 md:p-6 lg:mx-auto lg:max-w-5xl lg:gap-8 lg:p-8">
             {{-- Kedalaman: glow emerald-toska ganda --}}
-            <div class="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full opacity-35 blur-[60px]" aria-hidden="true"
+            <div class="u-glow-pulse pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full opacity-35 blur-[60px]" aria-hidden="true"
                  style="background:radial-gradient(closest-side, rgba(20,127,112,0.55), transparent)"></div>
-            <div class="pointer-events-none absolute -top-20 right-0 h-44 w-44 rounded-full opacity-30 blur-[56px]" aria-hidden="true"
+            <div class="u-glow-pulse pointer-events-none absolute -top-20 right-0 h-44 w-44 rounded-full opacity-30 blur-[56px]" aria-hidden="true"
                  style="background:radial-gradient(closest-side, rgba(47,191,143,0.45), transparent)"></div>
 
             {{-- Emblem orbital astrolab — dekoratif di belakang ilustrasi, logo statis di pusat --}}

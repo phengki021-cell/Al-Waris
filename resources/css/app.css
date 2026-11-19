@@ -767,6 +767,21 @@
     50% { transform: translate3d(24px, -18px, 0) scale(1.06); opacity: 1; }
 }
 
+@keyframes u-bg-drift {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(12px, -8px, 0); }
+}
+
+@keyframes u-glow-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+}
+
+@keyframes u-twinkle {
+    0%, 100% { transform: translateY(0); opacity: 0.7; }
+    50% { transform: translateY(-10px); opacity: 1; }
+}
+
 /* Animasi pembuka hero bertahap */
 .u-enter {
     opacity: 0;
@@ -777,6 +792,9 @@
 .u-float { animation: u-float-slow 7s ease-in-out infinite; }
 .u-loop-rotate { animation: u-rotate-slow 90s linear infinite; transform-origin: center; }
 .u-drift { animation: u-drift 9s ease-in-out infinite; }
+.u-bg-drift { animation: u-bg-drift 24s ease-in-out infinite; }
+.u-glow-pulse { animation: u-glow-pulse 6s ease-in-out infinite; transform-origin: center; }
+.u-twinkle { animation: u-twinkle 8s ease-in-out infinite; }
 
 /* =========================================================
    Emblem orbital astrolab (beranda) — berlapis, arah & kecepatan berbeda.
@@ -866,6 +884,9 @@
     .u-float,
     .u-loop-rotate,
     .u-drift,
+    .u-bg-drift,
+    .u-glow-pulse,
+    .u-twinkle,
     .u-orb-cw,
     .u-orb-ccw,
     .u-orb-glow,
