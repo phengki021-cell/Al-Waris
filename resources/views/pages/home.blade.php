@@ -45,7 +45,7 @@
      HEADER GRADIENT (gaya Nusuk): logo + nama + tema,
      shortcut ikon horizontal, area informasi faraid.
      ========================================================= --}}
-<section class="relative -mx-4 overflow-hidden rounded-b-[2rem] text-ivory md:-mx-8 md:rounded-b-[3rem]"
+<section class="relative -mx-4 -mt-8 overflow-hidden rounded-b-[2rem] text-ivory md:-mx-8 md:-mt-10 md:rounded-b-[3rem]"
          style="background:linear-gradient(135deg, #09271F 0%, #123D32 46%, #147F70 100%)"
          aria-label="Beranda Al-Waris">
     {{-- Tekstur geometris Islam sangat halus --}}
