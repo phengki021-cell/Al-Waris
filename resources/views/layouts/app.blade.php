@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -69,10 +69,11 @@
             'about'     => ['Tentang', '<path stroke-linecap="round" stroke-linejoin="round" d="M12 13.5a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 8.75a7.5 7.5 0 1 1 15 7.5 7.5 7.5 0 0 1-15-.75"/><path stroke-linecap="round" d="M10 20.5 12 18l2 2.5"/>'],
             'install'   => ['Pasang di Perangkat', '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v11"/><path stroke-linecap="round" stroke-linejoin="round" d="m8 10.5 4 4 4-4"/><path stroke-linecap="round" d="M4.5 20.5h15"/>'],
             'privacy'   => ['Kebijakan Privasi', '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3.5 5 6v6c0 4.2 2.9 7.5 7 8.5 4.1-1 7-4.3 7-8.5V6Z"/><path stroke-linecap="round" d="m9.5 12 1.8 1.8 3.2-3.6"/>'],
+            'settings'  => ['Pengaturan', '<path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>'],
         ];
 
         // Menu "Lainnya" pada bottom nav: halaman sekunder
-        $moreLinks = ['heirs', 'shares', 'sources', 'about', 'install', 'privacy'];
+        $moreLinks = ['heirs', 'shares', 'sources', 'about', 'install', 'privacy', 'settings'];
 
         // Nama rute bisa null pada halaman error (404/500) — jaga null-safety.
         $currentRoute = optional(request()->route())->getName();

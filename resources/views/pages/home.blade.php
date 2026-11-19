@@ -3,6 +3,44 @@
 @section('title', 'Beranda')
 
 @section('content')
+{{-- Splash screen premium (hanya saat pertama buka) --}}
+<div id="alw-splash" class="alw-splash" aria-hidden="true">
+    <div class="alw-splash-bg"></div>
+    <div class="alw-splash-geom"></div>
+    <div class="alw-splash-orbit"></div>
+    <div class="alw-splash-particles">
+        <span style="left:12%;top:70%;animation-delay:-1s"></span>
+        <span style="left:28%;top:80%;animation-delay:-3s"></span>
+        <span style="left:72%;top:75%;animation-delay:-2s"></span>
+        <span style="left:85%;top:65%;animation-delay:-4s"></span>
+        <span style="left:50%;top:85%;animation-delay:-5s"></span>
+        <span style="left:18%;top:60%;animation-delay:-1.5s"></span>
+    </div>
+    <div class="alw-splash-logo-wrap">
+        <div class="alw-splash-logo-glow"></div>
+        <img src="/images/logo-al-waris.png" alt="" class="alw-splash-logo" aria-hidden="true">
+    </div>
+    <div class="alw-splash-text">
+        <h1 class="alw-splash-title">AL WARIS</h1>
+        <div class="alw-splash-line"></div>
+        <p class="alw-splash-tagline">WARISAN ISLAM, UNTUK MASA DEPAN</p>
+    </div>
+</div>
+<script>
+(function () {
+    var splash = document.getElementById('alw-splash');
+    if (!splash) return;
+    if (sessionStorage.getItem('alw-splash-shown')) { splash.remove(); return; }
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var delay = reduce ? 600 : 2600;
+    setTimeout(function () {
+        splash.classList.add('alw-splash--done');
+        sessionStorage.setItem('alw-splash-shown', '1');
+        setTimeout(function () { splash.remove(); }, 750);
+    }, delay);
+})();
+</script>
+
 {{-- =========================================================
      HEADER GRADIENT (gaya Nusuk): logo + nama + tema,
      shortcut ikon horizontal, area informasi faraid.
@@ -11,9 +49,9 @@
          style="background:linear-gradient(135deg, #09271F 0%, #123D32 46%, #147F70 100%)"
          aria-label="Beranda Al-Waris">
     {{-- Tekstur geometris Islam sangat halus --}}
-    <div class="u-bg-drift pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true"
+    <div class="u-bg-drift pointer-events-none absolute inset-0 opacity-[0.045]" aria-hidden="true"
          style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 48 48%22><g fill=%22none%22 stroke=%22%23D8B66A%22 stroke-width=%221%22><rect x=%2214%22 y=%2214%22 width=%2220%22 height=%2220%22/><rect x=%2214%22 y=%2214%22 width=%2220%22 height=%2220%22 transform=%22rotate(45 24 24)%22/></g></svg>'); background-size:48px 48px;"></div>
-    <div class="u-glow-pulse pointer-events-none absolute -top-24 -right-16 h-64 w-64 rounded-full opacity-40 blur-[70px]" aria-hidden="true"
+    <div class="u-glow-pulse pointer-events-none absolute -top-24 -right-16 h-64 w-64 rounded-full opacity-26 blur-[70px]" aria-hidden="true"
          style="background:radial-gradient(closest-side, rgba(216,182,106,0.5), transparent)"></div>
     {{-- Partikel emas mengambang — sangat halus, nonaktif pada reduced motion --}}
     <div class="u-twinkle pointer-events-none absolute left-[12%] top-[38%] h-1.5 w-1.5 rounded-full bg-gold/70 blur-[1px]" style="animation-duration:9s" aria-hidden="true"></div>
@@ -21,6 +59,11 @@
     <div class="u-twinkle pointer-events-none absolute right-[18%] top-[24%] h-1 w-1 rounded-full bg-[#2FBF8F]/60 blur-[1px]" style="animation-duration:10s;animation-delay:-7s" aria-hidden="true"></div>
     <div class="u-twinkle pointer-events-none absolute right-[8%] top-[52%] h-1.5 w-1.5 rounded-full bg-gold/60 blur-[1px]" style="animation-duration:11s;animation-delay:-2s" aria-hidden="true"></div>
     <div class="u-twinkle pointer-events-none absolute left-[6%] top-[16%] h-1 w-1 rounded-full bg-gold/40 blur-[1px]" style="animation-duration:13s;animation-delay:-9s" aria-hidden="true"></div>
+
+    {{-- Emblem orbital (lingkaran berputar) — latar belakang hero, atas --}}
+    <div class="pointer-events-none absolute inset-0 opacity-25" aria-hidden="true">
+        @include('partials.emblem-orbital')
+    </div>
 
     <div class="relative px-5 pb-6 pt-6 sm:px-8 md:px-10 md:pt-8">
         {{-- Baris atas: logo + nama + tema --}}
@@ -74,13 +117,12 @@
         {{-- Area informasi: gambar utama timbangan keadilan + mushaf --}}
         <div class="relative mt-7 flex flex-col items-center gap-5 overflow-hidden rounded-3xl bg-white/8 p-4 ring-1 ring-white/10 sm:flex-row sm:gap-6 md:mt-8 md:p-6 lg:mx-auto lg:max-w-5xl lg:gap-8 lg:p-8">
             {{-- Kedalaman: glow emerald-toska ganda --}}
-            <div class="u-glow-pulse pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full opacity-35 blur-[60px]" aria-hidden="true"
+            <div class="u-glow-pulse pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full opacity-23 blur-[60px]" aria-hidden="true"
                  style="background:radial-gradient(closest-side, rgba(20,127,112,0.55), transparent)"></div>
-            <div class="u-glow-pulse pointer-events-none absolute -top-20 right-0 h-44 w-44 rounded-full opacity-30 blur-[56px]" aria-hidden="true"
+            <div class="u-glow-pulse pointer-events-none absolute -top-20 right-0 h-44 w-44 rounded-full opacity-20 blur-[56px]" aria-hidden="true"
                  style="background:radial-gradient(closest-side, rgba(47,191,143,0.45), transparent)"></div>
 
-            {{-- Emblem orbital astrolab — dekoratif di belakang ilustrasi, logo statis di pusat --}}
-            @include('partials.emblem-orbital')
+            {{-- Emblem orbital dipindah ke latar belakang hero (atas) --}}
 
             <img src="/images/hero-faraid.svg" alt="" width="520" height="380" loading="eager"
                  class="relative w-full max-w-[16rem] shrink-0 rounded-2xl shadow-lg shadow-[#09271F]/50 ring-1 ring-gold/20 sm:max-w-[17rem] md:max-w-xs lg:max-w-sm"

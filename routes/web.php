@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\SourceAdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PwaController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SourceController;
 use App\Livewire\CalculationHistory;
 use App\Livewire\Calculator;
@@ -46,6 +48,15 @@ Route::get('/kebijakan-privasi', [PageController::class, 'privacy'])->name('priv
 
 // Referensi
 Route::get('/referensi', SourceController::class)->name('sources');
+
+Route::get('/pengaturan', [SettingsController::class, 'index'])->name('settings');
+Route::post('/pengaturan/bahasa', [SettingsController::class, 'setLocale'])->name('settings.locale');
+
+Route::get('/masuk', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/masuk', [AuthController::class, 'login'])->name('login.attempt')->middleware('throttle:10,1');
+Route::get('/daftar', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/daftar', [AuthController::class, 'register'])->name('register.store')->middleware('throttle:10,1');
+Route::post('/keluar', [AuthController::class, 'logout'])->name('logout');
 
 // ===== Panel admin (kayak pengelolaan master data sifasya) =====
 Route::get('/admin/login', [AdminAuth::class, 'showLogin'])->name('admin.login');

@@ -884,9 +884,6 @@
     .u-float,
     .u-loop-rotate,
     .u-drift,
-    .u-bg-drift,
-    .u-glow-pulse,
-    .u-twinkle,
     .u-orb-cw,
     .u-orb-ccw,
     .u-orb-glow,
@@ -906,6 +903,13 @@
     }
 }
 
+/* Background hero: tetap bergerak (sangat ringan) meskipun reduce-motion aktif */
+@media (prefers-reduced-motion: reduce) {
+    .u-bg-drift { animation: u-bg-drift 60s ease-in-out infinite; }
+    .u-glow-pulse { animation: u-glow-pulse 12s ease-in-out infinite; }
+    .u-twinkle { animation: u-twinkle 16s ease-in-out infinite; }
+}
+
 /* =========================================================
    Koreksi kontras mode gelap — taruh di luar @layer agar pasti
    mengalahkan utilities Tailwind terbespesifitas apa pun.
@@ -920,4 +924,76 @@
     .theme-dark [class*="text-amber-900"] { color: var(--alw-amber-900); }
     .theme-dark [class*="ring-black"] { --tw-ring-color: rgba(232, 237, 234, 0.14); }
     .theme-dark [class*="border-black"] { border-color: rgba(232, 237, 234, 0.14); }
+}/* =========================================================
+   Splash screen premium Al-Waris (halaman pembuka)
+   ========================================================= */
+.alw-splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #09271F 0%, #123D32 46%, #147F70 100%);
+    transition: opacity 0.7s ease, visibility 0.7s ease;
 }
+.alw-splash--done { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.alw-splash-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 45%, rgba(216,182,106,0.18), transparent 60%);
+    animation: alw-splash-glow 4s ease-in-out infinite;
+}
+.alw-splash-geom {
+    position: absolute; inset: 0; opacity: 0.06;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 48 48%22><g fill=%22none%22 stroke=%22%23D8B66A%22 stroke-width=%221%22><rect x=%2214%22 y=%2214%22 width=%2220%22 height=%2220%22/><rect x=%2214%22 y=%2214%22 width=%2220%22 height=%2220%22 transform=%22rotate(45 24 24)%22/></g></svg>');
+    background-size: 48px 48px;
+    animation: alw-splash-drift 20s linear infinite;
+}
+.alw-splash-orbit {
+    position: absolute;
+    width: min(70vw, 26rem); height: min(70vw, 26rem);
+    border: 1px dashed rgba(216,182,106,0.35);
+    border-radius: 9999px;
+    animation: alw-splash-rotate 12s linear infinite;
+}
+.alw-splash-orbit::before {
+    content: ''; position: absolute; top: -4px; left: 50%; transform: translateX(-50%);
+    width: 8px; height: 8px; border-radius: 9999px; background: #D8B66A;
+    box-shadow: 0 0 12px rgba(216,182,106,0.9);
+}
+.alw-splash-particles { position: absolute; inset: 0; pointer-events: none; }
+.alw-splash-particles span {
+    position: absolute; width: 3px; height: 3px; border-radius: 9999px;
+    background: #D8B66A; opacity: 0.7;
+    animation: alw-splash-float 6s ease-in-out infinite;
+}
+.alw-splash-logo-wrap { position: relative; z-index: 2; opacity: 0; transform: scale(0.6); animation: alw-splash-logo 1.2s cubic-bezier(.22,1,.36,1) 0.3s forwards; }
+.alw-splash-logo { width: 7rem; height: 7rem; border-radius: 1.25rem; object-fit: cover; box-shadow: 0 0 40px rgba(216,182,106,0.5); }
+.alw-splash-logo-glow { position: absolute; inset: -12px; border-radius: 1.75rem; background: radial-gradient(closest-side, rgba(216,182,106,0.35), transparent); filter: blur(8px); animation: alw-splash-glow 3s ease-in-out infinite; }
+.alw-splash-text { position: relative; z-index: 2; margin-top: 1.5rem; text-align: center; color: #F5F7F4; }
+.alw-splash-title { font-size: 2rem; font-weight: 800; letter-spacing: 0.25em; opacity: 0; transform: translateY(20px); animation: alw-splash-up 0.9s cubic-bezier(.22,1,.36,1) 1.1s forwards; }
+.alw-splash-line { width: 0; height: 2px; margin: 0.6rem auto; background: linear-gradient(90deg, transparent, #D8B66A, transparent); animation: alw-splash-line 0.8s ease 1.6s forwards; }
+.alw-splash-tagline { font-size: 0.7rem; letter-spacing: 0.3em; opacity: 0; transform: translateY(12px); animation: alw-splash-up 0.8s cubic-bezier(.22,1,.36,1) 1.8s forwards; color: rgba(216,182,106,0.9); }
+
+@keyframes alw-splash-glow { 0%,100% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
+@keyframes alw-splash-drift { 0% { background-position: 0 0; } 100% { background-position: 48px 48px; } }
+@keyframes alw-splash-rotate { to { transform: rotate(360deg); } }
+@keyframes alw-splash-float { 0%,100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-18px); opacity: 0.9; } }
+@keyframes alw-splash-logo { to { opacity: 1; transform: scale(1); } }
+@keyframes alw-splash-up { to { opacity: 1; transform: none; } }
+@keyframes alw-splash-line { to { width: 6rem; } }
+
+@media (prefers-reduced-motion: reduce) {
+    .alw-splash, .alw-splash * { animation: none !important; }
+    .alw-splash-logo-wrap, .alw-splash-title, .alw-splash-tagline { opacity: 1 !important; transform: none !important; }
+    .alw-splash-line { width: 6rem !important; }
+}
+
+@media (max-width: 640px) {
+    .alw-splash-title { font-size: 1.6rem; }
+    .alw-splash-logo { width: 5.5rem; height: 5.5rem; }
+}
+
