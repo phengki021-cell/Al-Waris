@@ -115,7 +115,6 @@
                             </button>
                         @endif
                         </div>
-                    </div>
                 </li>
             @endforeach
         </ul>
