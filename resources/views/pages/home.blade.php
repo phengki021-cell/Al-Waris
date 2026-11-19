@@ -7,7 +7,7 @@
      HEADER GRADIENT (gaya Nusuk): logo + nama + tema,
      shortcut ikon horizontal, area informasi faraid.
      ========================================================= --}}
-<section class="relative -mx-4 rounded-b-[2rem] text-ivory md:-mx-8 md:rounded-b-[3rem]"
+<section class="relative -mx-4 overflow-hidden rounded-b-[2rem] text-ivory md:-mx-8 md:rounded-b-[3rem]"
          style="background:linear-gradient(135deg, #09271F 0%, #123D32 46%, #147F70 100%)"
          aria-label="Beranda Al-Waris">
     {{-- Tekstur geometris Islam sangat halus --}}
@@ -72,7 +72,7 @@
         </nav>
 
         {{-- Area informasi: gambar utama timbangan keadilan + mushaf --}}
-        <div class="relative mt-7 flex flex-col items-center gap-5 rounded-3xl bg-white/8 p-4 ring-1 ring-white/10 sm:flex-row sm:gap-6 md:mt-8 md:p-6 lg:mx-auto lg:max-w-5xl lg:gap-8 lg:p-8">
+        <div class="relative mt-7 flex flex-col items-center gap-5 overflow-hidden rounded-3xl bg-white/8 p-4 ring-1 ring-white/10 sm:flex-row sm:gap-6 md:mt-8 md:p-6 lg:mx-auto lg:max-w-5xl lg:gap-8 lg:p-8">
             {{-- Kedalaman: glow emerald-toska ganda --}}
             <div class="u-glow-pulse pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full opacity-35 blur-[60px]" aria-hidden="true"
                  style="background:radial-gradient(closest-side, rgba(20,127,112,0.55), transparent)"></div>
