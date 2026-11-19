@@ -57,6 +57,7 @@ Route::post('/masuk', [AuthController::class, 'login'])->name('login.attempt')->
 Route::get('/daftar', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/daftar', [AuthController::class, 'register'])->name('register.store')->middleware('throttle:10,1');
 Route::post('/keluar', [AuthController::class, 'logout'])->name('logout');
+Route::post('/profil/foto', [AuthController::class, 'updateAvatar'])->name('profile.avatar')->middleware('auth');
 
 // ===== Panel admin (kayak pengelolaan master data sifasya) =====
 Route::get('/admin/login', [AdminAuth::class, 'showLogin'])->name('admin.login');

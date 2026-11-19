@@ -82,13 +82,30 @@
                 <p class="text-xs text-charcoal/60">{{ __('messages.account_desc') }}</p>
             </div>
         </div>
-        <div class="mt-4 space-y-2">
+        <div class="mt-4 space-y-3">
             @auth
-                <div class="rounded-xl bg-surface px-4 py-3 text-sm">
-                    <p class="font-semibold text-charcoal">{{ auth()->user()->name }}</p>
-                    <p class="text-xs text-charcoal/60">{{ auth()->user()->email }}</p>
+                <div class="flex items-center gap-4 rounded-xl bg-surface px-4 py-3">
+                    <div class="relative">
+                        @if (auth()->user()->avatar)
+                            <img src="/{{ auth()->user()->avatar }}" alt="Foto profil" class="h-14 w-14 rounded-full object-cover ring-2 ring-gold/40">
+                        @else
+                            <div class="grid h-14 w-14 place-items-center rounded-full bg-emerald-100 text-emerald-900 ring-2 ring-gold/40">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-7 w-7"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.25a7.5 7.5 0 0 1 15 0"/></svg>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <p class="font-semibold text-charcoal">{{ auth()->user()->name }}</p>
+                        <p class="text-xs text-charcoal/60">{{ auth()->user()->email }}</p>
+                    </div>
                 </div>
-                <a href="#" class="block rounded-xl border border-charcoal/10 px-4 py-3 text-sm font-medium text-charcoal transition hover:bg-gold-soft/40">{{ __('messages.profile') }}</a>
+                <form method="POST" action="{{ route('profile.avatar') }}" enctype="multipart/form-data" class="flex items-center gap-2">
+                    @csrf
+                    <input type="file" name="avatar" accept="image/*" required class="block w-full text-xs text-charcoal/70 file:mr-3 file:rounded-lg file:border-0 file:bg-[#123D32] file:px-3 file:py-2 file:text-xs file:font-semibold file:text-ivory">
+                    <button type="submit" class="shrink-0 rounded-xl bg-gold px-4 py-2 text-xs font-semibold text-[#09271F] transition hover:bg-gold/90">{{ __('messages.save') }}</button>
+                </form>
+                @error('avatar') <p class="text-xs text-red-700">{{ $message }}</p> @enderror
+                @if (session('status')) <p class="text-xs text-emerald-700">{{ session('status') }}</p> @endif
                 <form method="POST" action="{{ route('logout') ?? '#' }}">
                     @csrf
                     <button type="submit" class="w-full rounded-xl border border-red-200 px-4 py-3 text-sm font-medium text-red-900 transition hover:bg-red-50">{{ __('messages.logout') }}</button>

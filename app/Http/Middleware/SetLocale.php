@@ -13,7 +13,7 @@ class SetLocale
     {
         $locale = $request->session()->get('locale')
             ?? $request->cookie('locale')
-            ?? config('app.locale', 'id');
+            ?? 'id';
 
         $supported = ['id', 'en', 'ar'];
         if (! in_array($locale, $supported, true)) {

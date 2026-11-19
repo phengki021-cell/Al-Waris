@@ -66,4 +66,32 @@ class AuthController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function updateAvatar(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'avatar' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+        ]);
+
+        $user = $request->user();
+        if (! $user) {
+            return redirect()->route('login');
+        }
+
+        $file = $request->file('avatar');
+        $name = 'avatar_' . $user->id . '_' . time() . '.' . $file->getClientOriginalExtension();
+        $dir = public_path('avatars');
+        if (! is_dir($dir)) {
+            @mkdir($dir, 0755, true);
+        }
+        $file->move($dir, $name);
+
+        if ($user->avatar && file_exists(public_path($user->avatar))) {
+            @unlink(public_path($user->avatar));
+        }
+
+        $user->update(['avatar' => 'avatars/' . $name]);
+
+        return back()->with('status', 'Foto profil diperbarui.');
+    }
 }
