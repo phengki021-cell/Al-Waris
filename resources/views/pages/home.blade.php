@@ -103,7 +103,7 @@
             ] as $shortcut)
                 @php $active = request()->routeIs($shortcut['route']); @endphp
                 <a href="{{ route($shortcut['route']) }}"
-                   class="group flex w-[4.5rem] shrink-0 flex-col items-center gap-2 sm:w-20"
+                   class="group flex min-w-[4.5rem] shrink-0 flex-col items-center gap-2 sm:min-w-[5rem]"
                    @if ($active) aria-current="page" @endif>
                     <span class="relative grid h-14 w-14 place-items-center rounded-2xl ring-1 transition-all duration-300 group-hover:-translate-y-0.5 group-active:scale-95 {{ $active ? 'ring-gold/60' : 'ring-white/15 group-hover:ring-gold/40' }}"
                           style="background:linear-gradient(140deg, rgba(18,61,50,0.55) 0%, rgba(20,127,112,0.45) 100%); box-shadow:0 6px 18px -8px rgba(9,39,31,0.55), inset 0 1px 0 rgba(255,255,255,0.10);">
