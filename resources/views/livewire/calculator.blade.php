@@ -147,7 +147,7 @@
                                     <span class="u-icon-box h-9 w-9 shrink-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><path d="M12 8v5m0 3h.01"/><circle cx="12" cy="12" r="9"/></svg>
                                     </span>
-                                    <label for="funeral" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">Biaya pengurusan jenazah</label>
+                                    <label for="funeral" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">{{ __('messages.calc_funeral') }}</label>
                                 </div>
                                 <span class="u-step-badge">1</span>
                             </div>
@@ -169,7 +169,7 @@
                                     <span class="u-icon-box h-9 w-9 shrink-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><path d="M7 4h10l4 4h-4"></path><path d="M17 20h-6"/><path d="M7 4v16h10V8"/><path d="M10 12h4M10 16h4"/></svg>
                                     </span>
-                                    <label for="debts" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">Hutang almarhum</label>
+                                    <label for="debts" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">{{ __('messages.calc_debts') }}</label>
                                 </div>
                                 <span class="u-step-badge">2</span>
                             </div>
@@ -191,7 +191,7 @@
                                     <span class="u-icon-box h-9 w-9 shrink-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
                                     </span>
-                                    <label for="bequest" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">Wasiat (maks 1/3 — divalidasi)</label>
+                                    <label for="bequest" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">{{ __('messages.calc_bequest') }</label> 
                                 </div>
                                 <span class="u-step-badge">3</span>
                             </div>
@@ -1172,7 +1172,7 @@
                                     <span class="u-icon-box h-9 w-9 shrink-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><path d="M12 8v5m0 3h.01"/><circle cx="12" cy="12" r="9"/></svg>
                                     </span>
-                                    <label for="funeral" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">Biaya pengurusan jenazah</label>
+                                    <label for="funeral" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">{{ __('messages.calc_funeral') }}</label>
                                 </div>
                                 <span class="u-step-badge">1</span>
                             </div>
@@ -1193,7 +1193,7 @@
                                     <span class="u-icon-box h-9 w-9 shrink-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><path d="M7 4h10l4 4h-4"/><path d="M17 20h-6"/><path d="M7 4v16h10V8"/><path d="M10 12h4M10 16h4"/></svg>
                                     </span>
-                                    <label for="debts" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">Hutang almarhum</label>
+                                    <label for="debts" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">{{ __('messages.calc_debts') }}</label>
                                 </div>
                                 <span class="u-step-badge">2</span>
                             </div>
@@ -1214,7 +1214,7 @@
                                     <span class="u-icon-box h-9 w-9 shrink-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
                                     </span>
-                                    <label for="bequest" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">Wasiat/hibah</label>
+                                    <label for="bequest" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">{{ __('messages.calc_bequest') }}</label>
                                 </div>
                                 <span class="u-step-badge">3</span>
                             </div>
