@@ -59,17 +59,17 @@
     @php
         // Navigasi inti: nama rute => [label, ikon SVG (gaya Lucide, stroke 1.7)]
         $navLinks = [
-            'home'      => ['Beranda', '<path stroke-linecap="round" stroke-linejoin="round" d="M4 11.5 12 4l8 7.5M6 10v9a1 1 0 0 0 1 1h3.5v-5.5h3V20H17a1 1 0 0 0 1-1v-9"/>'],
-            'heirs'     => ['Ahli Waris', '<path stroke-linecap="round" stroke-linejoin="round" d="M12 11a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M5 19.5c.6-3.2 3.4-5.25 7-5.25s6.4 2.05 7 5.25"/>'],
-            'shares'    => ['Bagian Warisan', '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 3.75A8.7 8.7 0 0 1 21.25 10H15V4.25"/>'],
-            'how-to'    => ['Panduan', '<path stroke-linecap="round" stroke-linejoin="round" d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z"/>'],
-            'calculate' => ['Kalkulator', '<path stroke-linecap="round" stroke-linejoin="round" d="M6 3.5h12a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-15a1 1 0 0 1 1-1Z"/><path stroke-linecap="round" d="M8.5 8h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h3.49"/>'],
-            'history'   => ['Riwayat', '<path stroke-linecap="round" stroke-linejoin="round" d="M3.5 5v3.5H7"/><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 8.5A8.5 8.5 0 1 1 3.9 12"/><path stroke-linecap="round" d="M12 8v4.5l3 2"/>'],
-            'sources'   => ['Referensi', '<path stroke-linecap="round" stroke-linejoin="round" d="M5 4h6a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M14 7a3 3 0 0 1 3-3h2v13h-2a3 3 0 0 0-3 3"/><path stroke-linecap="round" d="M8 8h3M8 11h3"/>'],
-            'about'     => ['Tentang', '<path stroke-linecap="round" stroke-linejoin="round" d="M12 13.5a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 8.75a7.5 7.5 0 1 1 15 7.5 7.5 7.5 0 0 1-15-.75"/><path stroke-linecap="round" d="M10 20.5 12 18l2 2.5"/>'],
-            'install'   => ['Pasang di Perangkat', '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v11"/><path stroke-linecap="round" stroke-linejoin="round" d="m8 10.5 4 4 4-4"/><path stroke-linecap="round" d="M4.5 20.5h15"/>'],
-            'privacy'   => ['Kebijakan Privasi', '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3.5 5 6v6c0 4.2 2.9 7.5 7 8.5 4.1-1 7-4.3 7-8.5V6Z"/><path stroke-linecap="round" d="m9.5 12 1.8 1.8 3.2-3.6"/>'],
-            'settings'  => ['Pengaturan', '<path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>'],
+            'home'      => [__('messages.nav_home'), '<path stroke-linecap="round" stroke-linejoin="round" d="M4 11.5 12 4l8 7.5M6 10v9a1 1 0 0 0 1 1h3.5v-5.5h3V20H17a1 1 0 0 0 1-1v-9"/>'],
+            'heirs'     => [__('messages.nav_heirs'), '<path stroke-linecap="round" stroke-linejoin="round" d="M12 11a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M5 19.5c.6-3.2 3.4-5.25 7-5.25s6.4 2.05 7 5.25"/>'],
+            'shares'    => [__('messages.nav_shares'), '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 3.75A8.7 8.7 0 0 1 21.25 10H15V4.25"/>'],
+            'how-to'    => [__('messages.nav_howto'), '<path stroke-linecap="round" stroke-linejoin="round" d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z"/>'],
+            'calculate' => [__('messages.nav_calculate'), '<path stroke-linecap="round" stroke-linejoin="round" d="M6 3.5h12a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-15a1 1 0 0 1 1-1Z"/><path stroke-linecap="round" d="M8.5 8h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h3.49"/>'],
+            'history'   => [__('messages.nav_history'), '<path stroke-linecap="round" stroke-linejoin="round" d="M3.5 5v3.5H7"/><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 8.5A8.5 8.5 0 1 1 3.9 12"/><path stroke-linecap="round" d="M12 8v4.5l3 2"/>'],
+            'sources'   => [__('messages.nav_sources'), '<path stroke-linecap="round" stroke-linejoin="round" d="M5 4h6a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M14 7a3 3 0 0 1 3-3h2v13h-2a3 3 0 0 0-3 3"/><path stroke-linecap="round" d="M8 8h3M8 11h3"/>'],
+            'about'     => [__('messages.nav_about'), '<path stroke-linecap="round" stroke-linejoin="round" d="M12 13.5a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 8.75a7.5 7.5 0 1 1 15 7.5 7.5 7.5 0 0 1-15-.75"/><path stroke-linecap="round" d="M10 20.5 12 18l2 2.5"/>'],
+            'install'   => [__('messages.nav_install'), '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v11"/><path stroke-linecap="round" stroke-linejoin="round" d="m8 10.5 4 4 4-4"/><path stroke-linecap="round" d="M4.5 20.5h15"/>'],
+            'privacy'   => [__('messages.nav_privacy'), '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3.5 5 6v6c0 4.2 2.9 7.5 7 8.5 4.1-1 7-4.3 7-8.5V6Z"/><path stroke-linecap="round" d="m9.5 12 1.8 1.8 3.2-3.6"/>'],
+            'settings'  => [__('messages.settings'), '<path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>'],
         ];
 
         // Menu "Lainnya" pada bottom nav: halaman sekunder
@@ -257,14 +257,14 @@
                     </p>
                 </div>
                 <div class="mt-8 text-sm md:mt-0">
-                    <p class="u-kicker text-gold">Halaman</p>
+                    <p class="u-kicker text-gold">{{ __('messages.nav_pages') }}</p>
                     <ul class="mt-4 space-y-2">
-                        <li><a href="{{ route('about') }}" class="transition hover:text-gold">Tentang</a></li>
-                        <li><a href="{{ route('install') }}" class="transition hover:text-gold">Pasang di Perangkat</a></li>
-                        <li><a href="{{ route('sources') }}" class="transition hover:text-gold">Sumber/Referensi</a></li>
-                        <li><a href="{{ route('privacy') }}" class="transition hover:text-gold">Kebijakan Privasi</a></li>
-                        <li><a href="https://wa.me/6289520755684" target="_blank" rel="noopener" class="transition hover:text-gold">Kontak WhatsApp</a></li>
-                        <li><a href="https://instagram.com/hengki.pranata.19" target="_blank" rel="noopener" class="transition hover:text-gold">Instagram</a></li>
+                        <li><a href="{{ route('about') }}" class="transition hover:text-gold">{{ __('messages.nav_about') }}</a></li>
+                        <li><a href="{{ route('install') }}" class="transition hover:text-gold">{{ __('messages.nav_install') }}</a></li>
+                        <li><a href="{{ route('sources') }}" class="transition hover:text-gold">{{ __('messages.nav_sources') }}</a></li>
+                        <li><a href="{{ route('privacy') }}" class="transition hover:text-gold">{{ __('messages.nav_privacy') }}</a></li>
+                        <li><a href="https://wa.me/6289520755684" target="_blank" rel="noopener" class="transition hover:text-gold">{{ __('messages.contact_whatsapp') }}</a></li>
+                        <li><a href="https://instagram.com/hengki.pranata.19" target="_blank" rel="noopener" class="transition hover:text-gold">{{ __('messages.contact_instagram') }}</a></li>
                     </ul>
                 </div>
                 <div class="mt-8 text-sm md:mt-0">

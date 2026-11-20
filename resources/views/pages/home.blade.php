@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Beranda')
+@section('title', __('messages.home_title'))
 
 @section('content')
 {{-- Splash screen premium (hanya saat pertama buka) --}}
@@ -96,10 +96,10 @@
         <nav class="mt-7 flex gap-6 overflow-x-auto pb-1 md:justify-center md:gap-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
              aria-label="Menu cepat">
             @foreach ([
-                ['route' => 'heirs', 'label' => 'Ahli Waris', 'icon' => '<circle cx="12" cy="8" r="3.25"/><path stroke-linecap="round" stroke-linejoin="round" d="M5 19.5c.6-3.2 3.4-5.25 7-5.25s6.4 2.05 7 5.25"/>'],
-                ['route' => 'shares', 'label' => 'Bagian Warisan', 'icon' => '<circle cx="12" cy="12" r="8.5"/><path stroke-linecap="round" d="M12 3.5V12l6 3.5"/>'],
-                ['route' => 'calculate', 'label' => 'Kalkulator', 'icon' => '<rect x="5" y="3" width="14" height="18" rx="2.5"/><path stroke-linecap="round" d="M9 7h6m-6 4h.01M12 11h.01M15 11h.01M9 14h.01M12 14h.01M15 14h.01M9 17h6"/>'],
-                ['route' => 'how-to', 'label' => 'Cara Menghitung', 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z"/>'],
+                ['route' => 'heirs', 'label' => __('messages.nav_heirs'), 'icon' => '<circle cx="12" cy="8" r="3.25"/><path stroke-linecap="round" stroke-linejoin="round" d="M5 19.5c.6-3.2 3.4-5.25 7-5.25s6.4 2.05 7 5.25"/>'],
+                ['route' => 'shares', 'label' => __('messages.nav_shares'), 'icon' => '<circle cx="12" cy="12" r="8.5"/><path stroke-linecap="round" d="M12 3.5V12l6 3.5"/>'],
+                ['route' => 'calculate', 'label' => __('messages.nav_calculate'), 'icon' => '<rect x="5" y="3" width="14" height="18" rx="2.5"/><path stroke-linecap="round" d="M9 7h6m-6 4h.01M12 11h.01M15 11h.01M9 14h.01M12 14h.01M15 14h.01M9 17h6"/>'],
+                ['route' => 'how-to', 'label' => __('messages.nav_howto'), 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z"/>'],
             ] as $shortcut)
                 @php $active = request()->routeIs($shortcut['route']); @endphp
                 <a href="{{ route($shortcut['route']) }}"
@@ -129,10 +129,10 @@
                  class="relative w-full max-w-[16rem] shrink-0 rounded-2xl shadow-lg shadow-[#09271F]/50 ring-1 ring-gold/20 sm:max-w-[17rem] md:max-w-xs lg:max-w-sm"
                  aria-hidden="true">
             <div class="relative min-w-0 text-center sm:text-left">
-                <h1 class="text-xl font-bold leading-snug md:text-2xl lg:text-3xl">Ilmu Faraid dan Keadilan</h1>
-                <p class="mt-2 text-sm leading-relaxed text-ivory/80 md:text-sm lg:text-base">Pembagian warisan berdasarkan ketentuan hukum Islam.</p>
+                <h1 class="text-xl font-bold leading-snug md:text-2xl lg:text-3xl">{{ __('messages.hero_title') }}</h1>
+                <p class="mt-2 text-sm leading-relaxed text-ivory/80 md:text-sm lg:text-base">{{ __('messages.hero_desc') }}</p>
                 <a href="{{ route('calculate') }}" class="mt-4 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-[#09271F] shadow-lg shadow-[#09271F]/40 transition hover:-translate-y-0.5 hover:bg-gold/90 active:scale-95">
-                    Hitung Warisan
+                    {{ __('messages.btn_calculate') }}
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
                 </a>
             </div>
@@ -147,10 +147,10 @@
 <section class="mt-7 md:mt-9" aria-label="Menu layanan">
     <div class="mx-auto grid grid-cols-2 gap-3 sm:grid-cols-4 md:max-w-3xl">
         @foreach ([
-            ['route' => 'history', 'label' => 'Riwayat', 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M3.5 5v3.5H7"/><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 8.5A8.5 8.5 0 1 1 3.9 12"/><path stroke-linecap="round" d="M12 8v4.5l3 2"/>'],
-            ['route' => 'sources', 'label' => 'Referensi', 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M5 4h6a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M14 7a3 3 0 0 1 3-3h2v13h-2a3 3 0 0 0-3 3"/><path stroke-linecap="round" d="M8 8h3M8 11h3"/>'],
-            ['route' => 'about', 'label' => 'Tentang', 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 13.5a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 8.75a7.5 7.5 0 1 1 15 7.5 7.5 7.5 0 0 1-15-.75"/><path stroke-linecap="round" d="M10 20.5 12 18l2 2.5"/>'],
-            ['route' => 'install', 'label' => 'Pasang', 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v11"/><path stroke-linecap="round" stroke-linejoin="round" d="m8 10.5 4 4 4-4"/><path stroke-linecap="round" d="M4.5 20.5h15"/>'],
+            ['route' => 'history', 'label' => __('messages.nav_history'), 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M3.5 5v3.5H7"/><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 8.5A8.5 8.5 0 1 1 3.9 12"/><path stroke-linecap="round" d="M12 8v4.5l3 2"/>'],
+            ['route' => 'sources', 'label' => __('messages.nav_sources'), 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M5 4h6a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M14 7a3 3 0 0 1 3-3h2v13h-2a3 3 0 0 0-3 3"/><path stroke-linecap="round" d="M8 8h3M8 11h3"/>'],
+            ['route' => 'about', 'label' => __('messages.nav_about'), 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 13.5a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 8.75a7.5 7.5 0 1 1 15 7.5 7.5 7.5 0 0 1-15-.75"/><path stroke-linecap="round" d="M10 20.5 12 18l2 2.5"/>'],
+            ['route' => 'install', 'label' => __('messages.nav_install'), 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v11"/><path stroke-linecap="round" stroke-linejoin="round" d="m8 10.5 4 4 4-4"/><path stroke-linecap="round" d="M4.5 20.5h15"/>'],
         ] as $service)
             <a data-reveal href="{{ route($service['route']) }}"
                class="group flex flex-col items-center gap-2 rounded-2xl bg-paper p-3.5 text-center ring-1 ring-black/5 shadow-smooth transition hover:-translate-y-0.5 hover:ring-gold/40 active:scale-[0.97]"
