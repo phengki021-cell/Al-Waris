@@ -264,6 +264,7 @@
                         <li><a href="{{ route('sources') }}" class="transition hover:text-gold">Sumber/Referensi</a></li>
                         <li><a href="{{ route('privacy') }}" class="transition hover:text-gold">Kebijakan Privasi</a></li>
                         <li><a href="https://wa.me/6289520755684" target="_blank" rel="noopener" class="transition hover:text-gold">Kontak WhatsApp</a></li>
+                        <li><a href="https://instagram.com/hengki.pranata.19" target="_blank" rel="noopener" class="transition hover:text-gold">Instagram</a></li>
                     </ul>
                 </div>
                 <div class="mt-8 text-sm md:mt-0">
