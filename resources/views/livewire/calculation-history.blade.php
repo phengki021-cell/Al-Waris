@@ -1,7 +1,7 @@
 <div class="mx-auto max-w-4xl">
     @include('partials.back-button')
     <p class="u-kicker text-gold-deep">Riwayat</p>
-    <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">Riwayat Perhitungan</h1>
+    <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">{{ __('messages.nav_history') }}</h1>
     <p class="mt-2 text-sm text-ink/70">
         Riwayat tersimpan <strong>anonim per sesi peramban</strong>. Data tetap di perangkat/peramban Anda
         dan tidak terhubung ke akun mana pun. Lihat <a href="{{ route('privacy') }}" class="text-primary underline">Kebijakan Privasi</a>.

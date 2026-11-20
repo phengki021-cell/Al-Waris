@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Pasang Al-Waris di Perangkat')
+@section('title', __('messages.nav_install'))
 
 @section('content')
 @include('partials.back-button')
 <div class="mx-auto mt-3 max-w-3xl">
     <p class="u-kicker text-gold-deep">Aplikasi</p>
-    <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">Pasang Al-Waris di Perangkat</h1>
+    <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">{{ __('messages.nav_install') }}</h1>
     <p class="mt-3 text-ink/70">
         Al-Waris adalah <strong>PWA (Progressive Web App)</strong> — situs web yang dapat
         <strong>dipasang langsung dari browser</strong> ke layar beranda, tanpa perlu mengunduh

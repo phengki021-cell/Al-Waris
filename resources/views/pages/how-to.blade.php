@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Cara Menghitung')
+@section('title', __('messages.nav_howto'))
 
 @section('content')
 @include('partials.back-button')
 <section class="mt-3">
     <p class="u-kicker text-gold-deep">Panduan</p>
-    <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">Cara Menghitung Warisan</h1>
+    <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">{{ __('messages.nav_howto') }}</h1>
     <p class="mt-2 text-sm text-ink/70 max-w-3xl">
         Ilmu faraid disusun dalam tahapan yang rapi. Klik setiap tahapan untuk membuka
         detail penjelasan <span class="font-medium">rumus</span>,

@@ -2,7 +2,7 @@
     @include('partials.back-button')
     <section class="mt-3">
         <p class="u-kicker text-gold-deep">Dzawil Furudh</p>
-        <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">Bagian-Bagian Warisan</h1>
+        <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">{{ __('messages.nav_shares') }}</h1>
         <p class="mt-2 text-sm text-ink/70">
             Bagian pasti (dzawil furudh) dari QS. An-Nisaa &amp; KHI. Klik kartu atau tombol
             &laquo;Lihat Detail Dalil&raquo; untuk membuka dalil lengkap: teks Arab, Latin, terjemahan

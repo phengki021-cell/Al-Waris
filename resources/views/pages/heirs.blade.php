@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Ahli Waris')
+@section('title', __('messages.heirs_title'))
 
 @section('content')
 <section>
-    <h1 class="text-2xl font-bold md:text-3xl">Ahli Waris</h1>
+    <h1 class="text-2xl font-bold md:text-3xl">{{ __('messages.heirs_title') }}</h1>
     <p class="mt-2 text-sm text-ink/70">
-        Golongan ahli waris menurut ilmu faraid. Kabar baiknya: datanya diambil dari tabel <code>heirs</code>
-        (seeder DEMO) dan terus diperkaya di Tahap berikutnya bersama sumber terkait.
+        {{ __('messages.heirs_intro') }}
     </p>
 </section>
 
@@ -26,14 +25,14 @@
                             @if ($heir->name_ar) <p class="text-xs italic text-ink/50">{{ $heir->name_ar }}</p> @endif
                         </div>
                         <span class="rounded-full bg-accent-soft px-2 py-0.5 text-xs font-medium text-primary">
-                            {{ $heir->gender === 'm' ? 'Laki-laki' : 'Perempuan' }}
+                            {{ $heir->gender === 'm' ? __('messages.gender_male') : __('messages.gender_female') }}
                         </span>
                     </div>
                     <p class="mt-2 text-sm text-ink/80">{{ $heir->detail }}</p>
 
                     @if ($heir->max_share_numerator !== null)
                         <p class="mt-2 text-xs text-accent">
-                            Bagian maksimum: {{ $heir->max_share_numerator }}/{{ $heir->max_share_denominator }}
+                            {{ __('messages.max_share') }}: {{ $heir->max_share_numerator }}/{{ $heir->max_share_denominator }}
                         </p>
                     @endif
 
@@ -47,13 +46,13 @@
 
                     @if ($heir->source)
                         <p class="mt-3 text-xs text-ink/50">
-                            Sumber: {{ $heir->source->title }} — {{ $heir->source->reference }}
+                            {{ __('messages.source') }}: {{ $heir->source->title }} — {{ $heir->source->reference }}
                         </p>
                     @endif
-                    <p class="mt-1 text-[10px] text-ink/70">Dalil: QS. An-Nisaa 4:11&ndash;12, 4:176; KHI Pasal 176&ndash;182; Fathul-Qarib.</p>
+                    <p class="mt-1 text-[10px] text-ink/70">{{ __('messages.dalil') }}: QS. An-Nisaa 4:11&ndash;12, 4:176; KHI Pasal 176&ndash;182; Fathul-Qarib.</p>
                 </article>
             @empty
-                <p class="text-sm text-ink/70">Belum ada data.</p>
+                <p class="text-sm text-ink/70">{{ __('messages.no_data') }}</p>
             @endforelse
         </div>
     </section>

@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Kebijakan Privasi')
+@section('title', __('messages.nav_privacy'))
 
 @section('content')
 @include('partials.back-button')
 <section class="mx-auto mt-3 max-w-3xl">
     <p class="u-kicker text-gold-deep">Legal</p>
-    <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">Kebijakan Privasi</h1>
+    <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">{{ __('messages.nav_privacy') }}</h1>
     <p class="mt-2 text-xs text-ink/50">Terakhir diperbarui: 21 Oktober 2026 (Tahap 4).</p>
 
     <div class="mt-5 space-y-4 text-sm leading-relaxed text-ink/90">

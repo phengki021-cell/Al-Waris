@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Tentang')
+@section('title', __('messages.nav_about'))
 
 @section('content')
 @include('partials.back-button')
 <section class="mx-auto mt-3 max-w-3xl">
     <p class="u-kicker text-gold-deep">Tentang</p>
-    <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">Tentang Al-Waris</h1>
+    <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">{{ __('messages.nav_about') }}</h1>
 
     {{-- Tujuan Al Waris — identitas misi --}}
     <div class="u-smart-card mt-6 p-6 md:p-8">

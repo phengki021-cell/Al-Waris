@@ -2,8 +2,8 @@
     @include('partials.back-button')
     <div class="mt-3 flex flex-wrap items-end justify-between gap-3">
         <div>
-            <p class="u-kicker text-gold-deep">Kalkulator</p>
-            <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">Hitung Warisan Otomatis</h1>
+            <p class="u-kicker text-gold-deep">{{ __('messages.nav_calculate') }}</p>
+            <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">{{ __('messages.calc_title') }}</h1>
         </div>
         <span class="u-chip rounded-full">DEMO — verifikasi ahli faraid</span>
     </div>
@@ -110,7 +110,7 @@
                                     <span class="u-icon-box h-9 w-9 shrink-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><path d="M20 12V8H6a2 2 0 0 1 0-4h12v4"/><path d="M4 8v13h16V8"/><path d="M12 12v5"/><path d="M9 17h6"/></svg>
                                     </span>
-                                    <label for="estate" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">Total harta peninggalan</label>
+                                    <label for="estate" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">{{ __('messages.calc_estate') }}</label>
                                 </div>
                                 <span class="u-chip">harta</span>
                             </div>
@@ -713,11 +713,11 @@
                 <div class="mt-5 flex flex-wrap gap-3">
                     <button type="submit" class="u-btn-emerald px-7 py-3 text-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16 2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3Z"/></svg>
-                        Hitung Sekarang
+                        {{ __('messages.btn_calc_now') }}
                     </button>
                     <button type="button" x-on:click="$dispatch('open-reset-modal', { mode: 'faraid' })"
                         class="rounded-full border border-emerald-900/10 bg-paper px-6 py-3 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-900/5">
-                        Mulai Perhitungan Baru
+                        {{ __('messages.btn_new_calc') }}
                     </button>
 
                     @if ($errors->any())
@@ -784,7 +784,7 @@
 
                     <div class="u-smart-card overflow-hidden">
                         <div class="flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-[#0A120E] via-[#101B18] to-[#1B5E48] px-5 py-3.5">
-                            <h2 class="u-display text-lg text-ivory">Hasil Pembagian</h2>
+                            <h2 class="u-display text-lg text-ivory">{{ __('messages.result_title') }}</h2>
                             <span class="u-chip">DEMO — verifikasi ahli faraid</span>
                         </div>
 
@@ -1063,7 +1063,7 @@
                                 <button type="button" wire:click="saveToHistory" wire:loading.attr="disabled"
                                     class="u-btn-gold px-6 py-2.5 text-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                                    Simpan ke Riwayat
+                                    {{ __('messages.btn_save_history') }}
                                 </button>
                                 <button type="button" x-data x-on:click="window.print()"
                                     class="u-btn-ghost ml-2 px-6 py-2.5 text-sm text-charcoal ring-1 ring-charcoal/15">
@@ -1136,7 +1136,7 @@
                                     <span class="u-icon-box h-9 w-9 shrink-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><path d="M20 12V8H6a2 2 0 0 1 0-4h12v4"/><path d="M4 8v13h16V8"/><path d="M12 12v5"/><path d="M9 17h6"/></svg>
                                     </span>
-                                    <label for="estate" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">Total harta peninggalan</label>
+                                    <label for="estate" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">{{ __('messages.calc_estate') }}</label>
                                 </div>
                                 <span class="u-chip">harta</span>
                             </div>
@@ -1316,7 +1316,7 @@
                     </button>
                     <button type="button" x-on:click="$dispatch('open-reset-modal', { mode: 'civil' })"
                         class="rounded-full border border-emerald-900/10 bg-paper px-6 py-3 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-900/5">
-                        Mulai Perhitungan Baru
+                        {{ __('messages.btn_new_calc') }}
                     </button>
                 </div>
 

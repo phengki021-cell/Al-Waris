@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Sumber dan Referensi')
+@section('title', __('messages.nav_sources'))
 
 @section('content')
 @include('partials.back-button')
 <section class="mt-3">
     <p class="u-kicker text-gold-deep">Referensi</p>
-    <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">Sumber / Referensi</h1>
+    <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">{{ __('messages.nav_sources') }}</h1>
     <p class="mt-2 text-sm text-ink/70 max-w-3xl">
         Daftar sumber yang menjadi basis aturan faraid di Al-Waris. Setiap bagian warisan dapat ditautkan ke
         sumbernya di halaman Bagian. Detail penentuan pendapat klasik akan dikategorisasi di Tahap 2.

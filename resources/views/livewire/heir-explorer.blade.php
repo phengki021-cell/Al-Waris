@@ -2,11 +2,9 @@
     @include('partials.back-button')
     <section class="mt-3">
         <p class="u-kicker text-gold-deep">Faraidh</p>
-        <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">Ahli Waris</h1>
+        <h1 class="u-display mt-1.5 text-2xl text-ink md:text-3xl">{{ __('messages.heirs_title') }}</h1>
         <p class="mt-2 text-sm text-ink/70">
-            Golongan ahli waris menurut ilmu faraid: dzawil furudh, ashabah, dan dzawil arham.
-            Klik kartu atau tombol &laquo;Lihat Detail&raquo; untuk definisi, syarat, kondisi
-            mahrum/hijab, serta dalil Al-Qur'an (Arab, Latin, Terjemahan Kemenag) dan pasal KHI.
+            {{ __('messages.heirs_intro') }}
         </p>
     </section>
 
