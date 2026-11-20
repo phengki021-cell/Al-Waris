@@ -369,6 +369,12 @@
                     </div>
                 </div>
 
+                {{-- ORANG TUA - Ayah & Ibu (prioritas utama) --}}
+                <div class="mt-4 rounded-2xl border border-emerald-900/10 bg-emerald-50/40 p-3 md:p-4">
+                    <p class="text-[0.85rem] font-bold text-emerald-900">ORANG TUA</p>
+                    <p class="text-[0.72rem] text-ink/60">Pilih orang tua yang masih hidup ketika pewaris meninggal dunia.</p>
+                </div>
+
                 {{-- Orang tua, nenek & kakek (pengganti ayah) — visual toggle cards --}}
                 <div class="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
                     <button type="button"
@@ -380,7 +386,7 @@
                         <span class="u-icon-box h-9 w-9 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="12" cy="7" r="3.4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/><path d="M17 3.5h4M19 1.5v4"/></svg>
                         </span>
-                        <span>AYAH · 1/6 <span class="block text-[10px] font-medium text-ink/45">klik untuk masukkan
+                        <span>AYAH <span class="block text-[10px] font-medium text-ink/45">klik untuk memilih
                             <span wire:loading wire:target="toggle('father')" class="inline-block animate-pulse font-extrabold uppercase tracking-wider text-gold-deep">menyimpan…</span>
                         </span>
                         </span>
@@ -395,7 +401,7 @@
                         <span class="u-icon-box h-9 w-9 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="12" cy="7" r="3.4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/><path d="M12 1.2l.8 1.7 1.7.8-1.7.8-.8 1.7-.8-1.7-1.7-.8 1.7-.8.8-1.7Z" fill="currentColor" stroke="none"/></svg>
                         </span>
-                        <span>IBU · 1/6 <span class="block text-[10px] font-medium text-ink/45">klik untuk masukkan
+                        <span>IBU <span class="block text-[10px] font-medium text-ink/45">klik untuk memilih
                             <span wire:loading wire:target="toggle('mother')" class="inline-block animate-pulse font-extrabold uppercase tracking-wider text-gold-deep">menyimpan…</span>
                         </span>
                         </span>
@@ -410,7 +416,7 @@
                         <span class="u-icon-box h-9 w-9 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="12" cy="7" r="3.4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/><path d="M19.5 1 17.5 5h4L19.5 9"/></svg>
                         </span>
-                        <span>NENEK DARI IBU <span class="block text-[10px] font-medium text-ink/45">klik untuk masukkan
+                        <span>NENEK DARI IBU <span class="block text-[10px] font-medium text-ink/45">klik untuk memilih
                             <span wire:loading wire:target="toggle('maternalGrandmother')" class="inline-block animate-pulse font-extrabold uppercase tracking-wider text-gold-deep">menyimpan…</span>
                         </span>
                         </span>
@@ -425,7 +431,7 @@
                         <span class="u-icon-box h-9 w-9 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><circle cx="8" cy="7" r="3.4"/><path d="M1.5 21a6.5 6.5 0 0 1 13 0"/><path d="M17 1.5h4l-2 3.5"/><path d="M19 1.5v3"/></svg>
                         </span>
-                        <span>KAKEK DARI AYAH <span class="block text-[10px] font-medium text-ink/45">pengganti ayah · klik untuk masukkan
+                        <span>KAKEK DARI AYAH <span class="block text-[10px] font-medium text-ink/45">pengganti ayah · klik untuk memilih
                             <span wire:loading wire:target="toggle('grandfather')" class="inline-block animate-pulse font-extrabold uppercase tracking-wider text-gold-deep">menyimpan…</span>
                         </span>
                         </span>
