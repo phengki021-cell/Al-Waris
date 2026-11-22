@@ -129,7 +129,7 @@
                         <div class="rounded-2xl border border-dashed border-gold/45 bg-gold-soft/50 p-4">
                             <div class="flex items-center gap-2.5">
                                 <span class="u-step-badge">4</span>
-                                <p class="text-[0.78rem] font-bold leading-snug text-emerald-900 md:text-sm">Harta bersih dibagi (Gono-Gini)</p>
+                                <p class="text-[0.78rem] font-bold leading-snug text-emerald-900 md:text-sm">{{ __('messages.calc_net_estate') }}</p>
                             </div>
                             <p class="mt-2 text-xs leading-relaxed text-ink/70">
                                 Pastikan <strong class="text-ink">hak pasangan atas harta bersama</strong> (Gono-Gini)
@@ -191,7 +191,7 @@
                                     <span class="u-icon-box h-9 w-9 shrink-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
                                     </span>
-                                    <label for="bequest" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">{{ __('messages.calc_bequest') }</label> 
+                                    <label for="bequest" class="text-[0.78rem] font-bold leading-snug text-ink md:text-sm">{{ __('messages.calc_bequest') }}</label> 
                                 </div>
                                 <span class="u-step-badge">3</span>
                             </div>
@@ -215,7 +215,7 @@
 
                 {{-- Jenis kelamin pewaris: menentukan pasangan yang sah --}}
                 <div class="mt-3" role="radiogroup" aria-label="Jenis kelamin pewaris">
-                    <p class="text-[0.78rem] font-bold text-ink md:text-sm">Jenis kelamin pewaris</p>
+                    <p class="text-[0.78rem] font-bold text-ink md:text-sm">{{ __('messages.calc_gender') }}</p>
                     <p class="text-[10px] font-medium text-ink/45">Pewaris laki-laki → pilih pasangan “Istri”; pewaris perempuan → pilih pasangan “Suami”.</p>
                     <div class="mt-2 flex gap-2">
                         @foreach (['laki-laki' => 'Laki-laki', 'perempuan' => 'Perempuan'] as $genderValue => $genderLabel)
