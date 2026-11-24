@@ -53,6 +53,8 @@ Route::get('/referensi', SourceController::class)->name('sources');
 Route::view('/waris-perdata', 'pages.civil')->name('civil');
 Route::view('/waris-perdata/materi', 'pages.civil-materi')->name('civil.materi');
 Route::get('/waris-perdata/kalkulator', \App\Livewire\CivilCalculator::class)->name('civil.calculator');
+Route::get('/waris-perdata/hasil', \App\Livewire\CivilResult::class)->name('civil.result');
+Route::get('/waris-perdata/riwayat', \App\Livewire\CivilHistory::class)->name('civil.history');
 Route::get('/waris-perdata/keluarga', \App\Livewire\CivilFamilyForm::class)->name('civil.family');
 Route::get('/waris-perdata/wasiat', \App\Livewire\CivilWasiatHibah::class)->name('civil.wasiat');
 
