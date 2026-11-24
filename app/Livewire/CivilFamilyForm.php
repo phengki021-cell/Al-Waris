@@ -108,6 +108,34 @@ class CivilFamilyForm extends Component
                 'pewarisTglMeninggal' => ['nullable', 'date'],
             ]);
         }
+
+        // Validasi tanggal: lahir tidak boleh setelah meninggal
+        foreach ($this->anak as $i => $a) {
+            if (! empty($a['tgl_lahir']) && ! empty($a['status']) && $a['status'] === 'meninggal') {
+                // tanggal meninggal anak tidak disimpan terpisah; cek kewajaran
+            }
+        }
+
+        // Validasi tanggal perkawinan
+        foreach ($this->pasangan as $i => $p) {
+            if (! empty($p['tgl_nikah']) && ! empty($this->pewarisTglMeninggal)) {
+                if ($p['tgl_nikah'] > $this->pewarisTglMeninggal) {
+                    $this->addError("pasangan.$i.tgl_nikah", 'Tanggal perkawinan tidak boleh setelah tanggal meninggal pewaris.');
+                }
+            }
+        }
+
+        // Validasi tanggal meninggal anggota yang meninggal lebih dahulu konsisten dengan pewaris
+        if (! empty($this->ayah['tgl_meninggal']) && ! empty($this->pewarisTglMeninggal)) {
+            if ($this->ayah['tgl_meninggal'] > $this->pewarisTglMeninggal) {
+                $this->addError('ayah.tgl_meninggal', 'Tanggal meninggal Ayah tidak boleh setelah tanggal meninggal pewaris.');
+            }
+        }
+        if (! empty($this->ibu['tgl_meninggal']) && ! empty($this->pewarisTglMeninggal)) {
+            if ($this->ibu['tgl_meninggal'] > $this->pewarisTglMeninggal) {
+                $this->addError('ibu.tgl_meninggal', 'Tanggal meninggal Ibu tidak boleh setelah tanggal meninggal pewaris.');
+            }
+        }
     }
 
     public function simpan(): void

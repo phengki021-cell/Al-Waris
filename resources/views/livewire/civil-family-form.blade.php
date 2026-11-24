@@ -236,35 +236,47 @@
             <h2 class="text-lg font-bold text-ink">Diagram Silsilah Keluarga</h2>
             <p class="mt-1 text-xs text-ink/60">Visualisasi hubungan keluarga. Penggantian tempat ditandai dengan garis putus-putus.</p>
             <div class="mt-4 overflow-x-auto rounded-xl border border-black/5 bg-surface/40 p-4">
-                <div class="flex flex-col items-center gap-2 text-sm">
-                    <div class="rounded-lg bg-[#123D32] px-3 py-1.5 text-ivory font-semibold">{{ $pewarisNama ?: 'Pewaris' }}</div>
+                <div class="flex flex-col items-center gap-3 text-sm">
+                    {{-- Pewaris --}}
+                    <div class="rounded-xl bg-[#123D32] px-4 py-2 text-ivory font-semibold shadow">{{ $pewarisNama ?: 'Pewaris' }} ({{ $pewarisGender }})</div>
+
+                    {{-- Pasangan --}}
                     @if (count($pasangan) > 0)
-                        <div class="flex gap-2">
+                        <div class="flex flex-wrap justify-center gap-2">
                             @foreach ($pasangan as $p)
-                                <div class="rounded-lg bg-gold-soft px-2 py-1 text-xs text-gold-deep">{{ $p['nama'] ?: 'Pasangan' }}</div>
+                                <div class="rounded-lg bg-gold-soft px-3 py-1.5 text-xs font-medium text-gold-deep ring-1 ring-gold/30">Pasangan: {{ $p['nama'] ?: '—' }} ({{ $p['status'] }})</div>
                             @endforeach
                         </div>
                     @endif
+
+                    {{-- Anak --}}
                     @if (count($anak) > 0)
                         <div class="flex flex-wrap justify-center gap-2">
                             @foreach ($anak as $a)
-                                <div class="rounded-lg bg-emerald-100 px-2 py-1 text-xs text-emerald-900 {{ ($a['status'] ?? '') === 'meninggal' ? 'ring-2 ring-red-300' : '' }}">{{ $a['nama'] ?: 'Anak' }}</div>
+                                <div class="rounded-lg bg-emerald-100 px-3 py-1.5 text-xs text-emerald-900 ring-1 ring-emerald-200 {{ ($a['status'] ?? '') === 'meninggal' ? 'ring-2 ring-red-400' : '' }}">
+                                    Anak: {{ $a['nama'] ?: '—' }} ({{ $a['gender'] }}, {{ $a['status'] }})
+                                    @if (($a['status'] ?? '') === 'meninggal') <span class="text-red-700">†</span> @endif
+                                </div>
                             @endforeach
                         </div>
                     @endif
-                    <div class="flex gap-4">
-                        <div class="rounded-lg bg-surface px-2 py-1 text-xs text-ink/70">Ayah: {{ $ayah['nama'] ?: '—' }}</div>
-                        <div class="rounded-lg bg-surface px-2 py-1 text-xs text-ink/70">Ibu: {{ $ibu['nama'] ?: '—' }}</div>
+
+                    {{-- Orang tua --}}
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <div class="rounded-lg bg-surface px-3 py-1.5 text-xs text-ink/70 ring-1 ring-black/5">Ayah: {{ $ayah['nama'] ?: '—' }} ({{ $ayah['status'] }})</div>
+                        <div class="rounded-lg bg-surface px-3 py-1.5 text-xs text-ink/70 ring-1 ring-black/5">Ibu: {{ $ibu['nama'] ?: '—' }} ({{ $ibu['status'] }})</div>
                     </div>
+
+                    {{-- Saudara --}}
                     @if (count($saudara) > 0)
                         <div class="flex flex-wrap justify-center gap-2">
                             @foreach ($saudara as $s)
-                                <div class="rounded-lg bg-surface px-2 py-1 text-xs text-ink/70">{{ $s['nama'] ?: 'Saudara' }}</div>
+                                <div class="rounded-lg bg-surface px-3 py-1.5 text-xs text-ink/70 ring-1 ring-black/5">Saudara: {{ $s['nama'] ?: '—' }} ({{ $s['kategori'] }}, {{ $s['status'] }})</div>
                             @endforeach
                         </div>
                     @endif
                 </div>
-                <p class="mt-3 text-xs text-ink/50">Jika diagram terlalu kompleks untuk layar HP, daftar hubungan di atas dapat digunakan sebagai alternatif.</p>
+                <p class="mt-3 text-xs text-ink/50">Legenda: merah = meninggal lebih dahulu. Jika diagram terlalu kompleks, gunakan daftar ringkasan di atas.</p>
             </div>
         @endif
     </div>
