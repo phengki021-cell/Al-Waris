@@ -70,7 +70,11 @@
             'install'   => [__('messages.nav_install'), '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v11"/><path stroke-linecap="round" stroke-linejoin="round" d="m8 10.5 4 4 4-4"/><path stroke-linecap="round" d="M4.5 20.5h15"/>'],
             'privacy'   => [__('messages.nav_privacy'), '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3.5 5 6v6c0 4.2 2.9 7.5 7 8.5 4.1-1 7-4.3 7-8.5V6Z"/><path stroke-linecap="round" d="m9.5 12 1.8 1.8 3.2-3.6"/>'],
             'settings'  => [__('messages.settings'), '<path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>'],
+            'civil'     => ['Hukum Waris Perdata', '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M3 12h18M5.5 5.5l13 13M18.5 5.5l-13 13"/>'],
         ];
+
+        // Menu "Lainnya" pada bottom nav: halaman sekunder
+        $moreLinks = ['heirs', 'shares', 'sources', 'about', 'install', 'privacy', 'settings', 'civil'];
 
         // Menu "Lainnya" pada bottom nav: halaman sekunder
         $moreLinks = ['heirs', 'shares', 'sources', 'about', 'install', 'privacy', 'settings'];

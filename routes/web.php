@@ -49,6 +49,11 @@ Route::get('/kebijakan-privasi', [PageController::class, 'privacy'])->name('priv
 // Referensi
 Route::get('/referensi', SourceController::class)->name('sources');
 
+// Hukum Waris Perdata (modul baru, Tahap 2)
+Route::view('/waris-perdata', 'pages.civil')->name('civil');
+Route::view('/waris-perdata/materi', 'pages.civil-materi')->name('civil.materi');
+Route::view('/waris-perdata/kalkulator', 'pages.civil-calculator')->name('civil.calculator');
+
 Route::get('/pengaturan', [SettingsController::class, 'index'])->name('settings');
 Route::post('/pengaturan/bahasa', [SettingsController::class, 'setLocale'])->name('settings.locale');
 
