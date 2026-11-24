@@ -54,6 +54,7 @@ Route::view('/waris-perdata', 'pages.civil')->name('civil');
 Route::view('/waris-perdata/materi', 'pages.civil-materi')->name('civil.materi');
 Route::get('/waris-perdata/kalkulator', \App\Livewire\CivilCalculator::class)->name('civil.calculator');
 Route::get('/waris-perdata/keluarga', \App\Livewire\CivilFamilyForm::class)->name('civil.family');
+Route::get('/waris-perdata/wasiat', \App\Livewire\CivilWasiatHibah::class)->name('civil.wasiat');
 
 Route::get('/pengaturan', [SettingsController::class, 'index'])->name('settings');
 Route::post('/pengaturan/bahasa', [SettingsController::class, 'setLocale'])->name('settings.locale');
